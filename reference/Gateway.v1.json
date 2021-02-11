@@ -188,17 +188,6 @@
                   },
                   "id": {
                     "type": "number"
-                  },
-                  "compressionFormat": {
-                    "type": "string",
-                    "enum": [
-                      "zip",
-                      "gzip",
-                      "b24",
-                      "plain"
-                    ],
-                    "example": "gzip",
-                    "default": "gzip"
                   }
                 },
                 "required": [
@@ -210,7 +199,20 @@
           },
           "description": ""
         },
-        "description": "Permite obtener un reporte previamente solicitado en formato csv con diferentes metodos de compresión, por defecto se devuelve comprimido en gzip"
+        "description": "Permite obtener un reporte previamente generado",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "gzip"
+              ]
+            },
+            "in": "header",
+            "name": "accept-encoding",
+            "description": "Allows to provide gzip as a compression format"
+          }
+        ]
       }
     }
   },
