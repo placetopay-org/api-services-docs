@@ -10,24 +10,15 @@
       "title": "Flujo de integracion",
       "uri": "docs/Flujo-de-integracion.md"
     },
-     {
-      "type": "divider",
-      "title": "API Placetopay"
-    },
-    {
-      "type": "item",
-      "title": "Operaciones",
-      "uri": "reference/Gateway.v1.json"
-    },
-    {
-      "type": "item",
-      "title": "Tipos de transacciones",
-      "uri": "docs/Tipos-de-transacciones.md"
-    },
     {
       "type": "item",
       "title": "Métodos de pago",
       "uri": "docs/Metodos-de-pago.md"
+    },
+    {
+      "type": "item",
+      "title": "Tipos de creditos",
+      "uri": "docs/Tipos-de-creditos.md"
     },
     {
       "type": "item",
@@ -38,8 +29,20 @@
       "type": "item",
       "title": "Impuestos",
       "uri": "docs/Tipos-de-impuestos.md"
+    },
+    {
+      "type": "item",
+      "title": "Tipos-de-transacciones",
+      "uri": "docs/Tipos-de-transacciones.md"
+    },
+    {
+      "type": "divider",
+      "title": "APIS"
+    },
+    {
+      "type": "item",
+      "title": "Gateway",
+      "uri": "reference/Gateway.v1.json"
     }
-    
-   
   ]
 }
