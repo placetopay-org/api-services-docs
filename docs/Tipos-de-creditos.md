@@ -1,0 +1,3 @@
+# Tipos de creditos
+
+The beginning of an awesome article...
