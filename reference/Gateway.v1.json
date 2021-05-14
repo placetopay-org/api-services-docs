@@ -182,7 +182,10 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Obtener información según la tarjeta"
+        ]
       },
       "parameters": []
     },
