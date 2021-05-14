@@ -121,9 +121,6 @@
         "summary": "Solicitud de Información",
         "operationId": "post-rest-gateway-information",
         "description": "Este servicio proporciona información sobre la tarjeta del usuario que se va a procesar, tal como qué servicios son los que se usarán para ella y los tipos de crédito, si aplica, que hay para esta, si no hay tipos de crédito se retorna un arreglo vacío y si los hay, se debe iterar cada tipo de crédito con los installments que se encuentran en el arreglo.\n",
-        "tags": [
-          "Solicitar informacion de una Tarjeta"
-        ],
         "requestBody": {
           "content": {
             "application/json": {

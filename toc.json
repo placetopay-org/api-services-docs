@@ -17,11 +17,6 @@
     },
     {
       "type": "item",
-      "title": "Tipos de creditos",
-      "uri": "docs/Tipos-de-creditos.md"
-    },
-    {
-      "type": "item",
       "title": "Tipos de documento",
       "uri": "docs/Tipos-de-documento.md"
     },
@@ -32,7 +27,7 @@
     },
     {
       "type": "item",
-      "title": "Tipos-de-transacciones",
+      "title": "Tipos de transacciones",
       "uri": "docs/Tipos-de-transacciones.md"
     },
     {
