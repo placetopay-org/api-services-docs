@@ -550,7 +550,7 @@
     },
     "/transaction": {
       "post": {
-        "summary": "Reverso de transacción",
+        "summary": "Operaciones sobre una transacción",
         "operationId": "post-gateway-transaction",
         "responses": {
           "200": {
@@ -679,7 +679,7 @@
             }
           }
         },
-        "description": "",
+        "description": "Permite realizar un reverso, re-autorización, reembolso o cash out sobre una transacción existente",
         "tags": [
           "Reversar una transaccion"
         ],
@@ -697,7 +697,7 @@
                     "$ref": "#/components/schemas/Autentication"
                   },
                   "internalReference": {
-                    "type": "string"
+                    "type": "number"
                   },
                   "authorization": {
                     "type": "string"
@@ -708,7 +708,7 @@
                 }
               },
               "examples": {
-                "Ejemplo": {
+                "Reverso": {
                   "value": {
                     "auth": {
                       "login": "6dd490faf9cb87a9862245da41170ff2",
@@ -1569,7 +1569,7 @@
                 "type": "object",
                 "properties": {
                   "auth": {
-                    "$ref": "#/components/schemas/Authentication"
+                    "$ref": "#/components/schemas/Autentication"
                   },
                   "filters": {
                     "type": "object",
@@ -1671,7 +1671,7 @@
                 "type": "object",
                 "properties": {
                   "auth": {
-                    "$ref": "#/components/schemas/Authentication"
+                    "$ref": "#/components/schemas/Autentication"
                   },
                   "id": {
                     "type": "number"
