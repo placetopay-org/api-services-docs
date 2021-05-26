@@ -2,6 +2,11 @@
   "items": [
     {
       "type": "item",
+      "title": "Gateway",
+      "uri": "reference/Gateway.v1.json"
+    },
+    {
+      "type": "item",
       "title": "Autenticación",
       "uri": "docs/Autenticacion.md"
     },
@@ -33,11 +38,6 @@
     {
       "type": "divider",
       "title": "APIS"
-    },
-    {
-      "type": "item",
-      "title": "Gateway",
-      "uri": "reference/Gateway.v1.json"
     }
   ]
 }
