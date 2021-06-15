@@ -32,6 +32,10 @@ IMPORTANTE: Poner especial atención al nodo: “preAuthorization”, estos son 
 
 ## Re-Autorización
 
+```json
+No aplica a Puerto Rico
+```
+
 La transacción tipo REAUTHORIZATION es utilizada modificar el monto definido como depósito de garantía separado previamente con una transacción tipo CHECKIN. Esto realiza una nueva autorización (reautorización) por parte del banco (proveedor).
 
 ### Solicitud Reautorización (Request)
