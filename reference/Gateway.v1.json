@@ -511,11 +511,79 @@
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
                   },
+                  "payment": {
+                    "$ref": "#/components/schemas/Payment"
+                  },
                   "ipAddress": {
                     "type": "string"
                   },
                   "userAgent": {
                     "type": "string"
+                  },
+                  "": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "instrument"
+                ]
+              },
+              "examples": {
+                "Simple": {
+                  "value": {
+                    "auth": {
+                      "login": "c4ca4238a0b923820dcc509a6f75849b",
+                      "tranKey": "ytIEiMHa8W4V09lBjztshdczGcv4SvJh6VclvVa1/hI=",
+                      "nonce": "NjBjYjc3YTYwZGZhYw==",
+                      "seed": "2021-06-17T11:26:14-05:00"
+                    },
+                    "payer": {
+                      "name": "Diego",
+                      "surname": "Calle",
+                      "email": "dnetix@yopmail.com"
+                    },
+                    "instrument": {
+                      "card": {
+                        "number": "5180300000000005",
+                        "expiration": "12/18",
+                        "cvv": "123",
+                        "installments": 3
+                      }
+                    },
+                    "ipAddress": "127.0.0.1",
+                    "userAgent": "Testing"
+                  }
+                },
+                "Con cobro": {
+                  "value": {
+                    "auth": {
+                      "login": "c4ca4238a0b923820dcc509a6f75849b",
+                      "tranKey": "ytIEiMHa8W4V09lBjztshdczGcv4SvJh6VclvVa1/hI=",
+                      "nonce": "NjBjYjc3YTYwZGZhYw==",
+                      "seed": "2021-06-17T11:26:14-05:00"
+                    },
+                    "payer": {
+                      "name": "Diego",
+                      "surname": "Calle",
+                      "email": "dnetix@yopmail.com"
+                    },
+                    "instrument": {
+                      "card": {
+                        "number": "5180300000000005",
+                        "expiration": "12/18",
+                        "cvv": "123",
+                        "installments": 3
+                      }
+                    },
+                    "payment": {
+                      "reference": "TEST_PAYMENT_12345",
+                      "amount": {
+                        "currency": "COP",
+                        "total": 100
+                      }
+                    },
+                    "ipAddress": "127.0.0.1",
+                    "userAgent": "Testing"
                   }
                 }
               }
@@ -538,6 +606,29 @@
                     },
                     "instrument": {
                       "$ref": "#/components/schemas/Instrument"
+                    }
+                  }
+                },
+                "examples": {
+                  "Ok": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-06-17T11:29:37-05:00"
+                      },
+                      "provider": "CREDIBANCO",
+                      "instrument": {
+                        "token": {
+                          "token": "ee1d56a192dc07e4e403cdaa2569407118a0e19dc185b1e63bad2b2edc2a3bf0",
+                          "subtoken": "5172915969800005",
+                          "franchise": "master",
+                          "franchiseName": "Mastercard",
+                          "lastDigits": "0005",
+                          "validUntil": "2018-12-31"
+                        }
+                      }
                     }
                   }
                 }
