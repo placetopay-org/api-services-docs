@@ -22,6 +22,11 @@
     },
     {
       "type": "item",
+      "title": "Tarjetas de pruebas",
+      "uri": "docs/Tarjetas-de-prueba.md"
+    },
+    {
+      "type": "item",
       "title": "Tipos de documento",
       "uri": "docs/Tipos-de-documento.md"
     },
@@ -34,10 +39,6 @@
       "type": "item",
       "title": "Tipos de transacciones",
       "uri": "docs/Tipos-de-transacciones.md"
-    },
-    {
-      "type": "divider",
-      "title": "APIS"
     }
   ]
 }
