@@ -1,22 +1,20 @@
-# Tipos-de-transacciones
+# Tipos de transacciones
 
-# Autorización
+## Autorización
 Una autorización hace referencia al proceso que se ejecuta luego de que el usuario ingresa la información solicitada y ésta es enviada a la red para realizar el cobro.
 
-# Pago Recurrente
+## Pago Recurrente
 Es un cobro periódico realizado por PlacetoPay para un mismo valor con un intervalo (diario, mensual, anual) según la indicación dada en la petición.
 
 Para hacer uso de esta funcionalidad, en la estructura payment del Pago recurrente es necesario enviar en el objeto recurring los datos obligatorios para esta estructura.
 
-# Pre-autorización
-
+## Pre-autorización
 Este tipo de transacciones son usadas con el fin de reservar (checkin) un monto de dinero sobre una tarjeta de crédito para posteriormente hacer el débito del mismo (checkout). Este monto en el transcurso del tiempo puede cambiar (reauthorization) según las necesidades del comercio o cambios en los servicios elegidos por el tarjetahabiente.
 
 ## Check-In
 La  transacción tipo CHECKIN es  utilizada  para  obtener  una  autorización por  parte  del  banco (proveedor). Esta se define como: Realizar un débito a una tarjeta de crédito/débito el cual se utiliza como depósito de garantía por la utilización de un bien o servicio.
 
 ![Flujo](../assets/images/flow.png)
-
 
 ### Solicitud Checkin (Request)
 

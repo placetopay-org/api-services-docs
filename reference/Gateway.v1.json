@@ -1257,6 +1257,38 @@
                     "$ref": "#/components/schemas/Instrument"
                   }
                 }
+              },
+              "examples": {
+                "Ejemplo": {
+                  "value": {
+                    "auth": {
+                      "login": "c4ca4238a0b923820dcc509a6f75849b",
+                      "tranKey": "q/7k0WUshvLEpQ5gqNWqne+ZfWXSXUP/b7T80TuAUSY=",
+                      "nonce": "NjE0YTM3OGIwNjA2NA==",
+                      "seed": "2021-09-21T14:50:35-05:00"
+                    },
+                    "payer": {
+                      "name": "Diego",
+                      "email": "diego.calle@evertecinc.com"
+                    },
+                    "payment": {
+                      "reference": "1234567890",
+                      "amount": {
+                        "currency": "USD",
+                        "total": 3
+                      }
+                    },
+                    "instrument": {
+                      "card": {
+                        "number": "36545400000008",
+                        "expiration": "12/20",
+                        "cvv": "123"
+                      }
+                    },
+                    "ipAddress": "127.0.0.1",
+                    "userAgent": "Testing"
+                  }
+                }
               }
             }
           }
@@ -1276,6 +1308,30 @@
                       "type": "string"
                     }
                   }
+                },
+                "examples": {
+                  "Ejemplo": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T14:52:28-05:00"
+                      },
+                      "provider": "INTERDIN"
+                    }
+                  },
+                  "No Requerido": {
+                    "value": {
+                      "status": {
+                        "status": "REJECTED",
+                        "reason": "NR",
+                        "message": "OTP is not required with this card",
+                        "date": "2021-09-21T14:53:21-05:00"
+                      },
+                      "provider": "INTERDIN"
+                    }
+                  }
                 }
               }
             }
@@ -1287,7 +1343,7 @@
       "post": {
         "summary": "Validación de OTP (solo Ecuador)",
         "operationId": "post-rest-otp-validate",
-        "description": "Permite validar que el OTP provisto concuerde con el enviado por el proveedor, de ser así se\nretornará un valor “signature” que debe enviarse en la petición de procesamiento como “otp”\nesto con el fin de que se tome en cuenta a la hora de analizar la transacción por los filtros de\nseguridad\n",
+        "description": "Permite validar que el OTP provisto concuerde con el enviado por el proveedor y proporcionará una firma que sirve para autenticar la transacción\n\n<!-- theme: warning -->\n> ### Nota Importante\n>\n> Es necesario enviar el valor retornado como `signature` en la respuesta como `instrument.otp` en la petición de procesamiento para que se registre en la transacción\n",
         "tags": [
           "Proceso OTP"
         ],
@@ -1329,10 +1385,39 @@
                       "type": "string"
                     },
                     "signature": {
-                      "type": "string"
+                      "type": "string",
+                      "nullable": true
                     },
                     "validated": {
                       "type": "boolean"
+                    }
+                  }
+                },
+                "examples": {
+                  "Ejemplo": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "OTP Validation successful",
+                        "date": "2021-09-21T15:12:01-05:00"
+                      },
+                      "provider": "INTERDIN",
+                      "signature": "a586077cd77ec2dbcb9b7f68b896368a",
+                      "validated": true
+                    }
+                  },
+                  "Errado": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "OT1",
+                        "message": "El OTP ingresado no coincide con el que se te ha provisto",
+                        "date": "2021-09-21T15:14:41-05:00"
+                      },
+                      "provider": "INTERDIN",
+                      "signature": null,
+                      "validated": false
                     }
                   }
                 }
@@ -1845,7 +1930,7 @@
             }
           }
         },
-        "description": "Una vez el usuario ha terminado el proceso de autenticación en 3DS se usa este endpoint para obtener el resultado de su operación\n\n### Nota Importante\n\n*Al consumir este servicio **NO** se está autenticando la transacción por defecto, se debe tomar de la respuesta el valor de \"data\" y enviarlo en el \"instrument.threeDS\"*",
+        "description": "Una vez el usuario ha terminado el proceso de autenticación en 3DS se usa este endpoint para obtener el resultado de su operación\n\n<!-- theme: warning -->\n> ### Nota Importante\n>\n> *Al consumir este servicio **NO** se está autenticando la transacción por defecto, se debe tomar de la respuesta el valor de \"data\" y enviarlo en el \"instrument.threeDS\"*",
         "tags": [
           "Proceso 3DS"
         ],
