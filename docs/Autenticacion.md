@@ -1,12 +1,8 @@
 # Autenticación
 
-La API de Webcheckout Placetopay utiliza *Web Services Security
-UsernameToken Profile 1.1* para autenticar todas las solicitudes.
+La API de Webcheckout Placetopay utiliza *Web Services Security UsernameToken Profile 1.1* para autenticar todas las solicitudes.
 
-La autenticación al servicio debe ser enviada sobre el objeto `auth`, el cual debe contener los siguientes atributos:
-
-Valores como `login` y `secretKey` son suministrados por Placetopay.
-El `nonce` es un valor aleatorio por cada solicitud
+La autenticación al servicio debe ser enviada sobre el objeto `auth`, el cual debe contener los atributos descritos en el modelo Authentication
 
 Valor | Descripción
 ---------|----------
@@ -48,11 +44,34 @@ Se presenta cuando el sistema no detecta que se esté enviando login, tranKey, s
 
 Tus servidores requieren TLSv1.2 para recibir la solicitud, debido a la norma PCI. Por favor, revisa el cifrado y el protocolo utilizado para conectar al servidor. Si usas Java, ten presente que solo las versiones después de la 8 tienen soporte completo.
 
-- #### **SoapFault responde con el mensaje "Authentication Failed 103"**
+- #### ** Authentication Failed 103 **
 
 En el proceso de autenticación, Placetopay revisamos el campo Created, este campo debe estar en el tiempo GMT o el tiempo local usando el tiempo de zona. Si obtienes esta respuesta, se debe a que tu tiempo no es preciso con el tiempo real. Nosotros solo permitimos 5 minutos de diferencia entre los tiempos. Puedes usar NTP para mantener la precisión del reloj.
 
 - #### **Dando los mismos valores EXACTOS que en los ejemplos anteriores a la BASE64(SHA1($Nonce + $Created . $tranKey)) estoy obteniendo un password digest diferente.**
 
-Mantén en mente que BASE64 debería ser para el raw output de la SHA1 y de acuerdo con todos los lenguajes de programación este puede ser requerido para configurar esta opción, por ejemplo. En PHP base64_encode(sha1( … , true)) este parametro retornaria el raw output para el sHA1 algorithm
+Mantén en mente que BASE64 debería ser para el raw output de la SHA1 y de acuerdo con todos los lenguajes de programación este puede ser requerido para configurar esta opción. 
+
+### Ejemplo de generación de autenticación en PHP
+```php
+<?php
+
+class Authentication
+{
+    public static function generate(string $login, string $tranKey): array
+    {
+        $nonce = random_bytes(16);
+        $seed = date('c');
+        $digest = base64_encode(hash('sha256', $nonce . $seed . $tranKey, true));
+        return [
+            'login' => $login,
+            'tranKey' => $digest,
+            'nonce' => base64_encode($nonce),
+            'seed' => $seed,
+        ];
+    }
+}
+
+$auth = Authentication::generate('YOUR_LOGIN', 'YOUR_TRANKEY');
+```
 
