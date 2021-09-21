@@ -2,7 +2,8 @@
 
 ## ¿Cuándo es mejor usarla?
 
-`Este mecanismo sólo debe ser usado por aquellos clientes de la plataforma que requieren capturar la información del tarjetahabiente incluyendo los datos sensibles`
+<!-- theme: info -->
+> Este mecanismo sólo debe ser usado por aquellos clientes de la plataforma que requieren capturar la información del tarjetahabiente incluyendo los datos sensibles
 
 La integración se recomienda únicamente en los casos que no sea factible que el usuario realice la transacción ingresando los datos sensibles en PlacetoPay o en donde se requiere un control particular de la operación.
 
