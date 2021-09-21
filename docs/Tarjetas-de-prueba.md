@@ -4,6 +4,12 @@ Es importante definir que estas tarjetas solo tienen dicho comportamiento en el 
 
 En todos los casos excepto donde se especifique el CVV y la fecha de expiración puede ser cualquiera con tal de que sea vigente para que su comportamiento aplique.
 
+Para las pruebas con 3DS en el comportamiento se describe su resultado
+
+* Y: Autenticado sin fricción
+* C: Solicita challenge
+* A: Responde con attempt
+* N: No autenticado
 
 Franquicia | Número | Comportamiento
 ---------|----------|---------
@@ -16,13 +22,13 @@ Diners | 36545400000438 | Se tarda 180 segundos en responder y queda en estado a
 Diners | 36545407032780 | Deja la transacción en procesamiento manual y si se procesa queda en estado aprobado
 Diners | 36545407032806 | Deja la transacción en estado pendiente y se resuelve a aprobado
 Diners | 36545407032848 | Aprueba
-Visa | 4110760000000008 | Aprueba
+Visa | 4110760000000008 | Aprueba **3DS-C**
 Visa | 4110760000000016 | Rechaza
-Visa | 4110760000000032 | Deja la transacción en estado pendiente y se resuelve a aprobado
-Visa | 4110760000000040 | Deja la transacción en estado pendiente y se resuelve a rechazado
+Visa | 4110760000000032 | Deja la transacción en estado pendiente y se resuelve a aprobado **3DS-C**
+Visa | 4110760000000040 | Deja la transacción en estado pendiente y se resuelve a rechazado **3DS-A**
 Visa | 4048370000000037 | Deja la transacción en estado pendiente y se resuelve a rechazado
 Visa | 4110760000000073 | Deja la transacción en estado pendiente y se resuelve a aprobado
-Visa | 4110760000000065 | Arroja una excepción en el proceso
+Visa | 4110760000000065 | Arroja una excepción en el proceso **3DS-N**
 Visa | 4110760000000024 | Se tarda 180 segundos en responder y queda en estado aprobado
 Visa | 4110760000000115 | Se tarda 180 segundos en responder y queda en estado rechazado
 Visa | 4110760000000057 | Aprueba si el monto es inferior a 200USD de lo contrario rechaza
@@ -31,7 +37,7 @@ Visa | 4012888888881881 | Aprueba si se proporciona la expiración 11/28 y el cv
 Visa | 4381080000000003 | Deja la transacción en estado pendiente y se resuelve a rechazado
 Visa | 4005580000000040 | Rechaza
 Visa | 4110770010002837 | Aprueba
-Visa | 4111111111111111 | Aprueba
+Visa | 4111111111111111 | Aprueba **3DS-Y**
 Visa | 4509564638437551 | Deja la transacción en estado pendiente y se resuelve a aprobado
 Visa | 4864921336824366 | Deja la transacción en estado pendiente y se resuelve a rechazado
 Visa | 4931974429847108 | Deja la transacción en estado pendiente y se resuelve a rechazado
@@ -39,11 +45,11 @@ Visa | 4716375184092180 | Rechaza
 Visa | 4532034637206853 | Deja la transacción en procesamiento manual y si se procesa queda en estado rechazado
 Visa | 4212121212121214 | Deja la transacción en procesamiento manual y si se procesa queda en estado aprobado
 Visa | 4666666666666669 | Se tarda 180 segundos en responder y queda en estado aprobado
-Mastercard | 5180300000000005 | Aprueba
-Mastercard | 5180300000000039 | Rechaza
-Mastercard | 5180300000000047 | Deja la transacción en estado pendiente y se resuelve a aprobado
-Mastercard | 5180300000000054 | Deja la transacción en estado pendiente y se resuelve a rechazado
-Mastercard | 5292594382060745 | Aprueba
+Mastercard | 5180300000000005 | Aprueba **3DS-Y**
+Mastercard | 5180300000000039 | Rechaza **3DS-N**
+Mastercard | 5180300000000047 | Deja la transacción en estado pendiente y se resuelve a aprobado **3DS-C**
+Mastercard | 5180300000000054 | Deja la transacción en estado pendiente y se resuelve a rechazado **3DS-A**
+Mastercard | 5292594382060745 | Aprueba **3DS-C**
 American Express | 376651001281274 | Aprueba si se proporciona la expiración 06/22 y el cvv 4637 de lo contrario rechaza
 Discover | 6550590000000001 | Aprueba
 Discover | 6550590000000019 | Rechaza
