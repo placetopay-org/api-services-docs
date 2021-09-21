@@ -1538,7 +1538,8 @@
         "description": "Estructura que contiene la información de la tarjeta.",
         "properties": {
           "number": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 20
           },
           "expiration": {
             "type": "string",
@@ -1551,21 +1552,54 @@
           "installments": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "number"
+        ]
       },
       "Token": {
         "title": "Token",
         "type": "object",
-        "description": "Estructura que contiene la información del token que asocia a la tarjeta\n",
+        "description": "Estructura que contiene la información del token que asocia a la tarjeta\n\nPara la entrada solo es necesario el token o el subtoken y el cvv si se trata de una operación donde el usuario está presente\n\nPara la salida si se devuelven todos los datos al tokenizar\n",
         "properties": {
           "token": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 64,
+            "description": "Código generado para identificar la tarjeta en el sistema"
           },
           "subtoken": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 16,
+            "minLength": 16,
+            "description": "Código alterno generado para identificar la tarjeta"
           },
           "franchise": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "visa",
+              "visa_electron",
+              "amex",
+              "master",
+              "codensa",
+              "diners",
+              "jbc",
+              "discover",
+              "ris",
+              "credencial",
+              "comfama",
+              "colsubsidio",
+              "falabella",
+              "elo",
+              "somos",
+              "tuya",
+              "exito",
+              "alkosto",
+              "maestro",
+              "mefia",
+              "ath_card"
+            ],
+            "description": "Codigo de la franquicia asociada al token (Solo como respuesta no es necesario enviarla)"
           },
           "franchiseName": {
             "type": "string"
@@ -1578,6 +1612,31 @@
           },
           "validUntil": {
             "type": "string"
+          },
+          "cvv": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 4,
+            "description": "CVV solicitado al usuario en caso de que esté presente en la operación"
+          }
+        },
+        "x-examples": {
+          "Ejemplo respuesta": {
+            "value": {
+              "token": "e61da2ce4863a45b6491aab2964cd9c97b1d7cd508da2e813b728c88adb5f198",
+              "subtoken": "1120437249520005",
+              "franchise": "master",
+              "franchiseName": "Mastercard",
+              "lastDigits": "0005",
+              "validUntil": "2018-12-31",
+              "installments": "3"
+            }
+          },
+          "Ejemplo en solicitud": {
+            "value": {
+              "token": "e61da2ce4863a45b6491aab2964cd9c97b1d7cd508da2e813b728c88adb5f198",
+              "cvv": 123
+            }
           }
         }
       },
@@ -1606,10 +1665,13 @@
         "description": "Estructura que contiene la información acerca del pago de la transacción requerida al servicio web\n",
         "properties": {
           "reference": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 250
           },
           "amount": {
             "$ref": "#/components/schemas/Amount"
@@ -1720,21 +1782,41 @@
       "Status": {
         "title": "Status",
         "type": "object",
+        "description": "Estructura que contiene la información sobre una solicitud o pago, informa al estado actual de la misma.\n",
         "properties": {
           "status": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "OK",
+              "FAILED",
+              "APPROVED",
+              "APPROVED_PARTIAL",
+              "PARTIAL_EXPIRED",
+              "REJECTED",
+              "PENDING",
+              "PENDING_VALIDATION",
+              "PENDING_PROCESS",
+              "REFUNDED",
+              "REVERSED",
+              "ERROR",
+              "UNKNOWN",
+              "MANUAL",
+              "DISPUTE"
+            ]
           },
           "reason": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4
           },
           "message": {
             "type": "string"
           },
           "date": {
-            "type": "string"
+            "type": "string",
+            "example": "2021-09-21T09:34:48-05:00"
           }
-        },
-        "description": "Estructura que contiene la información sobre una solicitud o pago, informa al estado actual de la misma.\n"
+        }
       },
       "InterestValues": {
         "title": "InterestValues",
