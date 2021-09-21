@@ -1343,7 +1343,7 @@
       "post": {
         "summary": "Validación de OTP (solo Ecuador)",
         "operationId": "post-rest-otp-validate",
-        "description": "Permite validar que el OTP provisto concuerde con el enviado por el proveedor y proporcionará una firma que sirve para autenticar la transacción\n\n<!-- theme: warning -->\n> ### Nota Importante\n>\n> Es necesario enviar el valor retornado como `signature` en la respuesta como `instrument.otp` en la petición de procesamiento para que se registre en la transacción\n",
+        "description": "Permite validar que el OTP provisto concuerde con el enviado por el proveedor y proporcionará una firma que sirve para autenticar la transacción\n\n<!-- theme: warning -->\n> Nota Importante\n>\n> Es necesario enviar el valor retornado como `signature` en la respuesta como `instrument.otp` en la petición de procesamiento para que se registre en la transacción\n",
         "tags": [
           "Proceso OTP"
         ],
