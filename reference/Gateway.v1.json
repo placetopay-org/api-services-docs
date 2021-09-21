@@ -6,7 +6,7 @@
     "license": {
       "name": "Privative"
     },
-    "description": "Este servicio web y su arquitectura permite a cualquier aplicación conectarse a Placetopay para procesar tarjetas, independiente del lenguaje de desarrollo.\n\nPara usar el servicio web, deberás tener un lenguaje de programación que pueda comunicarse con un servicio REST.\n\nEl método de integración contempla las operaciones básicas para el procesamiento de tarjetas no presenciales, esto es tipos de crédito, intereses, generación de OTP, autorización, reverso.\n\nA continuación se describirán cada uno de los usos y los datos requeridos en la trama para cada uno de los casos.  La respuesta para cada operación está unificada en un solo tipo de trama resultante.\n\nPor defecto el lenguaje de las respuestas es en español, si se desea cambiar es necesario enviar el parámetro `locale` en las peticiones.\n\n### ¿Cómo funciona?\n\nSe trata de un proceso para realizar la transacción que involucra el consumo de los servicios descritos en este documento.\n\n1. Una vez se capture el número de tarjeta del usuario se realiza el consumo al servicio de información `informationRequest` enviándolo en la petición\n2. Se analiza la respuesta del servicio para disponer las opciones que siguen\n* Si la respuesta trae tipos de crédito `credits` se deben mostrar al usuario para permitirle seleccionar cual desea usar.\n* Si la respuesta tiene el parámetro “displayInterest” en true, se debe, una vez seleccionado un tipo de crédito, consumir el servicio de cálculo de intereses `interestCalculation` y mostrar al usuario la respuesta, así cada vez que el usuario cambie de tipo de crédito.\n* Si la respuesta trae el parámetro “requireOtp” en true, se debe hacer el consumo al servicio de generación de OTP (otpGeneration) y obtener del usuario el código que será de 6 dígitos para enviarlo posteriormente en el servicio de validación de OTP `otpValidate` una vez se tenga una respuesta se enviará el resultado signature bajo el campo OTP de la solicitud de procesamiento.\n3. Una vez se haya obtenido el tipo de crédito (si lo hay), el OTP (si se requiere) se consume el servicio de procesamiento de transacción `processTransaction` y se analiza la respuesta que puede ser final `aprobada, declinada o fallida` o que puede estar pendiente. En ambos casos se retornará un valor para internalReference que es muy importante almacenar porque le permitirá realizar consultas posteriores con el servicio `queryTransaction`.\n* Si se aprobó la transacción es importante almacenar también el número de autorización, le permitirá realizar reversos posteriormente si fuese necesario.\n* Generalmente las transacciones son culminadas en un tiempo corto (menos de 3 seg), pero si la transacción queda en estado pendiente es importante tener un cron job o similar que esté consultando cada 5 minutos por las transacciones pendientes hasta que se resuelvan.\n\n### ¿Cuándo es mejor usarlo?\n\n`Este mecanismo sólo debe ser usado por aquellos clientes de la plataforma que requieren capturar la información del tarjetahabiente incluyendo los datos sensibles`.\n\nLa integración se recomienda únicamente en los casos que no sea factible que el usuario realice la transacción ingresando los datos sensibles en PlacetoPay o en donde se requiere un control particular de la operación.\n\n Algunos ejemplos son:\n\n* Cobros recurrentes desde una base de datos propietaria.\n* Integración con un sistema de audiorespuesta.\n* Múltiples transacciones a diferentes recaudadores con la misma información del tarjetahabiente.\n* Interfaz móvil propietaria, no basada en HTML.\n* Integración con sistemas cuya entrada de los datos sensibles no la realice directamente el tarjetahabiente.\n\n### ¿Qué obligaciones tengo cuando uso esta integración? \n\nTenga en cuenta que al usar este tipo de integración, usted está suministrando todos los datos del comprador incluyendo los datos sensibles de la tarjeta, este solo hecho requiere que la captura de la información sea por un mecanismo seguro que no ponga en peligro los datos del tarjetahabiente.  Si la información la captura por una página Web, el punto donde se capturan estos datos debe estar sobre protocolo seguro HTTPS usando certificados de seguridad expedidos por una entidad certificadora acreditada.\n\nSi la captura la realiza por un Call Center, quien obtiene los datos sensibles debe ser un mecanismo de IVR `Interactive Voice Response` o audiorespuesta; esto implicaría un rompimiento en el proceso entre el proceso que realiza el operador con su CRM y el IVR quien captura los datos sensibles.  Finalmente el CRM consolida los dos conjuntos de datos y los remite a Place to Pay.\n\nSi la captura proviene de una base de datos de tarjetas previamente inscritas, asegúrese que esta información está encriptada por un mecanismo seguro de encriptación como AES o 3DES, desencripte solo en el momento en que construye la trama a ser enviada a Place to Pay. Place to Pay tiene servicios de tokenización que pueden ser usados.\n\nTenga en cuenta que como regla general usted no debe almacenar el número de tarjeta, fecha de vencimiento y CVV2.  Estos solo pueden tener persistencia durante la solicitud de la autorización, una vez procesada no deben ser almacenados.\n\nComo cualquier proceso de integración, este requerirá una certificación del personal de soporte de Place to Pay para revisar temas de funcionamiento, mejores prácticas y usabilidad.\n\n### Servicios\n\nTodos los consumos se realizan a la URL base, que será proporcionada por el área de operaciones y se le adiciona a dicha URL el endpoint del servicio a consumir.\n\nPor ejemplo si la URL base fuese https://placetopay.com para consumir el servicio se solicitud de información se realiza un POST con los datos del ejemplo a la URL https://placetopay.com/gateway/information",
+    "description": "Este servicio web y su arquitectura permite a cualquier aplicación conectarse a Placetopay para procesar transacciones, independiente del lenguaje de desarrollo.\n\nPara usar el servicio web, deberás tener un lenguaje de programación que pueda comunicarse con un servicio REST.\n\nEl método de integración contempla las operaciones básicas para el procesamiento de tarjetas no presenciales, esto es tipos de crédito, intereses, generación de OTP, autorización, reverso.\n\nA continuación se describirán cada uno de los usos y los datos requeridos en la trama para cada uno de los casos.  La respuesta para cada operación está unificada en un solo tipo de trama resultante.\n\nPor defecto el lenguaje de las respuestas es en español, si se desea cambiar es necesario enviar el parámetro `locale` en las peticiones.\n\n### Servicios\n\nTodos los consumos se realizan a la URL base, que será proporcionada por el área de operaciones y se le adiciona a dicha URL el endpoint del servicio a consumir.\n\nPor ejemplo si la URL base fuese https://placetopay.com para consumir el servicio se solicitud de información se realiza un POST con los datos del ejemplo a la URL https://placetopay.com/gateway/information",
     "contact": {
       "name": "Diego Calle",
       "email": "desarrollo@evertecinc.com"
@@ -137,11 +137,50 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Transaction"
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "type": "string"
+                  },
+                  "locale": {
+                    "type": "string"
+                  },
+                  "auth": {
+                    "$ref": "#/components/schemas/Autentication"
+                  },
+                  "payment": {
+                    "$ref": "#/components/schemas/Payment"
+                  },
+                  "instrument": {
+                    "$ref": "#/components/schemas/Instrument"
+                  },
+                  "payer": {
+                    "$ref": "#/components/schemas/Person"
+                  },
+                  "buyer": {
+                    "$ref": "#/components/schemas/Person"
+                  },
+                  "ipAddress": {
+                    "type": "string"
+                  },
+                  "userAgent": {
+                    "type": "string"
+                  },
+                  "additional": {
+                    "type": "object",
+                    "description": "Objeto dinámico clave valor de información que se desee guardar con la transacción"
+                  }
+                }
               },
               "examples": {
                 "simple": {
                   "value": {
+                    "auth": {
+                      "login": "c4ca4238a0b923820dcc509a6f75849b",
+                      "tranKey": "cgqVhiaKSUSJmYQsXMsBqpfjz155nyKk54I66xyfuDI=",
+                      "nonce": "NjBhZTllMjZjYmQxYg==",
+                      "seed": "2021-05-26T14:14:46-05:00"
+                    },
                     "payer": {
                       "name": "Ms. Nelle Beahan DVM",
                       "surname": "Spencer",
@@ -329,112 +368,69 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    },
-                    "provider": {
-                      "type": "string"
-                    },
-                    "internalReference": {
-                      "type": "number"
-                    },
-                    "reference": {
-                      "type": "string"
-                    },
-                    "paymentMethod": {
-                      "type": "string"
-                    },
-                    "franchise": {
-                      "type": "string"
-                    },
-                    "franchiseName": {
-                      "type": "string"
-                    },
-                    "issuerName": {
-                      "type": "string"
-                    },
-                    "amount": {
-                      "$ref": "#/components/schemas/Amount"
-                    },
-                    "conversion": {
-                      "$ref": "#/components/schemas/AmountConversion"
-                    },
-                    "authorization": {
-                      "type": "string"
-                    },
-                    "receipt": {
-                      "type": "string"
-                    },
-                    "type": {
-                      "type": "string"
-                    },
-                    "refunded": {
-                      "type": "string"
-                    },
-                    "lastDigits": {
-                      "type": "string"
-                    },
-                    "additional": {
-                      "type": "object"
-                    },
-                    "": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Transaction"
                 },
                 "examples": {
-                  "example-1": {
+                  "Ejemplo": {
                     "value": {
                       "status": {
-                        "status": "string",
-                        "reason": "string",
-                        "message": "string",
-                        "date": "string"
+                        "status": "APPROVED",
+                        "reason": "00",
+                        "message": "Aprobada",
+                        "date": "2021-09-20T21:07:22-05:00"
                       },
-                      "provider": "string",
-                      "internalReference": 0,
-                      "reference": "string",
-                      "paymentMethod": "string",
-                      "franchise": "string",
-                      "franchiseName": "string",
-                      "issuerName": "string",
+                      "date": "2021-09-20T21:07:22-05:00",
+                      "transactionDate": "2021-09-20T21:07:22-05:00",
+                      "internalReference": 3,
+                      "reference": "1234567890",
+                      "paymentMethod": "ID_VS",
+                      "franchise": "visa",
+                      "franchiseName": "Visa",
+                      "issuerName": "Testing Bank",
                       "amount": {
-                        "currency": "COP",
-                        "total": 0,
-                        "taxes": [
-                          {
-                            "kind": "valueAddedTax",
-                            "amount": 0,
-                            "base": 0
-                          }
-                        ],
-                        "details": [
-                          {
-                            "kind": "string",
-                            "amount": 0
-                          }
-                        ]
+                        "currency": "USD",
+                        "total": 57.8
                       },
                       "conversion": {
                         "from": {
-                          "currency": "string",
-                          "total": 0
+                          "currency": "USD",
+                          "total": 57.8
                         },
                         "to": {
-                          "currency": "string",
-                          "total": 0
+                          "currency": "USD",
+                          "total": 57.8
                         },
-                        "factor": 0
+                        "factor": 1
                       },
-                      "authorization": "string",
-                      "receipt": "string",
-                      "type": "string",
-                      "refunded": "string",
-                      "lastDigits": "string",
-                      "additional": {},
-                      "": "string"
+                      "authorization": "999999",
+                      "receipt": 3,
+                      "type": "AUTH_ONLY",
+                      "refunded": false,
+                      "lastDigits": "1111",
+                      "provider": "INTERDIN",
+                      "discount": null,
+                      "processorFields": {
+                        "id": "86c6eb268c7086ec8a3201b0ec0c984a",
+                        "b24": "000"
+                      },
+                      "additional": {
+                        "merchantCode": "468231",
+                        "terminalNumber": "00990101",
+                        "credit": {
+                          "code": "1",
+                          "type": "02",
+                          "groupCode": "P",
+                          "installments": "24"
+                        },
+                        "totalAmount": 63.58,
+                        "interestAmount": 5.78,
+                        "installmentAmount": 2.65,
+                        "iceAmount": 0,
+                        "batch": null,
+                        "line": null,
+                        "bin": "411111",
+                        "expiration": "1220"
+                      }
                     }
                   }
                 }
@@ -615,59 +611,56 @@
                         "status": "APPROVED",
                         "reason": "00",
                         "message": "Aprobada",
-                        "date": "2018-02-05T21:32:41-05:00"
+                        "date": "2021-09-20T21:56:29-05:00"
                       },
-                      "internalReference": 1449217015,
-                      "reference": "TEST_20171108_144400",
-                      "paymentMethod": "ID_DN",
-                      "franchise": "diners",
-                      "franchiseName": "Diners",
-                      "issuerName": "Diners Club",
+                      "date": "2021-09-20T21:56:29-05:00",
+                      "transactionDate": "2021-09-20T21:56:29-05:00",
+                      "internalReference": 455,
+                      "reference": "1945768",
+                      "paymentMethod": "CR_VS",
+                      "franchise": "visa",
+                      "franchiseName": "Visa",
+                      "issuerName": "Testing Bank",
                       "amount": {
                         "taxes": [
                           {
                             "kind": "valueAddedTax",
-                            "amount": 0,
-                            "base": 0
-                          },
-                          {
-                            "kind": "ice",
-                            "amount": 0,
+                            "amount": 705.66,
                             "base": 0
                           }
                         ],
-                        "details": [
-                          {
-                            "kind": "shipping",
-                            "amount": 0
-                          },
-                          {
-                            "kind": "tip",
-                            "amount": 0
-                          }
-                        ],
-                        "currency": "COP",
-                        "total": 159939.56
+                        "currency": "USD",
+                        "total": 3714
                       },
                       "conversion": {
                         "from": {
-                          "currency": "COP",
-                          "total": 159939.56
+                          "currency": "USD",
+                          "total": 3714
                         },
                         "to": {
                           "currency": "USD",
-                          "total": 56.43
+                          "total": 3714
                         },
-                        "factor": 0.00035282077804890796
+                        "factor": 1
                       },
-                      "authorization": null,
-                      "receipt": 1449217015,
+                      "authorization": "000000",
+                      "receipt": 455,
                       "type": "CREDIT",
                       "refunded": false,
                       "lastDigits": "0008",
-                      "provider": "INTERDIN",
+                      "provider": "CREDIBANCO",
                       "discount": null,
-                      "processorFields": []
+                      "processorFields": {
+                        "id": "f4ec45ea4c83039384b189df2c1a6891",
+                        "b24": "000"
+                      },
+                      "additional": {
+                        "merchantCode": null,
+                        "terminalNumber": null,
+                        "bin": "411076",
+                        "expiration": "1228",
+                        "installments": 1
+                      }
                     }
                   }
                 }
@@ -824,199 +817,137 @@
                         "status": "OK",
                         "reason": "00",
                         "message": "La petición se ha procesado correctamente",
-                        "date": "2021-03-03T13:40:57-05:00"
+                        "date": "2021-09-20T21:51:59-05:00"
                       },
                       "transactions": [
                         {
                           "status": {
-                            "status": "APPROVED",
-                            "reason": "00",
-                            "message": "Aprobada",
-                            "date": "2021-03-03T13:40:57-05:00"
+                            "status": "PENDING",
+                            "reason": "?-",
+                            "message": "Transacción pendiente",
+                            "date": "2021-09-20T21:51:59-05:00"
                           },
-                          "date": "2021-03-02T11:05:49-05:00",
-                          "transactionDate": "2021-03-02T11:05:49-05:00",
-                          "internalReference": 1505723583,
-                          "reference": "TEST_20171108_144400",
-                          "paymentMethod": "CR_VS",
+                          "date": "2021-09-20T21:51:59-05:00",
+                          "transactionDate": "2021-09-20T21:51:59-05:00",
+                          "internalReference": 453,
+                          "reference": "TEST_3",
+                          "paymentMethod": "ID_VS",
                           "franchise": "visa",
                           "franchiseName": "Visa",
-                          "issuerName": "JPMORGAN CHASE BANK, N.A.",
+                          "issuerName": "Testing Bank",
                           "amount": {
                             "taxes": [
                               {
                                 "kind": "valueAddedTax",
-                                "amount": 0,
+                                "amount": 3.27,
                                 "base": 0
                               }
                             ],
-                            "details": [
-                              {
-                                "kind": "shipping"
-                              },
-                              {
-                                "kind": "tip"
-                              }
-                            ],
-                            "currency": "COP",
-                            "total": "1000.00"
+                            "currency": "USD",
+                            "total": 17.2
                           },
                           "conversion": {
                             "from": {
-                              "currency": "COP",
-                              "total": "1000.00"
+                              "currency": "USD",
+                              "total": 17.2
                             },
                             "to": {
-                              "currency": "COP",
-                              "total": "1000.00"
+                              "currency": "USD",
+                              "total": 17.2
                             },
                             "factor": 1
                           },
-                          "authorization": "999999",
-                          "receipt": "1605385146",
-                          "type": "AUTH_ONLY",
-                          "refunded": true,
-                          "lastDigits": "****1111",
-                          "provider": "CREDIBANCO",
-                          "discount": null,
-                          "processorFields": {
-                            "id": "f31842fddf772930f8f80d697009b8c1",
-                            "b24": "000"
-                          },
-                          "additional": {
-                            "merchantCode": "011271442",
-                            "terminalNumber": "00057742",
-                            "bin": "411111",
-                            "expiration": "1222",
-                            "installments": 1
-                          }
-                        },
-                        {
-                          "status": {
-                            "status": "APPROVED",
-                            "reason": "00",
-                            "message": "Aprobada",
-                            "date": "2021-03-03T13:40:57-05:00"
-                          },
-                          "date": "2021-03-02T11:28:15-05:00",
-                          "transactionDate": "2021-03-02T11:28:15-05:00",
-                          "internalReference": 1505726109,
-                          "reference": "TEST_20171108_144400",
-                          "paymentMethod": "CR_VS",
-                          "franchise": "visa",
-                          "franchiseName": "Visa",
-                          "issuerName": "JPMORGAN CHASE BANK, N.A.",
-                          "amount": {
-                            "taxes": [
-                              {
-                                "kind": "valueAddedTax",
-                                "amount": 0,
-                                "base": 0
-                              }
-                            ],
-                            "details": [
-                              {
-                                "kind": "shipping"
-                              },
-                              {
-                                "kind": "tip"
-                              }
-                            ],
-                            "currency": "COP",
-                            "total": "1000.00"
-                          },
-                          "conversion": {
-                            "from": {
-                              "currency": "COP",
-                              "total": "1000.00"
-                            },
-                            "to": {
-                              "currency": "COP",
-                              "total": "1000.00"
-                            },
-                            "factor": 1
-                          },
-                          "authorization": "999999",
+                          "authorization": null,
                           "receipt": null,
-                          "type": "CREDIT",
+                          "type": "AUTH_ONLY",
                           "refunded": false,
-                          "lastDigits": "****1111",
-                          "provider": "CREDIBANCO",
+                          "lastDigits": "0008",
+                          "provider": "INTERDIN",
                           "discount": null,
                           "processorFields": {
-                            "id": "7d87dc5ee4f7fa408214a1a06982b97b",
-                            "b24": "000"
+                            "id": "a9cb4b7a7aa03f681a0545ba6807e1fc",
+                            "b24": "?-"
                           },
                           "additional": {
-                            "merchantCode": "011271442",
-                            "terminalNumber": "00057742",
-                            "bin": "411111",
-                            "expiration": "1222",
-                            "installments": 1
+                            "merchantCode": "000468232",
+                            "terminalNumber": "00990101",
+                            "credit": null,
+                            "totalAmount": 17.2,
+                            "interestAmount": 0,
+                            "installmentAmount": 0,
+                            "iceAmount": 0,
+                            "batch": null,
+                            "line": null,
+                            "bin": "411076",
+                            "expiration": "1228"
                           }
                         },
                         {
                           "status": {
-                            "status": "APPROVED",
-                            "reason": "00",
-                            "message": "Aprobada",
-                            "date": "2021-03-03T13:40:57-05:00"
+                            "status": "PENDING",
+                            "reason": "?-",
+                            "message": "Transacción pendiente",
+                            "date": "2021-09-20T21:51:59-05:00"
                           },
-                          "date": "2021-03-02T11:47:04-05:00",
-                          "transactionDate": "2021-03-02T11:47:04-05:00",
-                          "internalReference": 1505728229,
-                          "reference": "TEST_20171108_144400",
-                          "paymentMethod": "CR_VS",
+                          "date": "2021-09-20T21:51:59-05:00",
+                          "transactionDate": "2021-09-20T21:51:59-05:00",
+                          "internalReference": 452,
+                          "reference": "TEST_3",
+                          "paymentMethod": "ID_VS",
                           "franchise": "visa",
                           "franchiseName": "Visa",
-                          "issuerName": "JPMORGAN CHASE BANK, N.A.",
+                          "issuerName": "Testing Bank",
                           "amount": {
                             "taxes": [
                               {
                                 "kind": "valueAddedTax",
-                                "amount": 0,
+                                "amount": 3.27,
                                 "base": 0
                               }
                             ],
                             "details": [
                               {
-                                "kind": "shipping"
-                              },
-                              {
-                                "kind": "tip"
+                                "kind": "shipping",
+                                "amount": 100
                               }
                             ],
-                            "currency": "COP",
-                            "total": "1000.00"
+                            "currency": "USD",
+                            "total": 17.2
                           },
                           "conversion": {
                             "from": {
-                              "currency": "COP",
-                              "total": "1000.00"
+                              "currency": "USD",
+                              "total": 17.2
                             },
                             "to": {
-                              "currency": "COP",
-                              "total": "1000.00"
+                              "currency": "USD",
+                              "total": 17.2
                             },
                             "factor": 1
                           },
-                          "authorization": "999999",
-                          "receipt": "1020330770",
+                          "authorization": null,
+                          "receipt": null,
                           "type": "AUTH_ONLY",
                           "refunded": false,
-                          "lastDigits": "****1111",
-                          "provider": "CREDIBANCO",
+                          "lastDigits": "0008",
+                          "provider": "INTERDIN",
                           "discount": null,
                           "processorFields": {
-                            "id": "c3e5a278db727933e12796139cdbf506",
-                            "b24": "000"
+                            "id": "cbc65da9667ca078dc774cad2fd510e4",
+                            "b24": "?-"
                           },
                           "additional": {
-                            "merchantCode": "011271442",
-                            "terminalNumber": "00057742",
-                            "bin": "411111",
-                            "expiration": "0222",
-                            "installments": 1
+                            "merchantCode": "000468232",
+                            "terminalNumber": "00990101",
+                            "credit": null,
+                            "totalAmount": 17.2,
+                            "interestAmount": 0,
+                            "installmentAmount": 0,
+                            "iceAmount": 0,
+                            "batch": null,
+                            "line": null,
+                            "bin": "411076",
+                            "expiration": "1228"
                           }
                         }
                       ]
@@ -1925,31 +1856,29 @@
           },
           "authorization": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "nullable": true
           },
           "receipt": {
-            "type": "string",
-            "minLength": 1
+            "type": "number",
+            "nullable": true
           },
           "type": {
             "type": "string",
             "minLength": 1
           },
           "refunded": {
-            "type": "string",
-            "minLength": 1
+            "type": "boolean"
           },
           "lastDigits": {
             "type": "string",
             "minLength": 1
           },
           "additional": {
-            "type": "array",
-            "items": {}
+            "type": "object"
           },
           "processorFields": {
-            "type": "array",
-            "items": {}
+            "type": "object"
           }
         },
         "required": [
