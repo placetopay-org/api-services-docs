@@ -79,6 +79,33 @@
                     "$ref": "#/components/schemas/Payment"
                   }
                 }
+              },
+              "examples": {
+                "Ejemplo": {
+                  "value": {
+                    "auth": {
+                      "login": "c51ce410c124a10e0db5e4b97fc2af39",
+                      "tranKey": "VQOcRcVH2DfL6Y4B4SaK6yhoH/VOUveZ3xT16OQnvxE=",
+                      "nonce": "NjE0OWVkODgwYjNhNw==",
+                      "seed": "2021-09-21T09:34:48-05:00"
+                    },
+                    "payment": {
+                      "reference": "1234567890",
+                      "description": "Testing Payment",
+                      "amount": {
+                        "currency": "COP",
+                        "total": 3000
+                      }
+                    },
+                    "instrument": {
+                      "card": {
+                        "number": "4110760000000008"
+                      }
+                    },
+                    "ipAddress": "127.0.0.1",
+                    "userAgent": "Testing"
+                  }
+                }
               }
             }
           },
