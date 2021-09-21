@@ -1,0 +1,323 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Security",
+    "version": "1.0",
+    "license": {
+      "name": "Privative"
+    },
+    "description": "Este servicio web y su arquitectura permite a cualquier aplicación conectarse a Placetopay para los servicios de seguridad en el flujo transaccional. independiente del lenguaje de desarrollo.\n\nPara usar el servicio web, deberás tener un lenguaje de programación que pueda comunicarse con un servicio REST.\n\nA continuación se describirán cada uno de los usos y los datos requeridos en la trama para cada uno de los casos.  La respuesta para cada operación está unificada en un solo tipo de trama resultante.",
+    "contact": {
+      "name": "Diego Calle",
+      "email": "desarrollo@evertecinc.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://test.placetopay.com/rest/security",
+      "description": "Pruebas Colombia"
+    },
+    {
+      "url": "https://test.placetopay.ec/rest/security",
+      "description": "Pruebas Ecuador"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Obtener información",
+      "description": "Una vez se tengan los datos de la tarjeta permite determinar el flujo a seguir"
+    },
+    {
+      "name": "Procesamiento de transacción",
+      "description": "Diferentes formas de procesar una petición"
+    },
+    {
+      "name": "Consulta de una transacción",
+      "description": "Busqueda de información sobre una o más transacciones realizadas"
+    },
+    {
+      "name": "Acciones sobre transacciones",
+      "description": "Permite realizar operaciones como anulación, checkout, procesar una transacción manual"
+    },
+    {
+      "name": "Tokenización de tarjetas",
+      "description": "Permite almacenar de forma segura una tarjeta para realizar procesos de cobro automáticos posteriormente"
+    },
+    {
+      "name": "Proceso OTP",
+      "description": "Permite generar y posteriormente validar un One Time Password cuando se requiera"
+    },
+    {
+      "name": "Reporte de operaciones realizadas",
+      "description": "Permite obtener un reporte de todas las transacciones realizadas en un periodo de tiempo para el sitio usado"
+    }
+  ],
+  "paths": {
+    "/pinpad/transaction": {
+      "post": {
+        "summary": "Generar transacciones PinPad",
+        "operationId": "post-rest-security-transaction",
+        "description": "Este servicio se debe consumir para generar una transacción en el servicio pinpad y mostrar el teclado de pines.\n",
+        "tags": [
+          "Obtener información"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "#/components/schemas/Autentication"
+                  },
+                  "instrument": {
+                    "$ref": "#/components/schemas/Instrument"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "#/components/schemas/Status"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Data"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": []
+    },
+    "/pinpad/pinblock": {
+      "post": {
+        "summary": "Generar transacciones PinPad",
+        "operationId": "post-rest-security-pinblock",
+        "description": "Este servicio se debe consumir para generar un pinblock correspondiente a las posiciones ingresadas por el usuario en teclado de pines.\n",
+        "tags": [
+          "Obtener información"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "#/components/schemas/Autentication"
+                  },
+                  "instrument": {
+                    "$ref": "#/components/schemas/Instrument"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "#/components/schemas/Status"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Data"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "Autentication": {
+        "title": "Autentication",
+        "type": "object",
+        "properties": {
+          "login": {
+            "type": "string"
+          },
+          "tranKey": {
+            "type": "string"
+          },
+          "nonce": {
+            "type": "string"
+          },
+          "seed": {
+            "type": "string"
+          }
+        },
+        "description": "Estructura que contiene la información de autenticación del sitio generada de acuerdo al WSSE\nUsernameToken Profile 1.1"
+      },
+      "Instrument": {
+        "title": "Instrument",
+        "type": "object",
+        "description": "Estructura que contiene la información acerca del medio de pago a usar en una transacción, esta estructura\nes variable de acuerdo a la solicitud que se genere, cada servicio requiere que se usen unos u otros datos.",
+        "properties": {
+          "card": {
+            "$ref": "#/components/schemas/Card"
+          },
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "pinPad": {
+            "$ref": "#/components/schemas/PinPad"
+          }
+        }
+      },
+      "Card": {
+        "title": "Card",
+        "type": "object",
+        "description": "Estructura que contiene la información de la tarjeta.",
+        "properties": {
+          "number": {
+            "type": "string"
+          },
+          "expiration": {
+            "type": "string",
+            "example": "12/22",
+            "pattern": "^[01]\\d\\/\\d{2}$"
+          },
+          "cvv": {
+            "type": "string"
+          },
+          "installments": {
+            "type": "number"
+          }
+        }
+      },
+      "Token": {
+        "title": "Token",
+        "type": "object",
+        "description": "Estructura que contiene la información del token que asocia a la tarjeta\n",
+        "properties": {
+          "token": {
+            "type": "string"
+          },
+          "subtoken": {
+            "type": "string"
+          },
+          "franchise": {
+            "type": "string"
+          },
+          "franchiseName": {
+            "type": "string"
+          },
+          "issuerName": {
+            "type": "string"
+          },
+          "lastDigits": {
+            "type": "string"
+          },
+          "validUntil": {
+            "type": "string"
+          }
+        }
+      },
+      "Status": {
+        "title": "Status",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          }
+        },
+        "description": "Estructura que contiene la información sobre una solicitud o pago, informa al estado actual de la misma.\n"
+      },
+      "PinPad": {
+        "title": "PinPad",
+        "type": "object",
+        "description": "Estructura que contiene la información del servicio pinPad",
+        "properties": {
+          "transactionId": {
+            "type": "string"
+          },
+          "positions": {
+            "type": "string"
+          },
+          "pinBlock": {
+            "type": "string"
+          }
+        }
+      },
+      "Data": {
+        "title": "Data",
+        "type": "object",
+        "properties": {
+          "pinPad": {
+            "$ref": "#/components/schemas/Gateway.v1_PinPad"
+          }
+        }
+      },
+      "Gateway.v1_PinPad": {
+        "title": "PinPad",
+        "type": "object",
+        "description": "Estructura que contiene la información del servicio pinPad",
+        "properties": {
+          "transactionId": {
+            "type": "string"
+          },
+          "positions": {
+            "type": "string"
+          },
+          "pinBlock": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {},
+    "responses": {}
+  }
+}
