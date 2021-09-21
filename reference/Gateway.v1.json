@@ -1795,7 +1795,7 @@
             }
           }
         },
-        "description": "Una vez el usuario ha terminado el proceso de autenticación en 3DS se usa este endpoint para obtener el resultado de su operación",
+        "description": "Una vez el usuario ha terminado el proceso de autenticación en 3DS se usa este endpoint para obtener el resultado de su operación\n\n```json\nNota Importante.\n\nAl consumir este servicio NO se está autenticando la transacción por defecto se debe tomar de la respuesta el valor de \"data\" y enviarlo en el \"instrument.threeDS\"\n```",
         "tags": [
           "Proceso 3DS"
         ],
