@@ -469,6 +469,56 @@
                       "another_key": "Another value to be stored"
                     }
                   }
+                },
+                "3DS": {
+                  "value": {
+                    "auth": {
+                      "login": "c4ca4238a0b923820dcc509a6f75849b",
+                      "tranKey": "DrpP1WcVprW55o8ireLXXWMLNP6bnEymZ9Q9W4gKioM=",
+                      "nonce": "NjE0YTE5YjAwNWQ4Nw==",
+                      "seed": "2021-09-21T12:43:12-05:00"
+                    },
+                    "payer": {
+                      "name": "Diego",
+                      "email": "diego.calle@placetopay.com"
+                    },
+                    "payment": {
+                      "reference": "1234567890",
+                      "amount": {
+                        "currency": "USD",
+                        "total": 57.8
+                      }
+                    },
+                    "instrument": {
+                      "card": {
+                        "number": "5180300000000005",
+                        "expiration": "12/20",
+                        "cvv": "123"
+                      },
+                      "credit": {
+                        "code": "1",
+                        "type": "02",
+                        "groupCode": "P",
+                        "installment": 24
+                      },
+                      "threeDS": {
+                        "id": 6700,
+                        "cavv": "AJkBCSdAQQAAAsrYFSA2dDJ0eJI=",
+                        "xid": "5da38c1e-def7-4085-b159-50da623d909f",
+                        "eci": "02",
+                        "enrolled": "Y",
+                        "authenticated": "Y",
+                        "version": "v2",
+                        "extra": {
+                          "transStatusReason": null,
+                          "acsTransId": "eebcce31-abe6-4f21-bbaa-7a907d8fc187",
+                          "threeDSServerTransID": "8859b5b5-f3b1-4deb-a6e5-c97e198596a5"
+                        }
+                      }
+                    },
+                    "ipAddress": "127.0.0.1",
+                    "userAgent": "Testing"
+                  }
                 }
               }
             }
@@ -2552,7 +2602,6 @@
           "id",
           "enrolled",
           "authenticated",
-          "validSignature",
           "eci",
           "cavv",
           "xid",
