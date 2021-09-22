@@ -113,7 +113,7 @@
     },
     "/pinpad/pinblock": {
       "post": {
-        "summary": "Generar transacciones PinPad",
+        "summary": "Generar PinBlock en PinPad",
         "operationId": "post-rest-security-pinblock",
         "description": "Este servicio se debe consumir para generar un pinblock correspondiente a las posiciones ingresadas por el usuario en teclado de pines.\n",
         "tags": [
