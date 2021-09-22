@@ -1,5 +1,7 @@
 # Aerolíneas
 
+## Códigos
+
 Cuando se realizan transacciones de dispersión a aerolíneas estos son los códigos de acuerdos para cada una de ellas
 
 Código | Aerolínea 
@@ -67,3 +69,71 @@ Código | Aerolínea
 125 | Viva Air Perú
 126 | SKY Airline Nacional
 127 | SKY Airline Internacional
+
+## Ejemplo de una petición de dispersión de aerolínea
+
+```json
+{
+  ...
+  "payment": {
+    "reference": "ON1434012-PN1433129",
+    "description": "Vuelo 50 AV2020",
+    "amount": {
+      "taxes": [
+        {
+          "kind": "airportTax",
+          "amount": 63
+        },
+        {
+          "kind": "valueAddedTax",
+          "amount": 158.47
+        }
+      ],
+      "currency": "USD",
+      "total": 1161.12
+    },
+    "dispersion": [
+      {
+        "agreement": 29,
+        "agreementType": "AIRLINE",
+        "amount": {
+          "taxes": [
+            {
+              "kind": "airportTax",
+              "amount": 63
+            },
+            {
+              "kind": "valueAddedTax",
+              "amount": 142.5
+            }
+          ],
+          "currency": "USD",
+          "total": 1055.5
+        }
+      },
+      {
+        "agreement": null,
+        "agreementType": "MERCHANT",
+        "amount": {
+          "taxes": [
+            {
+              "kind": "valueAddedTax",
+              "amount": 15.97
+            }
+          ],
+          "currency": "USD",
+          "total": 105.62
+        }
+      }
+    ]
+  },
+  "instrument": {
+    "card": {
+      "number": "5180300000000005",
+      "expiration": "12/24",
+      "cvv": "123"
+    }
+  }
+  ...
+}
+```
