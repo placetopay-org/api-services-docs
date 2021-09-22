@@ -24,32 +24,8 @@
   ],
   "tags": [
     {
-      "name": "Obtener información",
-      "description": "Una vez se tengan los datos de la tarjeta permite determinar el flujo a seguir"
-    },
-    {
-      "name": "Procesamiento de transacción",
-      "description": "Diferentes formas de procesar una petición"
-    },
-    {
-      "name": "Consulta de una transacción",
-      "description": "Busqueda de información sobre una o más transacciones realizadas"
-    },
-    {
-      "name": "Acciones sobre transacciones",
-      "description": "Permite realizar operaciones como anulación, checkout, procesar una transacción manual"
-    },
-    {
-      "name": "Tokenización de tarjetas",
-      "description": "Permite almacenar de forma segura una tarjeta para realizar procesos de cobro automáticos posteriormente"
-    },
-    {
-      "name": "Proceso OTP",
-      "description": "Permite generar y posteriormente validar un One Time Password cuando se requiera"
-    },
-    {
-      "name": "Reporte de operaciones realizadas",
-      "description": "Permite obtener un reporte de todas las transacciones realizadas en un periodo de tiempo para el sitio usado"
+      "name": "PinPad",
+      "description": "Generación de teclado electrónico"
     }
   ],
   "paths": {
@@ -296,26 +272,10 @@
         "type": "object",
         "properties": {
           "pinPad": {
-            "$ref": "#/components/schemas/Gateway.v1_PinPad"
+            "$ref": "#/components/schemas/PinPad"
           }
         }
       },
-      "Gateway.v1_PinPad": {
-        "title": "PinPad",
-        "type": "object",
-        "description": "Estructura que contiene la información del servicio pinPad",
-        "properties": {
-          "transactionId": {
-            "type": "string"
-          },
-          "positions": {
-            "type": "string"
-          },
-          "pinBlock": {
-            "type": "string"
-          }
-        }
-      }
     },
     "securitySchemes": {},
     "responses": {}
