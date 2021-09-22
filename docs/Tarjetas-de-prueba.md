@@ -6,10 +6,10 @@ En todos los casos excepto donde se especifique el CVV y la fecha de expiración
 
 Para las pruebas con 3DS en el comportamiento se describe su resultado
 
-* Y: Autenticado sin fricción
-* C: Solicita challenge
-* A: Responde con attempt
-* N: No autenticado
+* **Y**: Autenticado sin fricción
+* **C**: Solicita challenge
+* **A**: Responde con attempt
+* **N**: No autenticado
 
 Franquicia | Número | Comportamiento
 ---------|----------|---------
