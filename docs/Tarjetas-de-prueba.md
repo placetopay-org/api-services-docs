@@ -81,3 +81,14 @@ Tarjeta ATH | 2215716999194052 | Deja la transacción en estado pendiente y se r
 Tarjeta ATH | 0215027111105163 | Deja la transacción en estado pendiente y se resuelve a rechazado
 Tarjeta ATH | 2215719446775653 | Arroja una excepción en el proceso
 Tarjeta ATH | 0215026116775785 | Rechaza
+
+## OTP para casos de prueba
+
+Para que el proceso de OTP sea exitoso en el proceso de validación de OTP de estos servicios, cualquier otro código es un rechazo
+
+* 123456
+* 000000
+
+## OTP en 3DS
+
+Cuando la autenticación de 3DS requira challenge (OTP) el código aceptado es **12345**
