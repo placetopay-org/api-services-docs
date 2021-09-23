@@ -112,7 +112,8 @@
                       "data": {
                         "pinPad": {
                           "positions": "7915864032",
-                          "transactionId": "b0c62f97-3b06-4c33-b68f-e281e95eb4bb"
+                          "transactionId": "b0c62f97-3b06-4c33-b68f-e281e95eb4bb",
+                          "pinLength": "4"
                         }
                       }
                     }
@@ -221,7 +222,8 @@
                         "pinPad": {
                           "positions": "0123",
                           "transactionId": "b0c62f97-3b06-4c33-b68f-e281e95eb4bb",
-                          "pinBlock": "106C56A4819B68EA"
+                          "pinBlock": "106C56A4819B68EA",
+                          "pinLength": "4"
                         }
                       }
                     }
@@ -353,6 +355,9 @@
           },
           "pinBlock": {
             "type": "string"
+          },
+          "length": {
+            "type": "integer"
           }
         }
       },
