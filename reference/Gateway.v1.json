@@ -920,7 +920,24 @@
                     "$ref": "#/components/schemas/Autentication"
                   },
                   "internalReference": {
-                    "type": "string"
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "auth",
+                  "internalReference"
+                ]
+              },
+              "examples": {
+                "Ejemplo": {
+                  "value": {
+                    "auth": {
+                      "login": "6dd490faf9cb87a9862245da41170ff2",
+                      "tranKey": "JUfKi8+W//kX43WZd8FcnNsdl7zkaeAQdmSOudWcVi0=",
+                      "nonce": "MzgwYWYwMjc2ZWUzODA5YmI1MDQ1YmNjYzdlNzY1MTY=",
+                      "seed": "2021-03-02T17:03:50+01:00"
+                    },
+                    "internalReference": 230364
                   }
                 }
               }
@@ -934,6 +951,78 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Transaction"
+                },
+                "examples": {
+                  "Ejemplo": {
+                    "value": {
+                      "status": {
+                        "status": "APPROVED",
+                        "reason": "00",
+                        "message": "Aprobada",
+                        "date": "2021-09-24T14:04:23-05:00"
+                      },
+                      "date": "2021-09-24T10:02:17-05:00",
+                      "transactionDate": "2021-09-24T10:02:18-05:00",
+                      "internalReference": 230364,
+                      "reference": "800166551",
+                      "paymentMethod": "ID_DN",
+                      "franchise": "diners",
+                      "franchiseName": "Diners",
+                      "issuerName": "Diners",
+                      "amount": {
+                        "taxes": [
+                          {
+                            "kind": "valueAddedTax",
+                            "amount": 0,
+                            "base": 0
+                          }
+                        ],
+                        "currency": "USD",
+                        "total": 120
+                      },
+                      "conversion": {
+                        "from": {
+                          "currency": "USD",
+                          "total": 120
+                        },
+                        "to": {
+                          "currency": "USD",
+                          "total": 120
+                        },
+                        "factor": 1
+                      },
+                      "authorization": "999999",
+                      "receipt": "230364",
+                      "type": "AUTH_ONLY",
+                      "refunded": false,
+                      "lastDigits": "0008",
+                      "provider": "INTERDIN",
+                      "discount": null,
+                      "processorFields": {
+                        "id": "cf3e77878a07d6e3ee667c60081dc39d",
+                        "b24": "00"
+                      },
+                      "additional": {
+                        "merchantCode": "1065152",
+                        "terminalNumber": "00990099",
+                        "credit": {
+                          "code": 1,
+                          "type": "03",
+                          "groupCode": "X",
+                          "installments": 3
+                        },
+                        "totalAmount": 120,
+                        "interestAmount": 0,
+                        "installmentAmount": 40,
+                        "iceAmount": 0,
+                        "batch": null,
+                        "line": null,
+                        "bin": "365454",
+                        "expiration": "1122"
+                      },
+                      "notificationURL": "https://test.placetopay.ec/redirection/api/notify"
+                    }
+                  }
                 }
               }
             }
