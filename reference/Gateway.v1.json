@@ -565,7 +565,7 @@
                         "factor": 1
                       },
                       "authorization": "999999",
-                      "receipt": 3,
+                      "receipt": "3",
                       "type": "AUTH_ONLY",
                       "refunded": false,
                       "lastDigits": "1111",
@@ -806,7 +806,7 @@
                         "factor": 1
                       },
                       "authorization": "000000",
-                      "receipt": 455,
+                      "receipt": "455",
                       "type": "CREDIT",
                       "refunded": false,
                       "lastDigits": "0008",
@@ -2538,7 +2538,7 @@
               "factor": 1
             },
             "authorization": "000000",
-            "receipt": 2,
+            "receipt": "2",
             "type": "AUTH_ONLY",
             "refunded": false,
             "lastDigits": "0008",
@@ -2631,7 +2631,9 @@
             "nullable": true
           },
           "receipt": {
-            "type": "number",
+            "type": "string",
+            "maxLength": 16,
+            "description": "",
             "nullable": true
           },
           "type": {
