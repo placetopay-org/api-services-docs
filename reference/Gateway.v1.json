@@ -3010,6 +3010,47 @@
           },
           "processorFields": {
             "type": "object"
+          },
+          "dispersion": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "$ref": "#/components/schemas/Status"
+                },
+                "agreement": {
+                  "type": "integer",
+                  "nullable": true
+                },
+                "agreementType": {
+                  "type": "string",
+                  "enum": [
+                    "AIRLINE",
+                    "MERCHANT"
+                  ]
+                },
+                "authorization": {
+                  "type": "string",
+                  "minLength": 1,
+                  "nullable": true
+                },
+                "receipt": {
+                  "type": "string",
+                  "minLength": 1,
+                  "nullable": true
+                },
+                "amount": {
+                  "$ref": "#/components/schemas/Amount"
+                },
+                "refunded": {
+                  "type": "boolean"
+                },
+                "paymentMethod": {
+                  "type": "string"
+                }
+              }
+            }
           }
         },
         "required": [
