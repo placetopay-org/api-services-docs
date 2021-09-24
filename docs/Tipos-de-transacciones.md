@@ -65,3 +65,24 @@ Según esta definición, dentro de Evertec este tipo de transacciones:
 - Si  el  valor  del  CHECKOUT  es  0,  la  preautorización  es  cancelada  y  se  libera  el  monto retenido en las peticiones previas
 
 IMPORTANTE: Notar que el "status”, “authorization” y “receipt” del nodo “preAuthorization” cambia con durante un CHECKOUT exitoso, por lo cual, en las peticiones de REVERSE, se deben usar estos nuevos valores en la petición.
+
+
+## Dispersión
+
+Este tipo de transacción es utilizada para dividir el pago entre diferentes entidades además del sitio principal. Es decir, al realizar una transación, parte del valor es direccionado al sitio autenticado en la transaccion, y otra parte es enviada a una aerolinea u otros sitios. Además, eso permite que cada parte de la transacción sea procesada por diferentes provedores.
+
+La transacción de dispersión está conformada por una sessión padre de tipo `DISPERSION` que contiene el valor total de la transacción y el estado general del processo, y también por sessiones hijas de tipo `AUTH_ONLY` que contienen la información de cada una de las partes dispersadas. Los datos de autorización y recibo de la transacción padre serán los mismos de la primeira transación procesada.
+
+Caso una transacción quede pendiente, las demás transacciones pendientes no serán procesadas hasta que esta se resuelva, quedando con un estado de `PENDING_PROCESS`. La transacción padre mantendra su estado `PENDING` hasta que todas las sessiones hijas se resuelvan.
+
+Caso una transacción falle o sea rechazada, demás transacciones pendientes automaticamente también serán rechazadas, sin contacto con la red. Si una transacción hija ya hubiera sido aprobada anteriormente, esta mantiene su estado y la transacción padre cambiará su estado a `APPROVED_PARTIAL`.
+
+
+### Dispersión de aerolínea
+Cuando una dispersión es realizada a una aerolínea, esta será priorizada y procesada primero. Si configurado 3DS o credito, este será utilizado solamente en el procesamiento de la transacción de la aerolínea.
+
+Las dispersiones de aerolínea son limitadas a apenas 2 partes: una del comercio principal y una de la aerolínea. También es posible realizar una dispersión en que el valor total de la transacción es repasado a la aerolínea, al no enviar la dispersión del comercio o enviarla con valor cero.
+
+### Dispersión de comercios
+Las dipersiones de comercios permiten realizar una transación dividida en hasta 3 sitios, incluyendo el sitio autenticado. Las transacciones seran procesadas en el orden enviada en la transación. 
+
