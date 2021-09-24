@@ -903,7 +903,7 @@
       "post": {
         "summary": "Consulta de transacción por referencia interna",
         "operationId": "post-rest-gateway-query",
-        "description": "Permite consultar una transaccion.",
+        "description": "Permite consultar una transaccion en particular usando su referencia interna",
         "tags": [
           "Consulta de una transacción"
         ],
