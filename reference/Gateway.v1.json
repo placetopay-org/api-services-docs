@@ -1159,6 +1159,24 @@
                     "authorization": "999999",
                     "action": "reverse"
                   }
+                },
+                "Checkout": {
+                  "value": {
+                    "auth": {
+                      "login": "184053a1c192227c2f53964fdb109e00",
+                      "tranKey": "JmQcGgEUKPY9NZR9ID4ffH4jmBxLeWkRB6LCPwZp/EY=",
+                      "nonce": "NjE0ZTNiZGEzZTNlNA==",
+                      "seed": "2021-09-24T15:58:02-05:00"
+                    },
+                    "internalReference": 62342,
+                    "authorization": "580883",
+                    "action": "checkout",
+                    "payment": {
+                      "amount": {
+                        "total": 2000
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -1172,7 +1190,7 @@
       "post": {
         "summary": "Consulta de transacción por referencia interna",
         "operationId": "post-rest-gateway-query",
-        "description": "Permite consultar una transaccion.",
+        "description": "Permite consultar una transaccion en particular usando su referencia interna",
         "tags": [
           "Consulta de una transacción"
         ],
