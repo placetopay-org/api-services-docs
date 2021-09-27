@@ -117,19 +117,7 @@
                         }
                       }
                     }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Status"
-                },
-                "examples": {
+                  },
                   "Error": {
                     "status": {
                       "status": "FAILED",
@@ -138,10 +126,18 @@
                       "date": "2021-09-22T16:53:48-05:00"
                     }
                   },
-                  "Rejected": {
+                  "Rechazo": {
                     "status": {
                       "status": "REJECTED",
                       "reason": "05",
+                      "message": "El servicio requerido no se encuentra disponible en el sitio",
+                      "date": "2021-09-27T09:35:03-05:00"
+                    }
+                  },
+                  "Servicio no disponible": {
+                    "status": {
+                      "status": "REJECTED",
+                      "reason": "SU",
                       "message": "El servicio requerido no se encuentra disponible en el sitio",
                       "date": "2021-09-27T09:35:03-05:00"
                     }
@@ -254,24 +250,7 @@
                         }
                       }
                     }
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "./Gateway.v1.json#/components/schemas/Autentication"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Status"
-                },
-                "examples": {
+                  },
                   "Error": {
                     "status": {
                       "status": "FAILED",
@@ -280,14 +259,27 @@
                       "date": "2021-09-22T16:53:48-05:00"
                     }
                   },
-                  "Rejected": {
+                  "Rechazo": {
                     "status": {
                       "status": "REJECTED",
                       "reason": "05",
                       "message": "El servicio requerido no se encuentra disponible en el sitio",
                       "date": "2021-09-27T09:35:03-05:00"
                     }
+                  },
+                  "Servicio no disponible": {
+                    "status": {
+                      "status": "REJECTED",
+                      "reason": "SU",
+                      "message": "El servicio requerido no se encuentra disponible en el sitio",
+                      "date": "2021-09-27T09:35:03-05:00"
+                    }
                   }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "./Gateway.v1.json#/components/schemas/Autentication"
                 }
               }
             }
