@@ -52,10 +52,10 @@
                 "Solicitud por tarjeta": {
                   "value": {
                     "auth": {
-                      "login": "LOGIN",
-                      "tranKey": "TRANKEY",
-                      "nonce": "NONCE",
-                      "seed": "SEED"
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
                     },
                     "instrument": {
                       "card": {
@@ -67,14 +67,14 @@
                 "Solicitud por token": {
                   "value": {
                     "auth": {
-                      "login": "LOGIN",
-                      "tranKey": "TRANKEY",
-                      "nonce": "NONCE",
-                      "seed": "SEED"
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
                     },
                     "instrument": {
                       "token": {
-                        "token": "TOKEN"
+                        "token": "4c0886ec949f194f0b535181bb2a707769fd748ff7438d2caab2b0a3e67642a"
                       }
                     }
                   }
@@ -131,11 +131,19 @@
                 },
                 "examples": {
                   "Error": {
-                    "value": {
+                    "status": {
                       "status": "FAILED",
                       "reason": "0",
                       "message": "",
                       "date": "2021-09-22T16:53:48-05:00"
+                    }
+                  },
+                  "Rejected": {
+                    "status": {
+                      "status": "REJECTED",
+                      "reason": "SU",
+                      "message": "El servicio requerido no se encuentra disponible en el sitio",
+                      "date": "2021-09-27T09:35:03-05:00"
                     }
                   }
                 }
@@ -169,17 +177,36 @@
                 }
               },
               "examples": {
-                "Solicitud de PinBlock": {
+                "Solicitud de PinBlock por tarjeta": {
                   "value": {
                     "auth": {
-                      "login": "LOGIN",
-                      "tranKey": "TRANKEY",
-                      "nonce": "NONCE",
-                      "seed": "SEED"
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
                     },
                     "instrument": {
                       "card": {
                         "number": "0215020177972730"
+                      },
+                      "pinPad": {
+                        "transactionId": "b0c62f97-3b06-4c33-b68f-e281e95eb4bb",
+                        "positions": "0123"
+                      }
+                    }
+                  }
+                },
+                "Solicitud de Pinblock por token": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "instrument": {
+                      "token": {
+                        "token": "4c0886ec949f194f0b535181bb2a707769fd748ff7438d2caab2b0a3e67642a"
                       },
                       "pinPad": {
                         "transactionId": "b0c62f97-3b06-4c33-b68f-e281e95eb4bb",
@@ -246,11 +273,19 @@
                 },
                 "examples": {
                   "Error": {
-                    "value": {
+                    "status": {
                       "status": "FAILED",
                       "reason": "0",
                       "message": "",
                       "date": "2021-09-22T16:53:48-05:00"
+                    }
+                  },
+                  "Rejected": {
+                    "status": {
+                      "status": "REJECTED",
+                      "reason": "SU",
+                      "message": "El servicio requerido no se encuentra disponible en el sitio",
+                      "date": "2021-09-27T09:35:03-05:00"
                     }
                   }
                 }
