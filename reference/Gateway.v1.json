@@ -2704,7 +2704,8 @@
         "description": "Estructura que contiene la información requerida para un pago de dispersión\n",
         "properties": {
           "agreement": {
-            "type": "string"
+            "type": "string",
+            "description": "Identificador de destinatario de la transacción. Para el sitio principal de la transacción, el valor debe ser null."
           },
           "agreementType": {
             "type": "string",
