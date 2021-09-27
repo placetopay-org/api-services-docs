@@ -77,6 +77,7 @@ Caso una transacción quede pendiente, las demás transacciones pendientes no se
 
 Caso una transacción falle o sea rechazada, demás transacciones pendientes automaticamente también serán rechazadas, sin contacto con la red. Si una transacción hija ya hubiera sido aprobada anteriormente, esta mantiene su estado y la transacción padre cambiará su estado a `APPROVED_PARTIAL`.
 
+Las transacciones pueden ser reversadas juntas o separadamente. Si se envia una reversión a una transacción hija, apenas esta será reversada. Si se envia una reversión a la transacción padre, todas las transacciones serán reversadas.
 
 ### Dispersión de aerolínea
 Cuando una dispersión es realizada a una aerolínea, esta será priorizada y procesada primero. Si configurado 3DS o credito, este será utilizado solamente en el procesamiento de la transacción de la aerolínea.
