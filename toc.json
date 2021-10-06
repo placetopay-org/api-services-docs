@@ -12,6 +12,11 @@
     },
     {
       "type": "item",
+      "title": "Security",
+      "uri": "reference/Security.v1.json"
+    },
+    {
+      "type": "item",
       "title": "Autenticación",
       "uri": "docs/Autenticacion.md"
     },
