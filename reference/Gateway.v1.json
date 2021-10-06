@@ -289,7 +289,7 @@
                 }
               },
               "examples": {
-                "simple": {
+                "Simple": {
                   "value": {
                     "auth": {
                       "login": "c4ca4238a0b923820dcc509a6f75849b",
@@ -325,7 +325,7 @@
                     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
                   }
                 },
-                "full": {
+                "Complex": {
                   "value": {
                     "auth": {
                       "login": "c4ca4238a0b923820dcc509a6f75849b",
@@ -427,7 +427,7 @@
                     }
                   }
                 },
-                "recurring": {
+                "Recurring": {
                   "value": {
                     "auth": {
                       "login": "c4ca4238a0b923820dcc509a6f75849b",
@@ -524,7 +524,7 @@
                     "userAgent": "Testing"
                   }
                 },
-                "dispersion airline": {
+                "Airline Dispersion": {
                   "value": {
                     "auth": {
                       "login": "c4ca4238a0b923820dcc509a6f75849b",
@@ -599,7 +599,7 @@
                     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
                   }
                 },
-                "dispersion merchant": {
+                "Merchant Dispersion": {
                   "value": {
                     "auth": {
                       "login": "c4ca4238a0b923820dcc509a6f75849b",
@@ -672,6 +672,38 @@
                     },
                     "ipAddress": "190.85.90.130",
                     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
+                  }
+                },
+                "Pinblock and AVS": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "hvWqtfpuh4Vlbw+iqiRnDGvOJJdr+tKj3fWoh5nz+l8=",
+                      "nonce": "NjE1ZTIxZDMzZmMyNA==",
+                      "seed": "2021-10-06T17:23:15-05:00"
+                    },
+                    "payer": {
+                      "name": "Diego",
+                      "email": "diego.calle@evertecinc.com"
+                    },
+                    "payment": {
+                      "reference": "1234567890",
+                      "description": "Testing Payment",
+                      "amount": {
+                        "currency": "USD",
+                        "total": 17.2
+                      }
+                    },
+                    "instrument": {
+                      "pin": "0B880E2326F6409E",
+                      "card": {
+                        "number": "4111111111111111",
+                        "expiration": "12/21",
+                        "address": {
+                          "postalCode": "55555"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -2961,6 +2993,13 @@
           },
           "pinPad": {
             "$ref": "#/components/schemas/PinPad"
+          },
+          "pin": {
+            "type": "string",
+            "example": "0B880E2326F6409E",
+            "minLength": 2,
+            "maxLength": 20,
+            "description": "Recibe el código PIN cuando es plano o cuando se trata de un PinBlock"
           }
         }
       },
