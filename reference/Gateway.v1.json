@@ -2635,7 +2635,7 @@
     },
     "/security/pinpad/transaction": {
       "post": {
-        "summary": "Generar transacciones PinPad",
+        "summary": "Solicitud de PinPad",
         "operationId": "post-rest-security-transaction",
         "description": "Un PINPAD es un dispositivo electrónico que se utiliza en una transacción de débito, crédito o tarjeta inteligente para aceptar y cifrar el número de identificación personal (PIN) del titular de la tarjeta.\n\nEsta API proporciona un servicio PinPad con generación de PinBlock cifrada según ISO 9564.\n\n",
         "requestBody": {
@@ -2770,9 +2770,9 @@
     },
     "/security/pinpad/pinblock": {
       "post": {
-        "summary": "Generar PinBlock en PinPad",
+        "summary": "Generación de PinBlock a partir de PinPad",
         "operationId": "post-rest-security-pinblock",
-        "description": "Permite generar el pinblock con una transaccion en base a las posiciones entregadas por el usuario.",
+        "description": "Permite generar el pinblock con una transaccion en base a las posiciones entregadas por el usuario que se seleccionaron del PinPad",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2958,6 +2958,9 @@
           },
           "otp": {
             "type": "string"
+          },
+          "pinPad": {
+            "$ref": "#/components/schemas/PinPad"
           }
         }
       },
