@@ -14,11 +14,11 @@
   },
   "servers": [
     {
-      "url": "https://test.placetopay.com/rest/gateway",
+      "url": "https://test.placetopay.com/rest",
       "description": "Pruebas Colombia"
     },
     {
-      "url": "https://test.placetopay.ec/rest/gateway",
+      "url": "https://test.placetopay.ec/rest",
       "description": "Pruebas Ecuador"
     }
   ],
@@ -52,12 +52,16 @@
       "description": "Permite generar y posteriormente validar un One Time Password cuando se requiera"
     },
     {
+      "name": "Operaciones con Pinpad",
+      "description": "Permite realizar validación de PIN con un Pinpad seguro"
+    },
+    {
       "name": "Reporte de operaciones realizadas",
       "description": "Permite obtener un reporte de todas las transacciones realizadas en un periodo de tiempo para el sitio usado"
     }
   ],
   "paths": {
-    "/information": {
+    "/gateway/information": {
       "post": {
         "summary": "Solicitud de Información",
         "operationId": "post-rest-gateway-information",
@@ -237,7 +241,7 @@
       },
       "parameters": []
     },
-    "/process": {
+    "/gateway/process": {
       "post": {
         "summary": "Procesamiento de transacción",
         "operationId": "post-gateway-process",
@@ -285,7 +289,7 @@
                 }
               },
               "examples": {
-                "simple": {
+                "Simple": {
                   "value": {
                     "auth": {
                       "login": "c4ca4238a0b923820dcc509a6f75849b",
@@ -321,7 +325,7 @@
                     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
                   }
                 },
-                "full": {
+                "Complex": {
                   "value": {
                     "auth": {
                       "login": "c4ca4238a0b923820dcc509a6f75849b",
@@ -423,7 +427,7 @@
                     }
                   }
                 },
-                "recurring": {
+                "Recurring": {
                   "value": {
                     "auth": {
                       "login": "c4ca4238a0b923820dcc509a6f75849b",
@@ -520,7 +524,7 @@
                     "userAgent": "Testing"
                   }
                 },
-                "dispersion airline": {
+                "Airline Dispersion": {
                   "value": {
                     "auth": {
                       "login": "c4ca4238a0b923820dcc509a6f75849b",
@@ -595,7 +599,7 @@
                     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
                   }
                 },
-                "dispersion merchant": {
+                "Merchant Dispersion": {
                   "value": {
                     "auth": {
                       "login": "c4ca4238a0b923820dcc509a6f75849b",
@@ -668,6 +672,38 @@
                     },
                     "ipAddress": "190.85.90.130",
                     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
+                  }
+                },
+                "Pinblock and AVS": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "hvWqtfpuh4Vlbw+iqiRnDGvOJJdr+tKj3fWoh5nz+l8=",
+                      "nonce": "NjE1ZTIxZDMzZmMyNA==",
+                      "seed": "2021-10-06T17:23:15-05:00"
+                    },
+                    "payer": {
+                      "name": "Diego",
+                      "email": "diego.calle@evertecinc.com"
+                    },
+                    "payment": {
+                      "reference": "1234567890",
+                      "description": "Testing Payment",
+                      "amount": {
+                        "currency": "USD",
+                        "total": 17.2
+                      }
+                    },
+                    "instrument": {
+                      "pin": "0B880E2326F6409E",
+                      "card": {
+                        "number": "4111111111111111",
+                        "expiration": "12/21",
+                        "address": {
+                          "postalCode": "55555"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -1053,7 +1089,7 @@
       },
       "parameters": []
     },
-    "/tokenize": {
+    "/gateway/tokenize": {
       "post": {
         "summary": "Tokenización (tokenize)",
         "operationId": "post-gateway-tokenize",
@@ -1204,7 +1240,7 @@
       },
       "parameters": []
     },
-    "/transaction": {
+    "/gateway/transaction": {
       "post": {
         "summary": "Operaciones sobre una transacción",
         "operationId": "post-gateway-transaction",
@@ -1367,7 +1403,7 @@
       },
       "parameters": []
     },
-    "/query": {
+    "/gateway/query": {
       "post": {
         "summary": "Consulta de transacción por referencia interna",
         "operationId": "post-rest-gateway-query",
@@ -1499,7 +1535,7 @@
       },
       "parameters": []
     },
-    "/search": {
+    "/gateway/search": {
       "post": {
         "summary": "Búsqueda de transacciones",
         "operationId": "post-gateway-search",
@@ -1729,7 +1765,7 @@
       },
       "parameters": []
     },
-    "/interests": {
+    "/gateway/interests": {
       "post": {
         "summary": "Cálculo de Intereses (solo Ecuador)",
         "operationId": "post-rest-gateway-interests",
@@ -1857,7 +1893,7 @@
       },
       "parameters": []
     },
-    "/otp/generate": {
+    "/gateway/otp/generate": {
       "parameters": [],
       "post": {
         "summary": "Generación de OTP (solo Ecuador)",
@@ -1964,7 +2000,7 @@
         }
       }
     },
-    "/otp/validate": {
+    "/gateway/otp/validate": {
       "post": {
         "summary": "Validación de OTP (solo Ecuador)",
         "operationId": "post-rest-otp-validate",
@@ -2053,7 +2089,7 @@
       },
       "parameters": []
     },
-    "/report": {
+    "/gateway/report": {
       "parameters": [],
       "post": {
         "summary": "Solicitar un reporte",
@@ -2173,7 +2209,7 @@
         }
       }
     },
-    "/report/obtain": {
+    "/gateway/report/obtain": {
       "post": {
         "summary": "Obtener un reporte previamente solicitado",
         "operationId": "post-report-obtain",
@@ -2253,9 +2289,10 @@
             "description": "Allows to provide gzip as a compression format"
           }
         ]
-      }
+      },
+      "parameters": []
     },
-    "/mpi/lookup": {
+    "/gateway/mpi/lookup": {
       "post": {
         "summary": "3DS Lookup",
         "operationId": "post-mpi-lookup",
@@ -2457,9 +2494,10 @@
             }
           }
         }
-      }
+      },
+      "parameters": []
     },
-    "/mpi/query": {
+    "/gateway/mpi/query": {
       "post": {
         "summary": "3DS Query",
         "operationId": "post-mpi-query",
@@ -2624,7 +2662,292 @@
             }
           }
         }
-      }
+      },
+      "parameters": []
+    },
+    "/security/pinpad/transaction": {
+      "post": {
+        "summary": "Solicitud de PinPad",
+        "operationId": "post-rest-security-transaction",
+        "description": "Un PINPAD es un dispositivo electrónico que se utiliza en una transacción de débito, crédito o tarjeta inteligente para aceptar y cifrar el número de identificación personal (PIN) del titular de la tarjeta.\n\nEsta API proporciona un servicio PinPad con generación de PinBlock cifrada según ISO 9564.\n\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "#/components/schemas/Autentication"
+                  },
+                  "instrument": {
+                    "$ref": "#/components/schemas/Instrument"
+                  }
+                }
+              },
+              "examples": {
+                "Solicitud por tarjeta": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "instrument": {
+                      "card": {
+                        "number": "4111111111111111"
+                      }
+                    }
+                  }
+                },
+                "Solicitud por token": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "instrument": {
+                      "token": {
+                        "token": "4c0886ec949f194f0b535181bb2a707769fd748ff7438d2caab2b0a3e67642a1"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "#/components/schemas/Status"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "pinPad": {
+                          "$ref": "#/components/schemas/PinPad"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "APPROVED",
+                        "reason": "00",
+                        "message": "Aprobada",
+                        "date": "2021-09-14T17:43:48-05:00"
+                      },
+                      "data": {
+                        "pinPad": {
+                          "positions": "7915864032",
+                          "transactionId": "b0c62f97-3b06-4c33-b68f-e281e95eb4bb",
+                          "pinLength": "4"
+                        }
+                      }
+                    }
+                  },
+                  "Error": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "0",
+                        "message": "",
+                        "date": "2021-09-22T16:53:48-05:00"
+                      }
+                    }
+                  },
+                  "Rechazo": {
+                    "value": {
+                      "status": {
+                        "status": "REJECTED",
+                        "reason": "05",
+                        "message": "El servicio requerido no se encuentra disponible en el sitio",
+                        "date": "2021-09-27T09:35:03-05:00"
+                      }
+                    }
+                  },
+                  "Servicio no disponible": {
+                    "value": {
+                      "status": {
+                        "status": "REJECTED",
+                        "reason": "SU",
+                        "message": "El servicio requerido no se encuentra disponible en el sitio",
+                        "date": "2021-09-27T09:35:03-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Operaciones con Pinpad"
+        ]
+      },
+      "parameters": []
+    },
+    "/security/pinpad/pinblock": {
+      "post": {
+        "summary": "Generación de PinBlock a partir de PinPad",
+        "operationId": "post-rest-security-pinblock",
+        "description": "Permite generar el pinblock con una transaccion en base a las posiciones entregadas por el usuario que se seleccionaron del PinPad",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "#/components/schemas/Autentication"
+                  },
+                  "instrument": {
+                    "$ref": "#/components/schemas/Instrument"
+                  }
+                }
+              },
+              "examples": {
+                "Solicitud de PinBlock por tarjeta": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "instrument": {
+                      "card": {
+                        "number": "0215020177972730"
+                      },
+                      "pinPad": {
+                        "transactionId": "b0c62f97-3b06-4c33-b68f-e281e95eb4bb",
+                        "positions": "0123"
+                      }
+                    }
+                  }
+                },
+                "Solicitud de Pinblock por token": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "instrument": {
+                      "token": {
+                        "token": "4c0886ec949f194f0b535181bb2a707769fd748ff7438d2caab2b0a3e67642a1"
+                      },
+                      "pinPad": {
+                        "transactionId": "b0c62f97-3b06-4c33-b68f-e281e95eb4bb",
+                        "positions": "0123"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "#/components/schemas/Status"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "pinPad": {
+                          "$ref": "#/components/schemas/PinPad"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Generación exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "APPROVED",
+                        "reason": "00",
+                        "message": "Aprobada",
+                        "date": "2021-09-14T17:43:48-05:00"
+                      },
+                      "data": {
+                        "pinPad": {
+                          "positions": "0123",
+                          "transactionId": "b0c62f97-3b06-4c33-b68f-e281e95eb4bb",
+                          "pinBlock": "106C56A4819B68EA",
+                          "pinLength": "4"
+                        }
+                      }
+                    }
+                  },
+                  "Error": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "0",
+                        "message": "",
+                        "date": "2021-09-22T16:53:48-05:00"
+                      }
+                    }
+                  },
+                  "Rechazo": {
+                    "value": {
+                      "status": {
+                        "status": "REJECTED",
+                        "reason": "05",
+                        "message": "El servicio requerido no se encuentra disponible en el sitio",
+                        "date": "2021-09-27T09:35:03-05:00"
+                      }
+                    }
+                  },
+                  "Servicio no disponible": {
+                    "value": {
+                      "status": {
+                        "status": "REJECTED",
+                        "reason": "SU",
+                        "message": "El servicio requerido no se encuentra disponible en el sitio",
+                        "date": "2021-09-27T09:35:03-05:00"
+                      }
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "./Gateway.v1.json#/components/schemas/Autentication"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Operaciones con Pinpad"
+        ]
+      },
+      "parameters": []
     }
   },
   "components": {
@@ -2667,6 +2990,16 @@
           },
           "otp": {
             "type": "string"
+          },
+          "pinPad": {
+            "$ref": "#/components/schemas/PinPad"
+          },
+          "pin": {
+            "type": "string",
+            "example": "0B880E2326F6409E",
+            "minLength": 2,
+            "maxLength": 20,
+            "description": "Recibe el código PIN cuando es plano o cuando se trata de un PinBlock"
           }
         }
       },
@@ -3366,6 +3699,25 @@
           "xid",
           "version"
         ]
+      },
+      "PinPad": {
+        "title": "PinPad",
+        "type": "object",
+        "description": "Estructura que contiene la información del servicio pinPad",
+        "properties": {
+          "transactionId": {
+            "type": "string"
+          },
+          "positions": {
+            "type": "string"
+          },
+          "pinBlock": {
+            "type": "string"
+          },
+          "length": {
+            "type": "integer"
+          }
+        }
       }
     },
     "securitySchemes": {},
