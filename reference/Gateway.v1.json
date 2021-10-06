@@ -52,12 +52,12 @@
       "description": "Permite generar y posteriormente validar un One Time Password cuando se requiera"
     },
     {
-      "name": "Reporte de operaciones realizadas",
-      "description": "Permite obtener un reporte de todas las transacciones realizadas en un periodo de tiempo para el sitio usado"
-    },
-    {
       "name": "Operaciones con Pinpad",
       "description": "Permite realizar validación de PIN con un Pinpad seguro"
+    },
+    {
+      "name": "Reporte de operaciones realizadas",
+      "description": "Permite obtener un reporte de todas las transacciones realizadas en un periodo de tiempo para el sitio usado"
     }
   ],
   "paths": {
