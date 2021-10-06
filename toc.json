@@ -29,6 +29,11 @@
       "type": "item",
       "title": "Tipos de documento",
       "uri": "docs/Tipos-de-documento.md"
+    },
+    {
+      "type": "item",
+      "title": "Códigos de aerolíneas",
+      "uri": "docs/Codigos-de-aerolineas.md"
     }
   ]
 }

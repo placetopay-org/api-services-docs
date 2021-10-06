@@ -1,22 +1,20 @@
-# Tipos-de-transacciones
+# Tipos de transacciones
 
-# Autorización
+## Autorización
 Una autorización hace referencia al proceso que se ejecuta luego de que el usuario ingresa la información solicitada y ésta es enviada a la red para realizar el cobro.
 
-# Pago Recurrente
+## Pago Recurrente
 Es un cobro periódico realizado por PlacetoPay para un mismo valor con un intervalo (diario, mensual, anual) según la indicación dada en la petición.
 
 Para hacer uso de esta funcionalidad, en la estructura payment del Pago recurrente es necesario enviar en el objeto recurring los datos obligatorios para esta estructura.
 
-# Pre-autorización
-
+## Pre-autorización
 Este tipo de transacciones son usadas con el fin de reservar (checkin) un monto de dinero sobre una tarjeta de crédito para posteriormente hacer el débito del mismo (checkout). Este monto en el transcurso del tiempo puede cambiar (reauthorization) según las necesidades del comercio o cambios en los servicios elegidos por el tarjetahabiente.
 
 ## Check-In
 La  transacción tipo CHECKIN es  utilizada  para  obtener  una  autorización por  parte  del  banco (proveedor). Esta se define como: Realizar un débito a una tarjeta de crédito/débito el cual se utiliza como depósito de garantía por la utilización de un bien o servicio.
 
 ![Flujo](../assets/images/flow.png)
-
 
 ### Solicitud Checkin (Request)
 
@@ -67,3 +65,24 @@ Según esta definición, dentro de Evertec este tipo de transacciones:
 - Si  el  valor  del  CHECKOUT  es  0,  la  preautorización  es  cancelada  y  se  libera  el  monto retenido en las peticiones previas
 
 IMPORTANTE: Notar que el "status”, “authorization” y “receipt” del nodo “preAuthorization” cambia con durante un CHECKOUT exitoso, por lo cual, en las peticiones de REVERSE, se deben usar estos nuevos valores en la petición.
+
+
+## Dispersión
+
+Este tipo de transacción es utilizada para dividir el pago entre diferentes entidades además del sitio principal. Es decir, al realizar una transacción, parte del valor es direccionado al sitio autenticado en la transaccion, y otra parte es enviada a una aerolínea u otros sitios. Además, eso permite que cada parte de la transacción sea procesada por diferentes proveedores.
+
+La transacción de dispersión está conformada por una sesión padre de tipo `DISPERSION` que contiene el valor total de la transacción y el estado general del proceso, y también por sesiones hijas de tipo `AUTH_ONLY` que contienen la información de cada una de las partes dispersadas. Los datos de autorización y recibo de la transacción padre serán los mismos de la primera transacción procesada.
+
+En caso de que una transacción quede pendiente las demás transacciones pendientes no serán procesadas hasta que esta se resuelva, quedando con un estado de `PENDING_PROCESS`. La transacción padre mantendra su estado `PENDING` hasta que todas las sesiones hijas se resuelvan.
+
+En caso de que una transacción falle o sea rechazada, las demás transacciones pendientes automáticamente también serán rechazadas, sin establecer contacto con la red. Si una transacción hija ya hubiese sido aprobada anteriormente, esta mantiene su estado y la transacción padre cambiará su estado a `APPROVED_PARTIAL`.
+
+Las transacciones pueden ser reversadas juntas o separadas. Si se envía una reversión a una transacción hija, solo esta será reversada. Si se envía una reversión a la transacción padre, todas las transacciones serán reversadas.
+
+### Dispersión de aerolínea
+Cuando una dispersión es realizada a una aerolínea, esta será priorizada y procesada primero. Si 3DS o crédito están configurados, esta configuración será utilizada solamente en el procesamiento de la transacción de la aerolínea.
+
+Las dispersiones de aerolínea son limitadas a apenas 2 partes: una del comercio principal y otra de la aerolínea. También es posible realizar una dispersión en la que el valor total de la transacción es redireccionado a la aerolínea, al no enviar la dispersión del comercio o enviarla con valor cero.
+
+### Dispersión de comercios
+Las dipersiones de comercios permiten realizar una transacción dividida en hasta 3 sitios, incluyendo el sitio autenticado. Las transacciones hijas serán procesadas en el orden enviado en la transacción. 

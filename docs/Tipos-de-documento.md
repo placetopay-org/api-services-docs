@@ -1,80 +1,45 @@
----
-tags: [Crear sesión]
----
-
-
 # Tipos de documento
 
-Al momento de solicitar crear una sesión, si usa alguna de las estructuras `payer`, `buyer` o `shipping` deberá enviar en el atributo **`DocumentType`** alguno de los siguientes códigos  dependiendo del pais:
+Al momento de solicitar crear una sesión, si usa alguna de las estructuras `payer`, `buyer` o `shipping` deberá enviar en el atributo **`documentType`** alguno de los siguientes códigos  dependiendo del pais:
+
+
+<!-- theme: warning -->
+> ### Nota Importante
+>
+> *Según  del tipo de documento enviado el sistema realizará la validación basado en las siguientes expresiones regulares*
+
+
+Código | País | Nombre | Patrón de validación
+---------|----------|---------|---------
+CC | CO | Cédula de ciudadanía | `/^[1-9][0-9]{3,9}$/`
+CE | CO | Cédula de extranjería | `/^([a-zA-Z]{1,5})?[1-9][0-9]{3,7}$/`
+TI | CO | Tarjeta identidad | `/^[1-9][0-9]{4,11}$/`
+NIT | CO | NIT | `/^[1-9]\d{6,9}$/`
+RUT | CO | RUT | `/^[1-9]\d{6,9}$/`
+PPN | GLOBAL | Pasaporte | `/^[a-zA-Z0-9_]{4,16}$/`
+TAX | GLOBAL | TAX | `/^[a-zA-Z0-9_]{4,16}$/`
+LIC | GLOBAL | LIC | `/^[a-zA-Z0-9_]{4,16}$/`
+SSN | US | Social security number | `/^\d{3}\d{2,3}\d{4}$/`
+CIP | PA | Cédula de identidad personal | `/^(PE\|E\|N\|[23456789](?:AV\|PI)?\|1[0123]?(?:AV\|PI)?)-?(\d{1,4})-?(\d{1,6})$/`
+CPF | BR | Cadastro de Pessoas Físicas | `/^\d{10,11}$/`
+CI | EC | Cédula de identidad | `/^\d{10}$/`
+RUC | EC | Registro único de contribuyente | `/^\d{13}$/`
+DNI | PE | DNI | `/^\d{8}$/`
+CRCPF | CR | Persona Física Nacional | `/^[1-9][0-9]{8}$/`
+CPJ | CR | Persona Jurídica | `/^[1-9][0-9]{9}$/`
+DIMEX | CR | Cédula DIMEX | `/^[1-9][0-9]{10,11}$/`
+DIDI | CR | Cédula DIDI | `/^[1-9][0-9]{10,11}$/`
+CLRUT | CL | RUT | `/^(\d{1,2}(?:\.?\d{1,3}){2}-[\dkK])$/`
+
+### Ejemplo
 
 ```json
-AVISO IMPORTANTE:
-
-Según  del tipo de documento enviado el sistema realizará la valdiación basado en  expresiones regulares 
+{
+    "name": "Erika",
+    "surname": "Howe",
+    "email": "cwilliamson@hotmail.com",
+    "documentType": "CC",
+    "document": "3572264088",
+    "mobile": "3006108300"
+}
 ```
-
-
-### Global
-
-
-Código| Tipo de documento | Regla de validación
----------|----------|----------
- PPN	 | Pasaporte | `'/^[a-zA-Z0-9_]{4,16}$/'`
- TAX | TAX | `'/^[a-zA-Z0-9_]{4,16}$/'`
- LIC | Labeler Identification Code | `'/^[a-zA-Z0-9_]{4,16}$/'`
-
-### Colombia
-
-Código| Tipo de documento | Regla de validación
----------|---------- |----------
- CC | Cédula de ciudadanía  | `'/^[1-9][0-9]{3,9}$/'`
- CE | Cédula de extranjería | `'/^([a-zA-Z]{1,5})?[1-9][0-9]{3,7}$/'`
- TI | Tarjeta de identidad| `'/^[1-9][0-9]{4,11}$/'`
- NIT | Número de Identificación Tributaria|` '/^[1-9]\d{6,9}$/'`
- RUT | Registro único tributario| `'/^[1-9]\d{6,9}$/'`
- 
-### Ecuador
-
-Código| Tipo de documento | Regla de validación
----------|----------|---------
- CI | Cédula de identidad|`'/^\d{10}$/'`
- RUC | Registro Único de Contribuyentes|`'/^\d{13}$/'`
- 
-
-### Costa Rica
-
-Código| Tipo de documento | Regla de validación
----------|----------|------------
- CRCPF | Cédula personal física |`'/^[1-9][0-9]{8}$/'`
- CPJ | Cédula personal juridica |`'/^[1-9][0-9]{9}$/'`
- DIMEX | DIMEX- Docuemnto de identificación de Migración y Extranjería|`'/^[1-9][0-9]{10,11}$/'`
-  DIDI | DIDI - Docuemnto de identificación de diplomáticos|`'/^[1-9][0-9]{10,11}$/'`
-
-### Chile
-
-Código| Tipo de documento | Regla de validación
----------|----------|------------
- CLRUT | Cédula personal física |`'/^(\d{1,2}(?:\.?\d{1,3}){2}-[\dkK])$/'`
-
-
-### Panamá
-
-Código| Tipo de documento| Regla de validación
----------|----------|------------
- CIP | Cédula de identidad personal| `/^(N,E,PE\d+)?\d{2,6}\d{2,6}$/`
-
- ### Brasil
-
- Código| Tipo de documento| Regla de validación
----------|----------|------------
- CPF | Cadastro de Pessoas Físicas|`'/^\d{10,11}$/'`
-
-
- ### Perú 
-
-  Código| Tipo de documento| Regla de validación
----------|----------|------------
- DNI | DNI|`'/^\d{8}$/'`
-
-
-
