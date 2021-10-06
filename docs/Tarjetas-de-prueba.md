@@ -82,6 +82,16 @@ Tarjeta ATH | 0215027111105163 | Deja la transacción en estado pendiente y se r
 Tarjeta ATH | 2215719446775653 | Arroja una excepción en el proceso
 Tarjeta ATH | 0215026116775785 | Rechaza
 
+## Códigos postales disponibles para prueba de AVS
+
+Para realizar un proceso exitoso usa 55555 como código postal
+
+ZIP Code | Comportamiento
+---------|----------
+55555 | Retorna transacccion aprobada con AVS exitoso (Y)
+44444 | Retorna transaccion aprobada con AVS fallido (A) y reversa la transacción
+33333 | Retonra transaccion aprobada con AVS fallido (A) rechaza el reverso. Pero cuando se consulta el reverso fue exitoso
+
 ## OTP para casos de prueba
 
 Para que el proceso de OTP sea exitoso en el proceso de validación de OTP de estos servicios, cualquier otro código es un rechazo
