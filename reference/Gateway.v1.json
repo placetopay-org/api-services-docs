@@ -705,6 +705,41 @@
                       }
                     }
                   }
+                },
+                "Botón Bancolombia": {
+                  "value": {
+                    "locale": "es_CO",
+                    "payer": {
+                      "name": "Dr. Wilfredo Cole Sr.",
+                      "surname": "Corwin",
+                      "email": "jewell32@abbott.com",
+                      "documentType": "CC",
+                      "document": "2504950080",
+                      "mobile": "3006108300"
+                    },
+                    "payment": {
+                      "reference": "TEST_TRANSACTION",
+                      "description": "Pago de prueba",
+                      "amount": {
+                        "total": 10000,
+                        "currency": "COP"
+                      }
+                    },
+                    "instrument": {
+                      "redirection": {
+                        "paymentMethod": "BTNBC",
+                        "returnURL": "https://your-site.com/your-return-path"
+                      }
+                    },
+                    "ipAddress": "127.0.0.1",
+                    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
+                    "auth": {
+                      "login": "6dd490faf9cb87a9862245da41170ff2",
+                      "tranKey": "iVrCs2xc60jWqW9bAD0rEHdqZG1O0y+jh9s+urOlkzI=",
+                      "seed": "2021-10-14T19:44:06.820Z",
+                      "nonce": "NHJqNXcz"
+                    }
+                  }
                 }
               }
             }
@@ -1079,6 +1114,56 @@
                           "paymentMethod": "CR_VS"
                         }
                       ]
+                    }
+                  },
+                  "Botón Bancolombia": {
+                    "value": {
+                      "status": {
+                        "status": "PENDING",
+                        "reason": "?-",
+                        "message": "Transacción pendiente. Por favor consulte con su entidad financiera si el débito fue realizado",
+                        "date": "2021-10-14T14:44:09-05:00"
+                      },
+                      "date": "2021-10-14T14:44:07-05:00",
+                      "transactionDate": "2021-10-14T14:44:07-05:00",
+                      "internalReference": 1521428660,
+                      "reference": "TEST_TRANSACTION",
+                      "paymentMethod": "BTNBC",
+                      "franchise": "bancolombia",
+                      "franchiseName": "Botón Bancolombia",
+                      "issuerName": null,
+                      "amount": {
+                        "currency": "USD",
+                        "total": 100
+                      },
+                      "conversion": {
+                        "from": {
+                          "currency": "USD",
+                          "total": 100
+                        },
+                        "to": {
+                          "currency": "COP",
+                          "total": 372575
+                        },
+                        "factor": 3725.75
+                      },
+                      "authorization": "000000",
+                      "receipt": "1634240649",
+                      "type": "AUTH_ONLY",
+                      "refunded": false,
+                      "lastDigits": null,
+                      "provider": "BANCOLOMBIA",
+                      "discount": null,
+                      "processorFields": {
+                        "id": "22c96234f5f04e53d1c1a4e5f5a59592",
+                        "b24": "?-"
+                      },
+                      "additional": {},
+                      "redirection": {
+                        "paymentMethod": "BTNBC",
+                        "processURL": "https://sandbox-boton-dev.apps.ambientesbc.com/web/transfer-gateway/checkout/_lDjXRIRMK1",
+                        "returnURL": "https://your-site.com/your-return-path"
+                      }
                     }
                   }
                 }
@@ -3000,6 +3085,9 @@
             "minLength": 2,
             "maxLength": 20,
             "description": "Recibe el código PIN cuando es plano o cuando se trata de un PinBlock"
+          },
+          "redirection": {
+            "$ref": "#/components/schemas/Redirection"
           }
         }
       },
@@ -3513,7 +3601,8 @@
           },
           "issuerName": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "nullable": true
           },
           "amount": {
             "$ref": "#/components/schemas/Amount"
@@ -3541,7 +3630,8 @@
           },
           "lastDigits": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "nullable": true
           },
           "additional": {
             "type": "object"
@@ -3716,6 +3806,33 @@
           },
           "length": {
             "type": "integer"
+          }
+        }
+      },
+      "Redirection": {
+        "title": "Redirection",
+        "type": "object",
+        "description": "Representa un medio de pago de redirección, es decir que requiere que se envíe el usuario a otra URL para completar el proceso",
+        "properties": {
+          "paymentMethod": {
+            "type": "string",
+            "enum": [
+              "BTNBC",
+              "PGEFT"
+            ]
+          },
+          "returnURL": {
+            "type": "string",
+            "format": "uri",
+            "example": "http://your-site.com/your-return-route",
+            "maxLength": 250,
+            "description": "URL para que una vez se termine el proceso de pago se retorne el control (cuando aplica)"
+          },
+          "processURL": {
+            "type": "string",
+            "format": "uri",
+            "maxLength": 250,
+            "description": "URL a la cual se debe enviar al cliente para continuar el proceso, está es proporcionada por el servicio"
           }
         }
       }
