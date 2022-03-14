@@ -2112,6 +2112,39 @@
                     "$ref": "#/components/schemas/Payment"
                   }
                 }
+              },
+              "examples": {
+                "Ejemplo": {
+                  "value": {
+                    "auth": {
+                      "login": "c4ca4238a0b923820dcc509a6f75849b",
+                      "tranKey": "q/7k0WUshvLEpQ5gqNWqne+ZfWXSXUP/b7T80TuAUSY=",
+                      "nonce": "NjE0YTM3OGIwNjA2NA==",
+                      "seed": "2021-09-21T14:50:35-05:00"
+                    },
+                    "payer": {
+                      "name": "Diego",
+                      "email": "diego.calle@evertecinc.com"
+                    },
+                    "payment": {
+                      "reference": "1234567890",
+                      "amount": {
+                        "currency": "USD",
+                        "total": 3
+                      }
+                    },
+                    "instrument": {
+                      "card": {
+                        "number": "36545400000008",
+                        "expiration": "12/20",
+                        "cvv": "123"
+                      },
+                      "otp": "123456"
+                    },
+                    "ipAddress": "127.0.0.1",
+                    "userAgent": "Testing"
+                  }
+                }
               }
             }
           }
