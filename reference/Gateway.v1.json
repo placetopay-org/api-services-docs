@@ -3317,10 +3317,7 @@
             }
           },
           "modifiers": {
-            "type": [
-              "string",
-              "array"
-            ],
+            "type": "array",
             "description": "Estructura que contiene modificadores de pago",
             "items": {
               "$ref": "#/components/schemas/PaymentModifier"
