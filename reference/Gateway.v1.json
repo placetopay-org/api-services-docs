@@ -3384,6 +3384,40 @@
           }
         }
       },
+      "PaymentModifier": {
+        "title": "PaymentModifier",
+        "type": "object",
+        "description": "Estructura para almacenar información sobre un impuesto.",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "FEDERAL_GOVERNMENT"
+            ]
+          },
+          "code": {
+            "type": "string",
+            "example": "17934"
+          },
+          "additional": {
+            "type": "object",
+            "properties": {
+              "invoice": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-examples": {
+          "law-discount": {
+            "type": "FEDERAL_GOVERNMENT",
+            "code": "17934",
+            "additional": {
+              "invoice": "123456"
+            }
+          }
+        }
+      },
       "AmountDetail": {
         "title": "AmountDetail",
         "type": "object",
