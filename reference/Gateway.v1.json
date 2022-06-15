@@ -3315,6 +3315,16 @@
             "items": {
               "$ref": "#/components/schemas/Dispersion"
             }
+          },
+          "modifiers": {
+            "type": [
+              "string",
+              "array"
+            ],
+            "description": "Estructura que contiene modificadores de pago",
+            "items": {
+              "$ref": "#/components/schemas/PaymentModifier"
+            }
           }
         }
       },
@@ -3387,33 +3397,37 @@
       "PaymentModifier": {
         "title": "PaymentModifier",
         "type": "object",
-        "description": "Estructura para almacenar información sobre un impuesto.",
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "FEDERAL_GOVERNMENT"
-            ]
-          },
-          "code": {
-            "type": "string",
-            "example": "17934"
-          },
-          "additional": {
-            "type": "object",
-            "properties": {
-              "invoice": {
-                "type": "string"
-              }
-            }
-          }
-        },
+        "description": "Estructura para almacenar información sobre un modificador de pago.",
         "x-examples": {
           "law-discount": {
             "type": "FEDERAL_GOVERNMENT",
             "code": "17934",
             "additional": {
               "invoice": "123456"
+            }
+          }
+        },
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "FEDERAL_GOVERNMENT"
+            ],
+            "description": "Tipo de modificador"
+          },
+          "code": {
+            "type": "string",
+            "example": "17934",
+            "description": "Código del modificador. Cuando el tipo es FEDERAL_GOVERMENT, representa el número de ley para descuento."
+          },
+          "additional": {
+            "type": "object",
+            "description": "Informaciones adicionales del moficador",
+            "properties": {
+              "invoice": {
+                "type": "string",
+                "description": "Número de factura. Requerido cuando tipo es FEDERAL_GOVERMENT."
+              }
             }
           }
         }
