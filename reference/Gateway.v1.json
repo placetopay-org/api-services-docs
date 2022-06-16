@@ -3173,6 +3173,10 @@
           },
           "kount": {
             "$ref": "#/components/schemas/Kount"
+          },
+          "pocket": {
+            "type": "string",
+            "description": "Bolsillo de la tarjeta utilizado para el pago"
           }
         }
       },
