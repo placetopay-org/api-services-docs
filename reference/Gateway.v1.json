@@ -3293,6 +3293,21 @@
           }
         }
       },
+      "Pocket": {
+        "title": "Pocket",
+        "type": "object",
+        "description": "Estructura que contiene la información del bolsillo de la tarjeta\n",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Valor del bolsillo"
+          },
+          "description": {
+            "type": "string",
+            "description": "Descripción del bolsillo"
+          }
+        }
+      },
       "Payment": {
         "title": "Payment",
         "type": "object",
