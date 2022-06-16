@@ -3394,7 +3394,7 @@
       "PaymentModifier": {
         "title": "PaymentModifier",
         "type": "object",
-        "description": "Estructura para almacenar información sobre un modificador de pago.",
+        "description": "Estructura para almacenar información sobre un modificador de pago.\n\nNOTA: Si se envia un modificador que aplica descuento, no se tomará los descuentos configurados por promociones en el sítio.",
         "x-examples": {
           "law-discount": {
             "type": "FEDERAL_GOVERNMENT",
