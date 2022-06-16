@@ -161,6 +161,16 @@
                       "items": {
                         "$ref": "#/components/schemas/Credit"
                       }
+                    },
+                    "requirePockets": {
+                      "type": "boolean"
+                    },
+                    "pockets": {
+                      "type": "array",
+                      "description": "Estructura que contiene los bolsillos de la tarjeta",
+                      "items": {
+                        "$ref": "#/components/schemas/Pocket"
+                      }
                     }
                   }
                 },
