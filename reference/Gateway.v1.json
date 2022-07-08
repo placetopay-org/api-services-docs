@@ -161,6 +161,16 @@
                       "items": {
                         "$ref": "#/components/schemas/Credit"
                       }
+                    },
+                    "requirePockets": {
+                      "type": "boolean"
+                    },
+                    "pockets": {
+                      "type": "array",
+                      "description": "Estructura que contiene los bolsillos de la tarjeta",
+                      "items": {
+                        "$ref": "#/components/schemas/Pocket"
+                      }
                     }
                   }
                 },
@@ -3163,6 +3173,10 @@
           },
           "kount": {
             "$ref": "#/components/schemas/Kount"
+          },
+          "pocket": {
+            "type": "string",
+            "description": "Bolsillo de la tarjeta utilizado para el pago"
           }
         }
       },
@@ -3293,6 +3307,21 @@
           }
         }
       },
+      "Pocket": {
+        "title": "Pocket",
+        "type": "object",
+        "description": "Estructura que contiene la información del bolsillo de la tarjeta\n",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Valor del bolsillo"
+          },
+          "description": {
+            "type": "string",
+            "description": "Descripción del bolsillo"
+          }
+        }
+      },
       "Payment": {
         "title": "Payment",
         "type": "object",
@@ -3314,6 +3343,13 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Dispersion"
+            }
+          },
+          "modifiers": {
+            "type": "array",
+            "description": "Estructura que contiene modificadores de pago",
+            "items": {
+              "$ref": "#/components/schemas/PaymentModifier"
             }
           }
         }
@@ -3381,6 +3417,44 @@
           },
           "base": {
             "type": "number"
+          }
+        }
+      },
+      "PaymentModifier": {
+        "title": "PaymentModifier",
+        "type": "object",
+        "description": "Estructura para almacenar información sobre un modificador de pago.\n\nNOTA: Si se envia un modificador que aplica descuento, no se tomará los descuentos configurados por promociones en el sítio.",
+        "x-examples": {
+          "law-discount": {
+            "type": "FEDERAL_GOVERNMENT",
+            "code": "17934",
+            "additional": {
+              "invoice": "123456"
+            }
+          }
+        },
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "FEDERAL_GOVERNMENT"
+            ],
+            "description": "Tipo de modificador"
+          },
+          "code": {
+            "type": "string",
+            "example": "17934",
+            "description": "Código del modificador. Cuando el tipo es FEDERAL_GOVERMENT, representa el número de ley para descuento."
+          },
+          "additional": {
+            "type": "object",
+            "description": "Informaciones adicionales del moficador",
+            "properties": {
+              "invoice": {
+                "type": "string",
+                "description": "Número de factura. Requerido cuando tipo es FEDERAL_GOVERMENT."
+              }
+            }
           }
         }
       },
