@@ -2792,9 +2792,6 @@
                   "auth": {
                     "$ref": "#/components/schemas/Autentication"
                   },
-                  "instrument": {
-                    "$ref": "#/components/schemas/Instrument"
-                  },
                   "id": {
                     "type": "string",
                     "description": "Identifier retornado en el lookup inicial sobre el cual se va a consultar"
@@ -2802,7 +2799,6 @@
                 },
                 "required": [
                   "auth",
-                  "instrument",
                   "id"
                 ]
               },
