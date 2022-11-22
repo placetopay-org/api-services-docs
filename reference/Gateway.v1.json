@@ -78,7 +78,7 @@
                     "example": "es-CO"
                   },
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
@@ -131,7 +131,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "provider": {
                       "type": "string"
@@ -272,7 +272,7 @@
                     "type": "string"
                   },
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "payment": {
                     "$ref": "#/components/schemas/Payment"
@@ -281,10 +281,10 @@
                     "$ref": "#/components/schemas/Instrument"
                   },
                   "payer": {
-                    "$ref": "#/components/schemas/Person"
+                    "$ref": "../Models/Person.json"
                   },
                   "buyer": {
-                    "$ref": "#/components/schemas/Person"
+                    "$ref": "../Models/Person.json"
                   },
                   "ipAddress": {
                     "type": "string"
@@ -1241,10 +1241,10 @@
                     "type": "string"
                   },
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "payer": {
-                    "$ref": "#/components/schemas/Person"
+                    "$ref": "../Models/Person.json"
                   },
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
@@ -1334,7 +1334,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "provider": {
                       "type": "string"
@@ -1466,7 +1466,7 @@
                     "example": "es-CO"
                   },
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "action": {
                     "type": "string",
@@ -1555,7 +1555,7 @@
                     "type": "string"
                   },
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "internalReference": {
                     "type": "number"
@@ -1683,7 +1683,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "transactions": {
                       "type": "array",
@@ -1859,7 +1859,7 @@
                 "type": "object",
                 "properties": {
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "reference": {
                     "type": "string",
@@ -1917,7 +1917,7 @@
                     "type": "string"
                   },
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
@@ -1977,7 +1977,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "provider": {
                       "type": "string"
@@ -2046,7 +2046,7 @@
                     "type": "string"
                   },
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
@@ -2097,7 +2097,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "provider": {
                       "type": "string"
@@ -2152,7 +2152,7 @@
                     "type": "string"
                   },
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
@@ -2207,7 +2207,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "provider": {
                       "type": "string"
@@ -2271,7 +2271,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "id": {
                       "type": "number"
@@ -2322,7 +2322,7 @@
                 "type": "object",
                 "properties": {
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "filters": {
                     "type": "object",
@@ -2405,7 +2405,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     }
                   },
                   "required": [
@@ -2424,7 +2424,7 @@
                 "type": "object",
                 "properties": {
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "id": {
                     "type": "number"
@@ -2491,7 +2491,7 @@
                   },
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "data": {
                       "type": "object",
@@ -2614,7 +2614,7 @@
                 "type": "object",
                 "properties": {
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "payment": {
                     "$ref": "#/components/schemas/Payment"
@@ -2698,7 +2698,7 @@
                   },
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "data": {
                       "$ref": "#/components/schemas/ThreeDS"
@@ -2790,7 +2790,7 @@
                 },
                 "properties": {
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
@@ -2844,7 +2844,7 @@
                 "type": "object",
                 "properties": {
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
@@ -2896,7 +2896,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "data": {
                       "type": "object",
@@ -2979,7 +2979,7 @@
                 "type": "object",
                 "properties": {
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
@@ -3039,7 +3039,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "data": {
                       "type": "object",
@@ -3104,7 +3104,7 @@
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "./Gateway.v1.json#/components/schemas/Autentication"
+                  "$ref": "../Models/Autentication.json"
                 }
               }
             }
@@ -3115,1498 +3115,10 @@
         ]
       },
       "parameters": []
-    },
-    "/core/merchant/create": {
-      "post": {
-        "summary": "Creación de un comercio",
-        "operationId": "post-core-merchant-create",
-        "description": "Este servicio permite crear un comercio. Si el proceso es exitoso, se retorna el identificador del comercio y su estado.",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    },
-                    "id": {
-                      "type": "integer",
-                      "example": 1
-                    },
-                    "active": {
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "examples": {
-                  "Creación exitosa": {
-                    "value": {
-                      "status": {
-                        "status": "OK",
-                        "reason": "00",
-                        "message": "La petición se ha procesado correctamente",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "id": 1,
-                      "active": true
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta fallida": {
-                    "value": {
-                      "Status": {
-                        "status": "FAILED",
-                        "reason": "BR",
-                        "message": "El campo name es obligatorio",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Autenticación fallida": {
-                    "value": {
-                      "status": {
-                        "status": "FAILED",
-                        "reason": "401",
-                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "auth": {
-                    "$ref": "#/components/schemas/Autentication"
-                  },
-                  "data": {
-                    "$ref": "#/components/schemas/Customer"
-                  }
-                }
-              },
-              "examples": {
-                "Solicitud de creación de un comercio": {
-                  "value": {
-                    "auth": {
-                      "login": "613822f45568191a8cdf4ad2299f6d23",
-                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
-                      "nonce": "NjE1MWQ4MDE5YWViMw==",
-                      "seed": "2021-09-27T09:41:05-05:00"
-                    },
-                    "data": {
-                      "name": "Merchant name",
-                      "brand": "Merchant brand",
-                      "mcc": "0742",
-                      "active": true,
-                      "timezone": "America/Bogota",
-                      "size": "XS",
-                      "incrementType": "IPC",
-                      "languages": [
-                        "ES"
-                      ],
-                      "currencies": [
-                        "COP"
-                      ],
-                      "document": {
-                        "type": "NIT",
-                        "number": "123456123"
-                      },
-                      "address": {
-                        "street": "Direccion del customer",
-                        "city": "Medellin",
-                        "state": "1",
-                        "country": "CO",
-                        "postalCode": "050031",
-                        "phone": "3172234333"
-                      },
-                      "legalRepresentative": {
-                        "name": "string",
-                        "surname": "string"
-                      },
-                      "billing": {
-                        "contact": "billing contact name",
-                        "mail": "user@example.com",
-                        "registrationNumber": "123456789",
-                        "taxType": 5,
-                        "taxRegime": 2,
-                        "organizationType": 1,
-                        "ciiu": "1224"
-                      },
-                      "travelAgency": {
-                        "dispersion": true,
-                        "iata": "123456"
-                      },
-                      "control": {
-                        "seller": 1,
-                        "reseller": 1
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/core/merchant/update": {
-      "post": {
-        "summary": "Editar un comercio",
-        "operationId": "post-core-merchant-update",
-        "description": "Este servicio permite actualizar los datos de un comercio existente. Si el proceso es exitoso, se retorna el identificador del comercio y su estado de activación.",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    },
-                    "id": {
-                      "type": "integer",
-                      "example": 1
-                    },
-                    "active": {
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "examples": {
-                  "Actualización exitosa": {
-                    "value": {
-                      "status": {
-                        "status": "OK",
-                        "reason": "00",
-                        "message": "La petición se ha procesado correctamente",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "id": 1,
-                      "active": true
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Proceso fallido": {
-                    "value": {
-                      "Status": {
-                        "status": "FAILED",
-                        "reason": "BR",
-                        "message": "El campo id es obligatorio",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Autenticación fallida": {
-                    "value": {
-                      "status": {
-                        "status": "FAILED",
-                        "reason": "401",
-                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "auth": {
-                    "$ref": "#/components/schemas/Autentication"
-                  },
-                  "id": {
-                    "type": "integer"
-                  },
-                  "data": {
-                    "$ref": "#/components/schemas/Customer"
-                  }
-                }
-              },
-              "examples": {
-                "Actualización de comercio": {
-                  "value": {
-                    "auth": {
-                      "login": "613822f45568191a8cdf4ad2299f6d23",
-                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
-                      "nonce": "NjE1MWQ4MDE5YWViMw==",
-                      "seed": "2021-09-27T09:41:05-05:00"
-                    },
-                    "id": 1,
-                    "data": {
-                      "name": "Merchant update name",
-                      "brand": "Merchant update brand",
-                      "mcc": "0763",
-                      "active": false,
-                      "timezone": "America/Costa_Rica",
-                      "size": "M",
-                      "document": {
-                        "documentType": "NIT",
-                        "document": "32145632"
-                      },
-                      "incrementType": "SMLMV",
-                      "languages": [
-                        "EN"
-                      ],
-                      "currencies": [
-                        "USD"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        },
-        "parameters": []
-      },
-      "parameters": []
-    },
-    "/core/merchant/search": {
-      "post": {
-        "summary": "Consulta de comercios",
-        "operationId": "post-core-merchant-search",
-        "description": "Este servicio permite consultar comercios existentes filtrando por medio de los parametros: identificador, nombre, marca y estado del comercio.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Customer"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta exitosa": {
-                    "value": {
-                      "status": {
-                        "status": "OK",
-                        "reason": "00",
-                        "message": "La petición se ha procesado correctamente",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "data": [
-                        {
-                          "name": "Merchant name",
-                          "brand": "Merchant brand",
-                          "mcc": "0742",
-                          "active": true,
-                          "timezone": "America/Bogota",
-                          "size": "XS",
-                          "incrementType": "IPC",
-                          "languages": [
-                            "ES"
-                          ],
-                          "currencies": [
-                            "COP"
-                          ],
-                          "document": {
-                            "type": "NIT",
-                            "number": "123456123"
-                          },
-                          "address": {
-                            "street": "Customer address",
-                            "city": "Medellin",
-                            "state": "1",
-                            "country": "CO",
-                            "phone": "3203203203"
-                          },
-                          "legalRepresentative": {
-                            "name": "legal representative name",
-                            "surname": "legal representative surname"
-                          },
-                          "billing": {
-                            "contact": "billing contact name",
-                            "mail": "user@example.com",
-                            "registrationNumber": "123456789",
-                            "taxType": 5,
-                            "taxRegime": 2,
-                            "organizationType": 1,
-                            "ciiu": "1224"
-                          },
-                          "travelAgency": {
-                            "dispersion": true,
-                            "iata": "1234"
-                          },
-                          "control": {
-                            "seller": 1,
-                            "reseller": 1
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta fallida": {
-                    "value": {
-                      "Status": {
-                        "status": "FAILED",
-                        "reason": "BR",
-                        "message": "El campo id debe ser un entero",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Authenticación fallida": {
-                    "value": {
-                      "status": {
-                        "status": "FAILED",
-                        "reason": "401",
-                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "": {
-            "description": ""
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "auth": {
-                    "$ref": "#/components/schemas/Autentication"
-                  },
-                  "id": {
-                    "type": "integer",
-                    "example": 1
-                  },
-                  "name": {
-                    "type": "string",
-                    "maxLength": 80,
-                    "example": "Merchant name"
-                  },
-                  "brand": {
-                    "type": "string",
-                    "maxLength": 60,
-                    "example": "Merchant brand"
-                  },
-                  "active": {
-                    "type": "boolean",
-                    "default": true
-                  }
-                }
-              },
-              "examples": {
-                "Consulta de comercios": {
-                  "value": {
-                    "auth": {
-                      "login": "613822f45568191a8cdf4ad2299f6d23",
-                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
-                      "nonce": "NjE1MWQ4MDE5YWViMw==",
-                      "seed": "2021-09-27T09:41:05-05:00"
-                    },
-                    "id": 1,
-                    "name": "Merchant name",
-                    "brand": "Merchant brand",
-                    "active": true
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        }
-      },
-      "parameters": []
-    },
-    "/core/merchant/delete": {
-      "post": {
-        "summary": "Eliminar un comercio",
-        "operationId": "post-core-merchant-delete",
-        "description": "Este servicio permite eliminar un comercio existente. Si la respuesta es exitosa, retorna el identificador del comercio eliminado.",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    },
-                    "id": {
-                      "type": "integer"
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta exitosa": {
-                    "value": {
-                      "status": {
-                        "status": "OK",
-                        "reason": "00",
-                        "message": "La petición se ha procesado correctamente",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "id": 1
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta fallida": {
-                    "value": {
-                      "Status": {
-                        "status": "FAILED",
-                        "reason": "BR",
-                        "message": "El campo id es obligatorio.",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Authenticación fallida": {
-                    "value": {
-                      "status": {
-                        "status": "FAILED",
-                        "reason": "401",
-                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "": {
-            "description": ""
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "auth": {
-                    "$ref": "#/components/schemas/Autentication"
-                  },
-                  "id": {
-                    "type": "integer"
-                  }
-                }
-              },
-              "examples": {
-                "Eliminar un comercio": {
-                  "value": {
-                    "auth": {
-                      "login": "613822f45568191a8cdf4ad2299f6d23",
-                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
-                      "nonce": "NjE1MWQ4MDE5YWViMw==",
-                      "seed": "2021-09-27T09:41:05-05:00"
-                    },
-                    "id": 1
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        }
-      },
-      "parameters": []
-    },
-    "/core/province/search": {
-      "post": {
-        "summary": "Consulta de departamentos/estados por país",
-        "operationId": "post-core-province-search",
-        "description": "Este servicio permite consultar los estados /departamentos de un País. \nSi la respuesta es exitosa, se retorna un arreglo de los estados con su información.",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Province"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Busqueda exitosa": {
-                    "value": {
-                      "status": {
-                        "status": "OK",
-                        "reason": "00",
-                        "message": "La petición se ha procesado correctamente",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "Antioquia",
-                          "short": "ANT",
-                          "iso3166": "ANT",
-                          "country": "CO",
-                          "alias": "05"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta fallida": {
-                    "value": {
-                      "Status": {
-                        "status": "FAILED",
-                        "reason": "BR",
-                        "message": " ",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Authenticación fallida": {
-                    "value": {
-                      "status": {
-                        "status": "FAILED",
-                        "reason": "401",
-                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "": {
-            "description": ""
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "auth": {
-                    "$ref": "#/components/schemas/Autentication"
-                  }
-                }
-              },
-              "examples": {
-                "Consulta departamentos/estados": {
-                  "value": {
-                    "auth": {
-                      "login": "613822f45568191a8cdf4ad2299f6d23",
-                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
-                      "nonce": "NjE1MWQ4MDE5YWViMw==",
-                      "seed": "2021-09-27T09:41:05-05:00"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        }
-      },
-      "parameters": []
-    },
-    "/core/taxpayer/search": {
-      "post": {
-        "summary": "Consulta de tipos de régimen",
-        "operationId": "post-core-taxpayer-search",
-        "description": "Este servicio permite consultar los tipos de regimen existentes.\nSi la respuesta es exitosa, se retorna un arreglo de los tipos de regimenes con su información.",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Taxpayer"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Busqueda exitosa": {
-                    "value": {
-                      "status": {
-                        "status": "OK",
-                        "reason": "00",
-                        "message": "la petición se ha procesado correctamente",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "Gran contribuyente",
-                          "code": "0-13",
-                          "country": "CO"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta fallida": {
-                    "value": {
-                      "Status": {
-                        "status": "FAILED",
-                        "reason": "BR",
-                        "message": " ",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Authenticación fallida": {
-                    "value": {
-                      "status": {
-                        "status": "FAILED",
-                        "reason": "401",
-                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "": {
-            "description": ""
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "auth": {
-                    "$ref": "#/components/schemas/Autentication"
-                  }
-                }
-              },
-              "examples": {
-                "Consulta de tipos de régimen": {
-                  "value": {
-                    "auth": {
-                      "login": "613822f45568191a8cdf4ad2299f6d23",
-                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
-                      "nonce": "NjE1MWQ4MDE5YWViMw==",
-                      "seed": "2021-09-27T09:41:05-05:00"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        }
-      },
-      "parameters": []
-    },
-    "/core/tax-regime/search": {
-      "post": {
-        "summary": "Consulta de regímenes fiscales",
-        "operationId": "post-core-tax-regime-search",
-        "description": "Este servicio permite consultar regímenes físcales existentes.\nSi la respuesta es exitosa, se retorna un arreglo de regímenes con su información.",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Tax-regime"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "respuesta exitosa": {
-                    "value": {
-                      "status": {
-                        "status": "OK",
-                        "reason": "00",
-                        "message": "la petición se ha procesado correctamente",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "data": [
-                        {
-                          "id": 0,
-                          "name": "No responsable de IVA",
-                          "code": "49",
-                          "country": "CO"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta fallida": {
-                    "value": {
-                      "Status": {
-                        "status": "FAILED",
-                        "reason": "BR",
-                        "message": " ",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Authenticación fallida": {
-                    "value": {
-                      "status": {
-                        "status": "FAILED",
-                        "reason": "401",
-                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "": {
-            "description": ""
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "auth": {
-                    "$ref": "#/components/schemas/Autentication"
-                  }
-                }
-              },
-              "examples": {
-                "Consulta régimen fiscal": {
-                  "value": {
-                    "auth": {
-                      "login": "613822f45568191a8cdf4ad2299f6d23",
-                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
-                      "nonce": "NjE1MWQ4MDE5YWViMw==",
-                      "seed": "2021-09-27T09:41:05-05:00"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        }
-      },
-      "parameters": []
-    },
-    "/core/corporation-type/search": {
-      "post": {
-        "summary": "Consulta de tipos de corporación",
-        "operationId": "post-core-corporation-type-search",
-        "description": "Este servicio permite consultar regímenes físcales existentes.\nSi la respuesta es exitosa, se retorna un arreglo de regímenes con su información.",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Corporation-type"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta exitosa": {
-                    "value": {
-                      "status": {
-                        "status": "OK",
-                        "reason": "00",
-                        "message": "La petición se ha procesado correctamente",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "Asociación o corporación sin ámino de lucro",
-                          "code": "1",
-                          "country": "CO"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta fallida": {
-                    "value": {
-                      "Status": {
-                        "status": "FAILED",
-                        "reason": "BR",
-                        "message": " ",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Authenticación fallida": {
-                    "value": {
-                      "status": {
-                        "status": "FAILED",
-                        "reason": "401",
-                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "": {
-            "description": ""
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "auth": {
-                    "$ref": "#/components/schemas/Autentication"
-                  }
-                }
-              },
-              "examples": {
-                "Consulta régimen fiscal": {
-                  "value": {
-                    "auth": {
-                      "login": "613822f45568191a8cdf4ad2299f6d23",
-                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
-                      "nonce": "NjE1MWQ4MDE5YWViMw==",
-                      "seed": "2021-09-27T09:41:05-05:00"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        }
-      },
-      "parameters": []
-    },
-    "/core/seller/search": {
-      "post": {
-        "summary": "Busqueda de consultores comerciales",
-        "operationId": "post-core-seller-search",
-        "description": "Este servicio permite buscar consultores comerciales habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada consultor.",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Seller"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta exitosa": {
-                    "value": {
-                      "status": {
-                        "status": "OK",
-                        "reason": "00",
-                        "message": "La petición se ha procesado correctamente",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "Diego Calle",
-                          "alias": "null",
-                          "disabled": false
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta fallida": {
-                    "value": {
-                      "Status": {
-                        "status": "FAILED",
-                        "reason": "BR",
-                        "message": " ",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Authenticación fallida": {
-                    "value": {
-                      "status": {
-                        "status": "FAILED",
-                        "reason": "401",
-                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "": {
-            "description": ""
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "auth": {
-                    "$ref": "#/components/schemas/Autentication"
-                  }
-                }
-              },
-              "examples": {
-                "Búsqueda consultores comerciales": {
-                  "value": {
-                    "auth": {
-                      "login": "613822f45568191a8cdf4ad2299f6d23",
-                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
-                      "nonce": "NjE1MWQ4MDE5YWViMw==",
-                      "seed": "2021-09-27T09:41:05-05:00"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        }
-      },
-      "parameters": []
-    },
-    "/core/reseller/search": {
-      "post": {
-        "summary": "Consulta de distribuidores",
-        "operationId": "post-core-reseller-search",
-        "description": "Este servicio permite consultar distribuidores habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada distribuidor.",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Reseller"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta exitosa": {
-                    "value": {
-                      "status": {
-                        "status": "OK",
-                        "reason": "00",
-                        "message": "La petición se ha procesado correctamente",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "INTERDIN",
-                          "conditions": "null",
-                          "enabled": true
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta fallida": {
-                    "value": {
-                      "Status": {
-                        "status": "FAILED",
-                        "reason": "BR",
-                        "message": " ",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/Status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Authenticación fallida": {
-                    "value": {
-                      "status": {
-                        "status": "FAILED",
-                        "reason": "401",
-                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "": {
-            "description": ""
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "auth": {
-                    "$ref": "#/components/schemas/Autentication"
-                  }
-                }
-              },
-              "examples": {
-                "Búsqueda distribuidores": {
-                  "value": {
-                    "auth": {
-                      "login": "613822f45568191a8cdf4ad2299f6d23",
-                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
-                      "nonce": "NjE1MWQ4MDE5YWViMw==",
-                      "seed": "2021-09-27T09:41:05-05:00"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        }
-      },
-      "parameters": []
     }
   },
   "components": {
     "schemas": {
-      "Autentication": {
-        "title": "Autentication",
-        "type": "object",
-        "properties": {
-          "login": {
-            "type": "string"
-          },
-          "tranKey": {
-            "type": "string"
-          },
-          "nonce": {
-            "type": "string"
-          },
-          "seed": {
-            "type": "string"
-          }
-        },
-        "description": "Estructura que contiene la información de autenticación del sitio generada de acuerdo al WSSE\nUsernameToken Profile 1.1"
-      },
       "Instrument": {
         "title": "Instrument",
         "type": "object",
@@ -4963,45 +3475,6 @@
           }
         }
       },
-      "Status": {
-        "title": "Status",
-        "type": "object",
-        "description": "Estructura que contiene la información sobre una solicitud o pago, informa al estado actual de la misma.\n",
-        "properties": {
-          "status": {
-            "type": "string",
-            "enum": [
-              "OK",
-              "FAILED",
-              "APPROVED",
-              "APPROVED_PARTIAL",
-              "PARTIAL_EXPIRED",
-              "REJECTED",
-              "PENDING",
-              "PENDING_VALIDATION",
-              "PENDING_PROCESS",
-              "REFUNDED",
-              "REVERSED",
-              "ERROR",
-              "UNKNOWN",
-              "MANUAL",
-              "DISPUTE"
-            ]
-          },
-          "reason": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 4
-          },
-          "message": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string",
-            "example": "2021-09-21T09:34:48-05:00"
-          }
-        }
-      },
       "InterestValues": {
         "title": "InterestValues",
         "type": "object",
@@ -5047,62 +3520,6 @@
           },
           "total": {
             "type": "number"
-          }
-        }
-      },
-      "Person": {
-        "title": "Person",
-        "type": "object",
-        "description": "Estructura que refleja la información de una persona involucrada en una transacción.\n",
-        "properties": {
-          "documentType": {
-            "type": "string"
-          },
-          "Document": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "surname": {
-            "type": "string"
-          },
-          "company": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "address": {
-            "$ref": "#/components/schemas/Address"
-          },
-          "mobile": {
-            "type": "string"
-          }
-        }
-      },
-      "Address": {
-        "title": "Address",
-        "type": "object",
-        "description": "Estructura que contiene la información sobre una dirección física\n",
-        "properties": {
-          "street": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
-          },
-          "postalCode": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
           }
         }
       },
@@ -5169,9 +3586,10 @@
             }
           }
         },
+        "title": "",
         "properties": {
           "status": {
-            "$ref": "#/components/schemas/Status"
+            "$ref": "../Models/Status.json"
           },
           "provider": {
             "type": "string",
@@ -5264,7 +3682,7 @@
               "type": "object",
               "properties": {
                 "status": {
-                  "$ref": "#/components/schemas/Status"
+                  "$ref": "../Models/Status.json"
                 },
                 "agreement": {
                   "type": "integer",
@@ -5479,420 +3897,6 @@
         "required": [
           "session"
         ]
-      },
-      "Customer": {
-        "title": "Customer",
-        "x-stoplight": {
-          "id": "hyaa8lw6ed0m4"
-        },
-        "type": "object",
-        "description": "Estructura que contiene la información de un comercio",
-        "x-examples": {
-          "Estructura-comercio": {
-            "name": "Merchant name",
-            "brand": "Merchant brand",
-            "mcc": "0742",
-            "active": true,
-            "timezone": "America/Bogota",
-            "size": "XS",
-            "incrementType": "SMLMV",
-            "languages": [
-              "ES"
-            ],
-            "currencies": [
-              "COP"
-            ],
-            "document": {
-              "type": "NIT ",
-              "number": "123456123"
-            },
-            "address": {
-              "street": "Street address",
-              "city": "Medellin",
-              "state": "1",
-              "postalCode": "417030",
-              "country": "CO",
-              "phone": "3203201320"
-            },
-            "legalRepresentative": {
-              "documentType": "NIT",
-              "Document": "1234568",
-              "name": "Legal representative name",
-              "surname": "Legal representative surname"
-            },
-            "billing": {
-              "contact": "Billing contact name",
-              "mail": "billing@example.com",
-              "registrationNumber": "123456789",
-              "taxType": 5,
-              "taxRegime": 2,
-              "organizationType": 1,
-              "ciiu": "1224"
-            },
-            "travelAgency": {
-              "dispersion": true,
-              "iata": "123456"
-            },
-            "control": {
-              "seller": 1,
-              "reseller": 1
-            }
-          }
-        },
-        "properties": {
-          "name": {
-            "type": "string",
-            "example": "Merchant name",
-            "maxLength": 80,
-            "description": "Nombre del comercio"
-          },
-          "brand": {
-            "type": "string",
-            "example": "Merchant brand",
-            "maxLength": 60,
-            "description": "Marca del comercio"
-          },
-          "mcc": {
-            "type": "string",
-            "maxLength": 4,
-            "minLength": 4,
-            "example": "0742",
-            "description": "Código de categoria del comercio. Debe ser un código valido de 4 digitos."
-          },
-          "active": {
-            "type": "boolean",
-            "default": true,
-            "description": "Estado del comercio"
-          },
-          "timezone": {
-            "type": "string",
-            "example": "America/Bogota",
-            "description": "Zona horaria\n"
-          },
-          "size": {
-            "type": "string",
-            "enum": [
-              "XS",
-              "S",
-              "M",
-              "L"
-            ],
-            "example": "XS",
-            "maxLength": 2,
-            "description": "Tamaño del comercio\n"
-          },
-          "incrementType": {
-            "type": "string",
-            "enum": [
-              "SMLMV",
-              "IPC"
-            ],
-            "example": "IPC",
-            "description": "Tipo incremento en plan"
-          },
-          "languages": {
-            "type": "array",
-            "uniqueItems": true,
-            "minItems": 1,
-            "description": "Lenguajes soportados por el comercio",
-            "items": {
-              "type": "string",
-              "maxLength": 2,
-              "example": "ES"
-            }
-          },
-          "currencies": {
-            "type": "array",
-            "minItems": 1,
-            "uniqueItems": true,
-            "description": "Monedas soportadas por el comercio",
-            "items": {
-              "type": "string",
-              "maxLength": 3,
-              "example": "COP"
-            }
-          },
-          "document": {
-            "$ref": "#/components/schemas/Document"
-          },
-          "address": {
-            "$ref": "#/components/schemas/Address"
-          },
-          "legalRepresentative": {
-            "$ref": "#/components/schemas/Person"
-          },
-          "billing": {
-            "type": "object",
-            "description": "Estructura con información de facturación",
-            "properties": {
-              "contact": {
-                "type": "string",
-                "description": "Nombre de la persona que recibe que recibe la factura electrónica",
-                "maxLength": 128
-              },
-              "mail": {
-                "type": "string",
-                "format": "email",
-                "maxLength": 128,
-                "description": "Correo electrónico donde se remite la factura electrónica.\n"
-              },
-              "registrationNumber": {
-                "type": "string",
-                "maxLength": 20,
-                "example": "123456789",
-                "description": "Matrícula mercantil"
-              },
-              "taxType": {
-                "type": "integer",
-                "example": 5
-              },
-              "taxRegime": {
-                "type": "integer",
-                "example": 2
-              },
-              "organizationType": {
-                "type": "integer",
-                "example": 1
-              },
-              "ciiu": {
-                "type": "string",
-                "example": "1224",
-                "description": "Código de la actividad económica acorde a CIIU rev 4",
-                "minLength": 4,
-                "maxLength": 4
-              }
-            }
-          },
-          "travelAgency": {
-            "type": "object",
-            "properties": {
-              "dispersion": {
-                "type": "boolean",
-                "default": false,
-                "description": "Indicador de soporte de venta de tiquetes y venta propia."
-              },
-              "iata": {
-                "type": "string",
-                "description": "Código IATA asginado a la agencia.",
-                "minLength": 4,
-                "maxLength": 10
-              }
-            }
-          },
-          "control": {
-            "type": "object",
-            "properties": {
-              "seller": {
-                "type": "integer",
-                "example": 1,
-                "description": "Consultor comercial"
-              },
-              "reseller": {
-                "type": "integer",
-                "example": 1,
-                "description": "Distribuidor"
-              }
-            },
-            "required": [
-              "seller",
-              "reseller"
-            ]
-          }
-        },
-        "required": [
-          "name",
-          "brand",
-          "languages",
-          "currencies"
-        ]
-      },
-      "Document": {
-        "title": "Document",
-        "x-stoplight": {
-          "id": "emzjuyuns4b5h"
-        },
-        "type": "object",
-        "description": "Estructura que contiene información acerca de un documento",
-        "properties": {
-          "type": {
-            "type": "string",
-            "maxLength": 3,
-            "enum": [
-              "NIT",
-              "CC",
-              "CE",
-              "RUT",
-              "TI"
-            ],
-            "example": "NIT"
-          },
-          "number": {
-            "type": "string",
-            "example": "123456123"
-          },
-          "expeditionDate": {
-            "type": "string"
-          },
-          "expirationDate": {
-            "type": "string"
-          }
-        }
-      },
-      "Province": {
-        "title": "Province",
-        "x-stoplight": {
-          "id": "hgdvwi1upl9re"
-        },
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string",
-            "example": "Antioquia"
-          },
-          "short": {
-            "type": "string",
-            "example": "ANT"
-          },
-          "iso3166": {
-            "type": "string",
-            "example": "ANT"
-          },
-          "country": {
-            "type": "string",
-            "example": "CO"
-          },
-          "alias": {
-            "type": "string",
-            "example": "05"
-          }
-        },
-        "description": "Estructura que contiene información de una provincia/estado/departamento."
-      },
-      "Seller": {
-        "title": "Seller",
-        "x-stoplight": {
-          "id": "hgdvwi1upl9re"
-        },
-        "type": "object",
-        "description": "Estructura que contiene informaicón de un consultor comercial.",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string",
-            "example": "Diego Calle"
-          },
-          "alias": {
-            "type": "string",
-            "example": "null"
-          },
-          "disabled": {
-            "type": "boolean"
-          }
-        }
-      },
-      "Reseller": {
-        "title": "Reseller",
-        "x-stoplight": {
-          "id": "hgdvwi1upl9re"
-        },
-        "type": "object",
-        "description": "Estructura que contiene informaicón de un distribuidor",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string",
-            "example": "Example"
-          },
-          "conditions": {
-            "type": "string",
-            "example": "null"
-          },
-          "enabled": {
-            "type": "boolean"
-          }
-        }
-      },
-      "Tax-regime": {
-        "title": "Tax regime",
-        "x-stoplight": {
-          "id": "hgdvwi1upl9re"
-        },
-        "type": "object",
-        "description": "Estructura que contiene información de un régimen fiscal.",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string",
-            "example": "No responsable de IVA"
-          },
-          "code": {
-            "type": "string",
-            "example": "49"
-          },
-          "country": {
-            "type": "string",
-            "example": "CO"
-          }
-        }
-      },
-      "Corporation-type": {
-        "title": "Corporation type",
-        "x-stoplight": {
-          "id": "hgdvwi1upl9re"
-        },
-        "type": "object",
-        "description": "Estructura que contiene información de tipo de corporación",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string",
-            "example": "Asociación o corporación sin ámino de lucro"
-          },
-          "code": {
-            "type": "string",
-            "example": "1"
-          },
-          "country": {
-            "type": "string",
-            "example": "CO"
-          }
-        }
-      },
-      "Taxpayer": {
-        "title": "Tax payer",
-        "x-stoplight": {
-          "id": "hgdvwi1upl9re"
-        },
-        "type": "object",
-        "description": "Estructura que contiene información de tipo de régimen fiscal",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string",
-            "example": "Gran contribuyente"
-          },
-          "code": {
-            "type": "string",
-            "example": "0-13"
-          },
-          "country": {
-            "type": "string",
-            "example": "CO"
-          }
-        }
       }
     },
     "securitySchemes": {},
