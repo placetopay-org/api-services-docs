@@ -1,8 +1,5 @@
 {
   "title": "Address",
-  "x-stoplight": {
-    "id": "uqxto9f6xhd78"
-  },
   "type": "object",
   "description": "Estructura que contiene la información sobre una dirección física\n",
   "properties": {
@@ -24,6 +21,5 @@
     "phone": {
       "type": "string"
     }
-  },
-  "examples": []
+  }
 }

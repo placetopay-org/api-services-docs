@@ -23,40 +23,34 @@
   ],
   "tags": [
     {
-      "name": "Obtener información",
-      "description": "Una vez se tengan los datos de la tarjeta permite determinar el flujo a seguir"
+      "name": "Acciones sobre comercios"
     },
     {
-      "name": "Procesamiento de transacción",
-      "description": "Diferentes formas de procesar una petición"
+      "name": "Acciones sobre transacciones"
     },
     {
-      "name": "Consulta de una transacción",
-      "description": "Busqueda de información sobre una o más transacciones realizadas"
+      "name": "Consulta de una transacción"
     },
     {
-      "name": "Acciones sobre transacciones",
-      "description": "Permite realizar operaciones como anulación, checkout, procesar una transacción manual"
+      "name": "Obtener información"
     },
     {
-      "name": "Tokenización de tarjetas",
-      "description": "Permite almacenar de forma segura una tarjeta para realizar procesos de cobro automáticos posteriormente"
+      "name": "Operaciones con Pinpad"
     },
     {
-      "name": "Proceso 3DS",
-      "description": "Validar la transacción mediante 3DS"
+      "name": "Procesamiento de transacción"
     },
     {
-      "name": "Proceso OTP",
-      "description": "Permite generar y posteriormente validar un One Time Password cuando se requiera"
+      "name": "Proceso 3DS"
     },
     {
-      "name": "Operaciones con Pinpad",
-      "description": "Permite realizar validación de PIN con un Pinpad seguro"
+      "name": "Proceso OTP"
     },
     {
-      "name": "Reporte de operaciones realizadas",
-      "description": "Permite obtener un reporte de todas las transacciones realizadas en un periodo de tiempo para el sitio usado"
+      "name": "Reporte de operaciones realizadas"
+    },
+    {
+      "name": "Tokenización de tarjetas"
     }
   ],
   "paths": {
@@ -233,7 +227,10 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Acciones sobre comercios"
+        ]
       }
     },
     "/core/merchant/update": {
@@ -368,8 +365,8 @@
                       "timezone": "America/Costa_Rica",
                       "size": "M",
                       "document": {
-                        "documentType": "NIT",
-                        "document": "32145632"
+                        "type": "NIT",
+                        "number": "32145632"
                       },
                       "incrementType": "SMLMV",
                       "languages": [
@@ -386,7 +383,10 @@
           },
           "description": ""
         },
-        "parameters": []
+        "parameters": [],
+        "tags": [
+          "Acciones sobre comercios"
+        ]
       },
       "parameters": []
     },
@@ -531,9 +531,6 @@
                 }
               }
             }
-          },
-          "": {
-            "description": ""
           }
         },
         "requestBody": {
@@ -584,7 +581,10 @@
             }
           },
           "description": ""
-        }
+        },
+        "tags": [
+          "Acciones sobre comercios"
+        ]
       },
       "parameters": []
     },
@@ -678,9 +678,6 @@
                 }
               }
             }
-          },
-          "": {
-            "description": ""
           }
         },
         "requestBody": {
@@ -711,9 +708,11 @@
                 }
               }
             }
-          },
-          "description": ""
-        }
+          }
+        },
+        "tags": [
+          "Acciones sobre comercios"
+        ]
       },
       "parameters": []
     },
@@ -819,9 +818,6 @@
                 }
               }
             }
-          },
-          "": {
-            "description": ""
           }
         },
         "requestBody": {
@@ -850,7 +846,10 @@
             }
           },
           "description": ""
-        }
+        },
+        "tags": [
+          "Acciones sobre comercios"
+        ]
       },
       "parameters": []
     },
@@ -954,9 +953,6 @@
                 }
               }
             }
-          },
-          "": {
-            "description": ""
           }
         },
         "requestBody": {
@@ -985,7 +981,10 @@
             }
           },
           "description": ""
-        }
+        },
+        "tags": [
+          "Acciones sobre comercios"
+        ]
       },
       "parameters": []
     },
@@ -1089,9 +1088,6 @@
                 }
               }
             }
-          },
-          "": {
-            "description": ""
           }
         },
         "requestBody": {
@@ -1120,7 +1116,10 @@
             }
           },
           "description": ""
-        }
+        },
+        "tags": [
+          "Acciones sobre comercios"
+        ]
       },
       "parameters": []
     },
@@ -1224,9 +1223,6 @@
                 }
               }
             }
-          },
-          "": {
-            "description": ""
           }
         },
         "requestBody": {
@@ -1255,7 +1251,10 @@
             }
           },
           "description": ""
-        }
+        },
+        "tags": [
+          "Acciones sobre comercios"
+        ]
       },
       "parameters": []
     },
@@ -1359,9 +1358,6 @@
                 }
               }
             }
-          },
-          "": {
-            "description": ""
           }
         },
         "requestBody": {
@@ -1390,7 +1386,10 @@
             }
           },
           "description": ""
-        }
+        },
+        "tags": [
+          "Acciones sobre comercios"
+        ]
       },
       "parameters": []
     },
@@ -1494,9 +1493,6 @@
                 }
               }
             }
-          },
-          "": {
-            "description": ""
           }
         },
         "requestBody": {
@@ -1525,7 +1521,10 @@
             }
           },
           "description": ""
-        }
+        },
+        "tags": [
+          "Acciones sobre comercios"
+        ]
       },
       "parameters": []
     }
@@ -1556,7 +1555,7 @@
               "COP"
             ],
             "document": {
-              "type": "NIT ",
+              "type": "NIT",
               "number": "123456123"
             },
             "address": {
@@ -1568,7 +1567,7 @@
               "phone": "3203201320"
             },
             "legalRepresentative": {
-              "documentType": "NIT",
+              "type": "NIT",
               "Document": "1234568",
               "name": "Legal representative name",
               "surname": "Legal representative surname"

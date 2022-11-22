@@ -1,8 +1,5 @@
 {
   "title": "Document",
-  "x-stoplight": {
-    "id": "x8c0u3iya8gyp"
-  },
   "type": "object",
   "description": "Estructura que contiene información acerca de un documento",
   "properties": {

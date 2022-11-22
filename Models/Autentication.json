@@ -1,8 +1,5 @@
 {
   "title": "Autentication",
-  "x-stoplight": {
-    "id": "duk4szhrkljer"
-  },
   "type": "object",
   "properties": {
     "login": {

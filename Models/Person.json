@@ -1,8 +1,5 @@
 {
   "title": "Person",
-  "x-stoplight": {
-    "id": "bcp4fkw1kipfr"
-  },
   "type": "object",
   "description": "Estructura que refleja la información de una persona involucrada en una transacción.\n",
   "properties": {

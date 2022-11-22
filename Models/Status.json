@@ -1,8 +1,5 @@
 {
   "title": "Status",
-  "x-stoplight": {
-    "id": "3tzutrc5xrovk"
-  },
   "type": "object",
   "description": "Estructura que contiene la información sobre una solicitud o pago, informa al estado actual de la misma.\n",
   "properties": {
