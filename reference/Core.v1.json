@@ -24,33 +24,6 @@
   "tags": [
     {
       "name": "Acciones sobre comercios"
-    },
-    {
-      "name": "Acciones sobre transacciones"
-    },
-    {
-      "name": "Consulta de una transacción"
-    },
-    {
-      "name": "Obtener información"
-    },
-    {
-      "name": "Operaciones con Pinpad"
-    },
-    {
-      "name": "Procesamiento de transacción"
-    },
-    {
-      "name": "Proceso 3DS"
-    },
-    {
-      "name": "Proceso OTP"
-    },
-    {
-      "name": "Reporte de operaciones realizadas"
-    },
-    {
-      "name": "Tokenización de tarjetas"
     }
   ],
   "paths": {
