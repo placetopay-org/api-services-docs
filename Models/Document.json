@@ -1,0 +1,36 @@
+{
+  "title": "Document",
+  "x-stoplight": {
+    "id": "x8c0u3iya8gyp"
+  },
+  "type": "object",
+  "description": "Estructura que contiene información acerca de un documento",
+  "properties": {
+    "type": {
+      "type": "string",
+      "maxLength": 3,
+      "enum": [
+        "NIT",
+        "CC",
+        "CE",
+        "RUT",
+        "TI"
+      ],
+      "example": "NIT"
+    },
+    "number": {
+      "type": "string",
+      "example": "123456123"
+    },
+    "expeditionDate": {
+      "type": "string"
+    },
+    "expirationDate": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "number"
+  ]
+}

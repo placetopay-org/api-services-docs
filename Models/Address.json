@@ -1,0 +1,29 @@
+{
+  "title": "Address",
+  "x-stoplight": {
+    "id": "uqxto9f6xhd78"
+  },
+  "type": "object",
+  "description": "Estructura que contiene la información sobre una dirección física\n",
+  "properties": {
+    "street": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "postalCode": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    }
+  },
+  "examples": []
+}
