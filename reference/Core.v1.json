@@ -774,7 +774,7 @@
                   "type": "object",
                   "properties": {
                     "Status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     }
                   }
                 },
@@ -801,7 +801,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     }
                   }
                 },
