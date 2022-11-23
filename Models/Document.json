@@ -13,11 +13,13 @@
         "RUT",
         "TI"
       ],
-      "example": "NIT"
+      "example": "NIT",
+      "description": "Tipo de documento de identificación. Para más información https://docs-gateway.placetopay.com/docs/webcheckout-docs/71046995c46b3-tipos-de-documento"
     },
     "number": {
       "type": "string",
-      "example": "123456123"
+      "example": "123456123",
+      "description": "Número de documento de identificación."
     },
     "expeditionDate": {
       "type": "string"

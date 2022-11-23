@@ -1,15 +1,12 @@
 {
   "openapi": "3.0.0",
-  "x-stoplight": {
-    "id": "86mz3ge9kpdjl"
-  },
   "info": {
     "title": "Core",
     "version": "1.0",
     "license": {
       "name": "Privative"
     },
-    "description": "description",
+    "description": "descripcion",
     "contact": {
       "name": "Diego Calle",
       "email": "desarrollo@evertecinc.com"
@@ -19,6 +16,10 @@
     {
       "url": "https://test.placetopay.com/rest",
       "description": "Pruebas Colombia"
+    },
+    {
+      "url": "https://test.placetopay.ec/rest",
+      "description": "Pruebas Ecuador"
     }
   ],
   "tags": [
@@ -168,7 +169,7 @@
                       "address": {
                         "street": "Direccion del customer",
                         "city": "Medellin",
-                        "state": "1",
+                        "state": 1,
                         "country": "CO",
                         "postalCode": "050031",
                         "phone": "3172234333"
@@ -418,7 +419,7 @@
                           "address": {
                             "street": "Customer address",
                             "city": "Medellin",
-                            "state": "1",
+                            "state": 1,
                             "country": "CO",
                             "phone": "3203203203"
                           },
@@ -1580,14 +1581,14 @@
             "type": "string",
             "example": "Merchant brand",
             "maxLength": 60,
-            "description": "Marca del comercio"
+            "description": "Nombre de la marca"
           },
           "mcc": {
             "type": "string",
             "maxLength": 4,
             "minLength": 4,
             "example": "0742",
-            "description": "Código de categoria del comercio. Debe ser un código valido de 4 digitos."
+            "description": "Código de categoría mercantil acorde ISO 18245."
           },
           "active": {
             "type": "boolean",
@@ -1597,7 +1598,7 @@
           "timezone": {
             "type": "string",
             "example": "America/Bogota",
-            "description": "Zona horaria\n"
+            "description": "Zona horaria de la ubicación del comercio.\n"
           },
           "size": {
             "type": "string",
@@ -1609,7 +1610,7 @@
             ],
             "example": "XS",
             "maxLength": 2,
-            "description": "Tamaño del comercio\n"
+            "description": "Tamaño de la empresa basado en los empleados [XS<10, S<50, M<250, L>250]."
           },
           "incrementType": {
             "type": "string",
@@ -1624,18 +1625,23 @@
             "type": "array",
             "uniqueItems": true,
             "minItems": 1,
-            "description": "Lenguajes soportados por el comercio",
+            "description": "Idioma de acuerdo a ISO 631-1.",
             "items": {
               "type": "string",
               "maxLength": 2,
-              "example": "ES"
+              "example": "ES",
+              "enum": [
+                "ES",
+                "EN",
+                "PT"
+              ]
             }
           },
           "currencies": {
             "type": "array",
             "minItems": 1,
             "uniqueItems": true,
-            "description": "Monedas soportadas por el comercio",
+            "description": "Moneda de acuerdo a ISO 4217.",
             "items": {
               "type": "string",
               "maxLength": 3,
@@ -1657,37 +1663,40 @@
             "properties": {
               "contact": {
                 "type": "string",
-                "description": "Nombre de la persona que recibe que recibe la factura electrónica",
+                "description": "Nombre de la persona que recibe la factura electrónica.",
                 "maxLength": 128
               },
               "mail": {
                 "type": "string",
                 "format": "email",
                 "maxLength": 128,
-                "description": "Correo electrónico donde se remite la factura electrónica.\n"
+                "description": "Correo elecxtrónico al cual será remitida la factura electrónica."
               },
               "registrationNumber": {
                 "type": "string",
                 "maxLength": 20,
                 "example": "123456789",
-                "description": "Matrícula mercantil"
+                "description": "Número de la matrícula mercantil."
               },
               "taxType": {
                 "type": "integer",
-                "example": 5
+                "example": 5,
+                "description": "Tipo del regimen del comercio (depende del país)."
               },
               "taxRegime": {
                 "type": "integer",
-                "example": 2
+                "example": 2,
+                "description": "Regimen fiscal del comercio (depende del país)."
               },
               "organizationType": {
                 "type": "integer",
-                "example": 1
+                "example": 1,
+                "description": "Tipo de organización (depende del país)."
               },
               "ciiu": {
                 "type": "string",
                 "example": "1224",
-                "description": "Código de la actividad económica acorde a CIIU rev 4",
+                "description": "Código completo de la actividad económica acorde a CIIU Rev4.",
                 "minLength": 4,
                 "maxLength": 4
               }
@@ -1699,11 +1708,11 @@
               "dispersion": {
                 "type": "boolean",
                 "default": false,
-                "description": "Indicador de soporte de venta de tiquetes y venta propia."
+                "description": "Indicador si acepta venta de tiquetes y venta propia (dispersión de fondos con aerolíneas)"
               },
               "iata": {
                 "type": "string",
-                "description": "Código IATA asginado a la agencia.",
+                "description": "Código IATA asignado a la agencia de viajes.",
                 "minLength": 4,
                 "maxLength": 10
               }
@@ -1715,12 +1724,12 @@
               "seller": {
                 "type": "integer",
                 "example": 1,
-                "description": "Consultor comercial"
+                "description": "Nombre del consultor comercial asignado en Placetopay."
               },
               "reseller": {
                 "type": "integer",
                 "example": 1,
-                "description": "Distribuidor"
+                "description": "Banco adquirente."
               }
             },
             "required": [

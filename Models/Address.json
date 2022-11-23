@@ -4,22 +4,29 @@
   "description": "Estructura que contiene la información sobre una dirección física\n",
   "properties": {
     "street": {
-      "type": "string"
+      "type": "string",
+      "maxLength": 128
     },
     "city": {
-      "type": "string"
+      "type": "string",
+      "maxLength": 30
     },
     "state": {
-      "type": "string"
+      "type": "integer",
+      "example": 1
     },
     "postalCode": {
-      "type": "string"
+      "type": "string",
+      "maxLength": 10
     },
     "country": {
-      "type": "string"
+      "type": "string",
+      "maxLength": 2,
+      "example": "CO"
     },
     "phone": {
-      "type": "string"
+      "type": "string",
+      "maxLength": 20
     }
   }
 }
