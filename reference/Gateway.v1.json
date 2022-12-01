@@ -142,8 +142,21 @@
                     "cardTypes": {
                       "type": "array",
                       "items": {
+                        "enum": [
+                          "C",
+                          "R",
+                          "A"
+                        ],
                         "type": "string"
                       }
+                    },
+                    "cardType": {
+                      "type": "string",
+                      "enum": [
+                        "C",
+                        "R",
+                        "A"
+                      ]
                     },
                     "requiereOtp": {
                       "type": "boolean"
