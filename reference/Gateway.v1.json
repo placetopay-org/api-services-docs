@@ -154,10 +154,12 @@
                       "$ref": "#/components/schemas/CardType"
                     },
                     "requiereOtp": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "description": "Indica si es necesario realizar el flujo de OTP\n"
                     },
                     "requiereCvv2": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "description": "Indica si es requerido enviar cvv para el procesamiento de la transacción"
                     },
                     "threeDS": {
                       "type": "string",
@@ -165,16 +167,19 @@
                         "optional",
                         "required",
                         "unsupported"
-                      ]
+                      ],
+                      "description": "Indica si es necesario 3DS"
                     },
                     "credits": {
                       "type": "array",
+                      "description": "Indica los créditos disponibles por provedor",
                       "items": {
                         "$ref": "#/components/schemas/Credit"
                       }
                     },
                     "requirePockets": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "description": "Indica si es requerido bolsillo para el procesamiento dela transacción"
                     },
                     "pockets": {
                       "type": "array",
@@ -184,20 +189,25 @@
                       }
                     },
                     "requireAvs": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "description": "Indica si es requerida la información de código postal"
                     },
                     "zipCodeFormat": {
                       "type": "string",
+                      "description": "Formato a ser utilizado para la validación del código postal",
                       "nullable": true
                     },
                     "accountVerification": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "description": "Indica si es necesario realizar el flujo de verificación de cuentas"
                     },
                     "requirePin": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "description": "Indica si es necesario pin para procesar la transacción"
                     },
                     "requireRedirection": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "description": "Indica si el medio de pago es del tipo redirección"
                     }
                   },
                   "required": [
@@ -277,7 +287,8 @@
                   }
                 }
               }
-            }
+            },
+            "headers": {}
           }
         }
       },
