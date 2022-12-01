@@ -21,7 +21,7 @@ Se trata de un proceso para realizar la transacción que involucra el consumo de
 
 1. Una vez se capture el número de tarjeta del usuario se realiza el consumo al servicio de información `information` enviándolo en la petición
 2. Se analiza la respuesta del servicio para disponer las opciones que siguen
-* Si la respuesta trae tipos de crédito `credits` se deben mostrar al usuario para permitirle seleccionar cual desea usar.
+  * Si la respuesta trae tipos de crédito `credits` se deben mostrar al usuario para permitirle seleccionar cual desea usar.
   * Si la respuesta trae el parámetro `requirePocket` en true, se debe mostrar los bolsillos `pockets` al usuario para permitirle seleccionar cual desea usar.
   * Si la respuesta trae el parámetro `requireAvs` en true, se debe exigir del usuario el ingreso de código postal y validar la entrada con el formato `zipCodeFormat`.
   * Si la respuesta trae el parámetro `accountVerification` en true, se debe hacer el consumo al servicio de verificación de cuentas y obtener el instrumento cuenta verificado.
