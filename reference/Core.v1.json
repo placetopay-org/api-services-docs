@@ -49,10 +49,12 @@
                     },
                     "id": {
                       "type": "integer",
-                      "example": 1
+                      "example": 1,
+                      "description": "Identificador del comercio creado."
                     },
                     "active": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "description": "Estado del comercio."
                     }
                   }
                 },
@@ -138,9 +140,13 @@
                     "$ref": "../Models/Autentication.json"
                   },
                   "data": {
-                    "$ref": "#/components/schemas/Customer"
+                    "$ref": "#/components/schemas/Customer-create"
                   }
-                }
+                },
+                "required": [
+                  "auth",
+                  "data"
+                ]
               },
               "examples": {
                 "Solicitud de creación de un comercio": {
@@ -229,10 +235,12 @@
                     },
                     "id": {
                       "type": "integer",
-                      "example": 1
+                      "example": 1,
+                      "description": "Identificador del comercio editado."
                     },
                     "active": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "description": "Estado del comercio."
                     }
                   }
                 },
@@ -318,12 +326,18 @@
                     "$ref": "../Models/Autentication.json"
                   },
                   "id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Identificador del comercio a editar."
                   },
                   "data": {
-                    "$ref": "#/components/schemas/Customer"
+                    "$ref": "#/components/schemas/Customer-update"
                   }
-                }
+                },
+                "required": [
+                  "auth",
+                  "id",
+                  "data"
+                ]
               },
               "examples": {
                 "Actualización de comercio": {
@@ -386,6 +400,7 @@
                     },
                     "data": {
                       "type": "array",
+                      "description": "Arreglo que Contiene la información de comercios consultada por medio de los filtros aplicados.",
                       "items": {
                         "$ref": "#/components/schemas/Customer"
                       }
@@ -522,23 +537,30 @@
                   },
                   "id": {
                     "type": "integer",
-                    "example": 1
+                    "example": 1,
+                    "description": "Identificador de un comercio."
                   },
                   "name": {
                     "type": "string",
                     "maxLength": 80,
-                    "example": "Merchant name"
+                    "example": "Merchant name",
+                    "description": "Nombre del comercio."
                   },
                   "brand": {
                     "type": "string",
                     "maxLength": 60,
-                    "example": "Merchant brand"
+                    "example": "Merchant brand",
+                    "description": "Marca del comercio."
                   },
                   "active": {
                     "type": "boolean",
-                    "default": true
+                    "default": true,
+                    "description": "Estado del comercio."
                   }
-                }
+                },
+                "required": [
+                  "auth"
+                ]
               },
               "examples": {
                 "Consulta de comercios": {
@@ -583,7 +605,8 @@
                       "$ref": "../Models/Status.json"
                     },
                     "id": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Identificador del comercio elimiado.."
                     }
                   }
                 },
@@ -668,9 +691,14 @@
                     "$ref": "../Models/Autentication.json"
                   },
                   "id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Identificador del comercio a eliminar."
                   }
-                }
+                },
+                "required": [
+                  "auth",
+                  "id"
+                ]
               },
               "examples": {
                 "Eliminar un comercio": {
@@ -712,6 +740,7 @@
                     },
                     "data": {
                       "type": "array",
+                      "description": "Arreglo que contiene información de los estados o departamentos de un país.",
                       "items": {
                         "$ref": "#/components/schemas/Province"
                       }
@@ -807,7 +836,10 @@
                   "auth": {
                     "$ref": "../Models/Autentication.json"
                   }
-                }
+                },
+                "required": [
+                  "auth"
+                ]
               },
               "examples": {
                 "Consulta departamentos/estados": {
@@ -849,6 +881,7 @@
                     },
                     "data": {
                       "type": "array",
+                      "description": "Arreglo que contiene información de tipos de régimen consultados.",
                       "items": {
                         "$ref": "#/components/schemas/Taxpayer"
                       }
@@ -942,7 +975,10 @@
                   "auth": {
                     "$ref": "../Models/Autentication.json"
                   }
-                }
+                },
+                "required": [
+                  "auth"
+                ]
               },
               "examples": {
                 "Consulta de tipos de régimen": {
@@ -984,6 +1020,7 @@
                     },
                     "data": {
                       "type": "array",
+                      "description": "Arreglo que contiene información de regémenes fiscales consultados.",
                       "items": {
                         "$ref": "#/components/schemas/Tax-regime"
                       }
@@ -1077,7 +1114,10 @@
                   "auth": {
                     "$ref": "../Models/Autentication.json"
                   }
-                }
+                },
+                "required": [
+                  "auth"
+                ]
               },
               "examples": {
                 "Consulta régimen fiscal": {
@@ -1119,6 +1159,7 @@
                     },
                     "data": {
                       "type": "array",
+                      "description": "Arreglo que contiene la información de los tipos de corporación consultados.",
                       "items": {
                         "$ref": "#/components/schemas/Corporation-type"
                       }
@@ -1212,7 +1253,10 @@
                   "auth": {
                     "$ref": "../Models/Autentication.json"
                   }
-                }
+                },
+                "required": [
+                  "auth"
+                ]
               },
               "examples": {
                 "Consulta régimen fiscal": {
@@ -1254,6 +1298,7 @@
                     },
                     "data": {
                       "type": "array",
+                      "description": "Arreglo que contiene información acerca de los consultores comerciales habilitados de PlacetoPay.",
                       "items": {
                         "$ref": "#/components/schemas/Seller"
                       }
@@ -1347,7 +1392,10 @@
                   "auth": {
                     "$ref": "../Models/Autentication.json"
                   }
-                }
+                },
+                "required": [
+                  "auth"
+                ]
               },
               "examples": {
                 "Búsqueda consultores comerciales": {
@@ -1389,6 +1437,7 @@
                     },
                     "data": {
                       "type": "array",
+                      "description": "Arreglo que contiene información de bancos adqurientes consultados.",
                       "items": {
                         "$ref": "#/components/schemas/Reseller"
                       }
@@ -1482,7 +1531,10 @@
                   "auth": {
                     "$ref": "../Models/Autentication.json"
                   }
-                }
+                },
+                "required": [
+                  "auth"
+                ]
               },
               "examples": {
                 "Búsqueda distribuidores": {
@@ -1509,6 +1561,465 @@
   },
   "components": {
     "schemas": {
+      "Customer-create": {
+        "title": "Customer",
+        "x-stoplight": {
+          "id": "hyaa8lw6ed0m4"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información para crear un comercio.",
+        "x-examples": {
+          "Estructura-comercio": {
+            "id": 1,
+            "name": "Merchant name",
+            "brand": "Merchant brand",
+            "mcc": "0742",
+            "active": true,
+            "timezone": "America/Bogota",
+            "size": "XS",
+            "incrementType": "SMLMV",
+            "languages": [
+              "ES"
+            ],
+            "currencies": [
+              "COP"
+            ],
+            "document": {
+              "type": "NIT",
+              "number": "123456123"
+            },
+            "address": {
+              "street": "Street address",
+              "city": "Medellin",
+              "state": "1",
+              "postalCode": "417030",
+              "country": "CO",
+              "phone": "3203201320"
+            },
+            "legalRepresentative": {
+              "type": "NIT",
+              "Document": "1234568",
+              "name": "Legal representative name",
+              "surname": "Legal representative surname"
+            },
+            "billing": {
+              "contact": "Billing contact name",
+              "mail": "billing@example.com",
+              "registrationNumber": "123456789",
+              "taxType": 5,
+              "taxRegime": 2,
+              "organizationType": 1,
+              "ciiu": "1224"
+            },
+            "travelAgency": {
+              "dispersion": true,
+              "iata": "123456"
+            },
+            "control": {
+              "seller": 1,
+              "reseller": 1
+            }
+          }
+        },
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Merchant name",
+            "maxLength": 80,
+            "description": "Nombre del comercio"
+          },
+          "brand": {
+            "type": "string",
+            "example": "Merchant brand",
+            "maxLength": 60,
+            "description": "Nombre de la marca"
+          },
+          "mcc": {
+            "type": "string",
+            "maxLength": 4,
+            "minLength": 4,
+            "example": "0742",
+            "description": "Código de categoría mercantil acorde ISO 18245."
+          },
+          "active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Estado del comercio"
+          },
+          "timezone": {
+            "type": "string",
+            "example": "America/Bogota",
+            "description": "Zona horaria de la ubicación del comercio.\n"
+          },
+          "size": {
+            "type": "string",
+            "enum": [
+              "XS",
+              "S",
+              "M",
+              "L"
+            ],
+            "example": "XS",
+            "maxLength": 2,
+            "description": "Tamaño de la empresa basado en los empleados [XS<10, S<50, M<250, L>250]."
+          },
+          "incrementType": {
+            "type": "string",
+            "enum": [
+              "SMLMV",
+              "IPC"
+            ],
+            "example": "IPC",
+            "description": "Tipo incremento en plan"
+          },
+          "languages": {
+            "type": "array",
+            "uniqueItems": true,
+            "minItems": 1,
+            "description": "Idioma de acuerdo a ISO 631-1.",
+            "items": {
+              "type": "string",
+              "maxLength": 2,
+              "example": "ES",
+              "enum": [
+                "ES",
+                "EN",
+                "PT"
+              ]
+            }
+          },
+          "currencies": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "description": "Moneda de acuerdo a ISO 4217.",
+            "items": {
+              "type": "string",
+              "maxLength": 3,
+              "example": "COP"
+            }
+          },
+          "document": {
+            "$ref": "../Models/Document.json"
+          },
+          "address": {
+            "$ref": "../Models/Address.json"
+          },
+          "legalRepresentative": {
+            "$ref": "../Models/Person.json"
+          },
+          "billing": {
+            "type": "object",
+            "description": "Estructura con información de facturación",
+            "properties": {
+              "contact": {
+                "type": "string",
+                "description": "Nombre de la persona que recibe la factura electrónica.",
+                "maxLength": 128
+              },
+              "mail": {
+                "type": "string",
+                "format": "email",
+                "maxLength": 128,
+                "description": "Correo elecxtrónico al cual será remitida la factura electrónica."
+              },
+              "registrationNumber": {
+                "type": "string",
+                "maxLength": 20,
+                "example": "123456789",
+                "description": "Número de la matrícula mercantil."
+              },
+              "taxType": {
+                "type": "integer",
+                "example": 5,
+                "description": "Tipo del regimen del comercio (depende del país)."
+              },
+              "taxRegime": {
+                "type": "integer",
+                "example": 2,
+                "description": "Regimen fiscal del comercio (depende del país)."
+              },
+              "organizationType": {
+                "type": "integer",
+                "example": 1,
+                "description": "Tipo de organización (depende del país)."
+              },
+              "ciiu": {
+                "type": "string",
+                "example": "1224",
+                "description": "Código completo de la actividad económica acorde a CIIU Rev4.",
+                "minLength": 4,
+                "maxLength": 4
+              }
+            }
+          },
+          "travelAgency": {
+            "type": "object",
+            "properties": {
+              "dispersion": {
+                "type": "boolean",
+                "default": false,
+                "description": "Indicador si acepta venta de tiquetes y venta propia (dispersión de fondos con aerolíneas)"
+              },
+              "iata": {
+                "type": "string",
+                "description": "Código IATA asignado a la agencia de viajes.",
+                "minLength": 4,
+                "maxLength": 10
+              }
+            }
+          },
+          "control": {
+            "type": "object",
+            "properties": {
+              "seller": {
+                "type": "integer",
+                "example": 1,
+                "description": "Nombre del consultor comercial asignado en Placetopay."
+              },
+              "reseller": {
+                "type": "integer",
+                "example": 1,
+                "description": "Banco adquirente."
+              }
+            }
+          }
+        },
+        "required": [
+          "name",
+          "brand",
+          "languages",
+          "currencies",
+          "document",
+          "address",
+          "legalRepresentative"
+        ]
+      },
+      "Customer-update": {
+        "title": "Customer",
+        "x-stoplight": {
+          "id": "hyaa8lw6ed0m4"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información para actualizar un comercio.",
+        "x-examples": {
+          "Estructura-comercio": {
+            "id": 1,
+            "name": "Merchant name",
+            "brand": "Merchant brand",
+            "mcc": "0742",
+            "active": true,
+            "timezone": "America/Bogota",
+            "size": "XS",
+            "incrementType": "SMLMV",
+            "languages": [
+              "ES"
+            ],
+            "currencies": [
+              "COP"
+            ],
+            "document": {
+              "type": "NIT",
+              "number": "123456123"
+            },
+            "address": {
+              "street": "Street address",
+              "city": "Medellin",
+              "state": "1",
+              "postalCode": "417030",
+              "country": "CO",
+              "phone": "3203201320"
+            },
+            "legalRepresentative": {
+              "type": "NIT",
+              "Document": "1234568",
+              "name": "Legal representative name",
+              "surname": "Legal representative surname"
+            },
+            "billing": {
+              "contact": "Billing contact name",
+              "mail": "billing@example.com",
+              "registrationNumber": "123456789",
+              "taxType": 5,
+              "taxRegime": 2,
+              "organizationType": 1,
+              "ciiu": "1224"
+            },
+            "travelAgency": {
+              "dispersion": true,
+              "iata": "123456"
+            },
+            "control": {
+              "seller": 1,
+              "reseller": 1
+            }
+          }
+        },
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Merchant name",
+            "maxLength": 80,
+            "description": "Nombre del comercio"
+          },
+          "brand": {
+            "type": "string",
+            "example": "Merchant brand",
+            "maxLength": 60,
+            "description": "Nombre de la marca"
+          },
+          "mcc": {
+            "type": "string",
+            "maxLength": 4,
+            "minLength": 4,
+            "example": "0742",
+            "description": "Código de categoría mercantil acorde ISO 18245."
+          },
+          "active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Estado del comercio"
+          },
+          "timezone": {
+            "type": "string",
+            "example": "America/Bogota",
+            "description": "Zona horaria de la ubicación del comercio.\n"
+          },
+          "size": {
+            "type": "string",
+            "enum": [
+              "XS",
+              "S",
+              "M",
+              "L"
+            ],
+            "example": "XS",
+            "maxLength": 2,
+            "description": "Tamaño de la empresa basado en los empleados [XS<10, S<50, M<250, L>250]."
+          },
+          "incrementType": {
+            "type": "string",
+            "enum": [
+              "SMLMV",
+              "IPC"
+            ],
+            "example": "IPC",
+            "description": "Tipo incremento en plan"
+          },
+          "languages": {
+            "type": "array",
+            "uniqueItems": true,
+            "minItems": 1,
+            "description": "Idioma de acuerdo a ISO 631-1.",
+            "items": {
+              "type": "string",
+              "maxLength": 2,
+              "example": "ES",
+              "enum": [
+                "ES",
+                "EN",
+                "PT"
+              ]
+            }
+          },
+          "currencies": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "description": "Moneda de acuerdo a ISO 4217.",
+            "items": {
+              "type": "string",
+              "maxLength": 3,
+              "example": "COP"
+            }
+          },
+          "document": {
+            "$ref": "../Models/Document.json"
+          },
+          "address": {
+            "$ref": "../Models/Address.json"
+          },
+          "legalRepresentative": {
+            "$ref": "../Models/Person.json"
+          },
+          "billing": {
+            "type": "object",
+            "description": "Estructura con información de facturación",
+            "properties": {
+              "contact": {
+                "type": "string",
+                "description": "Nombre de la persona que recibe la factura electrónica.",
+                "maxLength": 128
+              },
+              "mail": {
+                "type": "string",
+                "format": "email",
+                "maxLength": 128,
+                "description": "Correo elecxtrónico al cual será remitida la factura electrónica."
+              },
+              "registrationNumber": {
+                "type": "string",
+                "maxLength": 20,
+                "example": "123456789",
+                "description": "Número de la matrícula mercantil."
+              },
+              "taxType": {
+                "type": "integer",
+                "example": 5,
+                "description": "Tipo del regimen del comercio (depende del país)."
+              },
+              "taxRegime": {
+                "type": "integer",
+                "example": 2,
+                "description": "Regimen fiscal del comercio (depende del país)."
+              },
+              "organizationType": {
+                "type": "integer",
+                "example": 1,
+                "description": "Tipo de organización (depende del país)."
+              },
+              "ciiu": {
+                "type": "string",
+                "example": "1224",
+                "description": "Código completo de la actividad económica acorde a CIIU Rev4.",
+                "minLength": 4,
+                "maxLength": 4
+              }
+            }
+          },
+          "travelAgency": {
+            "type": "object",
+            "properties": {
+              "dispersion": {
+                "type": "boolean",
+                "default": false,
+                "description": "Indicador si acepta venta de tiquetes y venta propia (dispersión de fondos con aerolíneas)"
+              },
+              "iata": {
+                "type": "string",
+                "description": "Código IATA asignado a la agencia de viajes.",
+                "minLength": 4,
+                "maxLength": 10
+              }
+            }
+          },
+          "control": {
+            "type": "object",
+            "properties": {
+              "seller": {
+                "type": "integer",
+                "example": 1,
+                "description": "Nombre del consultor comercial asignado en Placetopay."
+              },
+              "reseller": {
+                "type": "integer",
+                "example": 1,
+                "description": "Banco adquirente."
+              }
+            }
+          }
+        }
+      },
       "Customer": {
         "title": "Customer",
         "x-stoplight": {
@@ -1735,19 +2246,9 @@
                 "example": 1,
                 "description": "Banco adquirente."
               }
-            },
-            "required": [
-              "seller",
-              "reseller"
-            ]
+            }
           }
-        },
-        "required": [
-          "name",
-          "brand",
-          "languages",
-          "currencies"
-        ]
+        }
       },
       "Province": {
         "title": "Province",
