@@ -208,6 +208,13 @@
                     "requireRedirection": {
                       "type": "boolean",
                       "description": "Indica si el medio de pago es del tipo redirección"
+                    },
+                    "bankList": {
+                      "type": "array",
+                      "description": "Lista de bancos disponibles para procesar un pago con PSE",
+                      "items": {
+                        "$ref": "#/components/schemas/BankItem"
+                      }
                     }
                   },
                   "required": [
@@ -4065,6 +4072,24 @@
           "A"
         ],
         "description": "Indica el tipo de la tarjeta. C = credito, R = debito, A = ahorros"
+      },
+      "BankItem": {
+        "title": "BankItem",
+        "x-stoplight": {
+          "id": "60487hsjhovs9"
+        },
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Código de la entidad bancária"
+          },
+          "description": {
+            "type": "string",
+            "description": "Nombre de la entidad bancária\n"
+          }
+        },
+        "description": ""
       }
     },
     "securitySchemes": {},
