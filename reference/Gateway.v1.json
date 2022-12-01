@@ -134,29 +134,24 @@
                       "$ref": "#/components/schemas/Status"
                     },
                     "provider": {
-                      "type": "string"
+                      "type": "string",
+                      "example": "EBUS",
+                      "description": "Indica cual provedor será utilizado en la transacción"
                     },
                     "serviceCode": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Indica el código del servicio que procesará la transacción",
+                      "example": "EB_VS"
                     },
                     "cardTypes": {
                       "type": "array",
+                      "description": "Indica los tipos de tarjeta soportados por el provedor",
                       "items": {
-                        "enum": [
-                          "C",
-                          "R",
-                          "A"
-                        ],
-                        "type": "string"
+                        "$ref": "#/components/schemas/CardType"
                       }
                     },
                     "cardType": {
-                      "type": "string",
-                      "enum": [
-                        "C",
-                        "R",
-                        "A"
-                      ]
+                      "$ref": "#/components/schemas/CardType"
                     },
                     "requiereOtp": {
                       "type": "boolean"
@@ -4046,9 +4041,23 @@
         "required": [
           "session"
         ]
+      },
+      "CardType": {
+        "title": "CardType",
+        "x-stoplight": {
+          "id": "x4y03rkspgz0b"
+        },
+        "type": "string",
+        "enum": [
+          "C",
+          "R",
+          "A"
+        ],
+        "description": "Indica el tipo de la tarjeta. C = credito, R = debito, A = ahorros"
       }
     },
     "securitySchemes": {},
-    "responses": {}
+    "responses": {},
+    "requestBodies": {}
   }
 }
