@@ -1563,9 +1563,6 @@
     "schemas": {
       "Customer-create": {
         "title": "Customer",
-        "x-stoplight": {
-          "id": "hyaa8lw6ed0m4"
-        },
         "type": "object",
         "description": "Estructura que contiene la información para crear un comercio.",
         "x-examples": {
@@ -1703,10 +1700,10 @@
             "$ref": "../Models/Document.json"
           },
           "address": {
-            "$ref": "../Models/Address.json"
+            "$ref": "#/components/schemas/Address"
           },
           "legalRepresentative": {
-            "$ref": "../Models/Person.json"
+            "$ref": "#/components/schemas/LegalRepresentative"
           },
           "billing": {
             "type": "object",
@@ -1797,9 +1794,6 @@
       },
       "Customer-update": {
         "title": "Customer",
-        "x-stoplight": {
-          "id": "hyaa8lw6ed0m4"
-        },
         "type": "object",
         "description": "Estructura que contiene la información para actualizar un comercio.",
         "x-examples": {
@@ -1937,10 +1931,10 @@
             "$ref": "../Models/Document.json"
           },
           "address": {
-            "$ref": "../Models/Address.json"
+            "$ref": "#/components/schemas/Address"
           },
           "legalRepresentative": {
-            "$ref": "../Models/Person.json"
+            "$ref": "#/components/schemas/LegalRepresentative"
           },
           "billing": {
             "type": "object",
@@ -2022,9 +2016,6 @@
       },
       "Customer": {
         "title": "Customer",
-        "x-stoplight": {
-          "id": "hyaa8lw6ed0m4"
-        },
         "type": "object",
         "description": "Estructura que contiene la información de un comercio.",
         "x-examples": {
@@ -2167,10 +2158,10 @@
             "$ref": "../Models/Document.json"
           },
           "address": {
-            "$ref": "../Models/Address.json"
+            "$ref": "#/components/schemas/Address"
           },
           "legalRepresentative": {
-            "$ref": "../Models/Person.json"
+            "$ref": "#/components/schemas/LegalRepresentative"
           },
           "billing": {
             "type": "object",
@@ -2405,6 +2396,89 @@
             "type": "string"
           }
         }
+      },
+      "Address": {
+        "title": "Address",
+        "type": "object",
+        "description": "Estructura que contiene la información sobre una dirección física.\n",
+        "properties": {
+          "street": {
+            "type": "string",
+            "maxLength": 128,
+            "example": "Transversal 123 # 12 a"
+          },
+          "city": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "Ciudad donde se ubica el comercio.",
+            "example": "Medellin"
+          },
+          "state": {
+            "type": "integer",
+            "example": 1,
+            "description": "Departamento o estado donde se ubica el comercio."
+          },
+          "postalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Código postal",
+            "example": "123456"
+          },
+          "country": {
+            "type": "string",
+            "maxLength": 2,
+            "example": "CO",
+            "description": "País donde se ubica el comercio."
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "Contacto del comercio."
+          }
+        },
+        "required": [
+          "city",
+          "state",
+          "country"
+        ]
+      },
+      "LegalRepresentative": {
+        "title": "Legal Representative",
+        "type": "object",
+        "description": "Estructura que refleja la información del representante legal del comercio\n",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nombre del representante legal.",
+            "maxLength": 30
+          },
+          "surname": {
+            "type": "string",
+            "maxLength": 30
+          },
+          "documentType": {
+            "type": "string",
+            "description": "Tipo de documento de identificación\\n. https://docs-gateway.placetopay.com/docs/webcheckout-docs/71046995c46b3-tipos-de-documento",
+            "enum": [
+              "CC",
+              "NIT",
+              "RUT",
+              "TI",
+              "PNN"
+            ],
+            "example": "CC",
+            "maxLength": 3
+          },
+          "Document": {
+            "type": "string",
+            "description": "Número de documento de identificación.",
+            "maxLength": 20
+          }
+        },
+        "required": [
+          "name",
+          "surname"
+        ]
       }
     },
     "securitySchemes": {},
