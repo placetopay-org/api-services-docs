@@ -136,6 +136,9 @@
                     "provider": {
                       "type": "string"
                     },
+                    "serviceCode": {
+                      "type": "string"
+                    },
                     "cardTypes": {
                       "type": "array",
                       "items": {
@@ -171,8 +174,29 @@
                       "items": {
                         "$ref": "#/components/schemas/Pocket"
                       }
+                    },
+                    "requireAvs": {
+                      "type": "boolean"
+                    },
+                    "zipCodeFormat": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "accountVerification": {
+                      "type": "boolean"
+                    },
+                    "requirePin": {
+                      "type": "boolean"
+                    },
+                    "requireRedirection": {
+                      "type": "boolean"
                     }
-                  }
+                  },
+                  "required": [
+                    "status",
+                    "provider",
+                    "serviceCode"
+                  ]
                 },
                 "examples": {
                   "Ejemplo": {
