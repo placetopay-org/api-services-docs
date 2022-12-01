@@ -5,16 +5,7 @@
   "properties": {
     "documentType": {
       "type": "string",
-      "description": "Tipo de documento de identificación\n. https://docs-gateway.placetopay.com/docs/webcheckout-docs/71046995c46b3-tipos-de-documento",
-      "enum": [
-        "NIT",
-        "CC",
-        "TI",
-        "CE",
-        "RUT"
-      ],
-      "maxLength": 3,
-      "example": "CC"
+      "description": "Tipo de documento de identificación."
     },
     "Document": {
       "type": "string",

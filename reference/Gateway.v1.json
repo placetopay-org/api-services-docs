@@ -354,7 +354,7 @@
                       "address": {
                         "street": "Carrera 65 #45 20",
                         "city": "Estherborough",
-                        "state": "Antioquia",
+                        "state": 1,
                         "postalCode": "48107",
                         "country": "CO",
                         "phone": "5695155708"
