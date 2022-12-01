@@ -25,6 +25,9 @@
   "tags": [
     {
       "name": "Acciones sobre comercios"
+    },
+    {
+      "name": "Procedimientos adicionales"
     }
   ],
   "paths": {
@@ -204,7 +207,8 @@
         },
         "tags": [
           "Acciones sobre comercios"
-        ]
+        ],
+        "x-internal": false
       }
     },
     "/core/merchant/update": {
@@ -692,7 +696,7 @@
     },
     "/core/province/search": {
       "post": {
-        "summary": "Consulta de departamentos/estados por país",
+        "summary": "Consulta de departamentos o estados por país",
         "operationId": "post-core-province-search",
         "description": "Este servicio permite consultar los estados /departamentos de un País. \nSi la respuesta es exitosa, se retorna un arreglo de los estados con su información.",
         "responses": {
@@ -822,7 +826,7 @@
           "description": ""
         },
         "tags": [
-          "Acciones sobre comercios"
+          "Procedimientos adicionales"
         ]
       },
       "parameters": []
@@ -957,7 +961,7 @@
           "description": ""
         },
         "tags": [
-          "Acciones sobre comercios"
+          "Procedimientos adicionales"
         ]
       },
       "parameters": []
@@ -1092,7 +1096,7 @@
           "description": ""
         },
         "tags": [
-          "Acciones sobre comercios"
+          "Procedimientos adicionales"
         ]
       },
       "parameters": []
@@ -1227,14 +1231,14 @@
           "description": ""
         },
         "tags": [
-          "Acciones sobre comercios"
+          "Procedimientos adicionales"
         ]
       },
       "parameters": []
     },
     "/core/seller/search": {
       "post": {
-        "summary": "Busqueda de consultores comerciales",
+        "summary": "Busqueda de consultores comerciales de PlacetoPay.",
         "operationId": "post-core-seller-search",
         "description": "Este servicio permite buscar consultores comerciales habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada consultor.",
         "responses": {
@@ -1362,14 +1366,14 @@
           "description": ""
         },
         "tags": [
-          "Acciones sobre comercios"
+          "Procedimientos adicionales"
         ]
       },
       "parameters": []
     },
     "/core/reseller/search": {
       "post": {
-        "summary": "Consulta de distribuidores",
+        "summary": "Consulta de banco adquiriente",
         "operationId": "post-core-reseller-search",
         "description": "Este servicio permite consultar distribuidores habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada distribuidor.",
         "responses": {
@@ -1497,7 +1501,7 @@
           "description": ""
         },
         "tags": [
-          "Acciones sobre comercios"
+          "Procedimientos adicionales"
         ]
       },
       "parameters": []
@@ -1511,7 +1515,7 @@
           "id": "hyaa8lw6ed0m4"
         },
         "type": "object",
-        "description": "Estructura que contiene la información de un comercio",
+        "description": "Estructura que contiene la información de un comercio.",
         "x-examples": {
           "Estructura-comercio": {
             "id": 1,
@@ -1784,7 +1788,7 @@
           "id": "hgdvwi1upl9re"
         },
         "type": "object",
-        "description": "Estructura que contiene informaicón de un consultor comercial.",
+        "description": "Estructura que contiene informaicón de un consultor comercial asignado en Placetopay.",
         "properties": {
           "id": {
             "type": "integer"
@@ -1808,7 +1812,7 @@
           "id": "hgdvwi1upl9re"
         },
         "type": "object",
-        "description": "Estructura que contiene informaicón de un distribuidor",
+        "description": "Estructura que contiene informaicón de un distribuidor o banco adquiriente.",
         "properties": {
           "id": {
             "type": "integer"
@@ -1857,7 +1861,7 @@
           "id": "hgdvwi1upl9re"
         },
         "type": "object",
-        "description": "Estructura que contiene información de tipo de corporación",
+        "description": "Estructura que contiene información de tipo de corporación.",
         "properties": {
           "id": {
             "type": "integer"

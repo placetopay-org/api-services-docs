@@ -12,6 +12,11 @@
     },
     {
       "type": "item",
+      "title": "Core",
+      "uri": "reference/Core.v1.json"
+    },
+    {
+      "type": "item",
       "title": "Autenticación",
       "uri": "docs/Autenticacion.md"
     },
@@ -34,6 +39,35 @@
       "type": "item",
       "title": "Códigos de aerolíneas",
       "uri": "docs/Codigos-de-aerolineas.md"
+    },
+    {
+      "type": "divider",
+      "title": "Schemas"
+    },
+    {
+      "type": "item",
+      "title": "Address",
+      "uri": "/Models/Address.json"
+    },
+    {
+      "type": "item",
+      "title": "Autentication",
+      "uri": "/Models/Autentication.json"
+    },
+    {
+      "type": "item",
+      "title": "Document",
+      "uri": "/Models/Document.json"
+    },
+    {
+      "type": "item",
+      "title": "Person",
+      "uri": "/Models/Person.json"
+    },
+    {
+      "type": "item",
+      "title": "Status",
+      "uri": "/Models/Status.json"
     }
   ]
 }
