@@ -1,0 +1,39 @@
+{
+  "title": "Status",
+  "type": "object",
+  "description": "Estructura que contiene la información sobre una solicitud o pago, informa al estado actual de la misma.\n",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "OK",
+        "FAILED",
+        "APPROVED",
+        "APPROVED_PARTIAL",
+        "PARTIAL_EXPIRED",
+        "REJECTED",
+        "PENDING",
+        "PENDING_VALIDATION",
+        "PENDING_PROCESS",
+        "REFUNDED",
+        "REVERSED",
+        "ERROR",
+        "UNKNOWN",
+        "MANUAL",
+        "DISPUTE"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4
+    },
+    "message": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "example": "2021-09-21T09:34:48-05:00"
+    }
+  }
+}

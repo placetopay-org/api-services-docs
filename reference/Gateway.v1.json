@@ -78,7 +78,7 @@
                     "example": "es-CO"
                   },
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
@@ -131,7 +131,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "provider": {
                       "type": "string",
@@ -322,7 +322,7 @@
                     "type": "string"
                   },
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "payment": {
                     "$ref": "#/components/schemas/Payment"
@@ -331,10 +331,10 @@
                     "$ref": "#/components/schemas/Instrument"
                   },
                   "payer": {
-                    "$ref": "#/components/schemas/Person"
+                    "$ref": "../Models/Person.json"
                   },
                   "buyer": {
-                    "$ref": "#/components/schemas/Person"
+                    "$ref": "../Models/Person.json"
                   },
                   "ipAddress": {
                     "type": "string"
@@ -404,7 +404,7 @@
                       "address": {
                         "street": "Carrera 65 #45 20",
                         "city": "Estherborough",
-                        "state": "Antioquia",
+                        "state": 1,
                         "postalCode": "48107",
                         "country": "CO",
                         "phone": "5695155708"
@@ -1291,10 +1291,10 @@
                     "type": "string"
                   },
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "payer": {
-                    "$ref": "#/components/schemas/Person"
+                    "$ref": "../Models/Person.json"
                   },
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
@@ -1384,7 +1384,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "provider": {
                       "type": "string"
@@ -1516,7 +1516,7 @@
                     "example": "es-CO"
                   },
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "action": {
                     "type": "string",
@@ -1605,7 +1605,7 @@
                     "type": "string"
                   },
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "internalReference": {
                     "type": "number"
@@ -1733,7 +1733,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "transactions": {
                       "type": "array",
@@ -1909,7 +1909,7 @@
                 "type": "object",
                 "properties": {
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "reference": {
                     "type": "string",
@@ -1967,7 +1967,7 @@
                     "type": "string"
                   },
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
@@ -2027,7 +2027,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "provider": {
                       "type": "string"
@@ -2096,7 +2096,7 @@
                     "type": "string"
                   },
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
@@ -2147,7 +2147,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "provider": {
                       "type": "string"
@@ -2202,7 +2202,7 @@
                     "type": "string"
                   },
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
@@ -2257,7 +2257,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "provider": {
                       "type": "string"
@@ -2321,7 +2321,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "id": {
                       "type": "number"
@@ -2372,7 +2372,7 @@
                 "type": "object",
                 "properties": {
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "filters": {
                     "type": "object",
@@ -2455,7 +2455,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     }
                   },
                   "required": [
@@ -2474,7 +2474,7 @@
                 "type": "object",
                 "properties": {
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "id": {
                     "type": "number"
@@ -2541,7 +2541,7 @@
                   },
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "data": {
                       "type": "object",
@@ -2664,7 +2664,7 @@
                 "type": "object",
                 "properties": {
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "payment": {
                     "$ref": "#/components/schemas/Payment"
@@ -2748,7 +2748,7 @@
                   },
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "data": {
                       "$ref": "#/components/schemas/ThreeDS"
@@ -2840,7 +2840,7 @@
                 },
                 "properties": {
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
@@ -2894,7 +2894,7 @@
                 "type": "object",
                 "properties": {
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
@@ -2946,7 +2946,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "data": {
                       "type": "object",
@@ -3029,7 +3029,7 @@
                 "type": "object",
                 "properties": {
                   "auth": {
-                    "$ref": "#/components/schemas/Autentication"
+                    "$ref": "../Models/Autentication.json"
                   },
                   "instrument": {
                     "$ref": "#/components/schemas/Instrument"
@@ -3089,7 +3089,7 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "#/components/schemas/Status"
+                      "$ref": "../Models/Status.json"
                     },
                     "data": {
                       "type": "object",
@@ -3154,7 +3154,7 @@
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "./Gateway.v1.json#/components/schemas/Autentication"
+                  "$ref": "../Models/Autentication.json"
                 }
               }
             }
@@ -3169,25 +3169,6 @@
   },
   "components": {
     "schemas": {
-      "Autentication": {
-        "title": "Autentication",
-        "type": "object",
-        "properties": {
-          "login": {
-            "type": "string"
-          },
-          "tranKey": {
-            "type": "string"
-          },
-          "nonce": {
-            "type": "string"
-          },
-          "seed": {
-            "type": "string"
-          }
-        },
-        "description": "Estructura que contiene la información de autenticación del sitio generada de acuerdo al WSSE\nUsernameToken Profile 1.1"
-      },
       "Instrument": {
         "title": "Instrument",
         "type": "object",
@@ -3370,7 +3351,8 @@
             "type": "string",
             "description": "Descripción del bolsillo"
           }
-        }
+        },
+        "x-examples": {}
       },
       "Payment": {
         "title": "Payment",
@@ -3543,45 +3525,6 @@
           }
         }
       },
-      "Status": {
-        "title": "Status",
-        "type": "object",
-        "description": "Estructura que contiene la información sobre una solicitud o pago, informa al estado actual de la misma.\n",
-        "properties": {
-          "status": {
-            "type": "string",
-            "enum": [
-              "OK",
-              "FAILED",
-              "APPROVED",
-              "APPROVED_PARTIAL",
-              "PARTIAL_EXPIRED",
-              "REJECTED",
-              "PENDING",
-              "PENDING_VALIDATION",
-              "PENDING_PROCESS",
-              "REFUNDED",
-              "REVERSED",
-              "ERROR",
-              "UNKNOWN",
-              "MANUAL",
-              "DISPUTE"
-            ]
-          },
-          "reason": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 4
-          },
-          "message": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string",
-            "example": "2021-09-21T09:34:48-05:00"
-          }
-        }
-      },
       "InterestValues": {
         "title": "InterestValues",
         "type": "object",
@@ -3627,62 +3570,6 @@
           },
           "total": {
             "type": "number"
-          }
-        }
-      },
-      "Person": {
-        "title": "Person",
-        "type": "object",
-        "description": "Estructura que refleja la información de una persona involucrada en una transacción.\n",
-        "properties": {
-          "documentType": {
-            "type": "string"
-          },
-          "Document": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "surname": {
-            "type": "string"
-          },
-          "company": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "address": {
-            "$ref": "#/components/schemas/Address"
-          },
-          "mobile": {
-            "type": "string"
-          }
-        }
-      },
-      "Address": {
-        "title": "Address",
-        "type": "object",
-        "description": "Estructura que contiene la información sobre una dirección física\n",
-        "properties": {
-          "street": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
-          },
-          "postalCode": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
           }
         }
       },
@@ -3749,9 +3636,10 @@
             }
           }
         },
+        "title": "",
         "properties": {
           "status": {
-            "$ref": "#/components/schemas/Status"
+            "$ref": "../Models/Status.json"
           },
           "provider": {
             "type": "string",
@@ -3844,7 +3732,7 @@
               "type": "object",
               "properties": {
                 "status": {
-                  "$ref": "#/components/schemas/Status"
+                  "$ref": "../Models/Status.json"
                 },
                 "agreement": {
                   "type": "integer",

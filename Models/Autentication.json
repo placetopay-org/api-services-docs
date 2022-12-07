@@ -1,0 +1,20 @@
+{
+  "title": "Autentication",
+  "type": "object",
+  "properties": {
+    "login": {
+      "type": "string"
+    },
+    "tranKey": {
+      "type": "string"
+    },
+    "nonce": {
+      "type": "string"
+    },
+    "seed": {
+      "type": "string"
+    }
+  },
+  "description": "Estructura que contiene la información de autenticación del sitio generada de acuerdo al WSSE\nUsernameToken Profile 1.1",
+  "examples": []
+}

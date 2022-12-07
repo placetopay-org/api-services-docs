@@ -1,0 +1,2413 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Core",
+    "version": "1.0",
+    "license": {
+      "name": "Privative"
+    },
+    "description": "descripcion",
+    "contact": {
+      "name": "Diego Calle",
+      "email": "desarrollo@evertecinc.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://test.placetopay.com/rest",
+      "description": "Pruebas Colombia"
+    },
+    {
+      "url": "https://test.placetopay.ec/rest",
+      "description": "Pruebas Ecuador"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Acciones sobre comercios"
+    },
+    {
+      "name": "Procedimientos adicionales"
+    }
+  ],
+  "paths": {
+    "/core/merchant/create": {
+      "post": {
+        "summary": "Creación de un comercio",
+        "operationId": "post-core-merchant-create",
+        "description": "Este servicio permite crear un comercio. Si el proceso es exitoso, se retorna el identificador del comercio y su estado.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 1,
+                      "description": "Identificador del comercio creado."
+                    },
+                    "active": {
+                      "type": "boolean",
+                      "description": "Estado del comercio."
+                    }
+                  }
+                },
+                "examples": {
+                  "Creación exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 1,
+                      "active": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo name es obligatorio",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Autenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "data": {
+                    "$ref": "#/components/schemas/Customer-create"
+                  }
+                },
+                "required": [
+                  "auth",
+                  "data"
+                ]
+              },
+              "examples": {
+                "Solicitud de creación de un comercio": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "data": {
+                      "name": "Merchant name",
+                      "brand": "Merchant brand",
+                      "mcc": "0742",
+                      "active": true,
+                      "timezone": "America/Bogota",
+                      "size": "XS",
+                      "incrementType": "IPC",
+                      "languages": [
+                        "ES"
+                      ],
+                      "currencies": [
+                        "COP"
+                      ],
+                      "document": {
+                        "type": "NIT",
+                        "number": "123456123"
+                      },
+                      "address": {
+                        "street": "Direccion del customer",
+                        "city": "Medellin",
+                        "state": 1,
+                        "country": "CO",
+                        "postalCode": "050031",
+                        "phone": "3172234333"
+                      },
+                      "legalRepresentative": {
+                        "name": "string",
+                        "surname": "string"
+                      },
+                      "billing": {
+                        "contact": "billing contact name",
+                        "mail": "user@example.com",
+                        "registrationNumber": "123456789",
+                        "taxType": 5,
+                        "taxRegime": 2,
+                        "organizationType": 1,
+                        "ciiu": "1224"
+                      },
+                      "travelAgency": {
+                        "dispersion": true,
+                        "iata": "123456"
+                      },
+                      "control": {
+                        "seller": 1,
+                        "reseller": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Acciones sobre comercios"
+        ],
+        "x-internal": false
+      }
+    },
+    "/core/merchant/update": {
+      "post": {
+        "summary": "Editar un comercio",
+        "operationId": "post-core-merchant-update",
+        "description": "Este servicio permite actualizar los datos de un comercio existente. Si el proceso es exitoso, se retorna el identificador del comercio y su estado de activación.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 1,
+                      "description": "Identificador del comercio editado."
+                    },
+                    "active": {
+                      "type": "boolean",
+                      "description": "Estado del comercio."
+                    }
+                  }
+                },
+                "examples": {
+                  "Actualización exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 1,
+                      "active": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Proceso fallido": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Autenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador del comercio a editar."
+                  },
+                  "data": {
+                    "$ref": "#/components/schemas/Customer-update"
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id",
+                  "data"
+                ]
+              },
+              "examples": {
+                "Actualización de comercio": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "data": {
+                      "name": "Merchant update name",
+                      "brand": "Merchant update brand",
+                      "mcc": "0763",
+                      "active": false,
+                      "timezone": "America/Costa_Rica",
+                      "size": "M",
+                      "document": {
+                        "type": "NIT",
+                        "number": "32145632"
+                      },
+                      "incrementType": "SMLMV",
+                      "languages": [
+                        "EN"
+                      ],
+                      "currencies": [
+                        "USD"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "parameters": [],
+        "tags": [
+          "Acciones sobre comercios"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/merchant/search": {
+      "post": {
+        "summary": "Consulta de comercios",
+        "operationId": "post-core-merchant-search",
+        "description": "Este servicio permite consultar comercios existentes filtrando por medio de los parametros: identificador, nombre, marca y estado del comercio.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que Contiene la información de comercios consultada por medio de los filtros aplicados.",
+                      "items": {
+                        "$ref": "#/components/schemas/Customer"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "name": "Merchant name",
+                          "brand": "Merchant brand",
+                          "mcc": "0742",
+                          "active": true,
+                          "timezone": "America/Bogota",
+                          "size": "XS",
+                          "incrementType": "IPC",
+                          "languages": [
+                            "ES"
+                          ],
+                          "currencies": [
+                            "COP"
+                          ],
+                          "document": {
+                            "type": "NIT",
+                            "number": "123456123"
+                          },
+                          "address": {
+                            "street": "Customer address",
+                            "city": "Medellin",
+                            "state": 1,
+                            "country": "CO",
+                            "phone": "3203203203"
+                          },
+                          "legalRepresentative": {
+                            "name": "legal representative name",
+                            "surname": "legal representative surname"
+                          },
+                          "billing": {
+                            "contact": "billing contact name",
+                            "mail": "user@example.com",
+                            "registrationNumber": "123456789",
+                            "taxType": 5,
+                            "taxRegime": 2,
+                            "organizationType": 1,
+                            "ciiu": "1224"
+                          },
+                          "travelAgency": {
+                            "dispersion": true,
+                            "iata": "1234"
+                          },
+                          "control": {
+                            "seller": 1,
+                            "reseller": 1
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id debe ser un entero",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Identificador de un comercio."
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 80,
+                    "example": "Merchant name",
+                    "description": "Nombre del comercio."
+                  },
+                  "brand": {
+                    "type": "string",
+                    "maxLength": 60,
+                    "example": "Merchant brand",
+                    "description": "Marca del comercio."
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Estado del comercio."
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta de comercios": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "name": "Merchant name",
+                    "brand": "Merchant brand",
+                    "active": true
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Acciones sobre comercios"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/merchant/delete": {
+      "post": {
+        "summary": "Eliminar un comercio",
+        "operationId": "post-core-merchant-delete",
+        "description": "Este servicio permite eliminar un comercio existente. Si la respuesta es exitosa, retorna el identificador del comercio eliminado.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "Identificador del comercio elimiado.."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador del comercio a eliminar."
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id"
+                ]
+              },
+              "examples": {
+                "Eliminar un comercio": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Acciones sobre comercios"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/province/search": {
+      "post": {
+        "summary": "Consulta de departamentos o estados por país",
+        "operationId": "post-core-province-search",
+        "description": "Este servicio permite consultar los estados /departamentos de un País. \nSi la respuesta es exitosa, se retorna un arreglo de los estados con su información.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información de los estados o departamentos de un país.",
+                      "items": {
+                        "$ref": "#/components/schemas/Province"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Busqueda exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "Antioquia",
+                          "short": "ANT",
+                          "iso3166": "ANT",
+                          "country": "CO",
+                          "alias": "05"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta departamentos/estados": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/taxpayer/search": {
+      "post": {
+        "summary": "Consulta de tipos de régimen",
+        "operationId": "post-core-taxpayer-search",
+        "description": "Este servicio permite consultar los tipos de regimen existentes.\nSi la respuesta es exitosa, se retorna un arreglo de los tipos de regimenes con su información.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información de tipos de régimen consultados.",
+                      "items": {
+                        "$ref": "#/components/schemas/Taxpayer"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Busqueda exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "la petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "Gran contribuyente",
+                          "code": "0-13",
+                          "country": "CO"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta de tipos de régimen": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/tax-regime/search": {
+      "post": {
+        "summary": "Consulta de regímenes fiscales",
+        "operationId": "post-core-tax-regime-search",
+        "description": "Este servicio permite consultar regímenes físcales existentes.\nSi la respuesta es exitosa, se retorna un arreglo de regímenes con su información.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información de regémenes fiscales consultados.",
+                      "items": {
+                        "$ref": "#/components/schemas/Tax-regime"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "la petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 0,
+                          "name": "No responsable de IVA",
+                          "code": "49",
+                          "country": "CO"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta régimen fiscal": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/corporation-type/search": {
+      "post": {
+        "summary": "Consulta de tipos de corporación",
+        "operationId": "post-core-corporation-type-search",
+        "description": "Este servicio permite consultar regímenes físcales existentes.\nSi la respuesta es exitosa, se retorna un arreglo de regímenes con su información.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene la información de los tipos de corporación consultados.",
+                      "items": {
+                        "$ref": "#/components/schemas/Corporation-type"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "Asociación o corporación sin ámino de lucro",
+                          "code": "1",
+                          "country": "CO"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta régimen fiscal": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/seller/search": {
+      "post": {
+        "summary": "Busqueda de consultores comerciales de PlacetoPay.",
+        "operationId": "post-core-seller-search",
+        "description": "Este servicio permite buscar consultores comerciales habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada consultor.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información acerca de los consultores comerciales habilitados de PlacetoPay.",
+                      "items": {
+                        "$ref": "#/components/schemas/Seller"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "Diego Calle",
+                          "alias": "null",
+                          "disabled": false
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Búsqueda consultores comerciales": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/reseller/search": {
+      "post": {
+        "summary": "Consulta de banco adquiriente",
+        "operationId": "post-core-reseller-search",
+        "description": "Este servicio permite consultar distribuidores habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada distribuidor.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información de bancos adqurientes consultados.",
+                      "items": {
+                        "$ref": "#/components/schemas/Reseller"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "INTERDIN",
+                          "conditions": "null",
+                          "enabled": true
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Búsqueda distribuidores": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ]
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "Customer-create": {
+        "title": "Customer",
+        "x-stoplight": {
+          "id": "hyaa8lw6ed0m4"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información para crear un comercio.",
+        "x-examples": {
+          "Estructura-comercio": {
+            "id": 1,
+            "name": "Merchant name",
+            "brand": "Merchant brand",
+            "mcc": "0742",
+            "active": true,
+            "timezone": "America/Bogota",
+            "size": "XS",
+            "incrementType": "SMLMV",
+            "languages": [
+              "ES"
+            ],
+            "currencies": [
+              "COP"
+            ],
+            "document": {
+              "type": "NIT",
+              "number": "123456123"
+            },
+            "address": {
+              "street": "Street address",
+              "city": "Medellin",
+              "state": "1",
+              "postalCode": "417030",
+              "country": "CO",
+              "phone": "3203201320"
+            },
+            "legalRepresentative": {
+              "type": "NIT",
+              "Document": "1234568",
+              "name": "Legal representative name",
+              "surname": "Legal representative surname"
+            },
+            "billing": {
+              "contact": "Billing contact name",
+              "mail": "billing@example.com",
+              "registrationNumber": "123456789",
+              "taxType": 5,
+              "taxRegime": 2,
+              "organizationType": 1,
+              "ciiu": "1224"
+            },
+            "travelAgency": {
+              "dispersion": true,
+              "iata": "123456"
+            },
+            "control": {
+              "seller": 1,
+              "reseller": 1
+            }
+          }
+        },
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Merchant name",
+            "maxLength": 80,
+            "description": "Nombre del comercio"
+          },
+          "brand": {
+            "type": "string",
+            "example": "Merchant brand",
+            "maxLength": 60,
+            "description": "Nombre de la marca"
+          },
+          "mcc": {
+            "type": "string",
+            "maxLength": 4,
+            "minLength": 4,
+            "example": "0742",
+            "description": "Código de categoría mercantil acorde ISO 18245."
+          },
+          "active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Estado del comercio"
+          },
+          "timezone": {
+            "type": "string",
+            "example": "America/Bogota",
+            "description": "Zona horaria de la ubicación del comercio.\n"
+          },
+          "size": {
+            "type": "string",
+            "enum": [
+              "XS",
+              "S",
+              "M",
+              "L"
+            ],
+            "example": "XS",
+            "maxLength": 2,
+            "description": "Tamaño de la empresa basado en los empleados [XS<10, S<50, M<250, L>250]."
+          },
+          "incrementType": {
+            "type": "string",
+            "enum": [
+              "SMLMV",
+              "IPC"
+            ],
+            "example": "IPC",
+            "description": "Tipo incremento en plan"
+          },
+          "languages": {
+            "type": "array",
+            "uniqueItems": true,
+            "minItems": 1,
+            "description": "Idioma de acuerdo a ISO 631-1.",
+            "items": {
+              "type": "string",
+              "maxLength": 2,
+              "example": "ES",
+              "enum": [
+                "ES",
+                "EN",
+                "PT"
+              ]
+            }
+          },
+          "currencies": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "description": "Moneda de acuerdo a ISO 4217.",
+            "items": {
+              "type": "string",
+              "maxLength": 3,
+              "example": "COP"
+            }
+          },
+          "document": {
+            "$ref": "../Models/Document.json"
+          },
+          "address": {
+            "$ref": "../Models/Address.json"
+          },
+          "legalRepresentative": {
+            "$ref": "../Models/Person.json"
+          },
+          "billing": {
+            "type": "object",
+            "description": "Estructura con información de facturación",
+            "properties": {
+              "contact": {
+                "type": "string",
+                "description": "Nombre de la persona que recibe la factura electrónica.",
+                "maxLength": 128
+              },
+              "mail": {
+                "type": "string",
+                "format": "email",
+                "maxLength": 128,
+                "description": "Correo elecxtrónico al cual será remitida la factura electrónica."
+              },
+              "registrationNumber": {
+                "type": "string",
+                "maxLength": 20,
+                "example": "123456789",
+                "description": "Número de la matrícula mercantil."
+              },
+              "taxType": {
+                "type": "integer",
+                "example": 5,
+                "description": "Tipo del regimen del comercio (depende del país)."
+              },
+              "taxRegime": {
+                "type": "integer",
+                "example": 2,
+                "description": "Regimen fiscal del comercio (depende del país)."
+              },
+              "organizationType": {
+                "type": "integer",
+                "example": 1,
+                "description": "Tipo de organización (depende del país)."
+              },
+              "ciiu": {
+                "type": "string",
+                "example": "1224",
+                "description": "Código completo de la actividad económica acorde a CIIU Rev4.",
+                "minLength": 4,
+                "maxLength": 4
+              }
+            }
+          },
+          "travelAgency": {
+            "type": "object",
+            "properties": {
+              "dispersion": {
+                "type": "boolean",
+                "default": false,
+                "description": "Indicador si acepta venta de tiquetes y venta propia (dispersión de fondos con aerolíneas)"
+              },
+              "iata": {
+                "type": "string",
+                "description": "Código IATA asignado a la agencia de viajes.",
+                "minLength": 4,
+                "maxLength": 10
+              }
+            }
+          },
+          "control": {
+            "type": "object",
+            "properties": {
+              "seller": {
+                "type": "integer",
+                "example": 1,
+                "description": "Nombre del consultor comercial asignado en Placetopay."
+              },
+              "reseller": {
+                "type": "integer",
+                "example": 1,
+                "description": "Banco adquirente."
+              }
+            }
+          }
+        },
+        "required": [
+          "name",
+          "brand",
+          "languages",
+          "currencies",
+          "document",
+          "address",
+          "legalRepresentative"
+        ]
+      },
+      "Customer-update": {
+        "title": "Customer",
+        "x-stoplight": {
+          "id": "hyaa8lw6ed0m4"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información para actualizar un comercio.",
+        "x-examples": {
+          "Estructura-comercio": {
+            "id": 1,
+            "name": "Merchant name",
+            "brand": "Merchant brand",
+            "mcc": "0742",
+            "active": true,
+            "timezone": "America/Bogota",
+            "size": "XS",
+            "incrementType": "SMLMV",
+            "languages": [
+              "ES"
+            ],
+            "currencies": [
+              "COP"
+            ],
+            "document": {
+              "type": "NIT",
+              "number": "123456123"
+            },
+            "address": {
+              "street": "Street address",
+              "city": "Medellin",
+              "state": "1",
+              "postalCode": "417030",
+              "country": "CO",
+              "phone": "3203201320"
+            },
+            "legalRepresentative": {
+              "type": "NIT",
+              "Document": "1234568",
+              "name": "Legal representative name",
+              "surname": "Legal representative surname"
+            },
+            "billing": {
+              "contact": "Billing contact name",
+              "mail": "billing@example.com",
+              "registrationNumber": "123456789",
+              "taxType": 5,
+              "taxRegime": 2,
+              "organizationType": 1,
+              "ciiu": "1224"
+            },
+            "travelAgency": {
+              "dispersion": true,
+              "iata": "123456"
+            },
+            "control": {
+              "seller": 1,
+              "reseller": 1
+            }
+          }
+        },
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Merchant name",
+            "maxLength": 80,
+            "description": "Nombre del comercio"
+          },
+          "brand": {
+            "type": "string",
+            "example": "Merchant brand",
+            "maxLength": 60,
+            "description": "Nombre de la marca"
+          },
+          "mcc": {
+            "type": "string",
+            "maxLength": 4,
+            "minLength": 4,
+            "example": "0742",
+            "description": "Código de categoría mercantil acorde ISO 18245."
+          },
+          "active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Estado del comercio"
+          },
+          "timezone": {
+            "type": "string",
+            "example": "America/Bogota",
+            "description": "Zona horaria de la ubicación del comercio.\n"
+          },
+          "size": {
+            "type": "string",
+            "enum": [
+              "XS",
+              "S",
+              "M",
+              "L"
+            ],
+            "example": "XS",
+            "maxLength": 2,
+            "description": "Tamaño de la empresa basado en los empleados [XS<10, S<50, M<250, L>250]."
+          },
+          "incrementType": {
+            "type": "string",
+            "enum": [
+              "SMLMV",
+              "IPC"
+            ],
+            "example": "IPC",
+            "description": "Tipo incremento en plan"
+          },
+          "languages": {
+            "type": "array",
+            "uniqueItems": true,
+            "minItems": 1,
+            "description": "Idioma de acuerdo a ISO 631-1.",
+            "items": {
+              "type": "string",
+              "maxLength": 2,
+              "example": "ES",
+              "enum": [
+                "ES",
+                "EN",
+                "PT"
+              ]
+            }
+          },
+          "currencies": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "description": "Moneda de acuerdo a ISO 4217.",
+            "items": {
+              "type": "string",
+              "maxLength": 3,
+              "example": "COP"
+            }
+          },
+          "document": {
+            "$ref": "../Models/Document.json"
+          },
+          "address": {
+            "$ref": "../Models/Address.json"
+          },
+          "legalRepresentative": {
+            "$ref": "../Models/Person.json"
+          },
+          "billing": {
+            "type": "object",
+            "description": "Estructura con información de facturación",
+            "properties": {
+              "contact": {
+                "type": "string",
+                "description": "Nombre de la persona que recibe la factura electrónica.",
+                "maxLength": 128
+              },
+              "mail": {
+                "type": "string",
+                "format": "email",
+                "maxLength": 128,
+                "description": "Correo elecxtrónico al cual será remitida la factura electrónica."
+              },
+              "registrationNumber": {
+                "type": "string",
+                "maxLength": 20,
+                "example": "123456789",
+                "description": "Número de la matrícula mercantil."
+              },
+              "taxType": {
+                "type": "integer",
+                "example": 5,
+                "description": "Tipo del regimen del comercio (depende del país)."
+              },
+              "taxRegime": {
+                "type": "integer",
+                "example": 2,
+                "description": "Regimen fiscal del comercio (depende del país)."
+              },
+              "organizationType": {
+                "type": "integer",
+                "example": 1,
+                "description": "Tipo de organización (depende del país)."
+              },
+              "ciiu": {
+                "type": "string",
+                "example": "1224",
+                "description": "Código completo de la actividad económica acorde a CIIU Rev4.",
+                "minLength": 4,
+                "maxLength": 4
+              }
+            }
+          },
+          "travelAgency": {
+            "type": "object",
+            "properties": {
+              "dispersion": {
+                "type": "boolean",
+                "default": false,
+                "description": "Indicador si acepta venta de tiquetes y venta propia (dispersión de fondos con aerolíneas)"
+              },
+              "iata": {
+                "type": "string",
+                "description": "Código IATA asignado a la agencia de viajes.",
+                "minLength": 4,
+                "maxLength": 10
+              }
+            }
+          },
+          "control": {
+            "type": "object",
+            "properties": {
+              "seller": {
+                "type": "integer",
+                "example": 1,
+                "description": "Nombre del consultor comercial asignado en Placetopay."
+              },
+              "reseller": {
+                "type": "integer",
+                "example": 1,
+                "description": "Banco adquirente."
+              }
+            }
+          }
+        }
+      },
+      "Customer": {
+        "title": "Customer",
+        "x-stoplight": {
+          "id": "hyaa8lw6ed0m4"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información de un comercio.",
+        "x-examples": {
+          "Estructura-comercio": {
+            "id": 1,
+            "name": "Merchant name",
+            "brand": "Merchant brand",
+            "mcc": "0742",
+            "active": true,
+            "timezone": "America/Bogota",
+            "size": "XS",
+            "incrementType": "SMLMV",
+            "languages": [
+              "ES"
+            ],
+            "currencies": [
+              "COP"
+            ],
+            "document": {
+              "type": "NIT",
+              "number": "123456123"
+            },
+            "address": {
+              "street": "Street address",
+              "city": "Medellin",
+              "state": "1",
+              "postalCode": "417030",
+              "country": "CO",
+              "phone": "3203201320"
+            },
+            "legalRepresentative": {
+              "type": "NIT",
+              "Document": "1234568",
+              "name": "Legal representative name",
+              "surname": "Legal representative surname"
+            },
+            "billing": {
+              "contact": "Billing contact name",
+              "mail": "billing@example.com",
+              "registrationNumber": "123456789",
+              "taxType": 5,
+              "taxRegime": 2,
+              "organizationType": 1,
+              "ciiu": "1224"
+            },
+            "travelAgency": {
+              "dispersion": true,
+              "iata": "123456"
+            },
+            "control": {
+              "seller": 1,
+              "reseller": 1
+            }
+          }
+        },
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1,
+            "description": "Identificador del comercio"
+          },
+          "name": {
+            "type": "string",
+            "example": "Merchant name",
+            "maxLength": 80,
+            "description": "Nombre del comercio"
+          },
+          "brand": {
+            "type": "string",
+            "example": "Merchant brand",
+            "maxLength": 60,
+            "description": "Nombre de la marca"
+          },
+          "mcc": {
+            "type": "string",
+            "maxLength": 4,
+            "minLength": 4,
+            "example": "0742",
+            "description": "Código de categoría mercantil acorde ISO 18245."
+          },
+          "active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Estado del comercio"
+          },
+          "timezone": {
+            "type": "string",
+            "example": "America/Bogota",
+            "description": "Zona horaria de la ubicación del comercio.\n"
+          },
+          "size": {
+            "type": "string",
+            "enum": [
+              "XS",
+              "S",
+              "M",
+              "L"
+            ],
+            "example": "XS",
+            "maxLength": 2,
+            "description": "Tamaño de la empresa basado en los empleados [XS<10, S<50, M<250, L>250]."
+          },
+          "incrementType": {
+            "type": "string",
+            "enum": [
+              "SMLMV",
+              "IPC"
+            ],
+            "example": "IPC",
+            "description": "Tipo incremento en plan"
+          },
+          "languages": {
+            "type": "array",
+            "uniqueItems": true,
+            "minItems": 1,
+            "description": "Idioma de acuerdo a ISO 631-1.",
+            "items": {
+              "type": "string",
+              "maxLength": 2,
+              "example": "ES",
+              "enum": [
+                "ES",
+                "EN",
+                "PT"
+              ]
+            }
+          },
+          "currencies": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "description": "Moneda de acuerdo a ISO 4217.",
+            "items": {
+              "type": "string",
+              "maxLength": 3,
+              "example": "COP"
+            }
+          },
+          "document": {
+            "$ref": "../Models/Document.json"
+          },
+          "address": {
+            "$ref": "../Models/Address.json"
+          },
+          "legalRepresentative": {
+            "$ref": "../Models/Person.json"
+          },
+          "billing": {
+            "type": "object",
+            "description": "Estructura con información de facturación",
+            "properties": {
+              "contact": {
+                "type": "string",
+                "description": "Nombre de la persona que recibe la factura electrónica.",
+                "maxLength": 128
+              },
+              "mail": {
+                "type": "string",
+                "format": "email",
+                "maxLength": 128,
+                "description": "Correo elecxtrónico al cual será remitida la factura electrónica."
+              },
+              "registrationNumber": {
+                "type": "string",
+                "maxLength": 20,
+                "example": "123456789",
+                "description": "Número de la matrícula mercantil."
+              },
+              "taxType": {
+                "type": "integer",
+                "example": 5,
+                "description": "Tipo del regimen del comercio (depende del país)."
+              },
+              "taxRegime": {
+                "type": "integer",
+                "example": 2,
+                "description": "Regimen fiscal del comercio (depende del país)."
+              },
+              "organizationType": {
+                "type": "integer",
+                "example": 1,
+                "description": "Tipo de organización (depende del país)."
+              },
+              "ciiu": {
+                "type": "string",
+                "example": "1224",
+                "description": "Código completo de la actividad económica acorde a CIIU Rev4.",
+                "minLength": 4,
+                "maxLength": 4
+              }
+            }
+          },
+          "travelAgency": {
+            "type": "object",
+            "properties": {
+              "dispersion": {
+                "type": "boolean",
+                "default": false,
+                "description": "Indicador si acepta venta de tiquetes y venta propia (dispersión de fondos con aerolíneas)"
+              },
+              "iata": {
+                "type": "string",
+                "description": "Código IATA asignado a la agencia de viajes.",
+                "minLength": 4,
+                "maxLength": 10
+              }
+            }
+          },
+          "control": {
+            "type": "object",
+            "properties": {
+              "seller": {
+                "type": "integer",
+                "example": 1,
+                "description": "Nombre del consultor comercial asignado en Placetopay."
+              },
+              "reseller": {
+                "type": "integer",
+                "example": 1,
+                "description": "Banco adquirente."
+              }
+            }
+          }
+        }
+      },
+      "Province": {
+        "title": "Province",
+        "x-stoplight": {
+          "id": "hgdvwi1upl9re"
+        },
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string",
+            "example": "Antioquia"
+          },
+          "short": {
+            "type": "string",
+            "example": "ANT"
+          },
+          "iso3166": {
+            "type": "string",
+            "example": "ANT"
+          },
+          "country": {
+            "type": "string",
+            "example": "CO"
+          },
+          "alias": {
+            "type": "string",
+            "example": "05"
+          }
+        },
+        "description": "Estructura que contiene información de una provincia/estado/departamento."
+      },
+      "Seller": {
+        "title": "Seller",
+        "x-stoplight": {
+          "id": "hgdvwi1upl9re"
+        },
+        "type": "object",
+        "description": "Estructura que contiene informaicón de un consultor comercial asignado en Placetopay.",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string",
+            "example": "Diego Calle"
+          },
+          "alias": {
+            "type": "string",
+            "example": "null"
+          },
+          "disabled": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Reseller": {
+        "title": "Reseller",
+        "x-stoplight": {
+          "id": "hgdvwi1upl9re"
+        },
+        "type": "object",
+        "description": "Estructura que contiene informaicón de un distribuidor o banco adquiriente.",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string",
+            "example": "Example"
+          },
+          "conditions": {
+            "type": "string",
+            "example": "null"
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Tax-regime": {
+        "title": "Tax regime",
+        "x-stoplight": {
+          "id": "hgdvwi1upl9re"
+        },
+        "type": "object",
+        "description": "Estructura que contiene información de un régimen fiscal.",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string",
+            "example": "No responsable de IVA"
+          },
+          "code": {
+            "type": "string",
+            "example": "49"
+          },
+          "country": {
+            "type": "string",
+            "example": "CO"
+          }
+        }
+      },
+      "Corporation-type": {
+        "title": "Corporation type",
+        "x-stoplight": {
+          "id": "hgdvwi1upl9re"
+        },
+        "type": "object",
+        "description": "Estructura que contiene información de tipo de corporación.",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string",
+            "example": "Asociación o corporación sin ámino de lucro"
+          },
+          "code": {
+            "type": "string",
+            "example": "1"
+          },
+          "country": {
+            "type": "string",
+            "example": "CO"
+          }
+        }
+      },
+      "Taxpayer": {
+        "title": "Tax payer",
+        "x-stoplight": {
+          "id": "hgdvwi1upl9re"
+        },
+        "type": "object",
+        "description": "Estructura que contiene información de tipo de régimen fiscal",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string",
+            "example": "Gran contribuyente"
+          },
+          "code": {
+            "type": "string",
+            "example": "0-13"
+          },
+          "country": {
+            "example": "CO",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {},
+    "responses": {}
+  }
+}

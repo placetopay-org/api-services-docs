@@ -1,0 +1,32 @@
+{
+  "title": "Address",
+  "type": "object",
+  "description": "Estructura que contiene la información sobre una dirección física\n",
+  "properties": {
+    "street": {
+      "type": "string",
+      "maxLength": 128
+    },
+    "city": {
+      "type": "string",
+      "maxLength": 30
+    },
+    "state": {
+      "type": "integer",
+      "example": 1
+    },
+    "postalCode": {
+      "type": "string",
+      "maxLength": 10
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 2,
+      "example": "CO"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 20
+    }
+  }
+}

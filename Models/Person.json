@@ -1,0 +1,44 @@
+{
+  "title": "Person",
+  "type": "object",
+  "description": "Estructura que refleja la información de una persona involucrada en una transacción.\n",
+  "properties": {
+    "documentType": {
+      "type": "string",
+      "description": "Tipo de documento de identificación\\n. https://docs-gateway.placetopay.com/docs/webcheckout-docs/71046995c46b3-tipos-de-documento",
+      "enum": [
+        "CC",
+        "NIT",
+        "RUT",
+        "TI",
+        "PNN"
+      ],
+      "example": "CC",
+      "maxLength": 3
+    },
+    "Document": {
+      "type": "string",
+      "description": "Número de documento de identificación."
+    },
+    "name": {
+      "type": "string",
+      "description": "Nombre "
+    },
+    "surname": {
+      "type": "string"
+    },
+    "company": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "description": "Correo electrónico."
+    },
+    "address": {
+      "$ref": "./Address.json"
+    },
+    "mobile": {
+      "type": "string"
+    }
+  }
+}
