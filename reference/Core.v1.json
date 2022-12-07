@@ -722,7 +722,7 @@
       },
       "parameters": []
     },
-    "/core/province/search": {
+    "/core/tools/province/search": {
       "post": {
         "summary": "Consulta de departamentos o estados por país",
         "operationId": "post-core-province-search",
@@ -863,7 +863,7 @@
       },
       "parameters": []
     },
-    "/core/taxpayer/search": {
+    "/core/tools/taxpayer/search": {
       "post": {
         "summary": "Consulta de tipos de régimen",
         "operationId": "post-core-taxpayer-search",
@@ -1002,7 +1002,7 @@
       },
       "parameters": []
     },
-    "/core/tax-regime/search": {
+    "/core/tools/tax-regime/search": {
       "post": {
         "summary": "Consulta de regímenes fiscales",
         "operationId": "post-core-tax-regime-search",
@@ -1141,7 +1141,7 @@
       },
       "parameters": []
     },
-    "/core/corporation-type/search": {
+    "/core/tools/corporation-type/search": {
       "post": {
         "summary": "Consulta de tipos de corporación",
         "operationId": "post-core-corporation-type-search",
@@ -1280,7 +1280,7 @@
       },
       "parameters": []
     },
-    "/core/seller/search": {
+    "/core/tools/seller/search": {
       "post": {
         "summary": "Busqueda de consultores comerciales de PlacetoPay.",
         "operationId": "post-core-seller-search",
@@ -1419,7 +1419,7 @@
       },
       "parameters": []
     },
-    "/core/reseller/search": {
+    "/core/tools/reseller/search": {
       "post": {
         "summary": "Consulta de banco adquiriente",
         "operationId": "post-core-reseller-search",
