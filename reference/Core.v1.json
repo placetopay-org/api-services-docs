@@ -1482,19 +1482,6 @@
                 "schema": {
                   "type": "string",
                   "format": "binary"
-                },
-                "examples": {
-                  "Respuesta exitosa": {
-                    "value": {
-                      "status": {
-                        "status": "OK",
-                        "reason": "00",
-                        "message": "La petición se ha procesado correctamente",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "id": 1
-                    }
-                  }
                 }
               },
               "application/pdf": {
