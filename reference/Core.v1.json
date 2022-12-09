@@ -1129,6 +1129,9 @@
                       "items": {
                         "$ref": "#/components/schemas/Document"
                       }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
                     }
                   }
                 },
@@ -1143,53 +1146,67 @@
                       },
                       "data": [
                         {
-                          "name": "Merchant name",
-                          "brand": "Merchant brand",
-                          "mcc": "0742",
-                          "active": true,
-                          "timezone": "America/Bogota",
-                          "size": "XS",
-                          "incrementType": "IPC",
-                          "languages": [
-                            "ES"
-                          ],
-                          "currencies": [
-                            "COP"
-                          ],
-                          "document": {
-                            "type": "NIT",
-                            "number": "123456123"
-                          },
-                          "address": {
-                            "street": "Customer address",
-                            "city": "Medellin",
-                            "state": 1,
-                            "country": "CO",
-                            "phone": "3203203203"
-                          },
-                          "legalRepresentative": {
-                            "name": "legal representative name",
-                            "surname": "legal representative surname"
-                          },
-                          "billing": {
-                            "contact": "billing contact name",
-                            "mail": "user@example.com",
-                            "registrationNumber": "123456789",
-                            "taxType": 5,
-                            "taxRegime": 2,
-                            "organizationType": 1,
-                            "ciiu": "1224"
-                          },
-                          "travelAgency": {
-                            "dispersion": true,
-                            "iata": "1234"
-                          },
-                          "control": {
-                            "seller": 1,
-                            "reseller": 1
-                          }
+                          "id": 1,
+                          "customerId": 1,
+                          "siteId": 1,
+                          "documentName": "L",
+                          "documentDescription": null,
+                          "documentType": 1,
+                          "type": "pdf",
+                          "size": "427.14 KB",
+                          "createdAt": "2022-12-05 14:32:24"
+                        },
+                        {
+                          "id": 2,
+                          "customerId": 1,
+                          "siteId": null,
+                          "documentName": "cc",
+                          "documentDescription": null,
+                          "documentType": 1,
+                          "type": "png",
+                          "size": "196.18 KB",
+                          "createdAt": "2022-12-05 17:48:29"
+                        },
+                        {
+                          "id": 3,
+                          "customerId": 1,
+                          "siteId": null,
+                          "documentName": "Test",
+                          "documentDescription": "Test document",
+                          "documentType": 1,
+                          "type": "pdf",
+                          "size": "1.05 MB",
+                          "createdAt": "2022-12-09 14:52:32"
+                        },
+                        {
+                          "id": 4,
+                          "customerId": 1,
+                          "siteId": null,
+                          "documentName": "Test",
+                          "documentDescription": "Test document",
+                          "documentType": 1,
+                          "type": "txt",
+                          "size": "781 Bytes",
+                          "createdAt": "2022-12-09 14:54:05"
+                        },
+                        {
+                          "id": 5,
+                          "customerId": 1,
+                          "siteId": null,
+                          "documentName": "Test",
+                          "documentDescription": "Test document",
+                          "documentType": 1,
+                          "type": "png",
+                          "size": "196.18 KB",
+                          "createdAt": "2022-12-09 15:01:32"
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 5,
+                        "perPage": 15,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -1293,7 +1310,7 @@
                 ]
               },
               "examples": {
-                "Consulta de comercios": {
+                "Consulta de documentos": {
                   "value": {
                     "auth": {
                       "login": "613822f45568191a8cdf4ad2299f6d23",
@@ -1442,7 +1459,7 @@
                 ]
               },
               "examples": {
-                "Eliminar un comercio": {
+                "Eliminar un documento": {
                   "value": {
                     "auth": {
                       "login": "613822f45568191a8cdf4ad2299f6d23",
@@ -1467,7 +1484,7 @@
     },
     "/core/merchant/document/download": {
       "post": {
-        "summary": "Download del archivo de un documento",
+        "summary": "Descarga del archivo de un documento",
         "operationId": "post-core-merchant-download-delete",
         "description": "Este servicio permite descargar el archivo de un documento existente. Si la respuesta es exitosa, retorna el archivo vinculado al documento.",
         "responses": {
@@ -1575,7 +1592,7 @@
                 ]
               },
               "examples": {
-                "Eliminar un comercio": {
+                "Descarga del archivo un documento": {
                   "value": {
                     "auth": {
                       "login": "613822f45568191a8cdf4ad2299f6d23",
@@ -3409,6 +3426,35 @@
             "format": "date-time",
             "description": "Fecha de creación del documento",
             "example": "2022-12-30 13:45:02"
+          }
+        }
+      },
+      "Pagination": {
+        "title": "Pagination",
+        "x-stoplight": {
+          "id": "1oec2iodc465x"
+        },
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Total de items de la consulta",
+            "example": 25
+          },
+          "perPage": {
+            "type": "integer",
+            "description": "Número de items por página",
+            "example": 15
+          },
+          "currentPage": {
+            "type": "integer",
+            "description": "Página actual",
+            "example": 2
+          },
+          "lastPage": {
+            "type": "integer",
+            "description": "Última página",
+            "example": 10
           }
         }
       }
