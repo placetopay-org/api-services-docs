@@ -854,7 +854,6 @@
                   "file": {
                     "type": "string",
                     "format": "binary",
-                    "example": "contracto.pdf",
                     "description": "Archivo binário del documento"
                   }
                 },
@@ -866,66 +865,7 @@
                   "file"
                 ]
               },
-              "examples": {
-                "Solicitud de creación de un documento": {
-                  "value": {
-                    "auth": {
-                      "login": "613822f45568191a8cdf4ad2299f6d23",
-                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
-                      "nonce": "NjE1MWQ4MDE5YWViMw==",
-                      "seed": "2021-09-27T09:41:05-05:00"
-                    },
-                    "data": {
-                      "name": "Merchant name",
-                      "brand": "Merchant brand",
-                      "mcc": "0742",
-                      "active": true,
-                      "timezone": "America/Bogota",
-                      "size": "XS",
-                      "incrementType": "IPC",
-                      "languages": [
-                        "ES"
-                      ],
-                      "currencies": [
-                        "COP"
-                      ],
-                      "document": {
-                        "type": "NIT",
-                        "number": "123456123"
-                      },
-                      "address": {
-                        "street": "Direccion del customer",
-                        "city": "Medellin",
-                        "state": 1,
-                        "country": "CO",
-                        "postalCode": "050031",
-                        "phone": "3172234333"
-                      },
-                      "legalRepresentative": {
-                        "name": "string",
-                        "surname": "string"
-                      },
-                      "billing": {
-                        "contact": "billing contact name",
-                        "mail": "user@example.com",
-                        "registrationNumber": "123456789",
-                        "taxType": 5,
-                        "taxRegime": 2,
-                        "organizationType": 1,
-                        "ciiu": "1224"
-                      },
-                      "travelAgency": {
-                        "dispersion": true,
-                        "iata": "123456"
-                      },
-                      "control": {
-                        "seller": 1,
-                        "reseller": 1
-                      }
-                    }
-                  }
-                }
-              }
+              "examples": {}
             }
           }
         },
