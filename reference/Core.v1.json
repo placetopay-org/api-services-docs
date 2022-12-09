@@ -1116,6 +1116,217 @@
       },
       "parameters": []
     },
+    "/core/merchant/document/search": {
+      "post": {
+        "summary": "Consulta de documentos",
+        "operationId": "post-core-merchant-search",
+        "description": "Este servicio permite consultar documentos existentes filtrando por medio de los parametros: identificador del comercio o del sitio, nombre, descripción y identificador del tipo de documento.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene la información de documentos consultada por medio de los filtros aplicados.",
+                      "items": {
+                        "$ref": "#/components/schemas/Document"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "name": "Merchant name",
+                          "brand": "Merchant brand",
+                          "mcc": "0742",
+                          "active": true,
+                          "timezone": "America/Bogota",
+                          "size": "XS",
+                          "incrementType": "IPC",
+                          "languages": [
+                            "ES"
+                          ],
+                          "currencies": [
+                            "COP"
+                          ],
+                          "document": {
+                            "type": "NIT",
+                            "number": "123456123"
+                          },
+                          "address": {
+                            "street": "Customer address",
+                            "city": "Medellin",
+                            "state": 1,
+                            "country": "CO",
+                            "phone": "3203203203"
+                          },
+                          "legalRepresentative": {
+                            "name": "legal representative name",
+                            "surname": "legal representative surname"
+                          },
+                          "billing": {
+                            "contact": "billing contact name",
+                            "mail": "user@example.com",
+                            "registrationNumber": "123456789",
+                            "taxType": 5,
+                            "taxRegime": 2,
+                            "organizationType": 1,
+                            "ciiu": "1224"
+                          },
+                          "travelAgency": {
+                            "dispersion": true,
+                            "iata": "1234"
+                          },
+                          "control": {
+                            "seller": 1,
+                            "reseller": 1
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id debe ser un entero",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "customerId": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Identificador de un comercio."
+                  },
+                  "siteId": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Identificador de un sitio."
+                  },
+                  "documentName": {
+                    "type": "string",
+                    "example": "Document name",
+                    "description": "Nombre del documento.",
+                    "maxLength": 30
+                  },
+                  "documentDescription": {
+                    "type": "string",
+                    "maxLength": 60,
+                    "example": "Document description",
+                    "description": "Descripción del documento."
+                  },
+                  "documentType": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Identificador de un tipo de documento."
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta de comercios": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "name": "Merchant name",
+                    "brand": "Merchant brand",
+                    "active": true
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Acciones sobre comercios"
+        ]
+      },
+      "parameters": []
+    },
     "/core/merchant/document/delete": {
       "post": {
         "summary": "Eliminar un documento",
@@ -3008,6 +3219,62 @@
           "name",
           "surname"
         ]
+      },
+      "Document": {
+        "title": "Document",
+        "x-stoplight": {
+          "id": "csxf6p90l3yuk"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información de un documento",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identificador del documento"
+          },
+          "customerId": {
+            "type": "integer",
+            "description": "Identificador del comercio",
+            "example": 1
+          },
+          "siteId": {
+            "type": "integer",
+            "description": "Identificador del sitio",
+            "nullable": true
+          },
+          "documentName": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "Nombre del documento"
+          },
+          "documentDescription": {
+            "type": "string",
+            "maxLength": 60,
+            "description": "Descripción del documento",
+            "nullable": true
+          },
+          "documentType": {
+            "type": "integer",
+            "description": "Identificador del tipo de documento",
+            "example": 1
+          },
+          "type": {
+            "type": "string",
+            "description": "Tipo del archivo de documento",
+            "example": "pdf"
+          },
+          "size": {
+            "type": "string",
+            "description": "Tamaño del archivo de documento",
+            "example": "10 MB"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Fecha de creación del documento",
+            "example": "2022-12-30 13:45:02"
+          }
+        }
       }
     },
     "securitySchemes": {},
