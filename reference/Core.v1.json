@@ -832,25 +832,27 @@
                   },
                   "siteId": {
                     "type": "integer",
-                    "description": "Identificador del tipo"
+                    "description": "Identificador del sitio"
                   },
                   "documentName": {
                     "type": "string",
                     "maxLength": 30,
                     "description": "Nombre del documento"
                   },
+                  "documentType": {
+                    "type": "integer",
+                    "description": "Identificador del tipo del documento"
+                  },
                   "documentDescription": {
                     "type": "string",
                     "maxLength": 60,
                     "description": "Descripción del documento"
                   },
-                  "documentType": {
-                    "type": "integer",
-                    "description": "Identificador del tipo del documento"
-                  },
                   "file": {
                     "type": "string",
-                    "format": "binary"
+                    "format": "binary",
+                    "example": "contracto.pdf",
+                    "description": "Archivo binário del documento"
                   }
                 },
                 "required": [
@@ -1108,6 +1110,141 @@
           "description": ""
         },
         "parameters": [],
+        "tags": [
+          "Acciones sobre comercios"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/merchant/document/delete": {
+      "post": {
+        "summary": "Eliminar un documento",
+        "operationId": "post-core-merchant-document-delete",
+        "description": "Este servicio permite eliminar un documento existente. Si la respuesta es exitosa, retorna el identificador del documento eliminado.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "Identificador del documento elimiado."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador del documento a eliminar."
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id"
+                ]
+              },
+              "examples": {
+                "Eliminar un comercio": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
         "tags": [
           "Acciones sobre comercios"
         ]
