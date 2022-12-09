@@ -931,6 +931,189 @@
       },
       "parameters": []
     },
+    "/core/merchant/document/update": {
+      "post": {
+        "summary": "Editar un documento",
+        "operationId": "post-core-merchant-document-update",
+        "description": "Este servicio permite actualizar los datos de un documento existente. Si el proceso es exitoso, se retorna el identificador del documento y su estado de activación. No es posible editar el archivo o el comercio vinculado.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 1,
+                      "description": "Identificador del documento editado."
+                    }
+                  }
+                },
+                "examples": {
+                  "Actualización exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 1,
+                      "active": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Proceso fallido": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Autenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador del documento a editar."
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "documentName": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "Nombre del documento"
+                      },
+                      "documentDescription": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "Descripción del documento"
+                      },
+                      "documentType": {
+                        "type": "integer",
+                        "description": "Identificador del tipo de documento"
+                      },
+                      "siteId": {
+                        "type": "integer",
+                        "description": "Identificador del sitio"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id"
+                ]
+              },
+              "examples": {
+                "Actualización de comercio": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "data": {
+                      "name": "Merchant update name",
+                      "brand": "Merchant update brand",
+                      "mcc": "0763",
+                      "active": false,
+                      "timezone": "America/Costa_Rica",
+                      "size": "M",
+                      "document": {
+                        "type": "NIT",
+                        "number": "32145632"
+                      },
+                      "incrementType": "SMLMV",
+                      "languages": [
+                        "EN"
+                      ],
+                      "currencies": [
+                        "USD"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "parameters": [],
+        "tags": [
+          "Acciones sobre comercios"
+        ]
+      },
+      "parameters": []
+    },
     "/core/tools/province/search": {
       "post": {
         "summary": "Consulta de departamentos o estados por país",
@@ -2688,18 +2871,6 @@
           "name",
           "surname"
         ]
-      },
-      "Document": {
-        "title": "Document",
-        "x-stoplight": {
-          "id": "su6re95w9a1w2"
-        },
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          }
-        }
       }
     },
     "securitySchemes": {},
