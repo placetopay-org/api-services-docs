@@ -867,7 +867,7 @@
                 ]
               },
               "examples": {
-                "Solicitud de creación de un comercio": {
+                "Solicitud de creación de un documento": {
                   "value": {
                     "auth": {
                       "login": "613822f45568191a8cdf4ad2299f6d23",
