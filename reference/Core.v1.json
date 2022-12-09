@@ -1078,7 +1078,7 @@
                 ]
               },
               "examples": {
-                "Actualización de comercio": {
+                "Actualización de documento": {
                   "value": {
                     "auth": {
                       "login": "613822f45568191a8cdf4ad2299f6d23",
@@ -1088,23 +1088,9 @@
                     },
                     "id": 1,
                     "data": {
-                      "name": "Merchant update name",
-                      "brand": "Merchant update brand",
-                      "mcc": "0763",
-                      "active": false,
-                      "timezone": "America/Costa_Rica",
-                      "size": "M",
-                      "document": {
-                        "type": "NIT",
-                        "number": "32145632"
-                      },
-                      "incrementType": "SMLMV",
-                      "languages": [
-                        "EN"
-                      ],
-                      "currencies": [
-                        "USD"
-                      ]
+                      "documentName": "My document name",
+                      "documentDescription": "My document description",
+                      "documentType": 1
                     }
                   }
                 }
@@ -1316,9 +1302,9 @@
                       "seed": "2021-09-27T09:41:05-05:00"
                     },
                     "id": 1,
-                    "name": "Merchant name",
-                    "brand": "Merchant brand",
-                    "active": true
+                    "documentName": "name",
+                    "documentDescription": "description",
+                    "documentType": 1
                   }
                 }
               }
@@ -1329,6 +1315,16 @@
         "tags": [
           "Acciones sobre comercios",
           "Administración de documentos"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "example": 2
+            },
+            "in": "query",
+            "name": "page"
+          }
         ]
       },
       "parameters": []
