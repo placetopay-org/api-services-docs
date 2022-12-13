@@ -14,11 +14,11 @@
   },
   "servers": [
     {
-      "url": "https://test.placetopay.com/rest",
+      "url": "https://api-co-dev.placetopay.ws",
       "description": "Pruebas Colombia"
     },
     {
-      "url": "https://test.placetopay.ec/rest",
+      "url": "https://api-ec-dev.placetopay.ws",
       "description": "Pruebas Ecuador"
     }
   ],
