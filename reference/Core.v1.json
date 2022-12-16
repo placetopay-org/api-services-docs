@@ -725,11 +725,10 @@
       },
       "parameters": []
     },
-    "/core/merchant/payment-method/create": {
-      "parameters": [],
+    "/core/merchant/payment-methods/create": {
       "post": {
         "summary": "Agregar un método de pago a un comercio",
-        "operationId": "post-core-merchant-payment-method-create",
+        "operationId": "post-core-merchant-payment-methods-create",
         "responses": {
           "200": {
             "description": "OK",
@@ -962,11 +961,10 @@
         ]
       }
     },
-    "/core/merchant/payment-method/update": {
-      "parameters": [],
+    "/core/merchant/payment-methods/update": {
       "post": {
         "summary": "Actualizar un método de pago",
-        "operationId": "post-core-merchant-payment-method-update",
+        "operationId": "post-core-merchant-payment-methods-update",
         "responses": {
           "200": {
             "description": "OK",
@@ -1187,11 +1185,11 @@
         ]
       }
     },
-    "/core/merchant/payment-method/delete": {
+    "/core/merchant/payment-methods/delete": {
       "parameters": [],
       "post": {
         "summary": "Remover un método de pago.",
-        "operationId": "post-core-merchant-payment-method-delete",
+        "operationId": "post-core-merchant-payment-methods-delete",
         "responses": {
           "200": {
             "description": "OK",
@@ -1321,10 +1319,10 @@
         ]
       }
     },
-    "/core/merchant/payment-method/search": {
+    "/core/merchant/payment-methods/search": {
       "post": {
         "summary": "Consulta de métodos de pago",
-        "operationId": "post-core-merchant-payment-method-search",
+        "operationId": "post-core-merchant-payment-methods-search",
         "responses": {
           "200": {
             "description": "OK",
@@ -1653,8 +1651,7 @@
         "tags": [
           "Procedimientos adicionales"
         ]
-      },
-      "parameters": []
+      }
     },
     "/core/tools/taxpayer/search": {
       "post": {
