@@ -2096,7 +2096,7 @@
                   }
                 },
                 "examples": {
-                  "Respuesta exitosa": {
+                  "Respuesta existosa": {
                     "value": {
                       "status": {
                         "status": "OK",
@@ -2108,7 +2108,7 @@
                         {
                           "id": 1,
                           "name": "Diego Calle",
-                          "alias": "null",
+                          "alias": "EGM",
                           "disabled": false
                         }
                       ]
@@ -2235,7 +2235,7 @@
                   }
                 },
                 "examples": {
-                  "Respuesta exitosa": {
+                  "Respuesta Exitosa": {
                     "value": {
                       "status": {
                         "status": "OK",
@@ -2246,7 +2246,7 @@
                       "data": [
                         {
                           "id": 1,
-                          "name": "INTERDIN",
+                          "name": "PLACETOPAY",
                           "conditions": "null",
                           "enabled": true
                         }
@@ -2521,7 +2521,7 @@
                       },
                       "data": [
                         {
-                          "id": 0,
+                          "id": 1,
                           "name": "BANCOLOMBIA",
                           "code": "string",
                           "disabled": false,
