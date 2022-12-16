@@ -2778,7 +2778,7 @@
   "components": {
     "schemas": {
       "Customer-create": {
-        "title": "Customer",
+        "title": "Customer create",
         "type": "object",
         "description": "Estructura que contiene la información para crear un comercio.",
         "x-examples": {
@@ -3009,7 +3009,7 @@
         ]
       },
       "Customer-update": {
-        "title": "Customer",
+        "title": "Customer update",
         "type": "object",
         "description": "Estructura que contiene la información para actualizar un comercio.",
         "x-examples": {
