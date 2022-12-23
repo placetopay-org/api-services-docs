@@ -27,6 +27,9 @@
       "name": "Acciones sobre comercios"
     },
     {
+      "name": "Acciones sobre métodos de pago"
+    },
+    {
       "name": "Procedimientos adicionales"
     }
   ],
@@ -722,10 +725,798 @@
       },
       "parameters": []
     },
+    "/core/merchant/payment-methods/create": {
+      "post": {
+        "summary": "Agregar un método de pago a un comercio",
+        "operationId": "post-core-merchant-payment-methods-create",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "Identificador del método de pago agregado al comercio.",
+                      "example": 1
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo data.customerId es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Autenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Objeto con la información necesaria para agregar un método de pago a un comercio.",
+                    "required": [
+                      "customerId",
+                      "code",
+                      "commissionModel",
+                      "commissionValue"
+                    ],
+                    "properties": {
+                      "customerId": {
+                        "type": "integer",
+                        "example": 1,
+                        "minimum": 1,
+                        "description": "Identificador del comercio."
+                      },
+                      "code": {
+                        "type": "string",
+                        "maxLength": 5,
+                        "example": "RM_MC",
+                        "description": "Código identificador del método de pago."
+                      },
+                      "commissionModel": {
+                        "type": "string",
+                        "description": "Modelo de comisión.",
+                        "enum": [
+                          "P",
+                          "F"
+                        ],
+                        "example": "P",
+                        "maxLength": 1
+                      },
+                      "commissionValue": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 1,
+                        "description": "Valor de comisión. Permite 14 caracteres enteros y 2 caracteres decimales además del punto."
+                      },
+                      "accountType": {
+                        "type": "integer",
+                        "description": "Tipo de cuenta de recaudo.",
+                        "example": 1
+                      },
+                      "accountNumber": {
+                        "type": "string",
+                        "example": "1234567890",
+                        "maxLength": 20,
+                        "description": "Número de cuenta de recaudo."
+                      },
+                      "financialEntity": {
+                        "type": "integer",
+                        "description": "Identificador de la entidad financiera o Banco recaudador del medio de pago.",
+                        "example": 2
+                      },
+                      "order": {
+                        "type": "integer",
+                        "description": "Nivel de prioridad.",
+                        "example": 1
+                      },
+                      "creditRules": {
+                        "type": "object",
+                        "description": "Reglas de credito",
+                        "properties": {
+                          "testing_rules": {
+                            "type": "object",
+                            "properties": {
+                              "rule": {
+                                "type": "string",
+                                "example": "rule_test"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "settings": {
+                        "type": "object",
+                        "description": "Objeto que contiene las configuraciones del medio de pago.",
+                        "properties": {
+                          "testSetting": {
+                            "type": "string"
+                          },
+                          "SecondTestSetting": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth",
+                  "data"
+                ]
+              },
+              "examples": {
+                "Agregar un método de pago": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "data": {
+                      "customerId": 1,
+                      "code": "RM_MC",
+                      "commissionModel": "P",
+                      "commissionValue": 1,
+                      "accountType": 1,
+                      "accountNumber": "1234567890",
+                      "financialEntity": 2,
+                      "order": 1,
+                      "creditRules": {
+                        "testing_rules": {
+                          "rule": "rule_test"
+                        }
+                      },
+                      "settings": {
+                        "testSetting": "string",
+                        "SecondTestSetting": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Este servicio permite agregar un método de pago existente al comercio. Si la respuesta es exitosa, retorna el identificador del método de pago agregado.",
+        "tags": [
+          "Acciones sobre métodos de pago"
+        ]
+      }
+    },
+    "/core/merchant/payment-methods/update": {
+      "post": {
+        "summary": "Actualizar un método de pago",
+        "operationId": "post-core-merchant-payment-methods-update",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "Identificador del método de pago actualizado.",
+                      "example": 1
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Autenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador del medio de pago.",
+                    "example": 1
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Objeto con la información necesaria para agregar un método de pago a un comercio.",
+                    "properties": {
+                      "commissionModel": {
+                        "type": "string",
+                        "description": "Modelo de comisión.",
+                        "enum": [
+                          "P",
+                          "F"
+                        ],
+                        "example": "F",
+                        "maxLength": 1
+                      },
+                      "commissionValue": {
+                        "type": "number",
+                        "format": "float",
+                        "description": "Valor de comisión.",
+                        "example": 0
+                      },
+                      "accountType": {
+                        "type": "integer",
+                        "description": "Identificador de tipo de cuenta de recaudo.",
+                        "example": 1
+                      },
+                      "accountNumber": {
+                        "type": "string",
+                        "example": "1234567890",
+                        "maxLength": 20,
+                        "description": "Número de cuenta de recaudo."
+                      },
+                      "financialEntity": {
+                        "type": "integer",
+                        "description": "Identificado de la entidad financiera o banco recaudador del medio de pago.",
+                        "example": 2
+                      },
+                      "order": {
+                        "type": "integer",
+                        "description": "Nivel de prioridad.",
+                        "example": 1
+                      },
+                      "creditRules": {
+                        "type": "object",
+                        "description": "Reglas de crédito.",
+                        "properties": {
+                          "testingRules": {
+                            "type": "object",
+                            "properties": {
+                              "rule": {
+                                "type": "string",
+                                "example": "rule_test"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "settings": {
+                        "type": "object",
+                        "description": "Objeto que contiene las configuraciones del medio de pago.",
+                        "properties": {
+                          "testSetting": {
+                            "type": "string"
+                          },
+                          "SecondTestSetting": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id",
+                  "data"
+                ]
+              },
+              "examples": {
+                "Actualizar un método de pago agregado.": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "data": {
+                      "commissionModel": "P",
+                      "commissionValue": 1,
+                      "accountNumber": "1234567890",
+                      "financialEntity": 2,
+                      "order": 1,
+                      "accountType": 1,
+                      "creditRules": {
+                        "testingRules": {
+                          "rule": "rule_test"
+                        }
+                      },
+                      "settings": {
+                        "testSetting": "string",
+                        "SecondTestSetting": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite actualizar un médio de pago asociado a un comercio. Si la respuesta es exitosa, retorna el identificador del medio de pago.",
+        "tags": [
+          "Acciones sobre métodos de pago"
+        ]
+      }
+    },
+    "/core/merchant/payment-methods/delete": {
+      "parameters": [],
+      "post": {
+        "summary": "Remover un método de pago.",
+        "operationId": "post-core-merchant-payment-methods-delete",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "Identificador del método de pago eliminado."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida.": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Autenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador del método de pago."
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id"
+                ]
+              },
+              "examples": {
+                "Remover un método de pago": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Este servicio permite remover un método de pago de un comercio. Si el proceso es exitoso, se retorna el identificador del medio de pago.",
+        "tags": [
+          "Acciones sobre métodos de pago"
+        ]
+      }
+    },
+    "/core/merchant/payment-methods/search": {
+      "post": {
+        "summary": "Consulta de métodos de pago",
+        "operationId": "post-core-merchant-payment-methods-search",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Payment-Method"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta de consulta exitosa.": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "customerId": 1,
+                          "code": "RM_MC",
+                          "name": "MasterCard",
+                          "commissionModel": "P",
+                          "commissionValue": 1,
+                          "accountNumber": "123456878890",
+                          "accountType": 1,
+                          "franchise": "VISA",
+                          "financialEntity": 1,
+                          "order": 1,
+                          "disabled": false,
+                          "creditRules": {},
+                          "settings": {}
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo customerId es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "customerId": {
+                    "type": "integer",
+                    "description": "Identificador del comercio.",
+                    "example": 1
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador del método de pago a consultar.",
+                    "example": 100
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Nombre del método de pago a consultar.",
+                    "maxLength": 50,
+                    "example": "masterCard"
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "Código identificador del método de pago a consultar.",
+                    "maxLength": 5,
+                    "example": "RM_MC"
+                  },
+                  "franchise": {
+                    "type": "string",
+                    "description": "Franquicia del método de pago a consultar.",
+                    "example": "MASTERCARD",
+                    "enum": [
+                      "AMEX",
+                      "DINERS",
+                      "DISCOVER",
+                      "JBC",
+                      "UNIONPAY",
+                      "MASTERCARD",
+                      "VISA",
+                      "EXITO",
+                      "ALKOSTO",
+                      "MAESTRO",
+                      "VISAELECTRON",
+                      "ATH"
+                    ]
+                  }
+                },
+                "required": [
+                  "auth",
+                  "customerId"
+                ]
+              },
+              "examples": {
+                "Busqueda de medios de pago asociados a un comercio.": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "customerId": 1,
+                    "id": 100,
+                    "name": "masterCard",
+                    "code": "RM_MC",
+                    "franchise": "MASTERCARD"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite consultar los médios de págo asociados a un comercio. \nEs posible emplear filtrado por medio de los parametros: \"id\", \"name\", \"code\" y \"franchise\".\n\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
+        "tags": [
+          "Acciones sobre métodos de pago"
+        ]
+      }
+    },
     "/core/tools/province/search": {
       "post": {
         "summary": "Consulta de departamentos o estados por país",
-        "operationId": "post-core-province-search",
+        "operationId": "post-core-tools-province-search",
         "description": "Este servicio permite consultar los estados /departamentos de un País. \nSi la respuesta es exitosa, se retorna un arreglo de los estados con su información.",
         "responses": {
           "200": {
@@ -860,13 +1651,12 @@
         "tags": [
           "Procedimientos adicionales"
         ]
-      },
-      "parameters": []
+      }
     },
     "/core/tools/taxpayer/search": {
       "post": {
         "summary": "Consulta de tipos de régimen",
-        "operationId": "post-core-taxpayer-search",
+        "operationId": "post-core-tools-taxpayer-search",
         "description": "Este servicio permite consultar los tipos de regimen existentes.\nSi la respuesta es exitosa, se retorna un arreglo de los tipos de regimenes con su información.",
         "responses": {
           "200": {
@@ -1005,7 +1795,7 @@
     "/core/tools/tax-regime/search": {
       "post": {
         "summary": "Consulta de regímenes fiscales",
-        "operationId": "post-core-tax-regime-search",
+        "operationId": "post-core-tools-tax-regime-search",
         "description": "Este servicio permite consultar regímenes físcales existentes.\nSi la respuesta es exitosa, se retorna un arreglo de regímenes con su información.",
         "responses": {
           "200": {
@@ -1144,7 +1934,7 @@
     "/core/tools/corporation-type/search": {
       "post": {
         "summary": "Consulta de tipos de corporación",
-        "operationId": "post-core-corporation-type-search",
+        "operationId": "post-core-tools-corporation-type-search",
         "description": "Este servicio permite consultar regímenes físcales existentes.\nSi la respuesta es exitosa, se retorna un arreglo de regímenes con su información.",
         "responses": {
           "200": {
@@ -1283,7 +2073,7 @@
     "/core/tools/seller/search": {
       "post": {
         "summary": "Busqueda de consultores comerciales de PlacetoPay.",
-        "operationId": "post-core-seller-search",
+        "operationId": "post-core-tools-seller-search",
         "description": "Este servicio permite buscar consultores comerciales habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada consultor.",
         "responses": {
           "200": {
@@ -1306,7 +2096,7 @@
                   }
                 },
                 "examples": {
-                  "Respuesta exitosa": {
+                  "Respuesta existosa": {
                     "value": {
                       "status": {
                         "status": "OK",
@@ -1318,7 +2108,7 @@
                         {
                           "id": 1,
                           "name": "Diego Calle",
-                          "alias": "null",
+                          "alias": "EGM",
                           "disabled": false
                         }
                       ]
@@ -1422,7 +2212,7 @@
     "/core/tools/reseller/search": {
       "post": {
         "summary": "Consulta de banco adquiriente",
-        "operationId": "post-core-reseller-search",
+        "operationId": "post-core-tools-reseller-search",
         "description": "Este servicio permite consultar distribuidores habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada distribuidor.",
         "responses": {
           "200": {
@@ -1445,6 +2235,282 @@
                   }
                 },
                 "examples": {
+                  "Respuesta Exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "PLACETOPAY",
+                          "conditions": "null",
+                          "enabled": true
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Búsqueda distribuidores": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/tools/account-type/search": {
+      "post": {
+        "summary": "Consulta de tipos de cuenta de recaudo.",
+        "operationId": "post-core-tools-account-type-search",
+        "description": "Este servicio permite consultar los tipos de cuenta de recaudo.\nSi la respuesta es exitosa, se retorna un arreglo de tipos de cuenta de recaudo con su información correspondiente.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "description": "Arreglo que contiene información de bancos adqurientes consultados.",
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Account-type"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "Ahorros"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Búsqueda distribuidores": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/tools/financial-entity/search": {
+      "post": {
+        "summary": "Consulta de entidades financieras.",
+        "operationId": "post-core-tools-financial-entity-search",
+        "description": "Este servicio permite consultar entidades financiera o banco recaudador.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada entidad financiera.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información de bancos adqurientes consultados.",
+                      "items": {
+                        "$ref": "#/components/schemas/Financial-entity"
+                      }
+                    }
+                  }
+                },
+                "examples": {
                   "Respuesta exitosa": {
                     "value": {
                       "status": {
@@ -1456,9 +2522,159 @@
                       "data": [
                         {
                           "id": 1,
-                          "name": "INTERDIN",
-                          "conditions": "null",
-                          "enabled": true
+                          "name": "BANCOLOMBIA",
+                          "code": "string",
+                          "disabled": false,
+                          "country": "CO"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Búsqueda distribuidores": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/tools/payment-method/search": {
+      "post": {
+        "summary": "Consulta de medios de pago.",
+        "operationId": "post-core-tools-payment-method-search",
+        "description": "Este servicio permite consultar medios de pago habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada medio de pago.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información de bancos adqurientes consultados.",
+                      "items": {
+                        "$ref": "#/components/schemas/Payment-Method"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "customerId": 1,
+                          "code": "RM_MC",
+                          "name": "MasterCard",
+                          "commissionModel": "P",
+                          "commissionValue": 1,
+                          "accountNumber": "123456878890",
+                          "accountType": 1,
+                          "franchise": "MASTERCARD",
+                          "financialEntity": 1,
+                          "order": 1,
+                          "disabled": true,
+                          "creditRules": {},
+                          "settings": {}
                         }
                       ]
                     }
@@ -1562,7 +2778,7 @@
   "components": {
     "schemas": {
       "Customer-create": {
-        "title": "Customer",
+        "title": "Customer create",
         "type": "object",
         "description": "Estructura que contiene la información para crear un comercio.",
         "x-examples": {
@@ -1793,7 +3009,7 @@
         ]
       },
       "Customer-update": {
-        "title": "Customer",
+        "title": "Customer update",
         "type": "object",
         "description": "Estructura que contiene la información para actualizar un comercio.",
         "x-examples": {
@@ -2241,38 +3457,201 @@
           }
         }
       },
+      "Payment-Method": {
+        "title": "Payment Method",
+        "type": "object",
+        "description": "Estructura que contiene la información de un medio de pago.",
+        "x-examples": {},
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identificador del método de pago.",
+            "example": 1
+          },
+          "customerId": {
+            "type": "integer",
+            "description": "Identificador del comercio al que pertence el método de pago.",
+            "example": 1
+          },
+          "code": {
+            "type": "string",
+            "description": "Código identificador del método de pago.",
+            "maxLength": 5,
+            "example": "RM_MC"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 50,
+            "example": "MasterCard",
+            "description": "Nombre del método de pago."
+          },
+          "commissionModel": {
+            "type": "string",
+            "enum": [
+              "P",
+              "F"
+            ],
+            "example": "P",
+            "maxLength": 1,
+            "description": "Modelo de comisión."
+          },
+          "commissionValue": {
+            "type": "number",
+            "format": "double",
+            "example": 1,
+            "description": "Valor de comisión."
+          },
+          "accountNumber": {
+            "type": "string",
+            "maxLength": 20,
+            "example": "123456878890",
+            "description": "Número de cuenta de recuado."
+          },
+          "accountType": {
+            "type": "integer",
+            "example": 1,
+            "description": "Identificador de tipo de cuenta de recaudo."
+          },
+          "franchise": {
+            "type": "string",
+            "enum": [
+              "AMEX",
+              "VISA",
+              "DINERS",
+              "DISCOVER",
+              "JBC",
+              "MASTERCARD",
+              "EXITO",
+              "ALKOSTO",
+              "MAESTRO",
+              "VISAELECTRON",
+              "ATH"
+            ],
+            "description": "Franquicia del medio de pago.",
+            "example": "MASTERCARD"
+          },
+          "financialEntity": {
+            "type": "integer",
+            "example": 1,
+            "description": "Entidad financiera o banco recaudador del medio de pago."
+          },
+          "order": {
+            "type": "integer",
+            "example": 1,
+            "description": "Nivel de prioridad."
+          },
+          "disabled": {
+            "type": "boolean",
+            "description": "Indicador de estado inactivo del medio de pago."
+          },
+          "creditRules": {
+            "type": "object",
+            "description": "Objeto que contiene las reglas de crédito del medio de pago."
+          },
+          "settings": {
+            "type": "object",
+            "description": "Objeto que contiene las configuraciones del medio de pago."
+          }
+        }
+      },
       "Province": {
         "title": "Province",
         "x-stoplight": {
           "id": "hgdvwi1upl9re"
         },
         "type": "object",
+        "description": "Estructura que contiene información de una provincia/estado/departamento.",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Identificador del estado/provincia",
+            "example": 1
           },
           "name": {
             "type": "string",
-            "example": "Antioquia"
+            "example": "Antioquia",
+            "description": "Nombre de la provincia."
           },
           "short": {
             "type": "string",
-            "example": "ANT"
+            "example": "ANT",
+            "description": "Abreviación del nombre de la provincia."
           },
           "iso3166": {
             "type": "string",
-            "example": "ANT"
+            "example": "ANT",
+            "description": "Abreviatura iso3166"
           },
           "country": {
             "type": "string",
-            "example": "CO"
+            "example": "CO",
+            "description": "País al que pertenece la provincia."
           },
           "alias": {
             "type": "string",
-            "example": "05"
+            "example": "05",
+            "description": "Alias de la provincia."
+          }
+        }
+      },
+      "Account-type": {
+        "title": "Account type",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identificador del tipo de cuenta de recaudo.",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Nombre del tipo de cuenta de recaudo.",
+            "example": "Ahorros"
           }
         },
-        "description": "Estructura que contiene información de una provincia/estado/departamento."
+        "description": "Estructura que contiene información de un tipo de cuenta de recaudo.",
+        "x-examples": {},
+        "x-internal": false,
+        "x-stoplight": {
+          "id": "c77c40df67ddb"
+        }
+      },
+      "Financial-entity": {
+        "title": "Financial entity",
+        "type": "object",
+        "description": "Estructura que contiene información de una entidad financiera o banco recaudador.",
+        "x-stoplight": {
+          "id": "c77c40df67ddb"
+        },
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identificador de la entidad financiera.",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Nombre de la entidad financiera.",
+            "maxLength": 60,
+            "example": "BANCOLOMBIA"
+          },
+          "code": {
+            "type": "string",
+            "description": "Código de la entidad financiera.",
+            "maxLength": 10
+          },
+          "disabled": {
+            "type": "boolean",
+            "example": false,
+            "description": "Indicador de estado inactivo.",
+            "default": false
+          },
+          "country": {
+            "type": "string",
+            "example": "CO",
+            "description": "País al que pertenece la entidad financiera."
+          }
+        }
       },
       "Seller": {
         "title": "Seller",
@@ -2283,18 +3662,25 @@
         "description": "Estructura que contiene informaicón de un consultor comercial asignado en Placetopay.",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Identificador del consultor",
+            "example": 1
           },
           "name": {
             "type": "string",
-            "example": "Diego Calle"
+            "example": "Diego Calle",
+            "description": "Nombre del consultor",
+            "maxLength": 60
           },
           "alias": {
             "type": "string",
-            "example": "null"
+            "example": "EGM",
+            "description": "Abreviatura del consultor"
           },
           "disabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicador de estado inactivo del consultor",
+            "default": false
           }
         }
       },
@@ -2307,18 +3693,24 @@
         "description": "Estructura que contiene informaicón de un distribuidor o banco adquiriente.",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Identificador del banco adquiriente o distribuidor",
+            "example": 1
           },
           "name": {
             "type": "string",
-            "example": "Example"
+            "example": "PLACETOPAY",
+            "description": "Nombre del banco adquiriente o distribuidor",
+            "maxLength": 128
           },
           "conditions": {
             "type": "string",
-            "example": "null"
+            "example": "null",
+            "description": "Condiciones del banco adquiriente o distribuidor"
           },
           "enabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicador de estado habilitado del distribuidor"
           }
         }
       },
@@ -2331,19 +3723,26 @@
         "description": "Estructura que contiene información de un régimen fiscal.",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Identificador de régimen fiscal.",
+            "example": 1
           },
           "name": {
             "type": "string",
-            "example": "No responsable de IVA"
+            "example": "No responsable de IVA",
+            "description": "Nombre del régimen fiscal.",
+            "maxLength": 60
           },
           "code": {
             "type": "string",
-            "example": "49"
+            "example": "49",
+            "description": "Código identificador de un régimen fiscal.",
+            "maxLength": 10
           },
           "country": {
             "type": "string",
-            "example": "CO"
+            "example": "CO",
+            "description": "País al que pertecene un régimen fiscal."
           }
         }
       },
@@ -2356,19 +3755,27 @@
         "description": "Estructura que contiene información de tipo de corporación.",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "example": 1,
+            "description": "Identificador de tipo de corporación"
           },
           "name": {
             "type": "string",
-            "example": "Asociación o corporación sin ámino de lucro"
+            "example": "Asociación o corporación sin ámino de lucro",
+            "description": "Nombre de un tipo de corporación.",
+            "maxLength": 60
           },
           "code": {
             "type": "string",
-            "example": "1"
+            "example": "1",
+            "description": "Código de un tipo de corporación.",
+            "maxLength": 10
           },
           "country": {
             "type": "string",
-            "example": "CO"
+            "example": "CO",
+            "description": "País al que pertence un tipo de corporación.",
+            "maxLength": 2
           }
         }
       },
@@ -2381,19 +3788,27 @@
         "description": "Estructura que contiene información de tipo de régimen fiscal",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Identificador de un tipo de régimen fiscal.",
+            "example": 1
           },
           "name": {
             "type": "string",
-            "example": "Gran contribuyente"
+            "example": "Gran contribuyente",
+            "description": "Nombre de un tipo de régimen fiscal.",
+            "maxLength": 60
           },
           "code": {
             "type": "string",
-            "example": "0-13"
+            "example": "O-13",
+            "description": "Código de un tipo de régimen fiscal.",
+            "maxLength": 10
           },
           "country": {
             "example": "CO",
-            "type": "string"
+            "type": "string",
+            "description": "País al que pertenece el tipo de régimen fiscal.",
+            "maxLength": 2
           }
         }
       },
@@ -2450,11 +3865,13 @@
           "name": {
             "type": "string",
             "description": "Nombre del representante legal.",
-            "maxLength": 30
+            "maxLength": 30,
+            "example": "Legal representative name"
           },
           "surname": {
             "type": "string",
-            "maxLength": 30
+            "maxLength": 30,
+            "example": "Legal representativo surname"
           },
           "documentType": {
             "type": "string",
@@ -2472,7 +3889,8 @@
           "Document": {
             "type": "string",
             "description": "Número de documento de identificación.",
-            "maxLength": 20
+            "maxLength": 20,
+            "example": "12345678"
           }
         },
         "required": [
