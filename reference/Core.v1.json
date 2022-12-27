@@ -24,13 +24,16 @@
   ],
   "tags": [
     {
-      "name": "Acciones sobre comercios"
+      "name": "Acciones sobre comercios",
+      "description": "Permite realizar operaciones como crear, actualizar, eliminar o consultar comercios."
     },
     {
-      "name": "Acciones sobre métodos de pago"
+      "name": "Acciones sobre métodos de pago",
+      "description": "Permite realizar operaciones como crear, actualizar, eliminar o consultar métodos de pago."
     },
     {
-      "name": "Procedimientos adicionales"
+      "name": "Procedimientos adicionales",
+      "description": "Permite realizar operaciones como consultas sobre entidades auxiliares."
     }
   ],
   "paths": {
@@ -834,7 +837,9 @@
                       "customerId",
                       "code",
                       "commissionModel",
-                      "commissionValue"
+                      "commissionValue",
+                      "accountType",
+                      "accountNumber"
                     ],
                     "properties": {
                       "customerId": {
@@ -886,30 +891,176 @@
                         "description": "Nivel de prioridad.",
                         "example": 1
                       },
-                      "creditRules": {
-                        "type": "object",
-                        "description": "Reglas de credito",
-                        "properties": {
-                          "testing_rules": {
-                            "type": "object",
-                            "properties": {
-                              "rule": {
-                                "type": "string",
-                                "example": "rule_test"
-                              }
-                            }
-                          }
-                        }
-                      },
                       "settings": {
                         "type": "object",
                         "description": "Objeto que contiene las configuraciones del medio de pago.",
                         "properties": {
-                          "testSetting": {
-                            "type": "string"
+                          "entityCode": {
+                            "type": "string",
+                            "description": "Código de la entidad o sitio.",
+                            "example": "123456789"
                           },
-                          "SecondTestSetting": {
-                            "type": "string"
+                          "serviceCode": {
+                            "type": "integer",
+                            "description": "Código del servicio.",
+                            "example": 1123
+                          },
+                          "sendReference": {
+                            "type": "boolean",
+                            "description": "Indicador de envío de referencia requerido.",
+                            "default": false
+                          },
+                          "publicToken": {
+                            "type": "string",
+                            "maxLength": 250,
+                            "description": "Token publico"
+                          },
+                          "privateToken": {
+                            "type": "string",
+                            "maxLength": 250,
+                            "description": "Token privado"
+                          },
+                          "subscription": {
+                            "type": "boolean",
+                            "description": "Indicador de suscripción activa.",
+                            "default": false
+                          },
+                          "merchantType": {
+                            "type": "integer",
+                            "description": "Tipo de comercio.",
+                            "example": 2
+                          },
+                          "pfxID": {
+                            "type": "integer",
+                            "description": "Identificador de certificado."
+                          },
+                          "realTest": {
+                            "type": "boolean",
+                            "description": "Indicador del estado para realizar pruebas.",
+                            "default": false
+                          },
+                          "realTestUser": {
+                            "type": "string",
+                            "description": "Usuario con el cual se realizará pruebas.",
+                            "example": "RealtestUser"
+                          },
+                          "realTestPassword": {
+                            "type": "string",
+                            "description": "Contraseña con la cual se realizará pruebas.",
+                            "example": "realTestPassword"
+                          },
+                          "merchantId": {
+                            "type": "integer",
+                            "description": "Identificador del comercio.",
+                            "example": 1
+                          },
+                          "terminalId": {
+                            "type": "integer",
+                            "description": "Identificador de terminal.",
+                            "example": 1
+                          },
+                          "merchantCode": {
+                            "type": "integer",
+                            "description": "Códi",
+                            "example": 1
+                          },
+                          "terminalName": {
+                            "type": "string",
+                            "description": "Nombre de la terminal."
+                          },
+                          "terminalNumber": {
+                            "type": "string",
+                            "description": "Número de la terminal.",
+                            "example": "124"
+                          },
+                          "username": {
+                            "type": "string",
+                            "description": "Nombre de usuario.",
+                            "example": "Username"
+                          },
+                          "password": {
+                            "type": "string",
+                            "description": "Contraseña del usuario.",
+                            "example": "Password"
+                          },
+                          "autogeneratePinToken": {
+                            "type": "boolean",
+                            "description": "Indicador para autogenerar el pin token de pinpad.",
+                            "default": false
+                          },
+                          "avs": {
+                            "type": "string",
+                            "description": "Sistema de verificación de direcciones."
+                          },
+                          "pinToken": {
+                            "type": "string",
+                            "description": "Token pinpad con que se cifra."
+                          },
+                          "pinUUID": {
+                            "type": "string",
+                            "description": "Usuario con el cual se autentica en pinpad."
+                          },
+                          "accountVerification": {
+                            "type": "boolean",
+                            "description": "Indicador de validación de la autenticación de la cuenta.",
+                            "default": false
+                          },
+                          "RUC": {
+                            "type": "integer"
+                          },
+                          "MID": {
+                            "type": "integer"
+                          },
+                          "apiKey": {
+                            "type": "string",
+                            "description": "Llave de la ",
+                            "example": "AXolDNJUTYGza",
+                            "maxLength": 80
+                          },
+                          "accessSecret": {
+                            "type": "string",
+                            "description": "Contraseña de acceso.",
+                            "example": "AccessSecret"
+                          },
+                          "expiration": {
+                            "type": "string",
+                            "description": "Tiempo de expiración de la sesión."
+                          },
+                          "account": {
+                            "type": "string",
+                            "description": "Cuenta de acceso."
+                          },
+                          "clientId": {
+                            "type": "integer",
+                            "description": "Identificador del cliente.",
+                            "example": 23
+                          },
+                          "clientSecret": {
+                            "type": "string",
+                            "description": "Contraseña del cliente."
+                          },
+                          "retailCode": {
+                            "type": "integer",
+                            "description": "Código del comercio.",
+                            "example": 1
+                          },
+                          "terminalLocation": {
+                            "type": "string",
+                            "description": "Localización de la terminal."
+                          },
+                          "isEcommerce": {
+                            "type": "boolean",
+                            "description": "Permite identificar el comercio como un e-commerce."
+                          },
+                          "serviceId": {
+                            "type": "integer",
+                            "description": "Identificador del servicio.",
+                            "example": 2345
+                          },
+                          "accessKey": {
+                            "type": "string",
+                            "maxLength": 20,
+                            "description": "llave de acceso."
                           }
                         }
                       }
@@ -922,7 +1073,7 @@
                 ]
               },
               "examples": {
-                "Agregar un método de pago": {
+                "Agregar un método de pago.": {
                   "value": {
                     "auth": {
                       "login": "613822f45568191a8cdf4ad2299f6d23",
@@ -939,14 +1090,43 @@
                       "accountNumber": "1234567890",
                       "financialEntity": 2,
                       "order": 1,
-                      "creditRules": {
-                        "testing_rules": {
-                          "rule": "rule_test"
-                        }
-                      },
                       "settings": {
-                        "testSetting": "string",
-                        "SecondTestSetting": "string"
+                        "entityCode": "123456789",
+                        "serviceCode": 1123,
+                        "sendReference": false,
+                        "publicToken": "string",
+                        "privateToken": "string",
+                        "subscription": false,
+                        "merchantType": 2,
+                        "pfxID": 0,
+                        "realTest": false,
+                        "realTestUser": "RealtestUser",
+                        "realTestPassword": "realTestPassword",
+                        "merchantId": 1,
+                        "terminalId": 1,
+                        "merchantCode": 1,
+                        "terminalName": "string",
+                        "terminalNumber": "124",
+                        "username": "Username",
+                        "password": "Password",
+                        "autogeneratePinToken": false,
+                        "avs": "string",
+                        "pinToken": "string",
+                        "pinUUID": "string",
+                        "accountVerification": false,
+                        "RUC": 0,
+                        "MID": 0,
+                        "apiKey": "AXolDNJUTYGza",
+                        "accessSecret": "AccessSecret",
+                        "expiration": "string",
+                        "account": "string",
+                        "clientId": 23,
+                        "clientSecret": "string",
+                        "retailCode": 1,
+                        "terminalLocation": "string",
+                        "isEcommerce": true,
+                        "serviceId": 2345,
+                        "accessKey": "string"
                       }
                     }
                   }
@@ -1109,30 +1289,176 @@
                         "description": "Nivel de prioridad.",
                         "example": 1
                       },
-                      "creditRules": {
-                        "type": "object",
-                        "description": "Reglas de crédito.",
-                        "properties": {
-                          "testingRules": {
-                            "type": "object",
-                            "properties": {
-                              "rule": {
-                                "type": "string",
-                                "example": "rule_test"
-                              }
-                            }
-                          }
-                        }
-                      },
                       "settings": {
                         "type": "object",
                         "description": "Objeto que contiene las configuraciones del medio de pago.",
                         "properties": {
-                          "testSetting": {
-                            "type": "string"
+                          "entityCode": {
+                            "type": "string",
+                            "description": "Código de la entidad o sitio.",
+                            "example": "123456789"
                           },
-                          "SecondTestSetting": {
-                            "type": "string"
+                          "serviceCode": {
+                            "type": "integer",
+                            "description": "Código del servicio.",
+                            "example": 1123
+                          },
+                          "sendReference": {
+                            "type": "boolean",
+                            "description": "Indicador de envío de referencia requerido.",
+                            "default": false
+                          },
+                          "publicToken": {
+                            "type": "string",
+                            "maxLength": 250,
+                            "description": "Token publico"
+                          },
+                          "privateToken": {
+                            "type": "string",
+                            "maxLength": 250,
+                            "description": "Token privado"
+                          },
+                          "subscription": {
+                            "type": "boolean",
+                            "description": "Indicador de suscripción activa.",
+                            "default": false
+                          },
+                          "merchantType": {
+                            "type": "integer",
+                            "description": "Tipo de comercio.",
+                            "example": 2
+                          },
+                          "pfxID": {
+                            "type": "integer",
+                            "description": "Identificador de certificado."
+                          },
+                          "realTest": {
+                            "type": "boolean",
+                            "description": "Indicador del estado para realizar pruebas.",
+                            "default": false
+                          },
+                          "realTestUser": {
+                            "type": "string",
+                            "description": "Usuario con el cual se realizará pruebas.",
+                            "example": "RealtestUser"
+                          },
+                          "realTestPassword": {
+                            "type": "string",
+                            "description": "Contraseña con la cual se realizará pruebas.",
+                            "example": "realTestPassword"
+                          },
+                          "merchantId": {
+                            "type": "integer",
+                            "description": "Identificador del comercio.",
+                            "example": 1
+                          },
+                          "terminalId": {
+                            "type": "integer",
+                            "description": "Identificador de terminal.",
+                            "example": 1
+                          },
+                          "merchantCode": {
+                            "type": "integer",
+                            "description": "Códi",
+                            "example": 1
+                          },
+                          "terminalName": {
+                            "type": "string",
+                            "description": "Nombre de la terminal."
+                          },
+                          "terminalNumber": {
+                            "type": "string",
+                            "description": "Número de la terminal.",
+                            "example": "124"
+                          },
+                          "username": {
+                            "type": "string",
+                            "description": "Nombre de usuario.",
+                            "example": "Username"
+                          },
+                          "password": {
+                            "type": "string",
+                            "description": "Contraseña del usuario.",
+                            "example": "Password"
+                          },
+                          "autogeneratePinToken": {
+                            "type": "boolean",
+                            "description": "Indicador para autogenerar el pin token de pinpad.",
+                            "default": false
+                          },
+                          "avs": {
+                            "type": "string",
+                            "description": "Sistema de verificación de direcciones."
+                          },
+                          "pinToken": {
+                            "type": "string",
+                            "description": "Token pinpad con que se cifra."
+                          },
+                          "pinUUID": {
+                            "type": "string",
+                            "description": "Usuario con el cual se autentica en pinpad."
+                          },
+                          "accountVerification": {
+                            "type": "boolean",
+                            "description": "Indicador de validación de la autenticación de la cuenta.",
+                            "default": false
+                          },
+                          "RUC": {
+                            "type": "integer"
+                          },
+                          "MID": {
+                            "type": "integer"
+                          },
+                          "apiKey": {
+                            "type": "string",
+                            "description": "Llave de la ",
+                            "example": "AXolDNJUTYGza",
+                            "maxLength": 80
+                          },
+                          "accessSecret": {
+                            "type": "string",
+                            "description": "Contraseña de acceso.",
+                            "example": "AccessSecret"
+                          },
+                          "expiration": {
+                            "type": "string",
+                            "description": "Tiempo de expiración de la sesión."
+                          },
+                          "account": {
+                            "type": "string",
+                            "description": "Cuenta de acceso."
+                          },
+                          "clientId": {
+                            "type": "integer",
+                            "description": "Identificador del cliente.",
+                            "example": 23
+                          },
+                          "clientSecret": {
+                            "type": "string",
+                            "description": "Contraseña del cliente."
+                          },
+                          "retailCode": {
+                            "type": "integer",
+                            "description": "Código del comercio.",
+                            "example": 1
+                          },
+                          "terminalLocation": {
+                            "type": "string",
+                            "description": "Localización de la terminal."
+                          },
+                          "isEcommerce": {
+                            "type": "boolean",
+                            "description": "Permite identificar el comercio como un e-commerce."
+                          },
+                          "serviceId": {
+                            "type": "integer",
+                            "description": "Identificador del servicio.",
+                            "example": 2345
+                          },
+                          "accessKey": {
+                            "type": "string",
+                            "maxLength": 20,
+                            "description": "llave de acceso."
                           }
                         }
                       }
@@ -1157,19 +1483,48 @@
                     "id": 1,
                     "data": {
                       "commissionModel": "P",
-                      "commissionValue": 1,
+                      "commissionValue": 0,
+                      "accountType": 1,
                       "accountNumber": "1234567890",
                       "financialEntity": 2,
                       "order": 1,
-                      "accountType": 1,
-                      "creditRules": {
-                        "testingRules": {
-                          "rule": "rule_test"
-                        }
-                      },
                       "settings": {
-                        "testSetting": "string",
-                        "SecondTestSetting": "string"
+                        "entityCode": "123456789",
+                        "serviceCode": 1123,
+                        "sendReference": false,
+                        "publicToken": "string",
+                        "privateToken": "string",
+                        "subscription": false,
+                        "merchantType": 2,
+                        "pfxID": 0,
+                        "realTest": false,
+                        "realTestUser": "RealtestUser",
+                        "realTestPassword": "realTestPassword",
+                        "merchantId": 1,
+                        "terminalId": 1,
+                        "merchantCode": 1,
+                        "terminalName": "string",
+                        "terminalNumber": "124",
+                        "username": "Username",
+                        "password": "Password",
+                        "autogeneratePinToken": false,
+                        "avs": "string",
+                        "pinToken": "string",
+                        "pinUUID": "string",
+                        "accountVerification": false,
+                        "RUC": 0,
+                        "MID": 0,
+                        "apiKey": "AXolDNJUTYGza",
+                        "accessSecret": "AccessSecret",
+                        "expiration": "string",
+                        "account": "string",
+                        "clientId": 23,
+                        "clientSecret": "string",
+                        "retailCode": 1,
+                        "terminalLocation": "string",
+                        "isEcommerce": true,
+                        "serviceId": 2345,
+                        "accessKey": "string"
                       }
                     }
                   }
@@ -1361,12 +1716,48 @@
                           "commissionValue": 1,
                           "accountNumber": "123456878890",
                           "accountType": 1,
-                          "franchise": "VISA",
+                          "franchise": "MASTERCARD",
                           "financialEntity": 1,
                           "order": 1,
-                          "disabled": false,
-                          "creditRules": {},
-                          "settings": {}
+                          "disabled": true,
+                          "settings": {
+                            "entityCode": "123456789",
+                            "serviceCode": 1123,
+                            "sendReference": false,
+                            "publicToken": "string",
+                            "privateToken": "string",
+                            "subscription": false,
+                            "merchantType": 2,
+                            "pfxID": 0,
+                            "realTest": false,
+                            "realTestUser": "RealtestUser",
+                            "realTestPassword": "realTestPassword",
+                            "merchantId": 1,
+                            "terminalId": 1,
+                            "merchantCode": 1,
+                            "terminalName": "string",
+                            "terminalNumber": "124",
+                            "username": "Username",
+                            "password": "Password",
+                            "autogeneratePinToken": false,
+                            "avs": "string",
+                            "pinToken": "string",
+                            "pinUUID": "string",
+                            "accountVerification": false,
+                            "RUC": 0,
+                            "MID": 0,
+                            "apiKey": "AXolDNJUTYGza",
+                            "accessSecret": "AccessSecret",
+                            "expiration": "string",
+                            "account": "string",
+                            "clientId": 23,
+                            "clientSecret": "string",
+                            "retailCode": 1,
+                            "terminalLocation": "string",
+                            "isEcommerce": true,
+                            "serviceId": 2345,
+                            "accessKey": "string"
+                          }
                         }
                       ]
                     }
@@ -2673,8 +3064,44 @@
                           "financialEntity": 1,
                           "order": 1,
                           "disabled": true,
-                          "creditRules": {},
-                          "settings": {}
+                          "settings": {
+                            "entityCode": "123456789",
+                            "serviceCode": 1123,
+                            "sendReference": false,
+                            "publicToken": "string",
+                            "privateToken": "string",
+                            "subscription": false,
+                            "merchantType": 2,
+                            "pfxID": 0,
+                            "realTest": false,
+                            "realTestUser": "RealtestUser",
+                            "realTestPassword": "realTestPassword",
+                            "merchantId": 1,
+                            "terminalId": 1,
+                            "merchantCode": 1,
+                            "terminalName": "string",
+                            "terminalNumber": "124",
+                            "username": "Username",
+                            "password": "Password",
+                            "autogeneratePinToken": false,
+                            "avs": "string",
+                            "pinToken": "string",
+                            "pinUUID": "string",
+                            "accountVerification": false,
+                            "RUC": 0,
+                            "MID": 0,
+                            "apiKey": "AXolDNJUTYGza",
+                            "accessSecret": "AccessSecret",
+                            "expiration": "string",
+                            "account": "string",
+                            "clientId": 23,
+                            "clientSecret": "string",
+                            "retailCode": 1,
+                            "terminalLocation": "string",
+                            "isEcommerce": true,
+                            "serviceId": 2345,
+                            "accessKey": "string"
+                          }
                         }
                       ]
                     }
@@ -3544,13 +3971,178 @@
             "type": "boolean",
             "description": "Indicador de estado inactivo del medio de pago."
           },
-          "creditRules": {
-            "type": "object",
-            "description": "Objeto que contiene las reglas de crédito del medio de pago."
-          },
           "settings": {
             "type": "object",
-            "description": "Objeto que contiene las configuraciones del medio de pago."
+            "description": "Objeto que contiene las configuraciones del medio de pago.",
+            "properties": {
+              "entityCode": {
+                "type": "string",
+                "description": "Código de la entidad o sitio.",
+                "example": "123456789"
+              },
+              "serviceCode": {
+                "type": "integer",
+                "description": "Código del servicio.",
+                "example": 1123
+              },
+              "sendReference": {
+                "type": "boolean",
+                "description": "Indicador de envío de referencia requerido.",
+                "default": false
+              },
+              "publicToken": {
+                "type": "string",
+                "maxLength": 250,
+                "description": "Token publico"
+              },
+              "privateToken": {
+                "type": "string",
+                "maxLength": 250,
+                "description": "Token privado"
+              },
+              "subscription": {
+                "type": "boolean",
+                "description": "Indicador de suscripción activa.",
+                "default": false
+              },
+              "merchantType": {
+                "type": "integer",
+                "description": "Tipo de comercio.",
+                "example": 2
+              },
+              "pfxID": {
+                "type": "integer",
+                "description": "Identificador de certificado."
+              },
+              "realTest": {
+                "type": "boolean",
+                "description": "Indicador del estado para realizar pruebas.",
+                "default": false
+              },
+              "realTestUser": {
+                "type": "string",
+                "description": "Usuario con el cual se realizará pruebas.",
+                "example": "RealtestUser"
+              },
+              "realTestPassword": {
+                "type": "string",
+                "description": "Contraseña con la cual se realizará pruebas.",
+                "example": "realTestPassword"
+              },
+              "merchantId": {
+                "type": "integer",
+                "description": "Identificador del comercio.",
+                "example": 1
+              },
+              "terminalId": {
+                "type": "integer",
+                "description": "Identificador de terminal.",
+                "example": 1
+              },
+              "merchantCode": {
+                "type": "integer",
+                "description": "Códi",
+                "example": 1
+              },
+              "terminalName": {
+                "type": "string",
+                "description": "Nombre de la terminal."
+              },
+              "terminalNumber": {
+                "type": "string",
+                "description": "Número de la terminal.",
+                "example": "124"
+              },
+              "username": {
+                "type": "string",
+                "description": "Nombre de usuario.",
+                "example": "Username"
+              },
+              "password": {
+                "type": "string",
+                "description": "Contraseña del usuario.",
+                "example": "Password"
+              },
+              "autogeneratePinToken": {
+                "type": "boolean",
+                "description": "Indicador para autogenerar el pin token de pinpad.",
+                "default": false
+              },
+              "avs": {
+                "type": "string",
+                "description": "Sistema de verificación de direcciones."
+              },
+              "pinToken": {
+                "type": "string",
+                "description": "Token pinpad con que se cifra."
+              },
+              "pinUUID": {
+                "type": "string",
+                "description": "Usuario con el cual se autentica en pinpad."
+              },
+              "accountVerification": {
+                "type": "boolean",
+                "description": "Indicador de validación de la autenticación de la cuenta.",
+                "default": false
+              },
+              "RUC": {
+                "type": "integer"
+              },
+              "MID": {
+                "type": "integer"
+              },
+              "apiKey": {
+                "type": "string",
+                "description": "Llave de la ",
+                "example": "AXolDNJUTYGza",
+                "maxLength": 80
+              },
+              "accessSecret": {
+                "type": "string",
+                "description": "Contraseña de acceso.",
+                "example": "AccessSecret"
+              },
+              "expiration": {
+                "type": "string",
+                "description": "Tiempo de expiración de la sesión."
+              },
+              "account": {
+                "type": "string",
+                "description": "Cuenta de acceso."
+              },
+              "clientId": {
+                "type": "integer",
+                "description": "Identificador del cliente.",
+                "example": 23
+              },
+              "clientSecret": {
+                "type": "string",
+                "description": "Contraseña del cliente."
+              },
+              "retailCode": {
+                "type": "integer",
+                "description": "Código del comercio.",
+                "example": 1
+              },
+              "terminalLocation": {
+                "type": "string",
+                "description": "Localización de la terminal."
+              },
+              "isEcommerce": {
+                "type": "boolean",
+                "description": "Permite identificar el comercio como un e-commerce."
+              },
+              "serviceId": {
+                "type": "integer",
+                "description": "Identificador del servicio.",
+                "example": 2345
+              },
+              "accessKey": {
+                "type": "string",
+                "maxLength": 20,
+                "description": "llave de acceso."
+              }
+            }
           }
         }
       },
