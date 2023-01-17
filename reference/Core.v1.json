@@ -1455,6 +1455,984 @@
         ]
       }
     },
+    "/core/site/create": {
+      "post": {
+        "summary": "Crear un sitio",
+        "operationId": "post-core-site-create",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 15,
+                      "description": "Identificador del sitio creado."
+                    },
+                    "login": {
+                      "type": "string",
+                      "example": "375f6ede93cd4bad8449efa920411238",
+                      "description": "Login del sitio"
+                    },
+                    "tranKey": {
+                      "type": "string",
+                      "example": "E5u2PQ4whFeLvy86",
+                      "description": "Llave transaccional del sitio"
+                    },
+                    "active": {
+                      "type": "boolean",
+                      "default": true,
+                      "description": "Estado del sitio."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 15,
+                      "active": true,
+                      "login": "375f6ede93cd4bad8449efa920411238",
+                      "tranKey": "E5u2PQ4whFeLvy86"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo name es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Arreglo que contiene la información del sitio a crear.",
+                    "required": [
+                      "name",
+                      "displayName",
+                      "customerId",
+                      "type",
+                      "category",
+                      "email",
+                      "currency",
+                      "language",
+                      "integration"
+                    ],
+                    "properties": {
+                      "login": {
+                        "type": "string",
+                        "maxLength": 32,
+                        "example": "375f6ede93cd4bad8449efa920411238",
+                        "description": "Login del sitio."
+                      },
+                      "tranKey": {
+                        "type": "string",
+                        "description": "Llave transaccional de sitio.",
+                        "maxLength": 32,
+                        "example": "E5u2PQ4whFeLvy86"
+                      },
+                      "md5Hash": {
+                        "type": "string",
+                        "description": "Algoritmo de enmascaramiento de datos.",
+                        "maxLength": 32,
+                        "example": "e0xy799SGB3zj689"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Nombre del sitio.",
+                        "maxLength": 128,
+                        "example": "Site name"
+                      },
+                      "displayName": {
+                        "type": "string",
+                        "example": "site display name",
+                        "maxLength": 128,
+                        "description": "Nombre a mostrar del sitio."
+                      },
+                      "customerId": {
+                        "type": "integer",
+                        "example": 1,
+                        "description": "Identificador del comercio asociado al sitio a crear. El comercio debe estar activo para el proceso."
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "Origen de la transacción.",
+                        "enum": [
+                          "INT",
+                          "POS",
+                          "IVR",
+                          "REC",
+                          "ONE",
+                          "AIR"
+                        ],
+                        "example": "INT",
+                        "maxLength": 3
+                      },
+                      "category": {
+                        "type": "string",
+                        "description": "Categoria del sitio.",
+                        "enum": [
+                          "ECOMMERCE",
+                          "COLLECT"
+                        ],
+                        "example": "ECOMMERCE"
+                      },
+                      "email": {
+                        "type": "string",
+                        "format": "email",
+                        "maxLength": 80,
+                        "example": "test@test.com",
+                        "description": "Correo electrónico de notificaciones."
+                      },
+                      "currency": {
+                        "type": "string",
+                        "description": "Moneda prederterminada.",
+                        "enum": [
+                          "COP",
+                          "USD"
+                        ],
+                        "maxLength": 3
+                      },
+                      "language": {
+                        "type": "string",
+                        "description": "Idioma predeterminado.",
+                        "maxLength": 2,
+                        "example": "ES",
+                        "enum": [
+                          "ES",
+                          "EN"
+                        ]
+                      },
+                      "active": {
+                        "type": "boolean",
+                        "description": "Indicador del estado del sitio."
+                      },
+                      "customBatch": {
+                        "type": "number",
+                        "example": 1235665
+                      },
+                      " expiration": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Fecha de expiración."
+                      },
+                      "onTest": {
+                        "type": "boolean",
+                        "description": "Indicador de sitio en pruebas."
+                      },
+                      "integration": {
+                        "type": "object",
+                        "description": "Objeto con información de integrción del sitio.",
+                        "required": [
+                          "allowPartial",
+                          "checkoutVersion"
+                        ],
+                        "properties": {
+                          "allowPartial": {
+                            "type": "boolean",
+                            "description": "Indicador de pago parcial."
+                          },
+                          "connectionMethod": {
+                            "type": "string",
+                            "enum": [
+                              "REDIRECT",
+                              "REDIRECT_OLD",
+                              "SERVICES",
+                              "LINK",
+                              "QR",
+                              "MS_OPEN",
+                              "MS_CLOSED",
+                              "MS_CUSTOM",
+                              "IVR",
+                              "INVOICE_API",
+                              "PVA",
+                              "RECURRENCE"
+                            ],
+                            "example": "REDIRECT",
+                            "description": "Método de integración."
+                          },
+                          "notificationUrl": {
+                            "type": "string",
+                            "maxLength": 128,
+                            "example": "www.urlexample.com",
+                            "description": "URL para notificación."
+                          },
+                          "checkoutVersion": {
+                            "type": "string",
+                            "description": "Versión de redirección.",
+                            "example": "v4"
+                          },
+                          "analyticsCode": {
+                            "type": "string",
+                            "maxLength": 60,
+                            "description": "Código Analytics o Tag Manager."
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth",
+                  "data"
+                ]
+              },
+              "examples": {
+                "Creación de un sitio": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "data": {
+                      "login": "375f6ede93cd4bad8449efa920411238",
+                      "tranKey": "E5u2PQ4whFeLvy86",
+                      "md5Hash": "e0xy799SGB3zj689",
+                      "name": "Site name",
+                      "displayName": "site display name",
+                      "customerId": 1,
+                      "type": "INT",
+                      "category": "ECOMMERCE",
+                      "email": "test@test.com",
+                      "currency": "COP",
+                      "language": "ES",
+                      "active": true,
+                      "customBatch": 1235665,
+                      " expiration": "2019-08-24T14:15:22Z",
+                      "onTest": true,
+                      "integration": {
+                        "allowPartial": true,
+                        "connectionMethod": "REDIRECT",
+                        "notificationUrl": "www.urlexample.com",
+                        "checkoutVersion": "v4",
+                        "analyticsCode": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite crear un sitio con la información suministrada. Si la respuesta es exitosa, retorna el identificador, estado, login y llave transaccional del sitio.",
+        "tags": [
+          "Acciones sobre métodos de pago"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/site/update-all": {
+      "post": {
+        "summary": "Actualizar un sitio",
+        "operationId": "post-core-site-update-all",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 15,
+                      "description": "Identificador del sitio actualizado."
+                    },
+                    "active": {
+                      "type": "boolean",
+                      "default": true,
+                      "description": "Indicador de estado del sitio."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 15,
+                      "active": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": 15,
+                    "description": "Identificador del sitio."
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Información del sitio a actualizar.",
+                    "properties": {
+                      "login": {
+                        "type": "string",
+                        "maxLength": 32,
+                        "example": "375f6sdf93cd4bad8449efa920455533",
+                        "description": "Login del sitio."
+                      },
+                      "tranKey": {
+                        "type": "string",
+                        "description": "Llave transaccional de sitio.",
+                        "maxLength": 32,
+                        "example": "E5u2PQ4whFeLvy86"
+                      },
+                      "md5Hash": {
+                        "type": "string",
+                        "description": "Algoritmo de enmascaramiento de datos.",
+                        "maxLength": 32,
+                        "example": "e0xy799SGB3zj689"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Nombre del sitio.",
+                        "maxLength": 128,
+                        "example": "Updated name"
+                      },
+                      "displayName": {
+                        "type": "string",
+                        "example": "Update display name",
+                        "maxLength": 128,
+                        "description": "Nombre a mostrar del sitio."
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "Origen de la transacción.",
+                        "enum": [
+                          "INT",
+                          "POS",
+                          "IVR",
+                          "REC",
+                          "ONE",
+                          "AIR"
+                        ],
+                        "example": "INT",
+                        "maxLength": 3
+                      },
+                      "category": {
+                        "type": "string",
+                        "description": "Categoria del sitio.",
+                        "enum": [
+                          "ECOMMERCE",
+                          "COLLECT"
+                        ],
+                        "example": "ECOMMERCE"
+                      },
+                      "email": {
+                        "type": "string",
+                        "format": "email",
+                        "maxLength": 80,
+                        "example": "test@test.com",
+                        "description": "Correo electrónico de notificaciones."
+                      },
+                      "currency": {
+                        "type": "string",
+                        "description": "Moneda prederterminada.",
+                        "enum": [
+                          "COP",
+                          "USD"
+                        ],
+                        "maxLength": 3
+                      },
+                      "language": {
+                        "type": "string",
+                        "description": "Idioma predeterminado.",
+                        "maxLength": 2,
+                        "example": "ES",
+                        "enum": [
+                          "ES",
+                          "EN"
+                        ]
+                      },
+                      "active": {
+                        "type": "boolean",
+                        "description": "Indicador del estado del sitio."
+                      },
+                      "customBatch": {
+                        "type": "number",
+                        "example": 1235665
+                      },
+                      " expiration": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Fecha de expiración."
+                      },
+                      "onTest": {
+                        "type": "boolean",
+                        "description": "Indicador de sitio en pruebas."
+                      },
+                      "integration": {
+                        "type": "object",
+                        "description": "Objeto con información de integrción del sitio.",
+                        "properties": {
+                          "allowPartial": {
+                            "type": "boolean",
+                            "description": "Indicador de pago parcial."
+                          },
+                          "connectionMethod": {
+                            "type": "string",
+                            "enum": [
+                              "REDIRECT",
+                              "REDIRECT_OLD",
+                              "SERVICES",
+                              "LINK",
+                              "QR",
+                              "MS_OPEN",
+                              "MS_CLOSED",
+                              "MS_CUSTOM",
+                              "IVR",
+                              "INVOICE_API",
+                              "PVA",
+                              "RECURRENCE"
+                            ],
+                            "example": "REDIRECT",
+                            "description": "Método de integración."
+                          },
+                          "notificationUrl": {
+                            "type": "string",
+                            "maxLength": 128,
+                            "example": "www.urlexample.com",
+                            "description": "URL para notificación."
+                          },
+                          "checkoutVersion": {
+                            "type": "string",
+                            "description": "Versión de redirección.",
+                            "example": "v4"
+                          },
+                          "analyticsCode": {
+                            "type": "string",
+                            "maxLength": 60,
+                            "description": "Código Analytics o Tag Manager."
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id",
+                  "data"
+                ]
+              },
+              "examples": {
+                "Actualización de un sitio": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 15,
+                    "data": {
+                      "login": "375f6sdf93cd4bad8449efa920455533",
+                      "tranKey": "E5u2PQ4whFeLvy86",
+                      "md5Hash": "e0xy799SGB3zj689",
+                      "name": "Updated name",
+                      "displayName": "Update display name",
+                      "type": "INT",
+                      "category": "ECOMMERCE",
+                      "email": "test@test.com",
+                      "currency": "COP",
+                      "language": "ES",
+                      "active": true,
+                      "customBatch": 1235665,
+                      " expiration": "2019-08-24T14:15:22Z",
+                      "onTest": true,
+                      "integration": {
+                        "allowPartial": true,
+                        "connectionMethod": "REDIRECT",
+                        "notificationUrl": "www.urlexample.com",
+                        "checkoutVersion": "v4",
+                        "analyticsCode": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite actualizar un sitio con la información suministrada. Si la respuesta es exitosa, retorna el identificador del sitio y su estado.",
+        "tags": [
+          "Acciones sobre métodos de pago"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/site/delete": {
+      "post": {
+        "summary": "Eliminar un sitio",
+        "operationId": "post-core-site-delete",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 15,
+                      "description": "Identificador del sitio eliminado."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 15
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": 15,
+                    "description": "Identificador del sitio."
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id"
+                ]
+              },
+              "examples": {
+                "Eliminación de un sitio": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 15
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite eliminar un sitio. Si la respuesta es exitosa, retorna el identificador del sitio eliminado.",
+        "tags": [
+          "Acciones sobre métodos de pago"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/site/search": {
+      "post": {
+        "summary": "Consulta de sitios",
+        "operationId": "post-core-site-search",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Site"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "login": "375f6sdf93cd4bad8449efa920455533",
+                          "tranKey": "E5u2PQ4whFeLvy86",
+                          "md5Hash": "e0xy799SGB3zj689",
+                          "name": "Site name",
+                          "displayName": "display name",
+                          "type": "INT",
+                          "category": "ECOMMERCE",
+                          "email": "test@test.com",
+                          "currency": "COP",
+                          "language": "ES",
+                          "active": true,
+                          "customBatch": 1235665,
+                          " expiration": "2019-08-24T14:15:22Z",
+                          "onTest": true,
+                          "integration": {
+                            "allowPartial": true,
+                            "connectionMethod": "REDIRECT",
+                            "notificationUrl": "www.urlexample.com",
+                            "checkoutVersion": "v4",
+                            "analyticsCode": "string"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id debe ser un entero.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "customerId": {
+                    "type": "integer",
+                    "description": "Identificador del comercio asociado."
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": 15,
+                    "description": "Identificador del sitio."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Nombre del sitio."
+                  },
+                  "displayName": {
+                    "type": "string",
+                    "description": "Nombre a mostrar del sitio"
+                  },
+                  "onTest": {
+                    "type": "boolean",
+                    "description": "Indicador de estado en pruebas"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Indicador de estado del sitio"
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta de sitios": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "customerId": 0,
+                    "id": 15,
+                    "name": "string",
+                    "displayName": "string",
+                    "onTest": true,
+                    "active": true
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite consultar sitios existentes filtrando por medio de los parametros: identificador del sitio, identificador del comercio, nombre, nombre a mostrar, indicador de estado en pruebas y estado del sitio.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
+        "tags": [
+          "Acciones sobre métodos de pago"
+        ]
+      },
+      "parameters": []
+    },
     "/core/tools/province/search": {
       "post": {
         "summary": "Consulta de departamentos o estados por país",
@@ -3834,6 +4812,162 @@
           "name",
           "surname"
         ]
+      },
+      "Site": {
+        "title": "Site",
+        "x-stoplight": {
+          "id": "nrawne06ymvkd"
+        },
+        "type": "object",
+        "description": "Estructura que contiene información de un sitio.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1,
+            "description": "Identificador del sitio."
+          },
+          "login": {
+            "type": "string",
+            "maxLength": 32,
+            "example": "375f6sdf93cd4bad8449efa920455533",
+            "description": "Login del sitio."
+          },
+          "tranKey": {
+            "type": "string",
+            "description": "Llave transaccional de sitio.",
+            "maxLength": 32,
+            "example": "E5u2PQ4whFeLvy86"
+          },
+          "md5Hash": {
+            "type": "string",
+            "description": "Algoritmo de enmascaramiento de datos.",
+            "maxLength": 32,
+            "example": "e0xy799SGB3zj689"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nombre del sitio.",
+            "maxLength": 128,
+            "example": "Site name"
+          },
+          "displayName": {
+            "type": "string",
+            "example": "display name",
+            "maxLength": 128,
+            "description": "Nombre a mostrar del sitio."
+          },
+          "type": {
+            "type": "string",
+            "description": "Origen de la transacción.",
+            "enum": [
+              "INT",
+              "POS",
+              "IVR",
+              "REC",
+              "ONE",
+              "AIR"
+            ],
+            "example": "INT",
+            "maxLength": 3
+          },
+          "category": {
+            "type": "string",
+            "description": "Categoria del sitio.",
+            "enum": [
+              "ECOMMERCE",
+              "COLLECT"
+            ],
+            "example": "ECOMMERCE"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 80,
+            "example": "test@test.com",
+            "description": "Correo electrónico de notificaciones."
+          },
+          "currency": {
+            "type": "string",
+            "description": "Moneda prederterminada.",
+            "enum": [
+              "COP",
+              "USD"
+            ],
+            "maxLength": 3
+          },
+          "language": {
+            "type": "string",
+            "description": "Idioma predeterminado.",
+            "maxLength": 2,
+            "example": "ES",
+            "enum": [
+              "ES",
+              "EN"
+            ]
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Indicador del estado del sitio."
+          },
+          "customBatch": {
+            "type": "number",
+            "example": 1235665
+          },
+          " expiration": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Fecha de expiración."
+          },
+          "onTest": {
+            "type": "boolean",
+            "description": "Indicador de sitio en pruebas."
+          },
+          "integration": {
+            "type": "object",
+            "description": "Objeto con información de integrción del sitio.",
+            "properties": {
+              "allowPartial": {
+                "type": "boolean",
+                "description": "Indicador de pago parcial."
+              },
+              "connectionMethod": {
+                "type": "string",
+                "enum": [
+                  "REDIRECT",
+                  "REDIRECT_OLD",
+                  "SERVICES",
+                  "LINK",
+                  "QR",
+                  "MS_OPEN",
+                  "MS_CLOSED",
+                  "MS_CUSTOM",
+                  "IVR",
+                  "INVOICE_API",
+                  "PVA",
+                  "RECURRENCE"
+                ],
+                "example": "REDIRECT",
+                "description": "Método de integración."
+              },
+              "notificationUrl": {
+                "type": "string",
+                "maxLength": 128,
+                "example": "www.urlexample.com",
+                "description": "URL para notificación."
+              },
+              "checkoutVersion": {
+                "type": "string",
+                "description": "Versión de redirección.",
+                "example": "v4"
+              },
+              "analyticsCode": {
+                "type": "string",
+                "maxLength": 60,
+                "description": "Código Analytics o Tag Manager."
+              }
+            }
+          }
+        }
       }
     },
     "securitySchemes": {},
