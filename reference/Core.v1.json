@@ -1657,22 +1657,15 @@
                       },
                       "currency": {
                         "type": "string",
-                        "description": "Moneda prederterminada.",
-                        "enum": [
-                          "COP",
-                          "USD"
-                        ],
-                        "maxLength": 3
+                        "description": "Moneda predeterminada.",
+                        "maxLength": 3,
+                        "example": "COP"
                       },
                       "language": {
                         "type": "string",
                         "description": "Idioma predeterminado.",
                         "maxLength": 2,
-                        "example": "ES",
-                        "enum": [
-                          "ES",
-                          "EN"
-                        ]
+                        "example": "ES"
                       },
                       "active": {
                         "type": "boolean",
@@ -1693,7 +1686,7 @@
                       },
                       "integration": {
                         "type": "object",
-                        "description": "Objeto con información de integrción del sitio.",
+                        "description": "Objeto con información de integración del sitio.",
                         "required": [
                           "allowPartial",
                           "checkoutVersion"
@@ -1974,22 +1967,15 @@
                       },
                       "currency": {
                         "type": "string",
-                        "description": "Moneda prederterminada.",
-                        "enum": [
-                          "COP",
-                          "USD"
-                        ],
-                        "maxLength": 3
+                        "description": "Moneda predeterminada.",
+                        "maxLength": 3,
+                        "example": "USD"
                       },
                       "language": {
                         "type": "string",
                         "description": "Idioma predeterminado.",
                         "maxLength": 2,
-                        "example": "ES",
-                        "enum": [
-                          "ES",
-                          "EN"
-                        ]
+                        "example": "ES"
                       },
                       "active": {
                         "type": "boolean",
@@ -2010,7 +1996,7 @@
                       },
                       "integration": {
                         "type": "object",
-                        "description": "Objeto con información de integrción del sitio.",
+                        "description": "Objeto con información de integración del sitio.",
                         "properties": {
                           "allowPartial": {
                             "type": "boolean",
@@ -4888,22 +4874,15 @@
           },
           "currency": {
             "type": "string",
-            "description": "Moneda prederterminada.",
-            "enum": [
-              "COP",
-              "USD"
-            ],
-            "maxLength": 3
+            "description": "Moneda predeterminada.",
+            "maxLength": 3,
+            "example": "COP"
           },
           "language": {
             "type": "string",
             "description": "Idioma predeterminado.",
             "maxLength": 2,
-            "example": "ES",
-            "enum": [
-              "ES",
-              "EN"
-            ]
+            "example": "ES"
           },
           "active": {
             "type": "boolean",
@@ -4924,7 +4903,7 @@
           },
           "integration": {
             "type": "object",
-            "description": "Objeto con información de integrción del sitio.",
+            "description": "Objeto con información de integración del sitio.",
             "properties": {
               "allowPartial": {
                 "type": "boolean",
