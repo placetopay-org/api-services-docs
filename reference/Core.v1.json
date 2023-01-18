@@ -24,16 +24,16 @@
   ],
   "tags": [
     {
-      "name": "Acciones sobre comercios",
-      "description": "Permite realizar operaciones como crear, actualizar, eliminar o consultar comercios."
+      "name": "Acciones sobre comercios"
     },
     {
-      "name": "Acciones sobre métodos de pago",
-      "description": "Permite realizar operaciones como crear, actualizar, eliminar o consultar métodos de pago."
+      "name": "Acciones sobre métodos de pago"
     },
     {
-      "name": "Procedimientos adicionales",
-      "description": "Permite realizar operaciones como consultas sobre entidades auxiliares."
+      "name": "Acciones sobre sitios"
+    },
+    {
+      "name": "Procedimientos adicionales"
     }
   ],
   "paths": {
@@ -1790,7 +1790,7 @@
         },
         "description": "Este servicio permite crear un sitio con la información suministrada. Si la respuesta es exitosa, retorna el identificador, estado, login y llave transaccional del sitio.",
         "tags": [
-          "Acciones sobre métodos de pago"
+          "Acciones sobre sitios"
         ]
       },
       "parameters": []
@@ -2104,7 +2104,7 @@
         },
         "description": "Este servicio permite actualizar un sitio con la información suministrada. Si la respuesta es exitosa, retorna el identificador del sitio y su estado.",
         "tags": [
-          "Acciones sobre métodos de pago"
+          "Acciones sobre sitios"
         ]
       },
       "parameters": []
@@ -2241,7 +2241,7 @@
         },
         "description": "Este servicio permite eliminar un sitio. Si la respuesta es exitosa, retorna el identificador del sitio eliminado.",
         "tags": [
-          "Acciones sobre métodos de pago"
+          "Acciones sobre sitios"
         ]
       },
       "parameters": []
@@ -2428,7 +2428,7 @@
         },
         "description": "Este servicio permite consultar sitios existentes filtrando por medio de los parametros: identificador del sitio, identificador del comercio, nombre, nombre a mostrar, indicador de estado en pruebas y estado del sitio.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
         "tags": [
-          "Acciones sobre métodos de pago"
+          "Acciones sobre sitios"
         ]
       },
       "parameters": []
