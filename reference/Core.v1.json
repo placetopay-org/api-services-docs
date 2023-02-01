@@ -2547,7 +2547,7 @@
                       },
                       "card": {
                         "type": "object",
-                        "description": "Objeto tipo Card.",
+                        "description": "Objeto tipo Card que contiene información de la tarjeta a registrar",
                         "properties": {
                           "number": {
                             "type": "number",
@@ -2602,7 +2602,7 @@
           },
           "description": ""
         },
-        "description": "Este servicio permite crear una lista de preferidos asociada a un sitio. Si la respuesta es exitosa, retorna el identificador de la lista.\n\n> ### Nota \n>\n> *Para crear correctamente la lista de preferidos, es requerido ingresar juntos a los campos requerdios, por lo menos uno de los siguientes campos: card.Number, ipAddresses ó person.document.*\n\n> *En el objeto Person, es requerido enviar el campo email. Los campos name, surname, company, address y mobile no son necesarios al enviar la solicitud.*",
+        "description": "Este servicio permite crear una lista de preferidos y asociarla a un sitio. Si la respuesta es exitosa, retorna el identificador de la lista.\n\n> ### Nota \n>\n> *Para crear correctamente la lista de preferidos es necesario ingresar junto a los campos requeridos, por lo menos uno de los siguientes campos: card.Number, ipAddresses ó person.document.*\n\n> *En el objeto Person, es requerido enviar el campo email. Los campos name, surname, company, address y mobile no son necesarios al enviar la solicitud.*",
         "tags": [
           "Acciones sobre lista de preferidos"
         ]
@@ -2725,7 +2725,7 @@
                       },
                       "card": {
                         "type": "object",
-                        "description": "Objeto tipo Card.",
+                        "description": "Objeto tipo Card con información acerca de la tarjeta.",
                         "properties": {
                           "number": {
                             "type": "number",
@@ -3067,7 +3067,7 @@
                   },
                   "ipAddresses": {
                     "type": "array",
-                    "description": "Arreglo de ip's a consultar.",
+                    "description": "Arreglo que contiene las direcciones ip a consutlar",
                     "items": {
                       "type": "string",
                       "example": "120.120.120.1"
