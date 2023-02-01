@@ -2602,7 +2602,7 @@
           },
           "description": ""
         },
-        "description": "Este servicio permite crear una lista de preferidos y asociarla a un sitio. Si la respuesta es exitosa, retorna el identificador de la lista.\n\n> ### Nota \n>\n> *Para crear correctamente la lista de preferidos es necesario ingresar junto a los campos requeridos, por lo menos uno de los siguientes campos: card.Number, ipAddresses ó person.document.*\n\n> *En el objeto Person, es requerido enviar el campo email. Los campos name, surname, company, address y mobile no son necesarios al enviar la solicitud.*",
+        "description": "Este servicio permite crear una lista de preferidos y asociarla a un sitio. Si la respuesta es exitosa, retorna el identificador de la lista.\n\n> ### Nota \n>\n> *Para crear correctamente la lista de preferidos es necesario ingresar junto a los campos requeridos, por lo menos uno de los siguientes campos: card.Number, ipAddresses o person.document.*\n\n> *En el objeto Person, es requerido enviar el campo email. Los campos name, surname, company, address y mobile no son necesarios al enviar la solicitud.*",
         "tags": [
           "Acciones sobre lista de preferidos"
         ]
