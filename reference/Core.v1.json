@@ -24,16 +24,24 @@
   ],
   "tags": [
     {
-      "name": "Acciones sobre comercios"
+      "name": "Acciones sobre comercios",
+      "description": "Diferentes acciones sobre comercios."
     },
     {
-      "name": "Acciones sobre métodos de pago"
+      "name": "Acciones sobre métodos de pago",
+      "description": "Diferentes acciones sobre métodos de pago asociados a comercios."
     },
     {
-      "name": "Acciones sobre sitios"
+      "name": "Acciones sobre sitios",
+      "description": "Diferentes acciones sobre sitios."
     },
     {
-      "name": "Procedimientos adicionales"
+      "name": "Acciones sobre lista de preferidos",
+      "description": "Diferentes acciones sobre listas de preferidos."
+    },
+    {
+      "name": "Procedimientos adicionales",
+      "description": "Diferentes procedimientos adicionales."
     }
   ],
   "paths": {
@@ -2419,6 +2427,700 @@
       },
       "parameters": []
     },
+    "/core/site/prefer-list/create": {
+      "post": {
+        "summary": "Crear una lista de preferidos",
+        "operationId": "post-core-site-prefer-list-create",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 2,
+                      "description": "Identificador de la lista de preferidos creada."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo siteId es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Arreglo que contiene la información de la lista de preferidos a crear.",
+                    "required": [
+                      "siteId",
+                      "person"
+                    ],
+                    "properties": {
+                      "siteId": {
+                        "type": "integer",
+                        "example": 1,
+                        "description": "Identificador del sitio."
+                      },
+                      "person": {
+                        "$ref": "../Models/Person.json"
+                      },
+                      "card": {
+                        "type": "object",
+                        "description": "Objeto tipo Card.",
+                        "properties": {
+                          "number": {
+                            "type": "number",
+                            "example": 4111111111111111,
+                            "description": "Número de la tarjeta."
+                          }
+                        }
+                      },
+                      "ipAddresses": {
+                        "type": "array",
+                        "description": "Arreglo que contiene las direcciones ip a registrar.",
+                        "items": {
+                          "type": "string",
+                          "example": "120.120.120.1"
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth",
+                  "data"
+                ]
+              },
+              "examples": {
+                "Creación de una lista de preferidos": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "data": {
+                      "siteId": 1,
+                      "person": {
+                        "documentType": "CC",
+                        "Document": "string",
+                        "email": "string"
+                      },
+                      "card": {
+                        "number": 4111111111111111
+                      },
+                      "ipAddresses": [
+                        "120.120.120.1"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite crear una lista de preferidos asociada a un sitio. Si la respuesta es exitosa, retorna el identificador de la lista.\n\n> ### Nota \n>\n> *Para crear correctamente la lista de preferidos, es requerido ingresar juntos a los campos requerdios, por lo menos uno de los siguientes campos: card.Number, ipAddresses ó person.document.*\n\n> *En el objeto Person, es requerido enviar el campo email. Los campos name, surname, company, address y mobile no son necesarios al enviar la solicitud.*",
+        "tags": [
+          "Acciones sobre lista de preferidos"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/site/prefer-list/update": {
+      "post": {
+        "summary": "Actualizar una lista de preferidos",
+        "operationId": "post-core-site-prefer-list-update",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 2,
+                      "description": "Identificador de la lista de preferidos actualizada."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Identificador de la lista de preferidos a actualizar."
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Arreglo que contiene la información de la lista de preferidos a actualizar.",
+                    "properties": {
+                      "person": {
+                        "$ref": "../Models/Person.json"
+                      },
+                      "card": {
+                        "type": "object",
+                        "description": "Objeto tipo Card.",
+                        "properties": {
+                          "number": {
+                            "type": "number",
+                            "example": 4111111111111111,
+                            "description": "Número de la tarjeta."
+                          }
+                        }
+                      },
+                      "ipAddresses": {
+                        "type": "array",
+                        "description": "Arreglo que contiene las direcciones ip a registrar.",
+                        "items": {
+                          "type": "string",
+                          "example": "120.120.120.1"
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id",
+                  "data"
+                ]
+              },
+              "examples": {
+                "Creación de una lista de preferidos": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "data": {
+                      "person": {
+                        "documentType": "NIT",
+                        "Document": "string",
+                        "email": "string"
+                      },
+                      "card": {
+                        "number": 4111111111111111
+                      },
+                      "ipAddresses": [
+                        "120.120.120.1"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite actualizar una lista de preferidos asociada a un sitio. Si la respuesta es exitosa, retorna el identificador de la lista.",
+        "tags": [
+          "Acciones sobre lista de preferidos"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/site/prefer-list/delete": {
+      "post": {
+        "summary": "Eliminar una lista de preferidos",
+        "operationId": "post-core-site-prefer-list-delete",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 2,
+                      "description": "Identificador de la lista de preferidos eliminada."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Identificador de la lista de preferidos a eliminar."
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id"
+                ]
+              },
+              "examples": {
+                "Creación de una lista de preferidos": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite eliminar una lista de preferidos asociada a un sitio. Si la respuesta es exitosa, retorna el identificador de la lista eliminada.",
+        "tags": [
+          "Acciones sobre lista de preferidos"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/site/prefer-list/search": {
+      "post": {
+        "summary": "Consulta de lista de preferidos",
+        "operationId": "post-core-site-prefer-list-search",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene las listas preferidas encontradas en la consulta.",
+                      "items": {
+                        "$ref": "#/components/schemas/PreferList"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "sietId": 1,
+                          "person": {
+                            "email": "test@test.com",
+                            "documentType": "CC",
+                            "document": "1042753159"
+                          },
+                          "ipAddresses": [
+                            "120.120.120.3"
+                          ],
+                          "cardDisplay": "411111****1111",
+                          "createdAt": "2022-11-315 10:41:19"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id debe es un entero.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Identificador de la lista de preferidos."
+                  },
+                  "siteId": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Identificador de sitio"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "Email registrado en la lista de preferidos.",
+                    "maxLength": 80
+                  },
+                  "document": {
+                    "type": "string",
+                    "description": "Compuesto por el tipo de documento y número de documento a consultar.",
+                    "example": "CC 1236548123",
+                    "maxLength": 25
+                  },
+                  "ipAddresses": {
+                    "type": "array",
+                    "description": "Arreglo de ip's a consultar.",
+                    "items": {
+                      "type": "string",
+                      "example": "120.120.120.1"
+                    }
+                  },
+                  "cardDisplay": {
+                    "type": "string",
+                    "description": "Número de tarjeta enmascarada.",
+                    "example": "411111****1111",
+                    "maxLength": 14
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Creación de una lista de preferidos": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "data": {
+                      "person": {
+                        "documentType": "NIT",
+                        "Document": "string",
+                        "email": "string"
+                      },
+                      "card": {
+                        "number": 4111111111111111
+                      },
+                      "ipAddresses": [
+                        "120.120.120.1"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite consultar listas de preferidos existente filtrando por medio de los parametros: siteId, id, cardDisplay, email, document e ipAddresses.",
+        "tags": [
+          "Acciones sobre lista de preferidos"
+        ]
+      },
+      "parameters": []
+    },
     "/core/tools/province/search": {
       "post": {
         "summary": "Consulta de departamentos o estados por país",
@@ -3686,59 +4388,7 @@
         "title": "Customer create",
         "type": "object",
         "description": "Estructura que contiene la información para crear un comercio.",
-        "x-examples": {
-          "Estructura-comercio": {
-            "id": 1,
-            "name": "Merchant name",
-            "brand": "Merchant brand",
-            "mcc": "0742",
-            "active": true,
-            "timezone": "America/Bogota",
-            "size": "XS",
-            "incrementType": "SMLMV",
-            "languages": [
-              "ES"
-            ],
-            "currencies": [
-              "COP"
-            ],
-            "document": {
-              "type": "NIT",
-              "number": "123456123"
-            },
-            "address": {
-              "street": "Street address",
-              "city": "Medellin",
-              "state": "1",
-              "postalCode": "417030",
-              "country": "CO",
-              "phone": "3203201320"
-            },
-            "legalRepresentative": {
-              "type": "NIT",
-              "Document": "1234568",
-              "name": "Legal representative name",
-              "surname": "Legal representative surname"
-            },
-            "billing": {
-              "contact": "Billing contact name",
-              "mail": "billing@example.com",
-              "registrationNumber": "123456789",
-              "taxType": 5,
-              "taxRegime": 2,
-              "organizationType": 1,
-              "ciiu": "1224"
-            },
-            "travelAgency": {
-              "dispersion": true,
-              "iata": "123456"
-            },
-            "control": {
-              "seller": 1,
-              "reseller": 1
-            }
-          }
-        },
+        "x-examples": {},
         "properties": {
           "name": {
             "type": "string",
@@ -4945,6 +5595,66 @@
                 "description": "Código Analytics o Tag Manager."
               }
             }
+          }
+        }
+      },
+      "PreferList": {
+        "title": "PreferList",
+        "x-stoplight": {
+          "id": "178h39sods79x"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información de lista de preferidos.",
+        "x-examples": {},
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1,
+            "description": "Identificador de la lista de preferidos"
+          },
+          "sietId": {
+            "type": "integer",
+            "description": "Identificador del sitio asociado con la lista de preferidos",
+            "example": 1
+          },
+          "person": {
+            "type": "object",
+            "description": "Objeto de tipo Person, con información de parámetros de email, documentType y document.",
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "Email",
+                "example": "test@test.com"
+              },
+              "documentType": {
+                "type": "string",
+                "description": "tipo de documento",
+                "example": "CC"
+              },
+              "document": {
+                "type": "string",
+                "description": "número de documento",
+                "example": "1042753159"
+              }
+            }
+          },
+          "ipAddresses": {
+            "type": "array",
+            "description": "Areglo que contiene las direcciones ip registradas",
+            "items": {
+              "type": "string",
+              "example": "120.120.120.3"
+            }
+          },
+          "cardDisplay": {
+            "type": "string",
+            "description": "número de tarjeta enmascarada.",
+            "example": "411111****1111"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Decha de creación del registro.",
+            "example": "2022-11-315 10:41:19"
           }
         }
       }
