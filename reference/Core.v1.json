@@ -36,6 +36,12 @@
       "description": "Diferentes acciones sobre sitios."
     },
     {
+      "name": "Procedimientos adicionales"
+    },
+    {
+      "name": "Administración de documentos"
+    },
+    {
       "name": "Acciones sobre lista de preferidos",
       "description": "Diferentes acciones sobre listas de preferidos."
     },
@@ -732,6 +738,1002 @@
         },
         "tags": [
           "Acciones sobre comercios"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/merchant/document/create": {
+      "post": {
+        "summary": "Creación de un documento",
+        "operationId": "post-core-merchant-document-create",
+        "description": "Este servicio permite crear un documento para un comercio. Si el proceso es exitoso, se retorna el identificador del documento y su estado.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 1,
+                      "description": "Identificador del documento creado."
+                    }
+                  }
+                },
+                "examples": {
+                  "Creación exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 1,
+                      "active": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo name es obligatorio",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Autenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "customerId": {
+                    "type": "integer",
+                    "description": "Identificador del comercio"
+                  },
+                  "siteId": {
+                    "type": "integer",
+                    "description": "Identificador del sitio"
+                  },
+                  "documentName": {
+                    "type": "string",
+                    "maxLength": 30,
+                    "description": "Nombre del documento"
+                  },
+                  "documentType": {
+                    "type": "integer",
+                    "description": "Identificador del tipo del documento"
+                  },
+                  "documentDescription": {
+                    "type": "string",
+                    "maxLength": 60,
+                    "description": "Descripción del documento"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Archivo binário del documento"
+                  }
+                },
+                "required": [
+                  "auth",
+                  "customerId",
+                  "documentName",
+                  "documentType",
+                  "file"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "tags": [
+          "Acciones sobre comercios",
+          "Administración de documentos"
+        ],
+        "x-internal": false
+      },
+      "parameters": []
+    },
+    "/core/merchant/document/update": {
+      "post": {
+        "summary": "Editar un documento",
+        "operationId": "post-core-merchant-document-update",
+        "description": "Este servicio permite actualizar los datos de un documento existente. Si el proceso es exitoso, se retorna el identificador del documento y su estado de activación. No es posible editar el archivo o el comercio vinculado.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 1,
+                      "description": "Identificador del documento editado."
+                    }
+                  }
+                },
+                "examples": {
+                  "Actualización exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 1,
+                      "active": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Proceso fallido": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Autenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador del documento a editar."
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "documentName": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "Nombre del documento"
+                      },
+                      "documentDescription": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "Descripción del documento"
+                      },
+                      "documentType": {
+                        "type": "integer",
+                        "description": "Identificador del tipo de documento"
+                      },
+                      "siteId": {
+                        "type": "integer",
+                        "description": "Identificador del sitio"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id"
+                ]
+              },
+              "examples": {
+                "Actualización de documento": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "data": {
+                      "documentName": "My document name",
+                      "documentDescription": "My document description",
+                      "documentType": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "parameters": [],
+        "tags": [
+          "Acciones sobre comercios",
+          "Administración de documentos"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/merchant/document/search": {
+      "post": {
+        "summary": "Consulta de documentos",
+        "operationId": "post-core-merchant-search",
+        "description": "Este servicio permite consultar documentos existentes filtrando por medio de los parametros: identificador del comercio o del sitio, nombre, descripción y identificador del tipo de documento.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene la información de documentos consultada por medio de los filtros aplicados.",
+                      "items": {
+                        "$ref": "#/components/schemas/Document"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "customerId": 1,
+                          "siteId": 1,
+                          "documentName": "L",
+                          "documentDescription": null,
+                          "documentType": 1,
+                          "type": "pdf",
+                          "size": "427.14 KB",
+                          "createdAt": "2022-12-05 14:32:24"
+                        },
+                        {
+                          "id": 2,
+                          "customerId": 1,
+                          "siteId": null,
+                          "documentName": "cc",
+                          "documentDescription": null,
+                          "documentType": 1,
+                          "type": "png",
+                          "size": "196.18 KB",
+                          "createdAt": "2022-12-05 17:48:29"
+                        },
+                        {
+                          "id": 3,
+                          "customerId": 1,
+                          "siteId": null,
+                          "documentName": "Test",
+                          "documentDescription": "Test document",
+                          "documentType": 1,
+                          "type": "pdf",
+                          "size": "1.05 MB",
+                          "createdAt": "2022-12-09 14:52:32"
+                        },
+                        {
+                          "id": 4,
+                          "customerId": 1,
+                          "siteId": null,
+                          "documentName": "Test",
+                          "documentDescription": "Test document",
+                          "documentType": 1,
+                          "type": "txt",
+                          "size": "781 Bytes",
+                          "createdAt": "2022-12-09 14:54:05"
+                        },
+                        {
+                          "id": 5,
+                          "customerId": 1,
+                          "siteId": null,
+                          "documentName": "Test",
+                          "documentDescription": "Test document",
+                          "documentType": 1,
+                          "type": "png",
+                          "size": "196.18 KB",
+                          "createdAt": "2022-12-09 15:01:32"
+                        }
+                      ],
+                      "pagination": {
+                        "total": 5,
+                        "perPage": 15,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id debe ser un entero",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "customerId": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Identificador de un comercio."
+                  },
+                  "siteId": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Identificador de un sitio."
+                  },
+                  "documentName": {
+                    "type": "string",
+                    "example": "Document name",
+                    "description": "Nombre del documento.",
+                    "maxLength": 30
+                  },
+                  "documentDescription": {
+                    "type": "string",
+                    "maxLength": 60,
+                    "example": "Document description",
+                    "description": "Descripción del documento."
+                  },
+                  "documentType": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Identificador de un tipo de documento."
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta de documentos": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "documentName": "name",
+                    "documentDescription": "description",
+                    "documentType": 1
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Acciones sobre comercios",
+          "Administración de documentos"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "example": 2
+            },
+            "in": "query",
+            "name": "page"
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/core/merchant/document/delete": {
+      "post": {
+        "summary": "Eliminar un documento",
+        "operationId": "post-core-merchant-document-delete",
+        "description": "Este servicio permite eliminar un documento existente. Si la respuesta es exitosa, retorna el identificador del documento eliminado.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "Identificador del documento elimiado."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador del documento a eliminar."
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id"
+                ]
+              },
+              "examples": {
+                "Eliminar un documento": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Acciones sobre comercios",
+          "Administración de documentos"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/merchant/document/download": {
+      "post": {
+        "summary": "Descarga del archivo de un documento",
+        "operationId": "post-core-merchant-download-delete",
+        "description": "Este servicio permite descargar el archivo de un documento existente. Si la respuesta es exitosa, retorna el archivo vinculado al documento.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "application/zip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador del documento\n"
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id"
+                ]
+              },
+              "examples": {
+                "Descarga del archivo un documento": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Acciones sobre comercios",
+          "Administración de documentos"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/tools/document-type/search": {
+      "post": {
+        "summary": "Consulta de tipos de documentos",
+        "operationId": "post-core-document-type-search",
+        "description": "Este servicio permite consultar los tipos de documentos existentes.\nSi la respuesta es exitosa, se retorna un arreglo de los tipos de regimenes con su información. Se puede filtrar por medio de los parametros: nombre y código del tipo de documento.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información de tipos de régimen consultados.",
+                      "items": {
+                        "$ref": "#/components/schemas/DocumentType"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  }
+                },
+                "examples": {
+                  "Busqueda exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "la petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "code": "cc",
+                          "name": "cedula cidadania"
+                        }
+                      ],
+                      "pagination": {
+                        "total": 1,
+                        "perPage": 15,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 60,
+                    "description": "Nombre del tipo de documento"
+                  },
+                  "code": {
+                    "type": "string",
+                    "maxLength": 60,
+                    "description": "Código del tipo de documento"
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta de tipos de régimen": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "page"
+          }
         ]
       },
       "parameters": []
@@ -3259,7 +4261,8 @@
         "tags": [
           "Procedimientos adicionales"
         ]
-      }
+      },
+      "parameters": []
     },
     "/core/tools/taxpayer/search": {
       "post": {
@@ -3857,431 +4860,6 @@
                           "name": "PLACETOPAY",
                           "conditions": "null",
                           "enabled": true
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Status": {
-                      "$ref": "../Models/Status.json"
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta fallida": {
-                    "value": {
-                      "Status": {
-                        "status": "FAILED",
-                        "reason": "BR",
-                        "message": " ",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "../Models/Status.json"
-                    }
-                  }
-                },
-                "examples": {
-                  "Authenticación fallida": {
-                    "value": {
-                      "status": {
-                        "status": "FAILED",
-                        "reason": "401",
-                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "auth": {
-                    "$ref": "../Models/Autentication.json"
-                  }
-                },
-                "required": [
-                  "auth"
-                ]
-              },
-              "examples": {
-                "Búsqueda distribuidores": {
-                  "value": {
-                    "auth": {
-                      "login": "613822f45568191a8cdf4ad2299f6d23",
-                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
-                      "nonce": "NjE1MWQ4MDE5YWViMw==",
-                      "seed": "2021-09-27T09:41:05-05:00"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        },
-        "tags": [
-          "Procedimientos adicionales"
-        ]
-      },
-      "parameters": []
-    },
-    "/core/tools/account-type/search": {
-      "post": {
-        "summary": "Consulta de tipos de cuenta de recaudo.",
-        "operationId": "post-core-tools-account-type-search",
-        "description": "Este servicio permite consultar los tipos de cuenta de recaudo.\nSi la respuesta es exitosa, se retorna un arreglo de tipos de cuenta de recaudo con su información correspondiente.",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "../Models/Status.json"
-                    },
-                    "data": {
-                      "description": "Arreglo que contiene información de bancos adqurientes consultados.",
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Account-type"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta exitosa": {
-                    "value": {
-                      "status": {
-                        "status": "OK",
-                        "reason": "00",
-                        "message": "La petición se ha procesado correctamente.",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "Ahorros"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Status": {
-                      "$ref": "../Models/Status.json"
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta fallida": {
-                    "value": {
-                      "Status": {
-                        "status": "FAILED",
-                        "reason": "BR",
-                        "message": " ",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "../Models/Status.json"
-                    }
-                  }
-                },
-                "examples": {
-                  "Authenticación fallida": {
-                    "value": {
-                      "status": {
-                        "status": "FAILED",
-                        "reason": "401",
-                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "auth": {
-                    "$ref": "../Models/Autentication.json"
-                  }
-                },
-                "required": [
-                  "auth"
-                ]
-              },
-              "examples": {
-                "Búsqueda distribuidores": {
-                  "value": {
-                    "auth": {
-                      "login": "613822f45568191a8cdf4ad2299f6d23",
-                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
-                      "nonce": "NjE1MWQ4MDE5YWViMw==",
-                      "seed": "2021-09-27T09:41:05-05:00"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        },
-        "tags": [
-          "Procedimientos adicionales"
-        ]
-      },
-      "parameters": []
-    },
-    "/core/tools/financial-entity/search": {
-      "post": {
-        "summary": "Consulta de entidades financieras.",
-        "operationId": "post-core-tools-financial-entity-search",
-        "description": "Este servicio permite consultar entidades financiera o banco recaudador.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada entidad financiera.",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "../Models/Status.json"
-                    },
-                    "data": {
-                      "type": "array",
-                      "description": "Arreglo que contiene información de bancos adqurientes consultados.",
-                      "items": {
-                        "$ref": "#/components/schemas/Financial-entity"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta exitosa": {
-                    "value": {
-                      "status": {
-                        "status": "OK",
-                        "reason": "00",
-                        "message": "La petición se ha procesado correctamente",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "BANCOLOMBIA",
-                          "code": "string",
-                          "disabled": false,
-                          "country": "CO"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Status": {
-                      "$ref": "../Models/Status.json"
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta fallida": {
-                    "value": {
-                      "Status": {
-                        "status": "FAILED",
-                        "reason": "BR",
-                        "message": " ",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "../Models/Status.json"
-                    }
-                  }
-                },
-                "examples": {
-                  "Authenticación fallida": {
-                    "value": {
-                      "status": {
-                        "status": "FAILED",
-                        "reason": "401",
-                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "auth": {
-                    "$ref": "../Models/Autentication.json"
-                  }
-                },
-                "required": [
-                  "auth"
-                ]
-              },
-              "examples": {
-                "Búsqueda distribuidores": {
-                  "value": {
-                    "auth": {
-                      "login": "613822f45568191a8cdf4ad2299f6d23",
-                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
-                      "nonce": "NjE1MWQ4MDE5YWViMw==",
-                      "seed": "2021-09-27T09:41:05-05:00"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        },
-        "tags": [
-          "Procedimientos adicionales"
-        ]
-      },
-      "parameters": []
-    },
-    "/core/tools/payment-method/search": {
-      "post": {
-        "summary": "Consulta de medios de pago.",
-        "operationId": "post-core-tools-payment-method-search",
-        "description": "Este servicio permite consultar medios de pago habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada medio de pago.",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "../Models/Status.json"
-                    },
-                    "data": {
-                      "type": "array",
-                      "description": "Arreglo que contiene información de bancos adqurientes consultados.",
-                      "items": {
-                        "$ref": "#/components/schemas/Payment-Method"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta exitosa": {
-                    "value": {
-                      "status": {
-                        "status": "OK",
-                        "reason": "00",
-                        "message": "La petición se ha procesado correctamente",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "data": [
-                        {
-                          "id": 1,
-                          "customerId": 1,
-                          "code": "RM_MC",
-                          "name": "MasterCard",
-                          "commissionModel": "P",
-                          "commissionValue": 1,
-                          "accountNumber": "123456878890",
-                          "accountType": 1,
-                          "franchise": "MASTERCARD",
-                          "financialEntity": 1,
-                          "order": 1,
-                          "disabled": true,
-                          "settings": {}
                         }
                       ]
                     }
@@ -5448,6 +6026,115 @@
           "name",
           "surname"
         ]
+      },
+      "Document": {
+        "title": "Document",
+        "x-stoplight": {
+          "id": "csxf6p90l3yuk"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información de un documento",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identificador del documento"
+          },
+          "customerId": {
+            "type": "integer",
+            "description": "Identificador del comercio",
+            "example": 1
+          },
+          "siteId": {
+            "type": "integer",
+            "description": "Identificador del sitio",
+            "nullable": true
+          },
+          "documentName": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "Nombre del documento"
+          },
+          "documentDescription": {
+            "type": "string",
+            "maxLength": 60,
+            "description": "Descripción del documento",
+            "nullable": true
+          },
+          "documentType": {
+            "type": "integer",
+            "description": "Identificador del tipo de documento",
+            "example": 1
+          },
+          "type": {
+            "type": "string",
+            "description": "Tipo del archivo de documento",
+            "example": "pdf"
+          },
+          "size": {
+            "type": "string",
+            "description": "Tamaño del archivo de documento",
+            "example": "10 MB"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Fecha de creación del documento",
+            "example": "2022-12-30 13:45:02"
+          }
+        }
+      },
+      "Pagination": {
+        "title": "Pagination",
+        "x-stoplight": {
+          "id": "1oec2iodc465x"
+        },
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Total de items de la consulta",
+            "example": 25
+          },
+          "perPage": {
+            "type": "integer",
+            "description": "Número de items por página",
+            "example": 15
+          },
+          "currentPage": {
+            "type": "integer",
+            "description": "Página actual",
+            "example": 2
+          },
+          "lastPage": {
+            "type": "integer",
+            "description": "Última página",
+            "example": 10
+          }
+        }
+      },
+      "DocumentType": {
+        "title": "DocumentType",
+        "x-stoplight": {
+          "id": "kaoogagxi73el"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información de un documento",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Indicador del tipo del documento"
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Código del tipo de documento"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 60,
+            "description": "Nombre del tipo de documento"
+          }
+        }
       },
       "Site": {
         "title": "Site",
