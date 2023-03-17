@@ -558,13 +558,15 @@
                     "type": "string",
                     "maxLength": 80,
                     "example": "Merchant name",
-                    "description": "Nombre del comercio."
+                    "description": "Nombre del comercio.",
+                    "minLength": 3
                   },
                   "brand": {
                     "type": "string",
                     "maxLength": 60,
                     "example": "Merchant brand",
-                    "description": "Marca del comercio."
+                    "description": "Marca del comercio.",
+                    "minLength": 3
                   },
                   "active": {
                     "type": "boolean",
@@ -875,12 +877,14 @@
                       "commissionValue": {
                         "type": "number",
                         "format": "float",
-                        "example": 1,
-                        "description": "Valor de comisión. Permite 14 caracteres enteros y 2 caracteres decimales además del punto."
+                        "description": "Valor de comisión.",
+                        "example": 1000.5,
+                        "maximum": 9999.99,
+                        "minimum": 0
                       },
                       "accountType": {
                         "type": "integer",
-                        "description": "Tipo de cuenta de recaudo.",
+                        "description": "Identificador del tipo de cuenta de recaudo.",
                         "example": 1
                       },
                       "accountNumber": {
@@ -897,7 +901,9 @@
                       "order": {
                         "type": "integer",
                         "description": "Nivel de prioridad.",
-                        "example": 1
+                        "example": 1,
+                        "minimum": 1,
+                        "maximum": 32767
                       },
                       "settings": {
                         "type": "object",
@@ -945,7 +951,7 @@
     },
     "/core/merchant/payment-methods/update": {
       "post": {
-        "summary": "Actualizar un método de pago",
+        "summary": "Actualizar un método de pago asociado a un comercio",
         "operationId": "post-core-merchant-payment-methods-update",
         "responses": {
           "200": {
@@ -1056,7 +1062,7 @@
                     "properties": {
                       "commissionModel": {
                         "type": "string",
-                        "description": "Modelo de comisión.",
+                        "description": "Modelo de comisión. Este campo es requerido si commissionValue está presente.",
                         "enum": [
                           "P",
                           "F"
@@ -1067,28 +1073,30 @@
                       "commissionValue": {
                         "type": "number",
                         "format": "float",
-                        "description": "Valor de comisión.",
+                        "description": "Valor de comisión. Este campo es requerido si el campo commissionModel está presente.",
                         "example": 0
                       },
                       "accountType": {
                         "type": "integer",
-                        "description": "Identificador de tipo de cuenta de recaudo.",
+                        "description": "Identificador de tipo de cuenta de recaudo. Este campo es requerido si accountNumber está presente.",
                         "example": 1
                       },
                       "accountNumber": {
                         "type": "string",
                         "example": "1234567890",
                         "maxLength": 20,
-                        "description": "Número de cuenta de recaudo."
+                        "description": "Número de cuenta de recaudo. Este campo es requerido si el campo accountType está presente."
                       },
                       "financialEntity": {
                         "type": "integer",
-                        "description": "Identificado de la entidad financiera o banco recaudador del medio de pago.",
+                        "description": "Identificador de la entidad financiera o banco recaudador del medio de pago.",
                         "example": 2
                       },
                       "order": {
                         "type": "integer",
                         "description": "Nivel de prioridad.",
+                        "minimum": 1,
+                        "maximum": 32767,
                         "example": 1
                       },
                       "settings": {
@@ -1139,7 +1147,7 @@
     "/core/merchant/payment-methods/delete": {
       "parameters": [],
       "post": {
-        "summary": "Remover un método de pago.",
+        "summary": "Remover un método de pago asociado a un comercio",
         "operationId": "post-core-merchant-payment-methods-delete",
         "responses": {
           "200": {
@@ -1272,7 +1280,7 @@
     },
     "/core/merchant/payment-methods/search": {
       "post": {
-        "summary": "Consulta de métodos de pago",
+        "summary": "Consulta de métodos de pago de un comercio",
         "operationId": "post-core-merchant-payment-methods-search",
         "responses": {
           "200": {
@@ -1288,13 +1296,13 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Payment-Method"
+                        "$ref": "#/components/schemas/Customer-Payment-Method"
                       }
                     }
                   }
                 },
                 "examples": {
-                  "Respuesta de consulta exitosa.": {
+                  "Respuesta de consulta exitosa": {
                     "value": {
                       "status": {
                         "status": "OK",
@@ -1403,7 +1411,8 @@
                     "type": "string",
                     "description": "Nombre del método de pago a consultar.",
                     "maxLength": 50,
-                    "example": "masterCard"
+                    "example": "masterCard",
+                    "minLength": 3
                   },
                   "code": {
                     "type": "string",
@@ -1595,7 +1604,8 @@
                       "email",
                       "currency",
                       "language",
-                      "integration"
+                      "integration",
+                      "control"
                     ],
                     "properties": {
                       "login": {
@@ -1732,12 +1742,165 @@
                           "checkoutVersion": {
                             "type": "string",
                             "description": "Versión de redirección.",
-                            "example": "v4"
+                            "example": "v4",
+                            "maxLength": 5
                           },
                           "analyticsCode": {
                             "type": "string",
                             "maxLength": 60,
                             "description": "Código Analytics o Tag Manager."
+                          }
+                        }
+                      },
+                      "control": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "l696doxdexkcg"
+                        },
+                        "description": "Objeto con información de los datos de control.",
+                        "required": [
+                          "minAmount",
+                          "maxAmount",
+                          "allowedDays",
+                          "allowedHours",
+                          "filterPse",
+                          "filterByBin"
+                        ],
+                        "properties": {
+                          "minAmount": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "rgny3j6n98jx8"
+                            },
+                            "description": "Mínimo valor permitido por transacción.",
+                            "format": "float",
+                            "example": 9999999.99,
+                            "maximum": 9999999999.99,
+                            "minimum": 0,
+                            "default": 0
+                          },
+                          "maxAmount": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "1pph0b86r10oh"
+                            },
+                            "description": "Máximo valor permitido por transacción.",
+                            "format": "float",
+                            "maximum": 999999999999.99,
+                            "minimum": 0,
+                            "example": 0,
+                            "default": 100000000
+                          },
+                          "allowedDays": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "0dowgqg7xqu97"
+                            },
+                            "minimum": 0,
+                            "maximum": 127,
+                            "example": 127,
+                            "default": 127,
+                            "description": "Días de operación."
+                          },
+                          "allowedHours": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "3n7kg5u2l2sm1"
+                            },
+                            "description": "Horas de operación.",
+                            "default": "ffffffffffffffffffffffffffffffffffffffffff",
+                            "example": "ffffffffffffffffffffffffffffffffffffffffff",
+                            "minLength": 42,
+                            "maxLength": 42,
+                            "pattern": "^([0-9a-f]){42}"
+                          },
+                          "filterPse": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "yk2spkkdd3fqi"
+                            },
+                            "default": false,
+                            "description": "Indicador de uso de filtros de seguridad en PSE"
+                          },
+                          "filterTuya": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "vvme27bpaasoh"
+                            },
+                            "default": false,
+                            "description": "Indicador de uso de filtros de seguridad en Tuya"
+                          },
+                          "filterSafetypay": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "melckc2y2wmk2"
+                            },
+                            "default": false,
+                            "description": "Indicador de uso de filtros de seguridad en safetypay"
+                          },
+                          "prechargeFilter": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "56s7n6ghdumbd"
+                            },
+                            "minimum": 0,
+                            "maximum": 2,
+                            "example": 1,
+                            "enum": [
+                              0,
+                              1,
+                              2
+                            ],
+                            "description": "Indicador de uso del filtro de precobro."
+                          },
+                          "allowedBankCountries": {
+                            "type": "array",
+                            "x-stoplight": {
+                              "id": "amo1f2z08b59v"
+                            },
+                            "description": "Paises permitidos para bancos emisores. Es nulo cuando todos los paises sean permitidos.",
+                            "items": {
+                              "x-stoplight": {
+                                "id": "xmp4q46mm9di9"
+                              },
+                              "type": "string",
+                              "example": "CO",
+                              "maxLength": 2,
+                              "minLength": 2
+                            }
+                          },
+                          "filterByBin": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "e5kqkqxf1rfl1"
+                            },
+                            "default": false,
+                            "description": "Indicador de uso del filtro por bines. "
+                          },
+                          "exceptionBinsList": {
+                            "type": "array",
+                            "x-stoplight": {
+                              "id": "igdkvkkdozsep"
+                            },
+                            "description": "Lista de Bines a exceptuar.",
+                            "items": {
+                              "x-stoplight": {
+                                "id": "5jdoznw7ojcbz"
+                              },
+                              "type": "number",
+                              "example": 411111
+                            }
+                          },
+                          "delegatedAuthorization": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "zdvf7hq4ucuq4"
+                            },
+                            "description": "Autorización delegada.",
+                            "pattern": "^([0-9a-f]){42}",
+                            "minLength": 42,
+                            "maxLength": 42,
+                            "example": "ffffffffffffffffffffffffffffffffffffffffff"
                           }
                         }
                       }
@@ -1780,6 +1943,25 @@
                         "notificationUrl": "www.urlexample.com",
                         "checkoutVersion": "v4",
                         "analyticsCode": "string"
+                      },
+                      "control": {
+                        "minAmount": 0,
+                        "maxAmount": 100000000,
+                        "allowedDays": 127,
+                        "allowedHours": "ffffffffffffffffffffffffffffffffffffffffff",
+                        "filterPse": false,
+                        "filterTuya": false,
+                        "filterSafetypay": false,
+                        "prechargeFilter": 0,
+                        "allowedBankCountries": [
+                          "CO"
+                        ],
+                        "filterByBin": false,
+                        "exceptionBinsList": [
+                          411111,
+                          123456
+                        ],
+                        "delegatedAuthorization": "ffffffffffffffffffffffffffffffffffffffffff"
                       }
                     }
                   }
@@ -2038,12 +2220,153 @@
                           "checkoutVersion": {
                             "type": "string",
                             "description": "Versión de redirección.",
-                            "example": "v4"
+                            "example": "v4",
+                            "maxLength": 5
                           },
                           "analyticsCode": {
                             "type": "string",
                             "maxLength": 60,
                             "description": "Código Analytics o Tag Manager."
+                          }
+                        }
+                      },
+                      "control": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "l696doxdexkcg"
+                        },
+                        "description": "Objeto con información de los datos de control.",
+                        "properties": {
+                          "minAmount": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "rgny3j6n98jx8"
+                            },
+                            "description": "Mínimo valor permitido por transacción. Este campo es requerido si el campo maxAmount está presente.",
+                            "format": "float",
+                            "example": 9999999.99,
+                            "maximum": 9999999999.99,
+                            "minimum": 0
+                          },
+                          "maxAmount": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "1pph0b86r10oh"
+                            },
+                            "description": "Máximo valor permitido por transacción. Este campo es requerido si el campo minAmount está presente.",
+                            "format": "float",
+                            "maximum": 999999999999.99,
+                            "minimum": 0,
+                            "example": 0
+                          },
+                          "allowedDays": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "0dowgqg7xqu97"
+                            },
+                            "minimum": 0,
+                            "maximum": 127,
+                            "example": 127,
+                            "description": "Días de operación."
+                          },
+                          "allowedHours": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "3n7kg5u2l2sm1"
+                            },
+                            "description": "Horas de operación.",
+                            "example": "ffffffffffffffffffffffffffffffffffffffffff",
+                            "minLength": 42,
+                            "maxLength": 42,
+                            "pattern": "^([0-9a-f]){42}"
+                          },
+                          "filterPse": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "yk2spkkdd3fqi"
+                            },
+                            "default": false,
+                            "description": "Indicador de uso de filtros de seguridad en PSE"
+                          },
+                          "filterTuya": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "vvme27bpaasoh"
+                            },
+                            "default": false,
+                            "description": "Indicador de uso de filtros de seguridad en Tuya"
+                          },
+                          "filterSafetypay": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "melckc2y2wmk2"
+                            },
+                            "default": false,
+                            "description": "Indicador de uso de filtros de seguridad en safetypay"
+                          },
+                          "prechargeFilter": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "56s7n6ghdumbd"
+                            },
+                            "minimum": 0,
+                            "maximum": 2,
+                            "example": 1,
+                            "enum": [
+                              0,
+                              1,
+                              2
+                            ],
+                            "description": "Indicador de uso del filtro de precobro."
+                          },
+                          "allowedBankCountries": {
+                            "type": "array",
+                            "x-stoplight": {
+                              "id": "amo1f2z08b59v"
+                            },
+                            "description": "Paises permitidos para bancos emisores. Es nulo cuando todos los paises sean permitidos.",
+                            "items": {
+                              "x-stoplight": {
+                                "id": "xmp4q46mm9di9"
+                              },
+                              "type": "string",
+                              "example": "CO",
+                              "maxLength": 2,
+                              "minLength": 2
+                            }
+                          },
+                          "filterByBin": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "e5kqkqxf1rfl1"
+                            },
+                            "default": false,
+                            "description": "Indicador de uso del filtro por bines. "
+                          },
+                          "exceptionBinsList": {
+                            "type": "array",
+                            "x-stoplight": {
+                              "id": "igdkvkkdozsep"
+                            },
+                            "description": "Lista de Bines a exceptuar.",
+                            "items": {
+                              "x-stoplight": {
+                                "id": "5jdoznw7ojcbz"
+                              },
+                              "type": "number",
+                              "example": 411111
+                            }
+                          },
+                          "delegatedAuthorization": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "zdvf7hq4ucuq4"
+                            },
+                            "description": "Autorización delegada.",
+                            "pattern": "^([0-9a-f]){42}",
+                            "minLength": 42,
+                            "maxLength": 42,
+                            "example": "ffffffffffffffffffffffffffffffffffffffffff"
                           }
                         }
                       }
@@ -2087,6 +2410,24 @@
                         "notificationUrl": "www.urlexample.com",
                         "checkoutVersion": "v4",
                         "analyticsCode": "string"
+                      },
+                      "control": {
+                        "minAmount": 9999999.99,
+                        "maxAmount": 0,
+                        "allowedDays": 127,
+                        "allowedHours": "ffffffffffffffffffffffffffffffffffffffffff",
+                        "filterPse": false,
+                        "filterTuya": false,
+                        "filterSafetypay": false,
+                        "prechargeFilter": 0,
+                        "allowedBankCountries": [
+                          "CO"
+                        ],
+                        "filterByBin": false,
+                        "exceptionBinsList": [
+                          411111
+                        ],
+                        "delegatedAuthorization": "ffffffffffffffffffffffffffffffffffffffffff"
                       }
                     }
                   }
@@ -2295,6 +2636,24 @@
                             "notificationUrl": "www.urlexample.com",
                             "checkoutVersion": "v4",
                             "analyticsCode": "string"
+                          },
+                          "control": {
+                            "minAmount": 9999999.99,
+                            "maxAmount": 0,
+                            "allowedDays": 127,
+                            "allowedHours": "ffffffffffffffffffffffffffffffffffffffffff",
+                            "filterPse": false,
+                            "filterTuya": false,
+                            "filterSafetypay": false,
+                            "prechargeFilter": 1,
+                            "allowedBankCountries": [
+                              "CO"
+                            ],
+                            "filterByBin": false,
+                            "exceptionBinsList": [
+                              411111
+                            ],
+                            "delegatedAuthorization": "ffffffffffffffffffffffffffffffffffffffffff"
                           }
                         }
                       ]
@@ -2370,7 +2729,8 @@
                   },
                   "customerId": {
                     "type": "integer",
-                    "description": "Identificador del comercio asociado."
+                    "description": "Identificador del comercio asociado.",
+                    "example": 1
                   },
                   "id": {
                     "type": "integer",
@@ -2379,11 +2739,17 @@
                   },
                   "name": {
                     "type": "string",
-                    "description": "Nombre del sitio."
+                    "description": "Nombre del sitio.",
+                    "maxLength": 128,
+                    "example": "name",
+                    "minLength": 3
                   },
                   "displayName": {
                     "type": "string",
-                    "description": "Nombre a mostrar del sitio"
+                    "description": "Nombre a mostrar del sitio",
+                    "maxLength": 128,
+                    "example": "dispĺayName",
+                    "minLength": 3
                   },
                   "onTest": {
                     "type": "boolean",
@@ -2407,10 +2773,10 @@
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
                     },
-                    "customerId": 0,
+                    "customerId": 1,
                     "id": 15,
-                    "name": "string",
-                    "displayName": "string",
+                    "name": "name",
+                    "displayName": "dispĺayName",
                     "onTest": true,
                     "active": true
                   }
@@ -2423,6 +2789,846 @@
         "description": "Este servicio permite consultar sitios existentes filtrando por medio de los parametros: identificador del sitio, identificador del comercio, nombre, nombre a mostrar, indicador de estado en pruebas y estado del sitio.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
         "tags": [
           "Acciones sobre sitios"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/site/payment-method/create": {
+      "post": {
+        "summary": "Agregar un medio de pago a un sitio",
+        "operationId": "post-core-site-payment-method-create",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 2,
+                      "description": "Identificador del medio de pago agregado"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo siteId es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Objeto que contiene los datos necesarios para agregar un medio de pago a un sitio.",
+                    "required": [
+                      "siteId",
+                      "customerPaymentId"
+                    ],
+                    "properties": {
+                      "siteId": {
+                        "type": "integer",
+                        "example": 1,
+                        "description": "Identificador del sitio."
+                      },
+                      "customerPaymentId": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "fapfe82fyp2iy"
+                        },
+                        "example": 1,
+                        "description": "Identificador del medio de pago asociado al comercio (comercio al cual pertenece el sitio)."
+                      },
+                      "order": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "mj535hua2whfx"
+                        },
+                        "minimum": 1,
+                        "maximum": 32767,
+                        "example": 1,
+                        "description": "Nivel de prioridad"
+                      },
+                      "minAmount": {
+                        "type": "number",
+                        "x-stoplight": {
+                          "id": "ei5ru7gxfxb7x"
+                        },
+                        "description": "Mínimo valor permitido por transacción. Este campo es requerido cuando el campo maxAmount está presente.",
+                        "format": "float",
+                        "minimum": 0,
+                        "maximum": 9999999999.99,
+                        "example": 1
+                      },
+                      "maxAmount": {
+                        "type": "number",
+                        "x-stoplight": {
+                          "id": "td816laq9soh9"
+                        },
+                        "format": "float",
+                        "example": 99999999.99,
+                        "minimum": 0,
+                        "maximum": 9999999999.99,
+                        "description": "Máximo valor permitido por transacción. Este campo es requerido cuando el campo minAmount está presente."
+                      },
+                      "accountType": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "5kwiytahbv3v1"
+                        },
+                        "example": 1,
+                        "description": "Identificador del tipo de cuenta de recaudo. Este campo es requerido cuando el campo accountNumber está presente."
+                      },
+                      "accountNumber": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "gzy9p6xul3toe"
+                        },
+                        "maxLength": 20,
+                        "example": "123456789900",
+                        "description": "Número de cuenta de recaudo. Este campo es requerido cuando el campo accountType está presente."
+                      },
+                      "financialEntity": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "63potk2wcbfl8"
+                        },
+                        "example": 1,
+                        "description": "Identificador de la entidad financiera o banco de recaudo del medio de pago."
+                      },
+                      "commissionModel": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "hsx1e5e9qcgvj"
+                        },
+                        "enum": [
+                          "P",
+                          "F"
+                        ],
+                        "example": "P",
+                        "maxLength": 1,
+                        "description": "Modelo de comisión"
+                      },
+                      "commissionValue": {
+                        "type": "number",
+                        "x-stoplight": {
+                          "id": "sde2n9pw7cn9u"
+                        },
+                        "example": 1,
+                        "minimum": 0,
+                        "maximum": 9999.99,
+                        "description": "Valor de comisión."
+                      },
+                      "settings": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "9ok1s8gra52tz"
+                        },
+                        "description": "Objeto que contiene las configuraciones del medio de pago."
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth",
+                  "data"
+                ]
+              },
+              "examples": {
+                "Agregar un medio de pago a un sitio": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "data": {
+                      "siteId": 1,
+                      "customerPaymentId": 1,
+                      "order": 1,
+                      "minAmount": 1,
+                      "maxAmount": 99999999.99,
+                      "accountType": 1,
+                      "accountNumber": "123456789900",
+                      "financialEntity": 1,
+                      "commissionModel": "P",
+                      "commissionValue": 1,
+                      "settings": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite agregar un medio de pago existente a un sitio. Si el proceso el exitoso, se retorna el identificador del medio de pago asociado.",
+        "tags": [
+          "Acciones sobre lista de preferidos"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/site/payment-method/delete": {
+      "post": {
+        "summary": "Actualizar un medio de pago asociado a un sitio",
+        "operationId": "post-core-site-payment-method-update",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 2,
+                      "description": "Identificador del medio de pago actualizado."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo siteId es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "x-stoplight": {
+                      "id": "jzau5qd9ywowr"
+                    },
+                    "description": "Identificador del medio de pago."
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Objeto que contiene la información del medio de pago a actualizar.",
+                    "properties": {
+                      "order": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "mj535hua2whfx"
+                        },
+                        "minimum": 1,
+                        "maximum": 32767,
+                        "example": 1,
+                        "description": "Nivel de prioridad"
+                      },
+                      "minAmount": {
+                        "type": "number",
+                        "x-stoplight": {
+                          "id": "ei5ru7gxfxb7x"
+                        },
+                        "description": "Mínimo valor permitido por transacción. Este campo es requerido cuando el campo maxAmount está presente.",
+                        "format": "float",
+                        "minimum": 0,
+                        "maximum": 9999999999.99,
+                        "example": 1
+                      },
+                      "maxAmount": {
+                        "type": "number",
+                        "x-stoplight": {
+                          "id": "td816laq9soh9"
+                        },
+                        "format": "float",
+                        "example": 99999999.99,
+                        "minimum": 0,
+                        "maximum": 9999999999.99,
+                        "description": "Máximo valor permitido por transacción. Este campo es requerido cuando el campo minAmount está presente."
+                      },
+                      "accountType": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "5kwiytahbv3v1"
+                        },
+                        "example": 1,
+                        "description": "Identificador del tipo de cuenta de recaudo. Este campo es requerido cuando el campo accountNumber está presente."
+                      },
+                      "accountNumber": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "gzy9p6xul3toe"
+                        },
+                        "maxLength": 20,
+                        "example": "123456789900",
+                        "description": "Número de cuenta de recaudo. Este campo es requerido cuando el campo accountType está presente."
+                      },
+                      "financialEntity": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "63potk2wcbfl8"
+                        },
+                        "example": 1,
+                        "description": "Identificador de la entidad financiera o banco de recaudo del medio de pago."
+                      },
+                      "commissionModel": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "hsx1e5e9qcgvj"
+                        },
+                        "enum": [
+                          "P",
+                          "F"
+                        ],
+                        "example": "P",
+                        "maxLength": 1,
+                        "description": "Modelo de comisión"
+                      },
+                      "commissionValue": {
+                        "type": "number",
+                        "x-stoplight": {
+                          "id": "sde2n9pw7cn9u"
+                        },
+                        "example": 1,
+                        "minimum": 0,
+                        "maximum": 9999.99,
+                        "description": "Valor de comisión."
+                      },
+                      "settings": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "9ok1s8gra52tz"
+                        },
+                        "description": "Objeto que contiene las configuraciones del medio de pago."
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id",
+                  "data"
+                ]
+              },
+              "examples": {
+                "Actualización de un medio de pago": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "data": {
+                      "order": 1,
+                      "minAmount": 1,
+                      "maxAmount": 99999999.99,
+                      "accountType": 1,
+                      "accountNumber": "123456789900",
+                      "financialEntity": 1,
+                      "commissionModel": "P",
+                      "commissionValue": 1,
+                      "settings": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite actualizar un medio de pago asociado a un sitio. Si el proceso el exitoso, se retorna el identificador del medio de pago actualizado.",
+        "tags": [
+          "Acciones sobre lista de preferidos"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/site/payment-method/update": {
+      "post": {
+        "summary": "Remover un medio de pago asociado a un sitio",
+        "operationId": "post-core-site-payment-method-delete",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 2,
+                      "description": "Identificador del medio de pago eliminado."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo siteId es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "x-stoplight": {
+                      "id": "jzau5qd9ywowr"
+                    },
+                    "description": "Identificador del medio de pago."
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id"
+                ]
+              },
+              "examples": {
+                "Remover un medio de pago de un sitio": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite remover un medio de pago asociado a un sitio. Si el proceso el exitoso, se retorna el identificador del medio de pago eliminado.",
+        "tags": [
+          "Acciones sobre lista de preferidos"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/site/payment-method/search": {
+      "post": {
+        "summary": "Consulta de medios de pago asociados a un sitio",
+        "operationId": "post-core-site-payment-method-search",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "vno5fvdbi8scy"
+                      },
+                      "description": "Arreglo que contiene los medios de pago consultados.",
+                      "items": {
+                        "$ref": "#/components/schemas/Site-Payment-Method",
+                        "x-stoplight": {
+                          "id": "em3lbeh1cym6r"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "customerPaymentId": 1,
+                          "siteId": 1,
+                          "code": "RM_MC",
+                          "name": "MasterCard",
+                          "minAmount": 100,
+                          "maxAmount": 999999.99,
+                          "commissionModel": "F",
+                          "commissionValue": 1,
+                          "accountNumber": "123456878890",
+                          "accountType": 1,
+                          "franchise": "MASTERCARD",
+                          "financialEntity": 1,
+                          "order": 1,
+                          "disabled": true,
+                          "settings": {}
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo siteId es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "siteId": {
+                    "type": "integer",
+                    "x-stoplight": {
+                      "id": "bd0b6tkbh971y"
+                    },
+                    "example": 1,
+                    "description": "Identificador de sitio"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "x-stoplight": {
+                      "id": "jzau5qd9ywowr"
+                    },
+                    "description": "Identificador del medio de pago."
+                  },
+                  "name": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "s77qkbek7f5d2"
+                    },
+                    "maxLength": 50,
+                    "minLength": 3,
+                    "example": "payment method name",
+                    "description": "Nombre del medio de pago"
+                  },
+                  "code": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "dgapsme1boutn"
+                    },
+                    "maxLength": 5,
+                    "description": "Código identificador del medio de pago"
+                  },
+                  "franchise": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "qzjyezsqck2lq"
+                    },
+                    "description": "Franquicia del medio de pago",
+                    "example": "VISA"
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta de medios de pago": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "siteId": 1,
+                    "id": 1,
+                    "name": "payment method name",
+                    "code": "ID_VS",
+                    "franchise": "VISA"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite consultar los médios de págo asociados a un sitio. \nEs posible filtrar los resultados por medio de los parametros: \"id\", \"name\", \"code\" y \"franchise\".\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
+        "tags": [
+          "Acciones sobre lista de preferidos"
         ]
       },
       "parameters": []
@@ -2585,8 +3791,8 @@
                       "siteId": 1,
                       "person": {
                         "documentType": "CC",
-                        "Document": "string",
-                        "email": "string"
+                        "Document": "1234567894",
+                        "email": "test@test.com"
                       },
                       "card": {
                         "number": 4111111111111111
@@ -2752,7 +3958,7 @@
                 ]
               },
               "examples": {
-                "Creación de una lista de preferidos": {
+                "Actualización de lista de preferidos": {
                   "value": {
                     "auth": {
                       "login": "613822f45568191a8cdf4ad2299f6d23",
@@ -2763,9 +3969,9 @@
                     "id": 1,
                     "data": {
                       "person": {
-                        "documentType": "NIT",
-                        "Document": "string",
-                        "email": "string"
+                        "documentType": "CC",
+                        "Document": "987654321",
+                        "email": "tst@test.com"
                       },
                       "card": {
                         "number": 4111111111111111
@@ -2902,7 +4108,7 @@
                 ]
               },
               "examples": {
-                "Creación de una lista de preferidos": {
+                "Eliminar una lista de preferidos": {
                   "value": {
                     "auth": {
                       "login": "613822f45568191a8cdf4ad2299f6d23",
@@ -3057,7 +4263,8 @@
                   "email": {
                     "type": "string",
                     "description": "Email registrado en la lista de preferidos.",
-                    "maxLength": 80
+                    "maxLength": 80,
+                    "minLength": 5
                   },
                   "document": {
                     "type": "string",
@@ -3074,10 +4281,9 @@
                     }
                   },
                   "cardDisplay": {
-                    "type": "string",
+                    "type": "number",
                     "description": "Número de tarjeta enmascarada.",
-                    "example": "411111****1111",
-                    "maxLength": 14
+                    "example": 4123123123111111
                   }
                 },
                 "required": [
@@ -3085,7 +4291,7 @@
                 ]
               },
               "examples": {
-                "Creación de una lista de preferidos": {
+                "Busqueda de lista de preferidos": {
                   "value": {
                     "auth": {
                       "login": "613822f45568191a8cdf4ad2299f6d23",
@@ -3094,19 +4300,13 @@
                       "seed": "2021-09-27T09:41:05-05:00"
                     },
                     "id": 1,
-                    "data": {
-                      "person": {
-                        "documentType": "NIT",
-                        "Document": "string",
-                        "email": "string"
-                      },
-                      "card": {
-                        "number": 4111111111111111
-                      },
-                      "ipAddresses": [
-                        "120.120.120.1"
-                      ]
-                    }
+                    "siteId": 1,
+                    "email": "email@test.com",
+                    "document": "CC 1236548123",
+                    "ipAddresses": [
+                      "120.120.120.1"
+                    ],
+                    "cardDisplay": 4123123123111111
                   }
                 }
               }
@@ -4251,9 +5451,15 @@
                     },
                     "data": {
                       "type": "array",
-                      "description": "Arreglo que contiene información de bancos adqurientes consultados.",
+                      "x-stoplight": {
+                        "id": "331taz9iqvyft"
+                      },
+                      "description": "Arreglo que contiene los métodos de pago consultados y su información.",
                       "items": {
-                        "$ref": "#/components/schemas/Payment-Method"
+                        "$ref": "#/components/schemas/Payment-Method-Tools",
+                        "x-stoplight": {
+                          "id": "f0tbi3l60swlo"
+                        }
                       }
                     }
                   }
@@ -4567,59 +5773,7 @@
         "title": "Customer update",
         "type": "object",
         "description": "Estructura que contiene la información para actualizar un comercio.",
-        "x-examples": {
-          "Estructura-comercio": {
-            "id": 1,
-            "name": "Merchant name",
-            "brand": "Merchant brand",
-            "mcc": "0742",
-            "active": true,
-            "timezone": "America/Bogota",
-            "size": "XS",
-            "incrementType": "SMLMV",
-            "languages": [
-              "ES"
-            ],
-            "currencies": [
-              "COP"
-            ],
-            "document": {
-              "type": "NIT",
-              "number": "123456123"
-            },
-            "address": {
-              "street": "Street address",
-              "city": "Medellin",
-              "state": "1",
-              "postalCode": "417030",
-              "country": "CO",
-              "phone": "3203201320"
-            },
-            "legalRepresentative": {
-              "type": "NIT",
-              "Document": "1234568",
-              "name": "Legal representative name",
-              "surname": "Legal representative surname"
-            },
-            "billing": {
-              "contact": "Billing contact name",
-              "mail": "billing@example.com",
-              "registrationNumber": "123456789",
-              "taxType": 5,
-              "taxRegime": 2,
-              "organizationType": 1,
-              "ciiu": "1224"
-            },
-            "travelAgency": {
-              "dispersion": true,
-              "iata": "123456"
-            },
-            "control": {
-              "seller": 1,
-              "reseller": 1
-            }
-          }
-        },
+        "x-examples": {},
         "properties": {
           "name": {
             "type": "string",
@@ -4789,59 +5943,7 @@
         "title": "Customer",
         "type": "object",
         "description": "Estructura que contiene la información de un comercio.",
-        "x-examples": {
-          "Estructura-comercio": {
-            "id": 1,
-            "name": "Merchant name",
-            "brand": "Merchant brand",
-            "mcc": "0742",
-            "active": true,
-            "timezone": "America/Bogota",
-            "size": "XS",
-            "incrementType": "SMLMV",
-            "languages": [
-              "ES"
-            ],
-            "currencies": [
-              "COP"
-            ],
-            "document": {
-              "type": "NIT",
-              "number": "123456123"
-            },
-            "address": {
-              "street": "Street address",
-              "city": "Medellin",
-              "state": "1",
-              "postalCode": "417030",
-              "country": "CO",
-              "phone": "3203201320"
-            },
-            "legalRepresentative": {
-              "type": "NIT",
-              "Document": "1234568",
-              "name": "Legal representative name",
-              "surname": "Legal representative surname"
-            },
-            "billing": {
-              "contact": "Billing contact name",
-              "mail": "billing@example.com",
-              "registrationNumber": "123456789",
-              "taxType": 5,
-              "taxRegime": 2,
-              "organizationType": 1,
-              "ciiu": "1224"
-            },
-            "travelAgency": {
-              "dispersion": true,
-              "iata": "123456"
-            },
-            "control": {
-              "seller": 1,
-              "reseller": 1
-            }
-          }
-        },
+        "x-examples": {},
         "properties": {
           "id": {
             "type": "integer",
@@ -5012,10 +6114,13 @@
           }
         }
       },
-      "Payment-Method": {
+      "Customer-Payment-Method": {
         "title": "Payment Method",
+        "x-stoplight": {
+          "id": "5c0d76b170493"
+        },
         "type": "object",
-        "description": "Estructura que contiene la información de un medio de pago.",
+        "description": "Estructura que contiene la información de un medio de pago asociado a un comercio.",
         "x-examples": {},
         "properties": {
           "id": {
@@ -5052,9 +6157,11 @@
           },
           "commissionValue": {
             "type": "number",
-            "format": "double",
+            "format": "float",
             "example": 1,
-            "description": "Valor de comisión."
+            "description": "Valor de comisión.",
+            "minimum": 0,
+            "maximum": 9999.99
           },
           "accountNumber": {
             "type": "string",
@@ -5088,7 +6195,193 @@
           "financialEntity": {
             "type": "integer",
             "example": 1,
-            "description": "Entidad financiera o banco recaudador del medio de pago."
+            "description": "Identificador de la entidad financiera o banco recaudador del medio de pago."
+          },
+          "order": {
+            "type": "integer",
+            "example": 1,
+            "description": "Nivel de prioridad."
+          },
+          "disabled": {
+            "type": "boolean",
+            "description": "Indicador de estado inactivo del medio de pago."
+          },
+          "settings": {
+            "type": "object",
+            "description": "Objeto que contiene las configuraciones del medio de pago."
+          }
+        }
+      },
+      "Payment-Method-Tools": {
+        "title": "Payment Method",
+        "x-stoplight": {
+          "id": "kttjlys0pucmd"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información de un medio de pago.",
+        "x-examples": {},
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identificador del método de pago.",
+            "example": 1
+          },
+          "customerId": {
+            "type": "integer",
+            "description": "Identificador del comercio al que pertence el método de pago.",
+            "example": 1
+          },
+          "code": {
+            "type": "string",
+            "description": "Código identificador del método de pago.",
+            "maxLength": 5,
+            "example": "RM_MC"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 50,
+            "example": "MasterCard",
+            "description": "Nombre del método de pago."
+          },
+          "franchise": {
+            "type": "string",
+            "enum": [
+              "AMEX",
+              "VISA",
+              "DINERS",
+              "DISCOVER",
+              "JBC",
+              "MASTERCARD",
+              "EXITO",
+              "ALKOSTO",
+              "MAESTRO",
+              "VISAELECTRON",
+              "ATH"
+            ],
+            "description": "Franquicia del medio de pago.",
+            "example": "MASTERCARD"
+          },
+          "disabled": {
+            "type": "boolean",
+            "description": "Indicador de estado inactivo del medio de pago."
+          }
+        }
+      },
+      "Site-Payment-Method": {
+        "title": "Payment Method",
+        "x-stoplight": {
+          "id": "rppze0ulc1o4p"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información de un medio de pago asociado a un sitio.",
+        "x-examples": {},
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identificador del método de pago asociado al sitio.",
+            "example": 1
+          },
+          "customerPaymentId": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "hcs1ii5n10ffg"
+            },
+            "example": 1,
+            "description": "Identificador del medio de pago asociado al comercio"
+          },
+          "siteId": {
+            "type": "integer",
+            "description": "Identificador del sitio al que pertence el método de pago.",
+            "example": 1,
+            "x-stoplight": {
+              "id": "t9g2ufe6r7jtt"
+            }
+          },
+          "code": {
+            "type": "string",
+            "description": "Código identificador del método de pago.",
+            "maxLength": 5,
+            "example": "RM_MC"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 50,
+            "example": "MasterCard",
+            "description": "Nombre del método de pago."
+          },
+          "minAmount": {
+            "type": "number",
+            "x-stoplight": {
+              "id": "dbuc88rcdvpws"
+            },
+            "maximum": 9999999999.99,
+            "minimum": 0,
+            "format": "float",
+            "example": 100,
+            "description": "Valor mínimo permitido por transacción"
+          },
+          "maxAmount": {
+            "type": "number",
+            "x-stoplight": {
+              "id": "i10vzcefs0qfb"
+            },
+            "description": "Máximo valor permitido por transacción.",
+            "format": "float",
+            "maximum": 9999999999.99,
+            "minimum": 0,
+            "example": 999999.99
+          },
+          "commissionModel": {
+            "type": "string",
+            "enum": [
+              "P",
+              "F"
+            ],
+            "example": "F",
+            "maxLength": 1,
+            "description": "Modelo de comisión."
+          },
+          "commissionValue": {
+            "type": "number",
+            "format": "float",
+            "example": 1,
+            "description": "Valor de comisión.",
+            "minimum": 0,
+            "maximum": 9999.99
+          },
+          "accountNumber": {
+            "type": "string",
+            "maxLength": 20,
+            "example": "123456878890",
+            "description": "Número de cuenta de recuado."
+          },
+          "accountType": {
+            "type": "integer",
+            "example": 1,
+            "description": "Identificador de tipo de cuenta de recaudo."
+          },
+          "franchise": {
+            "type": "string",
+            "enum": [
+              "AMEX",
+              "VISA",
+              "DINERS",
+              "DISCOVER",
+              "JBC",
+              "MASTERCARD",
+              "EXITO",
+              "ALKOSTO",
+              "MAESTRO",
+              "VISAELECTRON",
+              "ATH"
+            ],
+            "description": "Franquicia del medio de pago.",
+            "example": "MASTERCARD"
+          },
+          "financialEntity": {
+            "type": "integer",
+            "example": 1,
+            "description": "Identificador de la entidad financiera o banco recaudador del medio de pago."
           },
           "order": {
             "type": "integer",
@@ -5587,12 +6880,166 @@
               "checkoutVersion": {
                 "type": "string",
                 "description": "Versión de redirección.",
-                "example": "v4"
+                "example": "v4",
+                "maxLength": 5
               },
               "analyticsCode": {
                 "type": "string",
                 "maxLength": 60,
                 "description": "Código Analytics o Tag Manager."
+              }
+            }
+          },
+          "control": {
+            "type": "object",
+            "description": "Objeto con información de los datos de control.",
+            "properties": {
+              "minAmount": {
+                "type": "number",
+                "x-stoplight": {
+                  "id": "rgny3j6n98jx8",
+                  "explicitProperties": [
+                    "type",
+                    "description",
+                    "format",
+                    "maximum",
+                    "minimum",
+                    "examples"
+                  ]
+                },
+                "description": "Mínimo valor permitido por transacción.",
+                "format": "float",
+                "example": 9999999.99,
+                "maximum": 9999999999.99,
+                "minimum": 0
+              },
+              "maxAmount": {
+                "type": "number",
+                "x-stoplight": {
+                  "id": "1pph0b86r10oh",
+                  "explicitProperties": [
+                    "type",
+                    "description",
+                    "format",
+                    "maximum",
+                    "minimum",
+                    "examples"
+                  ]
+                },
+                "description": "Máximo valor permitido por transacción.",
+                "format": "float",
+                "maximum": 999999999999.99,
+                "minimum": 0,
+                "example": 0
+              },
+              "allowedDays": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "0dowgqg7xqu97"
+                },
+                "minimum": 0,
+                "maximum": 127,
+                "example": 127,
+                "description": "Días de operación."
+              },
+              "allowedHours": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "3n7kg5u2l2sm1"
+                },
+                "description": "Horas de operación.",
+                "example": "ffffffffffffffffffffffffffffffffffffffffff",
+                "minLength": 42,
+                "maxLength": 42,
+                "pattern": "^([0-9a-f]){42}"
+              },
+              "filterPse": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "yk2spkkdd3fqi"
+                },
+                "default": false,
+                "description": "Indicador de uso de filtros de seguridad en PSE"
+              },
+              "filterTuya": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "vvme27bpaasoh"
+                },
+                "default": false,
+                "description": "Indicador de uso de filtros de seguridad en Tuya"
+              },
+              "filterSafetypay": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "melckc2y2wmk2"
+                },
+                "default": false,
+                "description": "Indicador de uso de filtros de seguridad en safetypay"
+              },
+              "prechargeFilter": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "56s7n6ghdumbd"
+                },
+                "minimum": 0,
+                "maximum": 2,
+                "example": 1,
+                "enum": [
+                  0,
+                  1,
+                  2
+                ],
+                "description": "Indicador de uso del filtro de precobro."
+              },
+              "allowedBankCountries": {
+                "type": "array",
+                "x-stoplight": {
+                  "id": "amo1f2z08b59v"
+                },
+                "description": "Paises permitidos para bancos emisores. Es nulo cuando todos los paises sean permitidos.",
+                "items": {
+                  "x-stoplight": {
+                    "id": "xmp4q46mm9di9"
+                  },
+                  "type": "string",
+                  "example": "CO",
+                  "maxLength": 2,
+                  "minLength": 2
+                }
+              },
+              "filterByBin": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "e5kqkqxf1rfl1"
+                },
+                "default": false,
+                "description": "Indicador de uso del filtro por bines. "
+              },
+              "exceptionBinsList": {
+                "type": "array",
+                "x-stoplight": {
+                  "id": "igdkvkkdozsep"
+                },
+                "description": "Lista de Bines a exceptuar.",
+                "items": {
+                  "x-stoplight": {
+                    "id": "5jdoznw7ojcbz"
+                  },
+                  "type": "number",
+                  "example": 411111
+                }
+              },
+              "delegatedAuthorization": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "zdvf7hq4ucuq4"
+                },
+                "description": "Autorización delegada.",
+                "pattern": "^([0-9a-f]){42}",
+                "minLength": 42,
+                "maxLength": 42,
+                "example": "ffffffffffffffffffffffffffffffffffffffffff"
               }
             }
           }

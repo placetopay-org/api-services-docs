@@ -5,28 +5,34 @@
   "properties": {
     "street": {
       "type": "string",
-      "maxLength": 128
+      "maxLength": 128,
+      "description": "Calle"
     },
     "city": {
       "type": "string",
-      "maxLength": 30
+      "maxLength": 30,
+      "description": "Ciudad"
     },
     "state": {
       "type": "integer",
-      "example": 1
+      "example": 1,
+      "description": "Estado /provincia /departamento"
     },
     "postalCode": {
       "type": "string",
-      "maxLength": 10
+      "maxLength": 10,
+      "description": "Código postal"
     },
     "country": {
       "type": "string",
       "maxLength": 2,
-      "example": "CO"
+      "example": "CO",
+      "description": "País"
     },
     "phone": {
       "type": "string",
-      "maxLength": 20
+      "maxLength": 20,
+      "description": "Teléfono"
     }
   }
 }

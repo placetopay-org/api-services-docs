@@ -25,20 +25,24 @@
       "description": "Nombre "
     },
     "surname": {
-      "type": "string"
+      "type": "string",
+      "description": "Apellidos"
     },
     "company": {
-      "type": "string"
+      "type": "string",
+      "description": "Compañia"
     },
     "email": {
       "type": "string",
       "description": "Correo electrónico."
     },
     "address": {
-      "$ref": "./Address.json"
+      "$ref": "./Address.json",
+      "description": "Objeto que contiene información de la dirección de una persona."
     },
     "mobile": {
-      "type": "string"
+      "type": "string",
+      "description": "Teléfono movil"
     }
   }
 }

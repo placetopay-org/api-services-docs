@@ -22,10 +22,12 @@
       "description": "Número de documento de identificación."
     },
     "expeditionDate": {
-      "type": "string"
+      "type": "string",
+      "description": "Fecha de expedición "
     },
     "expirationDate": {
-      "type": "string"
+      "type": "string",
+      "description": "Fecha de expiración"
     }
   },
   "required": [
