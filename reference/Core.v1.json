@@ -1748,6 +1748,12 @@
                     "type": "string",
                     "maxLength": 60,
                     "description": "Código del tipo de documento"
+                  },
+                  "pagination": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "5nlvpisk1t33v"
+                    }
                   }
                 },
                 "required": [
