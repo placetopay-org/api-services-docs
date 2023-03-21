@@ -46,6 +46,11 @@
       "uri": "/reference/Gateway.v1.json"
     },
     {
+      "type": "item",
+      "title": "Core",
+      "uri": "/reference/Core.v1.json"
+    },
+    {
       "type": "divider",
       "title": "Schemas"
     },
