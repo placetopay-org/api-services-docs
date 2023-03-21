@@ -25,29 +25,31 @@
   "tags": [
     {
       "name": "Acciones sobre comercios",
-      "description": "Diferentes acciones sobre comercios."
-    },
-    {
-      "name": "Acciones sobre métodos de pago",
-      "description": "Diferentes acciones sobre métodos de pago asociados a comercios."
-    },
-    {
-      "name": "Acciones sobre sitios",
-      "description": "Diferentes acciones sobre sitios."
-    },
-    {
-      "name": "Procedimientos adicionales"
-    },
-    {
-      "name": "Administración de documentos"
+      "description": "Acciones sobre la administración de comercios."
     },
     {
       "name": "Acciones sobre lista de preferidos",
-      "description": "Diferentes acciones sobre listas de preferidos."
+      "description": "Acciones sobre la administración de lista de preferidos."
+    },
+    {
+      "name": "Acciones sobre medios de pago de sitios",
+      "description": "Acciones sobre la administración de medios de pago de sitios."
+    },
+    {
+      "name": "Acciones sobre métodos de pago",
+      "description": "Acciones sobre la administración de medios de pago asociados a un comercio."
+    },
+    {
+      "name": "Acciones sobre sitios",
+      "description": "Acciones sobre la administración de sitios."
+    },
+    {
+      "name": "Administración de documentos",
+      "description": "Acciones sobre la administración de documentos."
     },
     {
       "name": "Procedimientos adicionales",
-      "description": "Diferentes procedimientos adicionales."
+      "description": "Acciones sobre la administración de entidades adicionales."
     }
   ],
   "paths": {
@@ -406,7 +408,7 @@
       "post": {
         "summary": "Consulta de comercios",
         "operationId": "post-core-merchant-search",
-        "description": "Este servicio permite consultar comercios existentes filtrando por medio de los parametros: identificador, nombre, marca y estado del comercio.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination' junto a los filtros de la busqueda.",
+        "description": "Este servicio permite consultar comercios existentes filtrando por medio de los parametros: identificador, nombre, marca y estado del comercio.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination' junto a los filtros de la busqueda.",
         "responses": {
           "200": {
             "description": "OK",
@@ -821,8 +823,7 @@
                         "message": "La petición se ha procesado correctamente",
                         "date": "2021-09-21T09:34:48-05:00"
                       },
-                      "id": 1,
-                      "active": true
+                      "id": 1
                     }
                   }
                 }
@@ -928,8 +929,7 @@
                   "documentType",
                   "file"
                 ]
-              },
-              "examples": {}
+              }
             }
           }
         },
@@ -938,8 +938,7 @@
           "Administración de documentos"
         ],
         "x-internal": false
-      },
-      "parameters": []
+      }
     },
     "/core/merchant/document/update": {
       "post": {
@@ -1034,9 +1033,6 @@
                 }
               }
             }
-          },
-          "": {
-            "description": ""
           }
         },
         "requestBody": {
@@ -1114,8 +1110,8 @@
     "/core/merchant/document/search": {
       "post": {
         "summary": "Consulta de documentos",
-        "operationId": "post-core-merchant-search",
-        "description": "Este servicio permite consultar documentos existentes filtrando por medio de los parametros: identificador del comercio o del sitio, nombre, descripción y identificador del tipo de documento.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
+        "operationId": "post-core-merchant-document-search",
+        "description": "Este servicio permite consultar documentos existentes filtrando por medio de los parámetros: identificador del comercio o del sitio, nombre, descripción e identificador del tipo de documento.\n\nPuede utilizar\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination' junto a los filtros de la busqueda.",
         "responses": {
           "200": {
             "description": "OK",
@@ -1307,6 +1303,33 @@
                     "type": "integer",
                     "example": 1,
                     "description": "Identificador de un tipo de documento."
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "joy1ezzdgdnsr"
+                    },
+                    "description": "Objeto que contiene los parámetros de la paginación.",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "l8i1byhvphcos"
+                        },
+                        "default": 15,
+                        "example": 15,
+                        "minimum": 1
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "vsfp451q8x942"
+                        },
+                        "default": 1,
+                        "example": 1,
+                        "minimum": 1
+                      }
+                    }
                   }
                 },
                 "required": [
@@ -1325,7 +1348,11 @@
                     "id": 1,
                     "documentName": "name",
                     "documentDescription": "description",
-                    "documentType": 1
+                    "documentType": 1,
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
+                    }
                   }
                 }
               }
@@ -1337,16 +1364,7 @@
           "Acciones sobre comercios",
           "Administración de documentos"
         ],
-        "parameters": [
-          {
-            "schema": {
-              "type": "integer",
-              "example": 2
-            },
-            "in": "query",
-            "name": "page"
-          }
-        ]
+        "parameters": []
       },
       "parameters": []
     },
@@ -1489,7 +1507,7 @@
     "/core/merchant/document/download": {
       "post": {
         "summary": "Descarga del archivo de un documento",
-        "operationId": "post-core-merchant-download-delete",
+        "operationId": "post-core-merchant-document-download",
         "description": "Este servicio permite descargar el archivo de un documento existente. Si la respuesta es exitosa, retorna el archivo vinculado al documento.",
         "responses": {
           "200": {
@@ -1615,178 +1633,6 @@
         "tags": [
           "Acciones sobre comercios",
           "Administración de documentos"
-        ]
-      },
-      "parameters": []
-    },
-    "/core/tools/document-type/search": {
-      "post": {
-        "summary": "Consulta de tipos de documentos",
-        "operationId": "post-core-document-type-search",
-        "description": "Este servicio permite consultar los tipos de documentos existentes.\nSi la respuesta es exitosa, se retorna un arreglo de los tipos de regimenes con su información. Se puede filtrar por medio de los parametros: nombre y código del tipo de documento.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "../Models/Status.json"
-                    },
-                    "data": {
-                      "type": "array",
-                      "description": "Arreglo que contiene información de tipos de régimen consultados.",
-                      "items": {
-                        "$ref": "#/components/schemas/DocumentType"
-                      }
-                    },
-                    "pagination": {
-                      "$ref": "#/components/schemas/Pagination"
-                    }
-                  }
-                },
-                "examples": {
-                  "Busqueda exitosa": {
-                    "value": {
-                      "status": {
-                        "status": "OK",
-                        "reason": "00",
-                        "message": "la petición se ha procesado correctamente",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "data": [
-                        {
-                          "id": 1,
-                          "code": "cc",
-                          "name": "cedula cidadania"
-                        }
-                      ],
-                      "pagination": {
-                        "total": 1,
-                        "perPage": 15,
-                        "currentPage": 1,
-                        "lastPage": 1
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Status": {
-                      "$ref": "../Models/Status.json"
-                    }
-                  }
-                },
-                "examples": {
-                  "Respuesta fallida": {
-                    "value": {
-                      "Status": {
-                        "status": "FAILED",
-                        "reason": "BR",
-                        "message": " ",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "$ref": "../Models/Status.json"
-                    }
-                  }
-                },
-                "examples": {
-                  "Authenticación fallida": {
-                    "value": {
-                      "status": {
-                        "status": "FAILED",
-                        "reason": "401",
-                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
-                        "date": "2021-09-21T09:34:48-05:00"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "auth": {
-                    "$ref": "../Models/Autentication.json"
-                  },
-                  "name": {
-                    "type": "string",
-                    "maxLength": 60,
-                    "description": "Nombre del tipo de documento"
-                  },
-                  "code": {
-                    "type": "string",
-                    "maxLength": 60,
-                    "description": "Código del tipo de documento"
-                  },
-                  "pagination": {
-                    "type": "string",
-                    "x-stoplight": {
-                      "id": "5nlvpisk1t33v"
-                    }
-                  }
-                },
-                "required": [
-                  "auth"
-                ]
-              },
-              "examples": {
-                "Consulta de tipos de régimen": {
-                  "value": {
-                    "auth": {
-                      "login": "613822f45568191a8cdf4ad2299f6d23",
-                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
-                      "nonce": "NjE1MWQ4MDE5YWViMw==",
-                      "seed": "2021-09-27T09:41:05-05:00"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        },
-        "tags": [
-          "Procedimientos adicionales"
-        ],
-        "parameters": [
-          {
-            "schema": {
-              "type": "integer"
-            },
-            "in": "query",
-            "name": "page"
-          }
         ]
       },
       "parameters": []
@@ -5545,6 +5391,197 @@
         ]
       },
       "parameters": []
+    },
+    "/core/tools/document-type/search": {
+      "post": {
+        "summary": "Consulta de tipos de documentos",
+        "operationId": "post-core-document-type-search",
+        "description": "Este servicio permite consultar los tipos de documentos existentes.\nSi la respuesta es exitosa, se retorna un arreglo de los tipos de regimenes con su información. Se puede filtrar por medio de los parametros: nombre y código del tipo de documento.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información de tipos de régimen consultados.",
+                      "items": {
+                        "$ref": "#/components/schemas/DocumentType"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  }
+                },
+                "examples": {
+                  "Busqueda exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "la petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "code": "cc",
+                          "name": "cedula cidadania"
+                        }
+                      ],
+                      "pagination": {
+                        "total": 1,
+                        "perPage": 15,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 60,
+                    "description": "Nombre del tipo de documento"
+                  },
+                  "code": {
+                    "type": "string",
+                    "maxLength": 60,
+                    "description": "Código del tipo de documento"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "5nlvpisk1t33v"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "j3mvvtstmveqs"
+                        },
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "lp60x5o247rlu"
+                        },
+                        "example": 1,
+                        "default": 1,
+                        "minimum": 1,
+                        "description": "Página actual"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta de tipos de documentos": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "name": "string",
+                    "code": "string",
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ]
+      }
     },
     "/core/tools/province/search": {
       "post": {
