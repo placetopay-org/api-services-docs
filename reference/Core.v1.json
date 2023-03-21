@@ -8567,35 +8567,6 @@
           }
         }
       },
-      "Pagination": {
-        "title": "Pagination",
-        "x-stoplight": {
-          "id": "1oec2iodc465x"
-        },
-        "type": "object",
-        "properties": {
-          "total": {
-            "type": "integer",
-            "description": "Total de items de la consulta",
-            "example": 25
-          },
-          "perPage": {
-            "type": "integer",
-            "description": "Número de items por página",
-            "example": 15
-          },
-          "currentPage": {
-            "type": "integer",
-            "description": "Página actual",
-            "example": 2
-          },
-          "lastPage": {
-            "type": "integer",
-            "description": "Última página",
-            "example": 10
-          }
-        }
-      },
       "DocumentType": {
         "title": "DocumentType",
         "x-stoplight": {
