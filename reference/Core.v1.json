@@ -24,24 +24,22 @@
   ],
   "tags": [
     {
-      "name": "Acciones sobre comercios",
-      "description": "Diferentes acciones sobre comercios."
+      "name": "Acciones sobre comercios"
     },
     {
-      "name": "Acciones sobre métodos de pago",
-      "description": "Diferentes acciones sobre métodos de pago asociados a comercios."
+      "name": "Acciones sobre lista de preferidos"
     },
     {
-      "name": "Acciones sobre sitios",
-      "description": "Diferentes acciones sobre sitios."
+      "name": "Acciones sobre medios de pago de sitios"
     },
     {
-      "name": "Acciones sobre lista de preferidos",
-      "description": "Diferentes acciones sobre listas de preferidos."
+      "name": "Acciones sobre métodos de pago"
     },
     {
-      "name": "Procedimientos adicionales",
-      "description": "Diferentes procedimientos adicionales."
+      "name": "Acciones sobre sitios"
+    },
+    {
+      "name": "Procedimientos adicionales"
     }
   ],
   "paths": {
@@ -198,8 +196,8 @@
                         "phone": "3172234333"
                       },
                       "legalRepresentative": {
-                        "name": "string",
-                        "surname": "string"
+                        "name": "legal representative name",
+                        "surname": "legal repreentative surname"
                       },
                       "billing": {
                         "contact": "billing contact name",
@@ -400,7 +398,7 @@
       "post": {
         "summary": "Consulta de comercios",
         "operationId": "post-core-merchant-search",
-        "description": "Este servicio permite consultar comercios existentes filtrando por medio de los parametros: identificador, nombre, marca y estado del comercio.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
+        "description": "Este servicio permite consultar comercios existentes filtrando por medio de los parametros: identificador, nombre, marca y estado del comercio.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination' junto a los filtros de la busqueda.",
         "responses": {
           "200": {
             "description": "OK",
@@ -414,9 +412,15 @@
                     },
                     "data": {
                       "type": "array",
-                      "description": "Arreglo que Contiene la información de comercios consultada por medio de los filtros aplicados.",
+                      "description": "Arreglo que contiene la información de comercios consultados.",
                       "items": {
                         "$ref": "#/components/schemas/Customer"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "m1gx7a7aw32hg"
                       }
                     }
                   }
@@ -478,7 +482,13 @@
                             "reseller": 1
                           }
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -572,6 +582,35 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Estado del comercio."
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "h2qof8qcrf3e4"
+                    },
+                    "description": "Objeto que contiene los parámetros de la paginación ",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "am1gkxb3o2yeh"
+                        },
+                        "default": 15,
+                        "example": 15,
+                        "minimum": 1,
+                        "description": "Número de registros por cada página a consultar"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "2ki48q2cetvy4"
+                        },
+                        "default": 1,
+                        "example": 1,
+                        "minimum": 1,
+                        "description": "Página actual a consultar"
+                      }
+                    }
                   }
                 },
                 "required": [
@@ -590,7 +629,11 @@
                     "id": 1,
                     "name": "Merchant name",
                     "brand": "Merchant brand",
-                    "active": true
+                    "active": true,
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
+                    }
                   }
                 }
               }
@@ -622,7 +665,7 @@
                     },
                     "id": {
                       "type": "integer",
-                      "description": "Identificador del comercio elimiado.."
+                      "description": "Identificador del comercio eliminado."
                     }
                   }
                 },
@@ -1298,6 +1341,12 @@
                       "items": {
                         "$ref": "#/components/schemas/Customer-Payment-Method"
                       }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "62ecn80fbcomp"
+                      }
                     }
                   }
                 },
@@ -1326,7 +1375,13 @@
                           "disabled": true,
                           "settings": {}
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -1438,6 +1493,31 @@
                       "VISAELECTRON",
                       "ATH"
                     ]
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "z26fkuzv110hf"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación.",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "o6dj0t16yy6kl"
+                        },
+                        "example": 10,
+                        "description": "Número de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "1q0fhaju4lwkc"
+                        },
+                        "example": 1,
+                        "description": "Página actual"
+                      }
+                    }
                   }
                 },
                 "required": [
@@ -1458,7 +1538,11 @@
                     "id": 100,
                     "name": "masterCard",
                     "code": "RM_MC",
-                    "franchise": "MASTERCARD"
+                    "franchise": "MASTERCARD",
+                    "pagination": {
+                      "perPage": 10,
+                      "currentPage": 1
+                    }
                   }
                 }
               }
@@ -1466,7 +1550,7 @@
           },
           "description": ""
         },
-        "description": "Este servicio permite consultar los médios de págo asociados a un comercio. \nEs posible emplear filtrado por medio de los parametros: \"id\", \"name\", \"code\" y \"franchise\".\n\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
+        "description": "Este servicio permite consultar los médios de págo asociados a un comercio. \nEs posible emplear filtrado por medio de los parametros: \"id\", \"name\", \"code\" y \"franchise\".\n\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination' junto a los filtros de la busqueda.",
         "tags": [
           "Acciones sobre métodos de pago"
         ]
@@ -2601,6 +2685,12 @@
                       "items": {
                         "$ref": "#/components/schemas/Site"
                       }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "yoex83vem3h22"
+                      }
                     }
                   }
                 },
@@ -2656,7 +2746,13 @@
                             "delegatedAuthorization": "ffffffffffffffffffffffffffffffffffffffffff"
                           }
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -2758,6 +2854,33 @@
                   "active": {
                     "type": "boolean",
                     "description": "Indicador de estado del sitio"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "kdw2a5m1r4tz1"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación.",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "m5zs2lkdm74kv"
+                        },
+                        "description": "Cantidad de registros por página",
+                        "default": 15,
+                        "example": 10
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "oyjvy2gpwd3xw"
+                        },
+                        "description": "Página actual",
+                        "default": 1,
+                        "example": 1
+                      }
+                    }
                   }
                 },
                 "required": [
@@ -2778,7 +2901,11 @@
                     "name": "name",
                     "displayName": "dispĺayName",
                     "onTest": true,
-                    "active": true
+                    "active": true,
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
+                    }
                   }
                 }
               }
@@ -2786,7 +2913,7 @@
           },
           "description": ""
         },
-        "description": "Este servicio permite consultar sitios existentes filtrando por medio de los parametros: identificador del sitio, identificador del comercio, nombre, nombre a mostrar, indicador de estado en pruebas y estado del sitio.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
+        "description": "Este servicio permite consultar sitios existentes filtrando por medio de los parametros: identificador del sitio, identificador del comercio, nombre, nombre a mostrar, indicador de estado en pruebas y estado del sitio.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination' junto a los filtros de la busqueda.",
         "tags": [
           "Acciones sobre sitios"
         ]
@@ -3042,12 +3169,12 @@
         },
         "description": "Este servicio permite agregar un medio de pago existente a un sitio. Si el proceso el exitoso, se retorna el identificador del medio de pago asociado.",
         "tags": [
-          "Acciones sobre lista de preferidos"
+          "Acciones sobre medios de pago de sitios"
         ]
       },
       "parameters": []
     },
-    "/core/site/payment-method/delete": {
+    "/core/site/payment-method/update": {
       "post": {
         "summary": "Actualizar un medio de pago asociado a un sitio",
         "operationId": "post-core-site-payment-method-update",
@@ -3286,12 +3413,12 @@
         },
         "description": "Este servicio permite actualizar un medio de pago asociado a un sitio. Si el proceso el exitoso, se retorna el identificador del medio de pago actualizado.",
         "tags": [
-          "Acciones sobre lista de preferidos"
+          "Acciones sobre medios de pago de sitios"
         ]
       },
       "parameters": []
     },
-    "/core/site/payment-method/update": {
+    "/core/site/payment-method/delete": {
       "post": {
         "summary": "Remover un medio de pago asociado a un sitio",
         "operationId": "post-core-site-payment-method-delete",
@@ -3425,7 +3552,7 @@
         },
         "description": "Este servicio permite remover un medio de pago asociado a un sitio. Si el proceso el exitoso, se retorna el identificador del medio de pago eliminado.",
         "tags": [
-          "Acciones sobre lista de preferidos"
+          "Acciones sobre medios de pago de sitios"
         ]
       },
       "parameters": []
@@ -3456,6 +3583,12 @@
                         "x-stoplight": {
                           "id": "em3lbeh1cym6r"
                         }
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "0ikysd3wr7hp4"
                       }
                     }
                   }
@@ -3488,7 +3621,13 @@
                           "disabled": true,
                           "settings": {}
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -3599,6 +3738,35 @@
                     },
                     "description": "Franquicia del medio de pago",
                     "example": "VISA"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "td95lk4tohan2"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "tu3zw3pwftaqt"
+                        },
+                        "default": 15,
+                        "example": 1,
+                        "description": "Cantidad de registros por página",
+                        "minimum": 1
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "70udqppixgylo"
+                        },
+                        "default": 1,
+                        "example": 1,
+                        "description": "Página actual",
+                        "minimum": 1
+                      }
+                    }
                   }
                 },
                 "required": [
@@ -3618,7 +3786,11 @@
                     "id": 1,
                     "name": "payment method name",
                     "code": "ID_VS",
-                    "franchise": "VISA"
+                    "franchise": "VISA",
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
+                    }
                   }
                 }
               }
@@ -3626,9 +3798,9 @@
           },
           "description": ""
         },
-        "description": "Este servicio permite consultar los médios de págo asociados a un sitio. \nEs posible filtrar los resultados por medio de los parametros: \"id\", \"name\", \"code\" y \"franchise\".\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
+        "description": "Este servicio permite consultar los médios de págo asociados a un sitio. \nEs posible filtrar los resultados por medio de los parametros: \"id\", \"name\", \"code\" y \"franchise\".\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination' junto a los filtros de la busqueda.",
         "tags": [
-          "Acciones sobre lista de preferidos"
+          "Acciones sobre medios de pago de sitios"
         ]
       },
       "parameters": []
@@ -4152,6 +4324,12 @@
                       "items": {
                         "$ref": "#/components/schemas/PreferList"
                       }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "588dxvr5a730p"
+                      }
                     }
                   }
                 },
@@ -4179,7 +4357,13 @@
                           "cardDisplay": "411111****1111",
                           "createdAt": "2022-11-315 10:41:19"
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -4284,6 +4468,33 @@
                     "type": "number",
                     "description": "Número de tarjeta enmascarada.",
                     "example": 4123123123111111
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "llwmmcdt9neqf"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "cwdjq789izwli"
+                        },
+                        "default": 15,
+                        "example": 10,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "77rt3qaau23fe"
+                        },
+                        "default": 1,
+                        "example": 1,
+                        "description": "Página actual"
+                      }
+                    }
                   }
                 },
                 "required": [
@@ -4306,7 +4517,11 @@
                     "ipAddresses": [
                       "120.120.120.1"
                     ],
-                    "cardDisplay": 4123123123111111
+                    "cardDisplay": 4123123123111111,
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
+                    }
                   }
                 }
               }
@@ -4314,7 +4529,7 @@
           },
           "description": ""
         },
-        "description": "Este servicio permite consultar listas de preferidos existente filtrando por medio de los parametros: siteId, id, cardDisplay, email, document e ipAddresses.",
+        "description": "Este servicio permite consultar listas de preferidos existente filtrando por medio de los parametros: siteId, id, cardDisplay, email, document e ipAddresses.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination' junto a los filtros de la busqueda.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
         "tags": [
           "Acciones sobre lista de preferidos"
         ]
@@ -4325,7 +4540,7 @@
       "post": {
         "summary": "Consulta de departamentos o estados por país",
         "operationId": "post-core-tools-province-search",
-        "description": "Este servicio permite consultar los estados /departamentos de un País. \nSi la respuesta es exitosa, se retorna un arreglo de los estados con su información.",
+        "description": "Este servicio permite consultar los estados /departamentos de un País. \nSi la respuesta es exitosa, se retorna un arreglo de los estados con su información.\n\nPuede filtrar los resultados de la consulta empleando el parámetro 'country' como filtro.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -4342,6 +4557,12 @@
                       "description": "Arreglo que contiene información de los estados o departamentos de un país.",
                       "items": {
                         "$ref": "#/components/schemas/Province"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "p0w4rqt9yajly"
                       }
                     }
                   }
@@ -4364,7 +4585,13 @@
                           "country": "CO",
                           "alias": "05"
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -4433,12 +4660,51 @@
                 "type": "object",
                 "properties": {
                   "auth": {
-                    "$ref": "../Models/Autentication.json"
+                    "$ref": "../Models/Autentication.json",
+                    "x-stoplight": {
+                      "id": "kynkdzgh5fngb"
+                    }
+                  },
+                  "country": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "j6cv1oatf25qu"
+                    },
+                    "minLength": 2,
+                    "maxLength": 2,
+                    "example": "EC",
+                    "description": "Identificador de país asociado al estado/provincia/departamento."
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "t5e73vlf22315"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación.",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "crgyliudnwkaa"
+                        },
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "xltcugbkkt9xh"
+                        },
+                        "default": 1,
+                        "example": 1,
+                        "minimum": 1,
+                        "description": "Página actual "
+                      }
+                    }
                   }
-                },
-                "required": [
-                  "auth"
-                ]
+                }
               },
               "examples": {
                 "Consulta departamentos/estados": {
@@ -4448,6 +4714,11 @@
                       "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "country": "EC",
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
                     }
                   }
                 }
@@ -4465,7 +4736,7 @@
       "post": {
         "summary": "Consulta de tipos de régimen",
         "operationId": "post-core-tools-taxpayer-search",
-        "description": "Este servicio permite consultar los tipos de regimen existentes.\nSi la respuesta es exitosa, se retorna un arreglo de los tipos de regimenes con su información.",
+        "description": "Este servicio permite consultar los tipos de regimen existentes.\nSi la respuesta es exitosa, se retorna un arreglo de los tipos de regimenes con su información.\n\nPuede filtrar los resultados de la consulta empleando el parametro 'country' como filtro.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -4482,6 +4753,12 @@
                       "description": "Arreglo que contiene información de tipos de régimen consultados.",
                       "items": {
                         "$ref": "#/components/schemas/Taxpayer"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "c3ys3h19urlf1"
                       }
                     }
                   }
@@ -4502,7 +4779,13 @@
                           "code": "0-13",
                           "country": "CO"
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -4572,6 +4855,45 @@
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
+                  },
+                  "country": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "cgmf8rhhu1a2h"
+                    },
+                    "minLength": 2,
+                    "maxLength": 2,
+                    "example": "CO",
+                    "description": "Identificador del país asociado al tipo de régimen"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "p3ftk3zb4e4dq"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "cz3g8q1obspme"
+                        },
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "snyvhj5xv2ekm"
+                        },
+                        "default": 1,
+                        "example": 1,
+                        "minimum": 1,
+                        "description": "Página actual."
+                      }
+                    }
                   }
                 },
                 "required": [
@@ -4586,6 +4908,11 @@
                       "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "country": "CO",
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
                     }
                   }
                 }
@@ -4604,7 +4931,7 @@
       "post": {
         "summary": "Consulta de regímenes fiscales",
         "operationId": "post-core-tools-tax-regime-search",
-        "description": "Este servicio permite consultar regímenes físcales existentes.\nSi la respuesta es exitosa, se retorna un arreglo de regímenes con su información.",
+        "description": "Este servicio permite consultar regímenes físcales existentes.\nSi la respuesta es exitosa, se retorna un arreglo de regímenes con su información.\n\nPuede filtrar los resultados de la consulta empleando el parametro 'country' como filtro.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -4621,6 +4948,12 @@
                       "description": "Arreglo que contiene información de regémenes fiscales consultados.",
                       "items": {
                         "$ref": "#/components/schemas/Tax-regime"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "fxsvrvavx2e0j"
                       }
                     }
                   }
@@ -4641,7 +4974,13 @@
                           "code": "49",
                           "country": "CO"
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -4711,6 +5050,45 @@
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
+                  },
+                  "country": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "dgx80xoqec0og"
+                    },
+                    "minLength": 2,
+                    "maxLength": 2,
+                    "example": "CO",
+                    "description": "Identificador del país asociado al régimen fiscal"
+                  },
+                  "pagination": {
+                    "x-stoplight": {
+                      "id": "uj09lfstr2lj5"
+                    },
+                    "type": "object",
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "2uv9fg77nlj55"
+                        },
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "dtdc2js3zah2f"
+                        },
+                        "default": 1,
+                        "example": 1,
+                        "minimum": 1,
+                        "description": "Página actual"
+                      }
+                    }
                   }
                 },
                 "required": [
@@ -4725,6 +5103,11 @@
                       "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "country": "CO",
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
                     }
                   }
                 }
@@ -4743,7 +5126,7 @@
       "post": {
         "summary": "Consulta de tipos de corporación",
         "operationId": "post-core-tools-corporation-type-search",
-        "description": "Este servicio permite consultar regímenes físcales existentes.\nSi la respuesta es exitosa, se retorna un arreglo de regímenes con su información.",
+        "description": "Este servicio permite consultar regímenes físcales existentes.\nSi la respuesta es exitosa, se retorna un arreglo de regímenes con su información.\n\nPuede filtrar los resultados de la consulta empleando el parámetro 'country' como filtro.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -4760,6 +5143,12 @@
                       "description": "Arreglo que contiene la información de los tipos de corporación consultados.",
                       "items": {
                         "$ref": "#/components/schemas/Corporation-type"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "474xgqtfqp1xi"
                       }
                     }
                   }
@@ -4780,7 +5169,13 @@
                           "code": "1",
                           "country": "CO"
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -4850,6 +5245,45 @@
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
+                  },
+                  "country": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "slqxony0xw5rl"
+                    },
+                    "maxLength": 2,
+                    "minLength": 2,
+                    "example": "EC",
+                    "description": "Identificador de país asociado al tipo de corporación."
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "wsgaq5ygxqeo3"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "eomehv0u3f171"
+                        },
+                        "description": "Cantidad de registros por página",
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "rjfl71yg51nf4"
+                        },
+                        "description": "Página actual",
+                        "default": 1,
+                        "example": 1,
+                        "minimum": 1
+                      }
+                    }
                   }
                 },
                 "required": [
@@ -4864,6 +5298,11 @@
                       "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "country": "EC",
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
                     }
                   }
                 }
@@ -4882,7 +5321,7 @@
       "post": {
         "summary": "Busqueda de consultores comerciales de PlacetoPay.",
         "operationId": "post-core-tools-seller-search",
-        "description": "Este servicio permite buscar consultores comerciales habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada consultor.",
+        "description": "Este servicio permite buscar consultores comerciales habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada consultor.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -4899,6 +5338,12 @@
                       "description": "Arreglo que contiene información acerca de los consultores comerciales habilitados de PlacetoPay.",
                       "items": {
                         "$ref": "#/components/schemas/Seller"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "qfb94aeo85i2q"
                       }
                     }
                   }
@@ -4919,7 +5364,13 @@
                           "alias": "EGM",
                           "disabled": false
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -4989,6 +5440,35 @@
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "c3818h19e9oqa"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "agt1e9jt9k0cm"
+                        },
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "z8sy0ironv774"
+                        },
+                        "default": 1,
+                        "example": 1,
+                        "minimum": 1,
+                        "description": "Página actual"
+                      }
+                    }
                   }
                 },
                 "required": [
@@ -5003,6 +5483,10 @@
                       "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
                     }
                   }
                 }
@@ -5021,7 +5505,7 @@
       "post": {
         "summary": "Consulta de banco adquiriente",
         "operationId": "post-core-tools-reseller-search",
-        "description": "Este servicio permite consultar distribuidores habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada distribuidor.",
+        "description": "Este servicio permite consultar distribuidores habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada distribuidor.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -5038,6 +5522,12 @@
                       "description": "Arreglo que contiene información de bancos adqurientes consultados.",
                       "items": {
                         "$ref": "#/components/schemas/Reseller"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "sjex5nzjuc3jo"
                       }
                     }
                   }
@@ -5058,7 +5548,13 @@
                           "conditions": "null",
                           "enabled": true
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -5128,6 +5624,35 @@
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "kehzq4m9b398x"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "bqxy8w7zq21fr"
+                        },
+                        "description": "Cantidad de registro por página",
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "rezv68wc4fc7w"
+                        },
+                        "description": "Página actual",
+                        "default": 1,
+                        "example": 1,
+                        "minimum": 1
+                      }
+                    }
                   }
                 },
                 "required": [
@@ -5142,6 +5667,10 @@
                       "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
                     }
                   }
                 }
@@ -5160,7 +5689,7 @@
       "post": {
         "summary": "Consulta de tipos de cuenta de recaudo.",
         "operationId": "post-core-tools-account-type-search",
-        "description": "Este servicio permite consultar los tipos de cuenta de recaudo.\nSi la respuesta es exitosa, se retorna un arreglo de tipos de cuenta de recaudo con su información correspondiente.",
+        "description": "Este servicio permite consultar los tipos de cuenta de recaudo.\nSi la respuesta es exitosa, se retorna un arreglo de tipos de cuenta de recaudo con su información correspondiente.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -5177,6 +5706,12 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/Account-type"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "5e9k8indfgkvm"
                       }
                     }
                   }
@@ -5195,7 +5730,13 @@
                           "id": 1,
                           "name": "Ahorros"
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -5265,6 +5806,35 @@
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "slwumlj3ri58z"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación.",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "7hf9onz7bb8xf"
+                        },
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "s80y4yz5rbsxq"
+                        },
+                        "default": 1,
+                        "example": 1,
+                        "minimum": 1,
+                        "description": "Página actual"
+                      }
+                    }
                   }
                 },
                 "required": [
@@ -5279,6 +5849,10 @@
                       "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
                     }
                   }
                 }
@@ -5297,7 +5871,7 @@
       "post": {
         "summary": "Consulta de entidades financieras.",
         "operationId": "post-core-tools-financial-entity-search",
-        "description": "Este servicio permite consultar entidades financiera o banco recaudador.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada entidad financiera.",
+        "description": "Este servicio permite consultar entidades financiera o banco recaudador.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada entidad financiera.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -5314,6 +5888,12 @@
                       "description": "Arreglo que contiene información de bancos adqurientes consultados.",
                       "items": {
                         "$ref": "#/components/schemas/Financial-entity"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "5xb8rw5kxmrty"
                       }
                     }
                   }
@@ -5335,7 +5915,13 @@
                           "disabled": false,
                           "country": "CO"
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -5405,6 +5991,35 @@
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "ieut5yefc1gdv"
+                    },
+                    "description": "Objeto que contiene parámetros de paginación.",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "tbj7dpdfs64u2"
+                        },
+                        "description": "Cantidad de registros por página.",
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "dikrkc3yigrt8"
+                        },
+                        "description": "Página actual a consultar.",
+                        "default": 1,
+                        "example": 1,
+                        "minimum": 1
+                      }
+                    }
                   }
                 },
                 "required": [
@@ -5419,6 +6034,10 @@
                       "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
                     }
                   }
                 }
@@ -5437,7 +6056,7 @@
       "post": {
         "summary": "Consulta de medios de pago.",
         "operationId": "post-core-tools-payment-method-search",
-        "description": "Este servicio permite consultar medios de pago habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada medio de pago.",
+        "description": "Este servicio permite consultar medios de pago habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada medio de pago.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -5460,6 +6079,12 @@
                         "x-stoplight": {
                           "id": "f0tbi3l60swlo"
                         }
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "rgiaxnakojkpm"
                       }
                     }
                   }
@@ -5489,7 +6114,13 @@
                           "disabled": true,
                           "settings": {}
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -5559,6 +6190,35 @@
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "f62aw408hcl47"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "kce94pee2o40u"
+                        },
+                        "description": "Cantidad de registros por página.",
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "ruetaf5o9t85b"
+                        },
+                        "description": "Página actual a consultar",
+                        "default": 1,
+                        "example": 1,
+                        "minimum": 1
+                      }
+                    }
                   }
                 },
                 "required": [
@@ -5573,6 +6233,10 @@
                       "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
                     }
                   }
                 }
@@ -5644,7 +6308,7 @@
               "IPC"
             ],
             "example": "IPC",
-            "description": "Tipo incremento en plan"
+            "description": "Tipo de incremento en el plan"
           },
           "languages": {
             "type": "array",
@@ -5655,11 +6319,7 @@
               "type": "string",
               "maxLength": 2,
               "example": "ES",
-              "enum": [
-                "ES",
-                "EN",
-                "PT"
-              ]
+              "minLength": 2
             }
           },
           "currencies": {
@@ -5695,7 +6355,7 @@
                 "type": "string",
                 "format": "email",
                 "maxLength": 128,
-                "description": "Correo elecxtrónico al cual será remitida la factura electrónica."
+                "description": "Correo electrónico al cual será remitida la factura electrónica."
               },
               "registrationNumber": {
                 "type": "string",
@@ -5706,12 +6366,12 @@
               "taxType": {
                 "type": "integer",
                 "example": 5,
-                "description": "Tipo del regimen del comercio (depende del país)."
+                "description": "Tipo del régimen del comercio (depende del país)."
               },
               "taxRegime": {
                 "type": "integer",
                 "example": 2,
-                "description": "Regimen fiscal del comercio (depende del país)."
+                "description": "Régimen fiscal del comercio (depende del país)."
               },
               "organizationType": {
                 "type": "integer",
@@ -5733,7 +6393,7 @@
               "dispersion": {
                 "type": "boolean",
                 "default": false,
-                "description": "Indicador si acepta venta de tiquetes y venta propia (dispersión de fondos con aerolíneas)"
+                "description": "Indicador de aceptación de venta de tiquetes y venta propia (dispersión de fondos con aerolíneas)"
               },
               "iata": {
                 "type": "string",
@@ -5874,7 +6534,7 @@
                 "type": "string",
                 "format": "email",
                 "maxLength": 128,
-                "description": "Correo elecxtrónico al cual será remitida la factura electrónica."
+                "description": "Correo electrónico al cual será remitida la factura electrónica."
               },
               "registrationNumber": {
                 "type": "string",
@@ -5885,12 +6545,12 @@
               "taxType": {
                 "type": "integer",
                 "example": 5,
-                "description": "Tipo del regimen del comercio (depende del país)."
+                "description": "Tipo del régimen del comercio (depende del país)."
               },
               "taxRegime": {
                 "type": "integer",
                 "example": 2,
-                "description": "Regimen fiscal del comercio (depende del país)."
+                "description": "Régimen fiscal del comercio (depende del país)."
               },
               "organizationType": {
                 "type": "integer",
@@ -5912,7 +6572,7 @@
               "dispersion": {
                 "type": "boolean",
                 "default": false,
-                "description": "Indicador si acepta venta de tiquetes y venta propia (dispersión de fondos con aerolíneas)"
+                "description": "Indicador de aceptación de venta de tiquetes y venta propia (dispersión de fondos con aerolíneas)"
               },
               "iata": {
                 "type": "string",
@@ -6049,7 +6709,7 @@
                 "type": "string",
                 "format": "email",
                 "maxLength": 128,
-                "description": "Correo elecxtrónico al cual será remitida la factura electrónica."
+                "description": "Correo electrónico al cual será remitida la factura electrónica."
               },
               "registrationNumber": {
                 "type": "string",
@@ -6060,12 +6720,12 @@
               "taxType": {
                 "type": "integer",
                 "example": 5,
-                "description": "Tipo del regimen del comercio (depende del país)."
+                "description": "Tipo del régimen del comercio (depende del país)."
               },
               "taxRegime": {
                 "type": "integer",
                 "example": 2,
-                "description": "Regimen fiscal del comercio (depende del país)."
+                "description": "Régimen fiscal del comercio (depende del país)."
               },
               "organizationType": {
                 "type": "integer",
@@ -6087,7 +6747,7 @@
               "dispersion": {
                 "type": "boolean",
                 "default": false,
-                "description": "Indicador si acepta venta de tiquetes y venta propia (dispersión de fondos con aerolíneas)"
+                "description": "Indicador de aceptación de venta de tiquetes y venta propia (dispersión de fondos con aerolíneas)"
               },
               "iata": {
                 "type": "string",
@@ -6715,7 +7375,8 @@
           "surname": {
             "type": "string",
             "maxLength": 30,
-            "example": "Legal representativo surname"
+            "example": "Legal representative surname",
+            "description": "Apellidos del representante legal"
           },
           "documentType": {
             "type": "string",
@@ -7104,9 +7765,58 @@
             "example": "2022-11-315 10:41:19"
           }
         }
+      },
+      "Pagination": {
+        "title": "Pagination",
+        "x-stoplight": {
+          "id": "yos06vqcppjz0"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información de la paginación.",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "9n5euuyxgc16m"
+            },
+            "example": 30,
+            "minimum": 1,
+            "description": "Número total de registros encontrados en la consulta."
+          },
+          "perPage": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "du04yuxnwg8ke"
+            },
+            "default": 15,
+            "example": 10,
+            "minimum": 1,
+            "description": "Número de registros por página"
+          },
+          "currentPage": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "jdpf31i1635px"
+            },
+            "default": 1,
+            "minimum": 1,
+            "example": 1,
+            "description": "Página actual"
+          },
+          "lastPage": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "gxopj3kk0gngh"
+            },
+            "minimum": 1,
+            "example": 1,
+            "description": "Ultima página disponible"
+          }
+        }
       }
     },
     "securitySchemes": {},
-    "responses": {}
+    "responses": {},
+    "requestBodies": {}
   }
 }
