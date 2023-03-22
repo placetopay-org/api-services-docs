@@ -408,7 +408,7 @@
       "post": {
         "summary": "Consulta de comercios",
         "operationId": "post-core-merchant-search",
-        "description": "Este servicio permite consultar comercios existentes filtrando por medio de los parametros: identificador, nombre, marca y estado del comercio.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination' junto a los filtros de la busqueda.",
+        "description": "Este servicio permite consultar comercios existentes filtrando por medio de los parámetros: identificador, nombre, marca y estado del comercio.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parámetros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination' junto a los filtros de la busqueda.",
         "responses": {
           "200": {
             "description": "OK",
@@ -1111,7 +1111,7 @@
       "post": {
         "summary": "Consulta de documentos",
         "operationId": "post-core-merchant-document-search",
-        "description": "Este servicio permite consultar documentos existentes filtrando por medio de los parámetros: identificador del comercio o del sitio, nombre, descripción e identificador del tipo de documento.\n\nPuede utilizar\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination' junto a los filtros de la busqueda.",
+        "description": "Este servicio permite consultar documentos existentes filtrando por medio de los parámetros: identificador del comercio o del sitio, nombre, descripción e identificador del tipo de documento.\n\nPuede utilizar\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parámetros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination' junto a los filtros de la busqueda.",
         "responses": {
           "200": {
             "description": "OK",
@@ -2406,7 +2406,7 @@
           },
           "description": ""
         },
-        "description": "Este servicio permite consultar los médios de págo asociados a un comercio. \nEs posible emplear filtrado por medio de los parametros: \"id\", \"name\", \"code\" y \"franchise\".\n\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination' junto a los filtros de la busqueda.",
+        "description": "Este servicio permite consultar los médios de págo asociados a un comercio. \nEs posible emplear filtrado por medio de los parámetros: \"id\", \"name\", \"code\" y \"franchise\".\n\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parámetros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination' junto a los filtros de la busqueda.",
         "tags": [
           "Acciones sobre métodos de pago"
         ]
@@ -3769,7 +3769,7 @@
           },
           "description": ""
         },
-        "description": "Este servicio permite consultar sitios existentes filtrando por medio de los parametros: identificador del sitio, identificador del comercio, nombre, nombre a mostrar, indicador de estado en pruebas y estado del sitio.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination' junto a los filtros de la busqueda.",
+        "description": "Este servicio permite consultar sitios existentes filtrando por medio de los parámetros: identificador del sitio, identificador del comercio, nombre, nombre a mostrar, indicador de estado en pruebas y estado del sitio.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parámetros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination' junto a los filtros de la busqueda.",
         "tags": [
           "Acciones sobre sitios"
         ]
@@ -4654,7 +4654,7 @@
           },
           "description": ""
         },
-        "description": "Este servicio permite consultar los médios de págo asociados a un sitio. \nEs posible filtrar los resultados por medio de los parametros: \"id\", \"name\", \"code\" y \"franchise\".\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination' junto a los filtros de la busqueda.",
+        "description": "Este servicio permite consultar los médios de págo asociados a un sitio. \nEs posible filtrar los resultados por medio de los parámetros: \"id\", \"name\", \"code\" y \"franchise\".\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parámetros para el filtro.*\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination' junto a los filtros de la busqueda.",
         "tags": [
           "Acciones sobre medios de pago de sitios"
         ]
@@ -5385,7 +5385,7 @@
           },
           "description": ""
         },
-        "description": "Este servicio permite consultar listas de preferidos existente filtrando por medio de los parametros: siteId, id, cardDisplay, email, document e ipAddresses.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination' junto a los filtros de la busqueda.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
+        "description": "Este servicio permite consultar listas de preferidos existente filtrando por medio de los parámetros: siteId, id, cardDisplay, email, document e ipAddresses.\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination' junto a los filtros de la busqueda.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parámetros para el filtro.*",
         "tags": [
           "Acciones sobre lista de preferidos"
         ]
@@ -5396,7 +5396,7 @@
       "post": {
         "summary": "Consulta de tipos de documentos",
         "operationId": "post-core-document-type-search",
-        "description": "Este servicio permite consultar los tipos de documentos existentes.\nSi la respuesta es exitosa, se retorna un arreglo de los tipos de regimenes con su información. Se puede filtrar por medio de los parametros: nombre y código del tipo de documento.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parametros para el filtro.*",
+        "description": "Este servicio permite consultar los tipos de documentos existentes.\nSi la respuesta es exitosa, se retorna un arreglo de los tipos de regimenes con su información. Se puede filtrar por medio de los parámetros: nombre y código del tipo de documento.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parámetros para el filtro.*",
         "responses": {
           "200": {
             "description": "OK",
@@ -5432,8 +5432,8 @@
                       "data": [
                         {
                           "id": 1,
-                          "code": "cc",
-                          "name": "cedula cidadania"
+                          "code": "CC",
+                          "name": "cedula ciudadania"
                         }
                       ],
                       "pagination": {
@@ -5587,7 +5587,7 @@
       "post": {
         "summary": "Consulta de departamentos o estados por país",
         "operationId": "post-core-tools-province-search",
-        "description": "Este servicio permite consultar los estados /departamentos de un País. \nSi la respuesta es exitosa, se retorna un arreglo de los estados con su información.\n\nPuede filtrar los resultados de la consulta empleando el parámetro 'country' como filtro.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
+        "description": "Este servicio permite consultar los estados /departamentos de un País. \nSi la respuesta es exitosa, se retorna un arreglo de los estados con su información.\n\nPuede filtrar los resultados de la consulta empleando el parámetro 'country' como filtro.\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -5783,7 +5783,7 @@
       "post": {
         "summary": "Consulta de tipos de régimen",
         "operationId": "post-core-tools-taxpayer-search",
-        "description": "Este servicio permite consultar los tipos de regimen existentes.\nSi la respuesta es exitosa, se retorna un arreglo de los tipos de regimenes con su información.\n\nPuede filtrar los resultados de la consulta empleando el parametro 'country' como filtro.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
+        "description": "Este servicio permite consultar los tipos de regimen existentes.\nSi la respuesta es exitosa, se retorna un arreglo de los tipos de regimenes con su información.\n\nPuede filtrar los resultados de la consulta empleando el parámetro 'country' como filtro.\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -5978,7 +5978,7 @@
       "post": {
         "summary": "Consulta de regímenes fiscales",
         "operationId": "post-core-tools-tax-regime-search",
-        "description": "Este servicio permite consultar regímenes físcales existentes.\nSi la respuesta es exitosa, se retorna un arreglo de regímenes con su información.\n\nPuede filtrar los resultados de la consulta empleando el parametro 'country' como filtro.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
+        "description": "Este servicio permite consultar regímenes físcales existentes.\nSi la respuesta es exitosa, se retorna un arreglo de regímenes con su información.\n\nPuede filtrar los resultados de la consulta empleando el parámetro 'country' como filtro.\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -6173,7 +6173,7 @@
       "post": {
         "summary": "Consulta de tipos de corporación",
         "operationId": "post-core-tools-corporation-type-search",
-        "description": "Este servicio permite consultar regímenes físcales existentes.\nSi la respuesta es exitosa, se retorna un arreglo de regímenes con su información.\n\nPuede filtrar los resultados de la consulta empleando el parámetro 'country' como filtro.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
+        "description": "Este servicio permite consultar regímenes físcales existentes.\nSi la respuesta es exitosa, se retorna un arreglo de regímenes con su información.\n\nPuede filtrar los resultados de la consulta empleando el parámetro 'country' como filtro.\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -6368,7 +6368,7 @@
       "post": {
         "summary": "Busqueda de consultores comerciales de PlacetoPay.",
         "operationId": "post-core-tools-seller-search",
-        "description": "Este servicio permite buscar consultores comerciales habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada consultor.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
+        "description": "Este servicio permite buscar consultores comerciales habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada consultor.\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -6552,7 +6552,7 @@
       "post": {
         "summary": "Consulta de banco adquiriente",
         "operationId": "post-core-tools-reseller-search",
-        "description": "Este servicio permite consultar distribuidores habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada distribuidor.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
+        "description": "Este servicio permite consultar distribuidores habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada distribuidor.\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -6736,7 +6736,7 @@
       "post": {
         "summary": "Consulta de tipos de cuenta de recaudo.",
         "operationId": "post-core-tools-account-type-search",
-        "description": "Este servicio permite consultar los tipos de cuenta de recaudo.\nSi la respuesta es exitosa, se retorna un arreglo de tipos de cuenta de recaudo con su información correspondiente.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
+        "description": "Este servicio permite consultar los tipos de cuenta de recaudo.\nSi la respuesta es exitosa, se retorna un arreglo de tipos de cuenta de recaudo con su información correspondiente.\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -6918,7 +6918,7 @@
       "post": {
         "summary": "Consulta de entidades financieras.",
         "operationId": "post-core-tools-financial-entity-search",
-        "description": "Este servicio permite consultar entidades financiera o banco recaudador.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada entidad financiera.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
+        "description": "Este servicio permite consultar entidades financiera o banco recaudador.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada entidad financiera.\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -7103,7 +7103,7 @@
       "post": {
         "summary": "Consulta de medios de pago.",
         "operationId": "post-core-tools-payment-method-search",
-        "description": "Este servicio permite consultar medios de pago habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada medio de pago.\n\nSi requiere el uso de paginación personalizada, debe enviar el atributo 'pagination'.",
+        "description": "Este servicio permite consultar medios de pago habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada medio de pago.\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
