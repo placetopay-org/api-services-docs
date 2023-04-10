@@ -1806,6 +1806,13 @@
                       "settings": {
                         "type": "object",
                         "description": "Objeto que contiene las configuraciones del medio de pago."
+                      },
+                      "creditRules": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "68dkcnqfvoziq"
+                        },
+                        "description": "Objeto que contiene las reglas de crédito del meio de pago"
                       }
                     }
                   }
@@ -1833,7 +1840,22 @@
                       "accountNumber": "1234567890",
                       "financialEntity": 2,
                       "order": 1,
-                      "settings": {}
+                      "settings": {},
+                      "creditRules": {
+                        "RM_MC": {
+                          "C": {
+                            "1": {
+                              "minimum": "1"
+                            },
+                            "2": {
+                              "remove": true
+                            },
+                            "3": {
+                              "maximum": "10"
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -2000,6 +2022,13 @@
                       "settings": {
                         "type": "object",
                         "description": "Objeto que contiene las configuraciones del medio de pago."
+                      },
+                      "creditRules": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "55h3stavi6vf7"
+                        },
+                        "description": "Objeto que contiene las reglas de crédito del medio de pago"
                       }
                     }
                   }
@@ -2027,7 +2056,8 @@
                       "accountNumber": "1234567890",
                       "financialEntity": 2,
                       "order": 1,
-                      "settings": {}
+                      "settings": {},
+                      "creditRules": {}
                     }
                   }
                 }
@@ -2228,7 +2258,22 @@
                           "financialEntity": 1,
                           "order": 1,
                           "disabled": true,
-                          "settings": {}
+                          "settings": {},
+                          "creditRules": {
+                            "RM_MC": {
+                              "C": {
+                                "1": {
+                                  "minimum": "1"
+                                },
+                                "2": {
+                                  "remove": true
+                                },
+                                "3": {
+                                  "maximum": "10"
+                                }
+                              }
+                            }
+                          }
                         }
                       ],
                       "pagination": {
@@ -3984,6 +4029,13 @@
                           "id": "9ok1s8gra52tz"
                         },
                         "description": "Objeto que contiene las configuraciones del medio de pago."
+                      },
+                      "creditRules": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "ige6f04mhaase"
+                        },
+                        "description": "Objeto que contiene las reglas de crédito del medio de pago"
                       }
                     }
                   }
@@ -4013,7 +4065,22 @@
                       "financialEntity": 1,
                       "commissionModel": "P",
                       "commissionValue": 1,
-                      "settings": {}
+                      "settings": {},
+                      "creditRules": {
+                        "RM_MC": {
+                          "C": {
+                            "1": {
+                              "minimum": "1"
+                            },
+                            "2": {
+                              "remove": true
+                            },
+                            "3": {
+                              "maximum": "10"
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -4228,6 +4295,13 @@
                           "id": "9ok1s8gra52tz"
                         },
                         "description": "Objeto que contiene las configuraciones del medio de pago."
+                      },
+                      "creditRules": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "o6gy5mumo41xj"
+                        },
+                        "description": "Objeto que contiene las reglas de crédito del medio de pago."
                       }
                     }
                   }
@@ -4257,7 +4331,8 @@
                       "financialEntity": 1,
                       "commissionModel": "P",
                       "commissionValue": 1,
-                      "settings": {}
+                      "settings": {},
+                      "creditRules": {}
                     }
                   }
                 }
@@ -4474,7 +4549,22 @@
                           "financialEntity": 1,
                           "order": 1,
                           "disabled": true,
-                          "settings": {}
+                          "settings": {},
+                          "creditRules": {
+                            "RM_MC": {
+                              "C": {
+                                "1": {
+                                  "minimum": "1"
+                                },
+                                "2": {
+                                  "remove": true
+                                },
+                                "3": {
+                                  "maximum": "10"
+                                }
+                              }
+                            }
+                          }
                         }
                       ],
                       "pagination": {
@@ -8019,6 +8109,13 @@
           "settings": {
             "type": "object",
             "description": "Objeto que contiene las configuraciones del medio de pago."
+          },
+          "creditRules": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "e56n6d4p36e8i"
+            },
+            "description": "Objeto que contiene las reglas de crédito del medio de pago"
           }
         }
       },
@@ -8205,6 +8302,13 @@
           "settings": {
             "type": "object",
             "description": "Objeto que contiene las configuraciones del medio de pago."
+          },
+          "creditRules": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "94mr6ybcq7mkt"
+            },
+            "description": "Objeto que contiene las reglas de crédito del medio de pago"
           }
         }
       },
