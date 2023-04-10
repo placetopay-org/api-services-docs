@@ -1793,7 +1793,7 @@
                       },
                       "financialEntity": {
                         "type": "integer",
-                        "description": "Identificador de la entidad financiera o Banco recaudador del medio de pago.",
+                        "description": "Identificador de la entidad financiera o Banco recaudador del medio de pago. La entidad financiera debe ser del país del comercio a asociar.",
                         "example": 2
                       },
                       "order": {
@@ -2009,7 +2009,7 @@
                       },
                       "financialEntity": {
                         "type": "integer",
-                        "description": "Identificador de la entidad financiera o banco recaudador del medio de pago.",
+                        "description": "Identificador de la entidad financiera o banco recaudador del medio de pago. La entidad financiera debe ser del mismo país del comercio asociado.",
                         "example": 2
                       },
                       "order": {
@@ -3998,7 +3998,7 @@
                           "id": "63potk2wcbfl8"
                         },
                         "example": 1,
-                        "description": "Identificador de la entidad financiera o banco de recaudo del medio de pago."
+                        "description": "Identificador de la entidad financiera o banco de recaudo del medio de pago. La entidad financiera debe ser del país del comercio asociado al sitio."
                       },
                       "commissionModel": {
                         "type": "string",
@@ -4264,7 +4264,7 @@
                           "id": "63potk2wcbfl8"
                         },
                         "example": 1,
-                        "description": "Identificador de la entidad financiera o banco de recaudo del medio de pago."
+                        "description": "Identificador de la entidad financiera o banco de recaudo del medio de pago. La entidad financiera debe ser del país del comercio asociado al sitio."
                       },
                       "commissionModel": {
                         "type": "string",
@@ -8095,7 +8095,7 @@
           "financialEntity": {
             "type": "integer",
             "example": 1,
-            "description": "Identificador de la entidad financiera o banco recaudador del medio de pago."
+            "description": "Identificador de la entidad financiera o banco recaudador del medio de pago. La entidad financiera debe ser del mismo país del comercio asociado."
           },
           "order": {
             "type": "integer",
@@ -8288,7 +8288,7 @@
           "financialEntity": {
             "type": "integer",
             "example": 1,
-            "description": "Identificador de la entidad financiera o banco recaudador del medio de pago."
+            "description": "Identificador de la entidad financiera o banco recaudador del medio de pago. La entidad financiera debe ser del país del comercio asociado al sitio."
           },
           "order": {
             "type": "integer",
