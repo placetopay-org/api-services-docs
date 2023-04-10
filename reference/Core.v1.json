@@ -3820,10 +3820,10 @@
       },
       "parameters": []
     },
-    "/core/site/payment-method/create": {
+    "/core/site/payment-methods/create": {
       "post": {
         "summary": "Agregar un medio de pago a un sitio",
-        "operationId": "post-core-site-payment-method-create",
+        "operationId": "post-core-site-payment-methods-create",
         "responses": {
           "200": {
             "description": "OK",
@@ -4096,10 +4096,10 @@
       },
       "parameters": []
     },
-    "/core/site/payment-method/update": {
+    "/core/site/payment-methods/update": {
       "post": {
         "summary": "Actualizar un medio de pago asociado a un sitio",
-        "operationId": "post-core-site-payment-method-update",
+        "operationId": "post-core-site-payment-methods-update",
         "responses": {
           "200": {
             "description": "OK",
@@ -4348,10 +4348,10 @@
       },
       "parameters": []
     },
-    "/core/site/payment-method/delete": {
+    "/core/site/payment-methods/delete": {
       "post": {
         "summary": "Remover un medio de pago asociado a un sitio",
-        "operationId": "post-core-site-payment-method-delete",
+        "operationId": "post-core-site-payment-methods-delete",
         "responses": {
           "200": {
             "description": "OK",
@@ -4487,10 +4487,10 @@
       },
       "parameters": []
     },
-    "/core/site/payment-method/search": {
+    "/core/site/payment-methods/search": {
       "post": {
         "summary": "Consulta de medios de pago asociados a un sitio",
-        "operationId": "post-core-site-payment-method-search",
+        "operationId": "post-core-site-payment-methods-search",
         "responses": {
           "200": {
             "description": "OK",
