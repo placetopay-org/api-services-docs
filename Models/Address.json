@@ -14,8 +14,7 @@
       "description": "Ciudad"
     },
     "state": {
-      "type": "integer",
-      "example": 1,
+      "type": "string",
       "description": "Estado /provincia /departamento"
     },
     "postalCode": {
