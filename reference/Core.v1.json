@@ -7047,9 +7047,7 @@
                         {
                           "id": 1,
                           "name": "BANCOLOMBIA",
-                          "code": "string",
-                          "disabled": false,
-                          "country": "CO"
+                          "disabled": false
                         }
                       ],
                       "pagination": {
@@ -7226,7 +7224,7 @@
                   }
                 },
                 "examples": {
-                  "Respuesta exitosa": {
+                  "Respuesta Exitosa": {
                     "value": {
                       "status": {
                         "status": "OK",
@@ -7237,18 +7235,10 @@
                       "data": [
                         {
                           "id": 1,
-                          "customerId": 1,
                           "code": "RM_MC",
                           "name": "MasterCard",
-                          "commissionModel": "P",
-                          "commissionValue": 1,
-                          "accountNumber": "123456878890",
-                          "accountType": 1,
                           "franchise": "MASTERCARD",
-                          "financialEntity": 1,
-                          "order": 1,
-                          "disabled": true,
-                          "settings": {}
+                          "disabled": true
                         }
                       ],
                       "pagination": {
@@ -8133,11 +8123,6 @@
             "description": "Identificador del método de pago.",
             "example": 1
           },
-          "customerId": {
-            "type": "integer",
-            "description": "Identificador del comercio al que pertence el método de pago.",
-            "example": 1
-          },
           "code": {
             "type": "string",
             "description": "Código identificador del método de pago.",
@@ -8219,7 +8204,15 @@
           "minAmount": {
             "type": "number",
             "x-stoplight": {
-              "id": "dbuc88rcdvpws"
+              "id": "dbuc88rcdvpws",
+              "explicitProperties": [
+                "type",
+                "maximum",
+                "minimum",
+                "format",
+                "description",
+                "examples"
+              ]
             },
             "maximum": 9999999999.99,
             "minimum": 0,
@@ -8230,7 +8223,15 @@
           "maxAmount": {
             "type": "number",
             "x-stoplight": {
-              "id": "i10vzcefs0qfb"
+              "id": "i10vzcefs0qfb",
+              "explicitProperties": [
+                "type",
+                "description",
+                "format",
+                "maximum",
+                "minimum",
+                "examples"
+              ]
             },
             "description": "Máximo valor permitido por transacción.",
             "format": "float",
@@ -8393,21 +8394,11 @@
             "maxLength": 60,
             "example": "BANCOLOMBIA"
           },
-          "code": {
-            "type": "string",
-            "description": "Código de la entidad financiera.",
-            "maxLength": 10
-          },
           "disabled": {
             "type": "boolean",
             "example": false,
             "description": "Indicador de estado inactivo.",
             "default": false
-          },
-          "country": {
-            "type": "string",
-            "example": "CO",
-            "description": "País al que pertenece la entidad financiera."
           }
         }
       },
