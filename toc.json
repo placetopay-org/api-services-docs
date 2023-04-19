@@ -1,39 +1,83 @@
 {
+  "collapseTableOfContents": false,
   "items": [
     {
       "type": "item",
-      "title": "Flujo de integracion",
-      "uri": "docs/Flujo-de-integracion.md"
-    },
-    {
-      "type": "item",
-      "title": "Gateway",
-      "uri": "reference/Gateway.v1.json"
-    },
-    {
-      "type": "item",
       "title": "Autenticación",
-      "uri": "docs/Autenticacion.md"
+      "uri": "/docs/Autenticacion.md"
     },
     {
       "type": "item",
-      "title": "Tarjetas de pruebas",
-      "uri": "docs/Tarjetas-de-prueba.md"
+      "title": "Aerolíneas",
+      "uri": "/docs/Codigos-de-aerolineas.md"
     },
     {
       "type": "item",
-      "title": "Tipos de transacciones",
-      "uri": "docs/Tipos-de-transacciones.md"
+      "title": "Integración con Gateway",
+      "uri": "/docs/Flujo-de-integracion.md"
+    },
+    {
+      "type": "item",
+      "title": "Números de tarjeta de pruebas",
+      "uri": "/docs/Tarjetas-de-prueba.md"
+    },
+    {
+      "type": "item",
+      "title": "Tipos de creditos",
+      "uri": "/docs/Tipos-de-creditos.md"
     },
     {
       "type": "item",
       "title": "Tipos de documento",
-      "uri": "docs/Tipos-de-documento.md"
+      "uri": "/docs/Tipos-de-documento.md"
     },
     {
       "type": "item",
-      "title": "Códigos de aerolíneas",
-      "uri": "docs/Codigos-de-aerolineas.md"
+      "title": "Tipos de transacciones",
+      "uri": "/docs/Tipos-de-transacciones.md"
+    },
+    {
+      "type": "divider",
+      "title": "APIS"
+    },
+    {
+      "type": "item",
+      "title": "Gateway",
+      "uri": "/reference/Gateway.v1.json"
+    },
+    {
+      "type": "item",
+      "title": "Core",
+      "uri": "/reference/Core.v1.json"
+    },
+    {
+      "type": "divider",
+      "title": "Schemas"
+    },
+    {
+      "type": "item",
+      "title": "Address",
+      "uri": "/Models/Address.json"
+    },
+    {
+      "type": "item",
+      "title": "Document",
+      "uri": "/Models/Document.json"
+    },
+    {
+      "type": "item",
+      "title": "Autentication",
+      "uri": "/Models/Autentication.json"
+    },
+    {
+      "type": "item",
+      "title": "Status",
+      "uri": "/Models/Status.json"
+    },
+    {
+      "type": "item",
+      "title": "Person",
+      "uri": "/Models/Person.json"
     }
   ]
 }

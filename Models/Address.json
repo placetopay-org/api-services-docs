@@ -1,0 +1,37 @@
+{
+  "title": "Address",
+  "type": "object",
+  "description": "Estructura que contiene la información sobre una dirección física\n",
+  "properties": {
+    "street": {
+      "type": "string",
+      "maxLength": 128,
+      "description": "Calle"
+    },
+    "city": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Ciudad"
+    },
+    "state": {
+      "type": "string",
+      "description": "Estado /provincia /departamento"
+    },
+    "postalCode": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Código postal"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 2,
+      "example": "CO",
+      "description": "País"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "Teléfono"
+    }
+  }
+}
