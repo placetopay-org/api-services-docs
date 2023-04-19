@@ -3,23 +3,23 @@
   "items": [
     {
       "type": "item",
-      "title": "Autenticación",
-      "uri": "/docs/Autenticacion.md"
-    },
-    {
-      "type": "item",
-      "title": "Aerolíneas",
-      "uri": "/docs/Codigos-de-aerolineas.md"
-    },
-    {
-      "type": "item",
       "title": "Integración con Gateway",
       "uri": "/docs/Flujo-de-integracion.md"
     },
     {
       "type": "item",
+      "title": "Autenticación",
+      "uri": "/docs/Autenticacion.md"
+    },
+    {
+      "type": "item",
       "title": "Números de tarjeta de pruebas",
       "uri": "/docs/Tarjetas-de-prueba.md"
+    },
+    {
+      "type": "item",
+      "title": "Aerolíneas",
+      "uri": "/docs/Codigos-de-aerolineas.md"
     },
     {
       "type": "item",
@@ -35,6 +35,11 @@
       "type": "item",
       "title": "Tipos de transacciones",
       "uri": "/docs/Tipos-de-transacciones.md"
+    },
+    {
+      "type": "item",
+      "title": "Control de idempotencia",
+      "uri": "/docs/Control-de-Idempotencia.md"
     },
     {
       "type": "divider",
