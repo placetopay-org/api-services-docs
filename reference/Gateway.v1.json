@@ -1424,6 +1424,106 @@
       },
       "parameters": []
     },
+    "/invalidate": {
+      "post": {
+        "summary": "Tokenización (invalidate)",
+        "operationId": "post-gateway-tokenize",
+        "description": "Este servicio permite invalidar y eliminar un token asociado a una tarjeta de crédito.\n",
+        "tags": [
+          "Tokenización de tarjetas"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "instrument": {
+                    "required": [
+                      "token"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "token": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "wat3f91sf4vda"
+                        },
+                        "required": [
+                          "token"
+                        ],
+                        "properties": {
+                          "token": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "cscp4red8ajq9"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth",
+                  "instrument"
+                ]
+              },
+              "examples": {
+                "Ejemplo": {
+                  "value": {
+                    "auth": {
+                      "login": "c4ca4238a0b923820dcc509a6f75849b",
+                      "tranKey": "/svw0VZ1UML5qEmaPbefQO7OXt098zOdfWsc/vHclGM=",
+                      "nonce": "NjQ0MWFlNGY0MWE1OQ==",
+                      "seed": "2023-04-20T16:27:43-05:00"
+                    },
+                    "instrument": {
+                      "token": {
+                        "token": "239bd2573205e974c4bed7c99cc1125c464f6350a905565333fff041d8f5ef79"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Ok": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-06-17T11:29:37-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": []
+    },
     "/gateway/transaction": {
       "post": {
         "summary": "Operaciones sobre una transacción",
