@@ -1424,7 +1424,7 @@
       },
       "parameters": []
     },
-    "/tokenization/invalidate": {
+    "/invalidate": {
       "post": {
         "summary": "Tokenización (invalidate)",
         "operationId": "post-gateway-tokenize",
