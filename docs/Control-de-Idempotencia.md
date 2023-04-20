@@ -1,6 +1,6 @@
 # Control de Idempotencia
 
-Nuestro servicio puede ayudarte a controlar que no realices más de una transacción aprobada para un proceso único. Esto se hace identificando ese proceso con un valor único que sería enviado en el parámetro `idempotenceKey`, este hará que no se procese de nuevo una transacción ya hay una pendiente o aprobada con el mismo valor.
+Nuestro servicio puede ayudarte a controlar que no realices más de una transacción aprobada para un proceso único. Esto se hace identificando ese proceso con un valor único que sería enviado en el parámetro `idempotenceKey`, este hará que no se procese de nuevo una transacción si ya hay una pendiente o aprobada con el mismo valor.
 
 ```
 {
