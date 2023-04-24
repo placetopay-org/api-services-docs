@@ -1,6 +1,13 @@
 # Control de Idempotencia
 
-Nuestro servicio puede ayudarte a controlar que no realices más de una transacción aprobada para un proceso único. Esto se hace identificando ese proceso con un valor único que sería enviado en el parámetro `idempotenceKey`, este hará que no se procese de nuevo una transacción si ya hay una pendiente o aprobada con el mismo valor.
+Nuestro servicio puede ayudarte a controlar que no realices más de una transacción aprobada para un proceso único en un periodo de tiempo predeterminado. Esto se hace identificando ese proceso con un **valor único** que sería enviado en el parámetro `idempotenceKey`, este hará que no se procese de nuevo una transacción si ya hay una transacción previamente ejecutada en estado “pendiente” o “aprobada” con el mismo **valor único** en el periodo de tiempo predeterminado.
+
+El **valor único** va depender del flujo del proceso del usuario que esta ejecutando el pago y la manera de como funciona el sistema de cobro del comercio, el comercio debe definir el **valor único** tomando en consideración los aspectos necesarios para aprovechar la funcionalidad de `idempotenceKey` ofrecida por el servicio.
+
+Por ejemplo. Cliente A va pagar por el servicio X, el cliente tiene un numero de cuenta en ese comercio, por lo tanto el comercio debe asignarle el **valor único** de la transacción a ser ejecutada en función del servicio específico que esta pagando en ese momento para ese número de cuenta.
+
+<!-- theme: info -->
+> Es imperativo y responsabilidad del comercio definir el **valor único** como sea necesario según su lógica de negocio o casos de uso. De no contemplarse todos los parámetros necesarios que hacen una transacción única en la generación, podrían ocurrir duplicados si no se envía el mismo valor, o deternerse transacciones que si se deban realizar si se envía el mismo.
 
 ```
 {
@@ -13,7 +20,7 @@ Nuestro servicio puede ayudarte a controlar que no realices más de una transacc
 
 ## Flujo básico
 
-Se hace la primera transacción con un idempotenceKey y la respuesta será por ejemplo una aprobación, o una pendiente.
+Se hace la primera transacción con un `idempotenceKey` y la respuesta será por ejemplo una aprobación, o una pendiente.
 
 ![IdempotenceFirst.png](../assets/images/IdempotenceFirst.png)
 
@@ -24,6 +31,9 @@ Si se solicita nuevamente la transacción con el mismo valor, se retornará exac
 
 ## Observaciones
 
-El parametro se encuentra en la raiz de la petición de autorización y es un alfanumérico de 32.
+* El parametro se encuentra en la raiz de la petición de autorización y es un alfanumérico de 32.
 
-Es el único valor que afecta este comportamiento, es decir, la referencia, el monto y el instrumento puede variar y aún así, si el idempotenceKey es el mismo, no se hará una nueva transacción
+* Es el único valor que afecta este comportamiento, es decir, la referencia, el monto y el instrumento puede variar y aún así, si el `idempotenceKey` es el mismo, no se hará una nueva transacción
+
+<!-- theme: info -->
+> Este servicio no pretende y no se debe tomar como un cambio al flujo de integración establecido en el [flujo de integración](Flujo-de-integracion.md) particularmente el punto 4 del mismo. Se trata de un control adicional que se puede implementar
