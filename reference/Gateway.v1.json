@@ -2468,7 +2468,6 @@
           "content": {
             "application/json": {
               "schema": {
-                "description": "",
                 "type": "object",
                 "properties": {
                   "auth": {
@@ -2490,6 +2489,20 @@
                         "type": "string",
                         "format": "date-time",
                         "example": "2021-01-12T18:01:27-05:00"
+                      },
+                      "state": {
+                        "type": "array",
+                        "description": "Permite definir el estado de las transacciones del reporte, es un arreglo numerico donde 1:Aprobadas, 2:Rechazadas, 3:Pendientes, 4:Validacion manual",
+                        "items": {
+                          "type": "string",
+                          "example": "[\"APPROVED\", \"REJECTED\"]",
+                          "enum": [
+                            "APPROVED",
+                            "REJECTED",
+                            "PENDING",
+                            "FAILED"
+                          ]
+                        }
                       }
                     }
                   },
@@ -2504,20 +2517,38 @@
                 ]
               },
               "examples": {
-                "example-1": {
+                "Básico": {
                   "value": {
                     "auth": {
-                      "login": "string",
-                      "tranKey": "string",
-                      "nonce": "string",
-                      "seed": "2019-08-24T14:15:22Z"
+                      "login": "c4ca4238a0b923820dcc509a6f75849b",
+                      "tranKey": "cV5MJlkUgPq/BLG40M1Cp2mSkJcZg7FPL4FBxKo+t5A=",
+                      "nonce": "NjQ4MjMzMjY0MDIyYw==",
+                      "seed": "2023-06-08T14:59:34-05:00"
                     },
                     "filters": {
-                      "startDate": "2021-01-10T18:01:27-05:00",
-                      "endDate": "2019-08-24T14:15:22-05:00"
+                      "startDate": "2023-06-07 14:59:34",
+                      "endDate": "2023-06-08 14:59:34"
                     },
-                    "compressionFormat": "zip",
-                    "callbackUrl": "http://example.com"
+                    "callbackUrl": "https://dnetix.co/ping/report"
+                  }
+                },
+                "Con estado": {
+                  "value": {
+                    "auth": {
+                      "login": "c4ca4238a0b923820dcc509a6f75849b",
+                      "tranKey": "cV5MJlkUgPq/BLG40M1Cp2mSkJcZg7FPL4FBxKo+t5A=",
+                      "nonce": "NjQ4MjMzMjY0MDIyYw==",
+                      "seed": "2023-06-08T14:59:34-05:00"
+                    },
+                    "filters": {
+                      "startDate": "2023-06-07 14:59:34",
+                      "endDate": "2023-06-08 14:59:34",
+                      "state": [
+                        "APPROVED",
+                        "REJECTED"
+                      ]
+                    },
+                    "callbackUrl": "https://dnetix.co/ping/report"
                   }
                 }
               }
