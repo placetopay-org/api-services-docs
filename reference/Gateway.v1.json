@@ -316,7 +316,11 @@
                 "type": "object",
                 "properties": {
                   "action": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [
+                      "checkin "
+                    ],
+                    "description": "Este campo debe ser enviado cuando un proceso de checkin, de lo contrario, no debe ser enviado en la solicitud."
                   },
                   "locale": {
                     "type": "string"
@@ -1608,7 +1612,6 @@
           "content": {
             "application/json": {
               "schema": {
-                "description": "",
                 "type": "object",
                 "properties": {
                   "locale": {
@@ -1627,8 +1630,6 @@
                       "process",
                       "void",
                       "dispersion",
-                      "pre_authorization",
-                      "checkin",
                       "checkout",
                       "reauthorization"
                     ],
