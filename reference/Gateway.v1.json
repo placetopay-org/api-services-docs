@@ -320,7 +320,7 @@
                     "enum": [
                       "checkin "
                     ],
-                    "description": "Este campo debe ser enviado cuando un proceso de checkin, de lo contrario, no debe ser enviado en la solicitud."
+                    "description": "Este campo debe ser enviado unicamente cuando se realice un proceso de checkin, de lo contrario, no debe ser enviado en la solicitud."
                   },
                   "locale": {
                     "type": "string"
