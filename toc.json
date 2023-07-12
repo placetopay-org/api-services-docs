@@ -42,6 +42,11 @@
       "uri": "/docs/Control-de-Idempotencia.md"
     },
     {
+      "type": "item",
+      "title": "Importación ordenes de pago",
+      "uri": "/docs/formats/Importacion-ordenes-de-pago.md"
+    },
+    {
       "type": "divider",
       "title": "APIS"
     },
