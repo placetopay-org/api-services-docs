@@ -1,7 +1,3 @@
----
-stoplight-id: b8bd509a7dbf1
----
-
 # Archivos de intercambio para el recaudo de facturas
 
 ## Introducción
