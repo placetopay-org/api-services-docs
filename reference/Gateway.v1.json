@@ -344,7 +344,7 @@
                   },
                   "additional": {
                     "type": "object",
-                    "description": "Objeto dinámico clave valor de información que se desee guardar con la transacción. Las siguientes claves NO son permitidas: _accountNumber, userAgent, fingerprint, sourcePlatform, tokenizationID, trazabilyCode, transactionCycle, RequestId, PartnerAuthCode, onTest."
+                    "description": "Objeto dinámico clave valor de información que se desee guardar con la transacción. Las siguientes claves NO son permitidas: _accountNumber, userAgent, fingerprint, sourcePlatform, tokenizationID, trazabilyCode, transactionCycle, RequestId, PartnerAuthCode, onTest, threeDSEnrolled, threeDSAuthenticated."
                   }
                 }
               },
