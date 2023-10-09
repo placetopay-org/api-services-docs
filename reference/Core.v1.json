@@ -7526,7 +7526,7 @@
                   "aggregator": {
                     "type": "boolean",
                     "default": false,
-                    "description": "Agregador del plan."
+                    "description": "Indicada si el plan es por modelo agregador."
                   },
                   "description": {
                     "type": "string",
@@ -7729,7 +7729,7 @@
                   "aggregator": {
                     "type": "boolean",
                     "default": false,
-                    "description": "Agregador del plan."
+                    "description": "Indicada si el plan es por modelo agregador."
                   },
                   "description": {
                     "type": "string",
