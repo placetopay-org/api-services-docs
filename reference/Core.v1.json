@@ -8658,14 +8658,14 @@
                     "example": 1,
                     "description": "Id del comercio al cual se le asociará el plan."
                   },
-                  "siteId": {
-                    "type": "number",
-                    "example": 1,
-                    "description": "Id del sitio al cual se le asociará el plan."
+                  "sites": {
+                    "type": "array",
+                    "example": [1],
+                    "description": "Ids del sitio a los cual se le asociará el plan."
                   },
                   "paymentMethodId": {
                     "type": "number",
-                    "description": "Id del medio de pago."
+                    "description": "Id del medio de pago. No es permitido si se envían múltiples sitios"
                   }
                 },
                 "required": [
