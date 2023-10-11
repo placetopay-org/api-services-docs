@@ -7783,6 +7783,152 @@
       },
       "parameters": []
     },
+    "/core/plans/set/until-date": {
+      "post": {
+        "summary": "Fijar la plan final de un plan",
+        "operationId": "post-core-plan-set-until-date",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 2,
+                      "description": "Identificador del plan al cual se le fijó la fecha final."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo fecha final es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Identificador del plan al cual se le fijará la fecha final."
+                  },
+                  "validUntil": {
+                    "type": "string",
+                    "description": "Fecha de terminación del plan. ",
+                    "example": "2025-09-17"
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id",
+                  "validUntil"
+                ]
+              },
+              "examples": {
+                "Creación de un plan": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "validUntil": "2025-09-17"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Este servicio permite fijar la fecha final de un plan. Si la respuesta es exitosa, retorna el identificador del plan.",
+        "tags": [
+          "Administración de planes"
+        ],
+        "x-stoplight": {
+          "id": "ds5odnc7d0z2q"
+        }
+      },
+      "parameters": []
+    },
     "/core/plans/range/create": {
       "post": {
         "summary": "Crear un rango de plan",
