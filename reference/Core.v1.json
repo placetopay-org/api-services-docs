@@ -7779,7 +7779,8 @@
         "description": "Este servicio permite editar un plan. Si la respuesta es exitosa, retorna el identificador del plan.",
         "tags": [
           "Administración de planes"
-        ]
+        ],
+        "x-internal": false
       },
       "parameters": []
     },
@@ -7888,7 +7889,7 @@
                   "id": {
                     "type": "integer",
                     "example": 1,
-                    "description": "Identificador del plan al cual se le fijará la fecha final."
+                    "description": "Identificador del plan al cual se le establecerá la fecha final."
                   },
                   "validUntil": {
                     "type": "string",
@@ -7919,7 +7920,7 @@
             }
           }
         },
-        "description": "Este servicio permite fijar la fecha final de un plan. Si la respuesta es exitosa, retorna el identificador del plan.",
+        "description": "Este servicio permite establecer la fecha final de un plan. Si la respuesta es exitosa, retorna el identificador del plan.",
         "tags": [
           "Administración de planes"
         ],
@@ -8716,11 +8717,6 @@
                   "properties": {
                     "status": {
                       "$ref": "../Models/Status.json"
-                    },
-                    "id": {
-                      "type": "integer",
-                      "example": 2,
-                      "description": "Identificador del comercio del plan creado."
                     }
                   }
                 },
@@ -8732,8 +8728,7 @@
                         "reason": "00",
                         "message": "La petición se ha procesado correctamente.",
                         "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "id": 2
+                      }
                     }
                   }
                 }
@@ -8848,7 +8843,7 @@
             }
           }
         },
-        "description": "Este servicio permite asociar un comercio/sitio a un plan existente. Si la respuesta es exitosa, retorna el identificador del comercio del plan creado.",
+        "description": "Este servicio permite asociar un comercio a un plan existente.",
         "tags": [
           "Administración de planes"
         ]
