@@ -332,7 +332,7 @@
                     "$ref": "#/components/schemas/Payment"
                   },
                   "instrument": {
-                    "$ref": "#/components/schemas/Instrument"
+                    "$ref": "#/components/schemas/ThreeDS"
                   },
                   "payer": {
                     "$ref": "../Models/Person.json"
@@ -3919,7 +3919,6 @@
         ]
       },
       "ThreeDS": {
-        "description": "",
         "type": "object",
         "x-examples": {
           "example-1": {
@@ -3935,7 +3934,8 @@
         },
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "description": "Este valor solo aplica si la validación se hizo con el servicio de 3DS de Placetopay"
           },
           "enrolled": {
             "type": "string",
@@ -4000,7 +4000,6 @@
           }
         },
         "required": [
-          "id",
           "enrolled",
           "authenticated",
           "eci",
