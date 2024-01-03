@@ -2679,8 +2679,9 @@
                       },
                       " expiration": {
                         "type": "string",
-                        "format": "date-time",
-                        "description": "Fecha de expiración."
+                        "description": "Fecha de expiración.",
+                        "default": null,
+                        "nullable": true
                       },
                       "onTest": {
                         "type": "boolean",
@@ -2905,7 +2906,7 @@
                               "MEDIUM",
                               "HIGH"
                             ],
-                            "description": "Nivel máximo de riesgo aceptado con threeDS"
+                            "description": "Nivel máximo de riesgo aceptado con threeDS.\nPor defecto, su valor es LOW."
                           },
                           "minAmount": {
                             "type": "number",
@@ -4760,7 +4761,8 @@
                             "paymentGroups": [
                               "CASH"
                             ],
-                            "minAmount": 10
+                            "minAmount": 10,
+                            "behaviour": 276
                           },
                           "riskEngine": {
                             "behaviours": {
@@ -4775,7 +4777,8 @@
                             "minAmount": 20,
                             "approvalScore": 100,
                             "rejectionScore": 250,
-                            "onCalibration": true
+                            "onCalibration": true,
+                            "behaviour": 4372
                           },
                           "securityFilters": {
                             "allowedIssuerCountries": [
@@ -9988,8 +9991,8 @@
           },
           " expiration": {
             "type": "string",
-            "format": "date-time",
-            "description": "Fecha de expiración."
+            "description": "Fecha de expiración.",
+            "nullable": true
           },
           "onTest": {
             "type": "boolean",
@@ -10340,6 +10343,14 @@
                 "maximum": 999999999,
                 "example": 10,
                 "description": "Monto mínimo para activar.\nEs requerido cuando se envie CreditBureau"
+              },
+              "behaviour": {
+                "type": "number",
+                "x-stoplight": {
+                  "id": "49ibzz7rh6gc1"
+                },
+                "example": 276,
+                "description": "Puntaje calculado a partir de los parámetros de entrada de 'behaviours'."
               }
             }
           },
@@ -10460,6 +10471,14 @@
                   "id": "k2qtmu7lgjrg9"
                 },
                 "description": "Indica el estado en calibración.\n"
+              },
+              "behaviour": {
+                "type": "number",
+                "x-stoplight": {
+                  "id": "unebt7asgcaxk"
+                },
+                "example": 4372,
+                "description": "Puntaje calculado a partir de los parámetros de entrada 'behaviours'."
               }
             }
           },
