@@ -3589,7 +3589,10 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Acciones sobre sitios"
+        ]
       }
     },
     "/core/site/delete": {
