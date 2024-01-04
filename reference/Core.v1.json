@@ -2887,6 +2887,30 @@
                             "example": "ffffffffffffffffffffffffffffffffffffffffff"
                           }
                         }
+                      },
+                      "branding": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "4up30pdodfxjb"
+                        },
+                        "minProperties": 0,
+                        "maxProperties": 1,
+                        "properties": {
+                          "buttonColor": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "3rwn1973we11a"
+                            },
+                            "description": "Color for main buttons on checkout, in HEX format"
+                          },
+                          "sidebarColor": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "xzfygjmju7hdp"
+                            },
+                            "description": "Background color for sidebar on checkout, in HEX format"
+                          }
+                        }
                       }
                     }
                   }
