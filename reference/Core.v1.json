@@ -2895,20 +2895,21 @@
                         },
                         "minProperties": 0,
                         "maxProperties": 1,
+                        "description": "Objeto para guardar la configuración sobre la gestión de marca del sitio",
                         "properties": {
                           "buttonColor": {
                             "type": "string",
                             "x-stoplight": {
                               "id": "3rwn1973we11a"
                             },
-                            "description": "Color for main buttons on checkout, in HEX format"
+                            "description": "Color para los botones del web checkout, en formato HEX, Ej.: #EE00DD"
                           },
                           "sidebarColor": {
                             "type": "string",
                             "x-stoplight": {
                               "id": "xzfygjmju7hdp"
                             },
-                            "description": "Background color for sidebar on checkout, in HEX format"
+                            "description": "Colo de fondo del sidebar del web checkout, en formato HEX. Ej.: #FFCCEE"
                           }
                         }
                       }
@@ -3377,6 +3378,31 @@
                             "example": "ffffffffffffffffffffffffffffffffffffffffff"
                           }
                         }
+                      },
+                      "branding": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "s18wthwd2pgh2"
+                        },
+                        "minProperties": 0,
+                        "maxProperties": 1,
+                        "description": "Objeto para guardar la configuración sobre la gestión de marca del sitio",
+                        "properties": {
+                          "buttonColor": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "nuamyt5zregfh"
+                            },
+                            "description": "Color para los botones del web checkout, en formato HEX, Ej.: #EE00DD"
+                          },
+                          "sidebarColor": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "eqve1ooen7n2e"
+                            },
+                            "description": "Colo de fondo del sidebar del web checkout, en formato HEX. Ej.: #FFCCEE"
+                          }
+                        }
                       }
                     }
                   }
@@ -3451,6 +3477,120 @@
         ]
       },
       "parameters": []
+    },
+    "/core/site/logo-update": {
+      "post": {
+        "summary": "Actualizar Logo de sitio",
+        "operationId": "post-core-site-logo-update",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "logoUrl": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "itultkldn1ju2"
+                      },
+                      "format": "uri",
+                      "example": "http://localhost/storage/site-00000005/logo.png"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "1p16m9i2f82cx"
+        },
+        "description": "Este servicio permite actualizar el logo de un sitio, \nya sea subiendo uno nuevo, reemplazando uno existente \no eliminando el logo actual",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "x-stoplight": {
+                      "id": "dbdfy18o5vtu4"
+                    },
+                    "description": "Identificador del sitio."
+                  },
+                  "image": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "97z4vmtaglim3"
+                    },
+                    "description": "Logo del site, puede ser nulo",
+                    "pattern": ".jpg, .jpeg, .png, ",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id"
+                ]
+              }
+            }
+          }
+        }
+      }
     },
     "/core/site/delete": {
       "post": {
@@ -9050,6 +9190,41 @@
                 "minLength": 42,
                 "maxLength": 42,
                 "example": "ffffffffffffffffffffffffffffffffffffffffff"
+              }
+            }
+          },
+          "branding": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "r1h2x5p8578cp"
+            },
+            "minProperties": 0,
+            "maxProperties": 1,
+            "description": "Objeto para guardar la configuración sobre la gestión de marca del sitio",
+            "properties": {
+              "buttonColor": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "nkoj2huxyiko4"
+                },
+                "example": "#FFCC00",
+                "description": "Color para los botones del web checkout, en formato HEX"
+              },
+              "sidebarColor": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "f3pq6q11ql3m8"
+                },
+                "example": "#CCFF33",
+                "description": "Colo de fondo del sidebar del web checkout, en formato HEX"
+              },
+              "logoUrl": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "v744qd7v3dcob"
+                },
+                "example": "http://localhost/storage/site-00000004/logo.png",
+                "description": "Url del logo del site"
               }
             }
           }
