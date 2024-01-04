@@ -2893,8 +2893,6 @@
                         "x-stoplight": {
                           "id": "4up30pdodfxjb"
                         },
-                        "minProperties": 0,
-                        "maxProperties": 1,
                         "description": "Objeto para guardar la configuración sobre la gestión de marca del sitio",
                         "properties": {
                           "buttonColor": {
@@ -2971,6 +2969,10 @@
                           123456
                         ],
                         "delegatedAuthorization": "ffffffffffffffffffffffffffffffffffffffffff"
+                      },
+                      "branding": {
+                        "buttonColor": "#cc3fdd",
+                        "sidebarColor": "#ffebeb"
                       }
                     }
                   }
@@ -3384,8 +3386,6 @@
                         "x-stoplight": {
                           "id": "s18wthwd2pgh2"
                         },
-                        "minProperties": 0,
-                        "maxProperties": 1,
                         "description": "Objeto para guardar la configuración sobre la gestión de marca del sitio",
                         "properties": {
                           "buttonColor": {
@@ -3462,6 +3462,10 @@
                           411111
                         ],
                         "delegatedAuthorization": "ffffffffffffffffffffffffffffffffffffffffff"
+                      },
+                      "branding": {
+                        "buttonColor": "#cc3fdd",
+                        "sidebarColor": "#ffebeb"
                       }
                     }
                   }
@@ -3481,7 +3485,7 @@
     "/core/site/update": {
       "post": {
         "summary": "Actualización parcial de un sitio",
-        "operationId": "post-core-site-update-all",
+        "operationId": "post-core-site-update",
         "responses": {
           "200": {
             "description": "OK",
@@ -3686,46 +3690,9 @@
                       "seed": "2021-09-27T09:41:05-05:00"
                     },
                     "id": 15,
-                    "data": {
-                      "login": "375f6sdf93cd4bad8449efa920455533",
-                      "tranKey": "E5u2PQ4whFeLvy86",
-                      "md5Hash": "e0xy799SGB3zj689",
-                      "name": "Updated name",
-                      "displayName": "Update display name",
-                      "type": "INT",
-                      "category": "ECOMMERCE",
-                      "email": "test@test.com",
-                      "currency": "COP",
-                      "language": "ES",
-                      "active": true,
-                      "customBatch": 1235665,
-                      " expiration": "2019-08-24T14:15:22Z",
-                      "onTest": true,
-                      "integration": {
-                        "allowPartial": true,
-                        "connectionMethod": "REDIRECT",
-                        "notificationUrl": "www.urlexample.com",
-                        "checkoutVersion": "v4",
-                        "analyticsCode": "string"
-                      },
-                      "control": {
-                        "minAmount": 9999999.99,
-                        "maxAmount": 0,
-                        "allowedDays": 127,
-                        "allowedHours": "ffffffffffffffffffffffffffffffffffffffffff",
-                        "filterPse": false,
-                        "filterTuya": false,
-                        "filterSafetypay": false,
-                        "prechargeFilter": 0,
-                        "allowedBankCountries": [
-                          "CO"
-                        ],
-                        "filterByBin": false,
-                        "exceptionBinsList": [
-                          411111
-                        ],
-                        "delegatedAuthorization": "ffffffffffffffffffffffffffffffffffffffffff"
-                      }
+                    "branding": {
+                      "buttonColor": "#000000",
+                      "sidebarColor": "#ffebeb"
                     }
                   }
                 }
@@ -4126,6 +4093,12 @@
                               411111
                             ],
                             "delegatedAuthorization": "ffffffffffffffffffffffffffffffffffffffffff"
+                          },
+                          "branding": {
+                            "logoUrl": "http://localhost/storage/site-00000004/logo.png",
+                            "logoPath": "site-00000004/logo.png",
+                            "buttonColor": "#cc3fdd",
+                            "sidebarColor": "#ffebeb"
                           }
                         }
                       ],
@@ -9516,8 +9489,6 @@
             "x-stoplight": {
               "id": "r1h2x5p8578cp"
             },
-            "minProperties": 0,
-            "maxProperties": 1,
             "description": "Objeto para guardar la configuración sobre la gestión de marca del sitio",
             "properties": {
               "buttonColor": {
