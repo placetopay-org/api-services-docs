@@ -9499,7 +9499,17 @@
                   "id": "v744qd7v3dcob"
                 },
                 "example": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png",
-                "description": "Url del logo del site"
+                "description": "Url del logo del site",
+                "readOnly": true
+              },
+              "logoPath": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "sn6lfnujxhis1"
+                },
+                "example": "logo-site-5-20240111062950.png",
+                "description": "Ruta relativa del logo",
+                "readOnly": true
               }
             }
           }
