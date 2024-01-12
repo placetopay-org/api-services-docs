@@ -3644,28 +3644,12 @@
                     "description": "Identificador del sitio."
                   },
                   "branding": {
-                    "type": "object",
+                    "type": "array",
                     "x-stoplight": {
                       "id": "7gb0aa879m3gd"
                     },
-                    "properties": {
-                      "buttonColor": {
-                        "type": "string",
-                        "x-stoplight": {
-                          "id": "el5xud119i023"
-                        },
-                        "description": "Color para los botones del web checkout, en formato HEX",
-                        "example": "#EE00DD"
-                      },
-                      "sidebarColor": {
-                        "type": "string",
-                        "x-stoplight": {
-                          "id": "lvj8yajbllu89"
-                        },
-                        "description": "Colo de fondo del sidebar del web checkout, en formato HEX",
-                        "example": "#EE00DD"
-                      }
-                    }
+                    "description": "Array para guardar la configuración sobre la gestión de marca del sitio",
+                    "items": {}
                   },
                   "checkoutVersion": {
                     "type": "string",
@@ -3837,7 +3821,7 @@
         "x-stoplight": {
           "id": "1p16m9i2f82cx"
         },
-        "description": "Este servicio permite actualizar el logo de un sitio, \nya sea subiendo uno nuevo, reemplazando uno existente \no eliminando el logo actual",
+        "description": "Este servicio permite actualizar el logo de un sitio, \nya sea subiendo uno nuevo, reemplazando uno existente, \nsi el parametro \"logo\" es nulo se elimina el logo actual",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -3854,7 +3838,7 @@
                     },
                     "description": "Identificador del sitio."
                   },
-                  "image": {
+                  "logo": {
                     "type": "string",
                     "x-stoplight": {
                       "id": "97z4vmtaglim3"
