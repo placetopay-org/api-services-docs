@@ -3564,8 +3564,8 @@
                       "compensationMethod": [],
                       "checkoutVersion": "v3",
                       "branding": {
-                        "logoUrl": "http://localhost/storage/site-00000004/logo.png",
-                        "logoPath": "site-00000004/logo.png",
+                        "logoUrl": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png",
+                        "logoPath": "logo-site-5-20240111062950.png",
                         "buttonColor": "#000000",
                         "sidebarColor": "#ffebeb"
                       },
@@ -3731,7 +3731,7 @@
                         "message": "La petición se ha procesado correctamente",
                         "date": "2024-01-04T15:27:28-05:00"
                       },
-                      "logoUrl": "http://localhost/storage/site-00000005/logo.png"
+                      "logoUrl": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png"
                     }
                   }
                 }
@@ -4081,8 +4081,8 @@
                             "delegatedAuthorization": "ffffffffffffffffffffffffffffffffffffffffff"
                           },
                           "branding": {
-                            "logoUrl": "http://localhost/storage/site-00000004/logo.png",
-                            "logoPath": "site-00000004/logo.png",
+                            "logoUrl": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png",
+                            "logoPath": "logo-site-5-20240111062950.png",
                             "buttonColor": "#cc3fdd",
                             "sidebarColor": "#ffebeb"
                           }
@@ -9498,7 +9498,7 @@
                 "x-stoplight": {
                   "id": "v744qd7v3dcob"
                 },
-                "example": "http://localhost/storage/site-00000004/logo.png",
+                "example": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png",
                 "description": "Url del logo del site"
               }
             }
