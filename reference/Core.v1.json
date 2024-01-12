@@ -3391,16 +3391,18 @@
                           "buttonColor": {
                             "type": "string",
                             "x-stoplight": {
-                              "id": "nuamyt5zregfh"
+                              "id": "my6k3fg3m6ktk"
                             },
-                            "description": "Color para los botones del web checkout, en formato HEX, Ej.: #EE00DD"
+                            "description": "Color para los botones del web checkout, en formato HEX",
+                            "example": "#EE00DD"
                           },
                           "sidebarColor": {
                             "type": "string",
                             "x-stoplight": {
-                              "id": "eqve1ooen7n2e"
+                              "id": "0dzt8a1b901x3"
                             },
-                            "description": "Colo de fondo del sidebar del web checkout, en formato HEX. Ej.: #FFCCEE"
+                            "example": "#EE00DD",
+                            "description": "Color de fondo del sidebar del web checkout, en formato HEX"
                           }
                         }
                       }
