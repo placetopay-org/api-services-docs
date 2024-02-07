@@ -50,6 +50,10 @@
     {
       "name": "Procedimientos adicionales",
       "description": "Acciones sobre la administración de entidades adicionales."
+    },
+    {
+      "name": "Administración de planes",
+      "description": "Acciones sobre la administración de planes."
     }
   ],
   "paths": {
@@ -8985,6 +8989,1780 @@
         "tags": [
           "Procedimientos adicionales"
         ]
+      },
+      "parameters": []
+    },
+    "/core/plans/create": {
+      "post": {
+        "summary": "Crear un plan",
+        "operationId": "post-core-plan-create",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 2,
+                      "description": "Identificador del plan creado."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo tipo es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "invoiceTo": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Id del comercio al que se le facturará el plan."
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "ALL",
+                    "enum": [
+                      "ALL",
+                      "APPROVED"
+                    ],
+                    "description": "Se define si se cobran solo las transacciones aprobadas o toda operación."
+                  },
+                  "mode": {
+                    "type": "string",
+                    "example": "PERCENT",
+                    "enum": [
+                      "PERCENT",
+                      "FIXED_VALUE"
+                    ],
+                    "description": "Define si los valores de incluida o adicional corresponden a pesos o porcentajes."
+                  },
+                  "frequence": {
+                    "type": "string",
+                    "example": "WEEKLY",
+                    "enum": [
+                      "WEEKLY",
+                      "BIWEEKLE",
+                      "MONTHLY",
+                      "QUARTERLY",
+                      "SEMIANUALLY",
+                      "ANNUALLY"
+                    ],
+                    "description": "Frecuencia de facturación del plan."
+                  },
+                  "unbillThird": {
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "aggregator": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Indicada si el plan es por modelo agregador."
+                  },
+                  "description": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "description": "Descripción del plan."
+                  },
+                  "validFrom": {
+                    "type": "string",
+                    "example": "2011-01-01",
+                    "description": "Fecha de inicio del plan."
+                  },
+                  "validUntil": {
+                    "type": "string",
+                    "description": "Fecha de terminación del plan."
+                  }
+                },
+                "required": [
+                  "auth",
+                  "invoiceTo",
+                  "type",
+                  "mode",
+                  "frequence",
+                  "validFrom"
+                ]
+              },
+              "examples": {
+                "Creación de un plan": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "invoiceTo": 1,
+                    "type": "ALL",
+                    "mode": "PERCENT",
+                    "frequence": "WEEKLY",
+                    "validFrom": "2023-01-01"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Este servicio permite crear un plan. Si la respuesta es exitosa, retorna el identificador del plan.",
+        "tags": [
+          "Administración de planes"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/plans/update": {
+      "post": {
+        "summary": "Editar un plan",
+        "operationId": "post-core-plan-update",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 2,
+                      "description": "Identificador del plan editado."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo tipo es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Id del plan a actualizar"
+                  },
+                  "invoiceTo": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Id del comercio al que se le facturará el plan."
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "ALL",
+                    "enum": [
+                      "ALL",
+                      "APPROVED"
+                    ],
+                    "description": "Se define si se cobran solo las transacciones aprobadas o toda operación."
+                  },
+                  "mode": {
+                    "type": "string",
+                    "example": "PERCENT",
+                    "enum": [
+                      "PERCENT",
+                      "FIXED_VALUE"
+                    ],
+                    "description": "Define si los valores de incluida o adicional corresponden a pesos o porcentajes."
+                  },
+                  "frequence": {
+                    "type": "string",
+                    "example": "WEEKLY",
+                    "enum": [
+                      "WEEKLY",
+                      "BIWEEKLE",
+                      "MONTHLY",
+                      "QUARTERLY",
+                      "SEMIANUALLY",
+                      "ANNUALLY"
+                    ],
+                    "description": "Frecuencia de facturación del plan."
+                  },
+                  "unbillThird": {
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "aggregator": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Indicada si el plan es por modelo agregador."
+                  },
+                  "description": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "description": "Descripción del plan."
+                  },
+                  "validFrom": {
+                    "type": "string",
+                    "example": "2011-01-01",
+                    "description": "Fecha de inicio del plan."
+                  },
+                  "validUntil": {
+                    "type": "string",
+                    "description": "Fecha de terminación del plan."
+                  }
+                },
+                "required": [
+                  "auth",
+                  "invoiceTo",
+                  "type",
+                  "mode",
+                  "frequence",
+                  "validFrom"
+                ]
+              },
+              "examples": {
+                "Creación de un plan": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "invoiceTo": 1,
+                    "type": "ALL",
+                    "mode": "PERCENT",
+                    "frequence": "WEEKLY",
+                    "validFrom": "2023-01-01"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Este servicio permite editar un plan. Si la respuesta es exitosa, retorna el identificador del plan.",
+        "tags": [
+          "Administración de planes"
+        ],
+        "x-internal": false
+      },
+      "parameters": []
+    },
+    "/core/plans/set-until-date": {
+      "post": {
+        "summary": "Fijar la fecha final de un plan",
+        "operationId": "post-core-plan-set-until-date",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 2,
+                      "description": "Identificador del plan al cual se le fijó la fecha final."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo fecha final es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Identificador del plan al cual se le establecerá la fecha final."
+                  },
+                  "validUntil": {
+                    "type": "string",
+                    "description": "Fecha de terminación del plan. ",
+                    "example": "2025-09-17"
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id",
+                  "validUntil"
+                ]
+              },
+              "examples": {
+                "Creación de un plan": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "validUntil": "2025-09-17"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Este servicio permite establecer la fecha final de un plan. Si la respuesta es exitosa, retorna el identificador del plan.",
+        "tags": [
+          "Administración de planes"
+        ],
+        "x-stoplight": {
+          "id": "ds5odnc7d0z2q"
+        }
+      },
+      "parameters": []
+    },
+    "/core/plans/range/create": {
+      "post": {
+        "summary": "Crear un rango de plan",
+        "operationId": "post-core-plan-range-create",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 2,
+                      "description": "Identificador del rango creado."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo costo adicional de transacción es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "planId": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Id del plan al cual se le asociará el rango."
+                  },
+                  "minRange": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Rango mínimo del plan.",
+                    "minimum": 0,
+                    "maximum": 99999999.99
+                  },
+                  "maxRange": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 15409800,
+                    "description": "Cantidad de transacciones que se van a contratar.",
+                    "minimum": 0,
+                    "maximum": 999999999.99
+                  },
+                  "base": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 261966.6,
+                    "description": "Cargo base de la sumatoria de las transacciones (si se le cobra al cliente $500*100 transacciones = base) (fee mensual).",
+                    "minimum": 0,
+                    "maximum": 999999999.99
+                  },
+                  "included": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 0.017,
+                    "description": "Costo de cuanto vale la transacción",
+                    "minimum": 0,
+                    "maximum": 999999.99999
+                  },
+                  "includedMin": {
+                    "type": "number",
+                    "format": "float",
+                    "minimum": 0,
+                    "maximum": 999999.99999
+                  },
+                  "additional": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 0.017,
+                    "description": "Costo de cuanto vale una transacción una vez superado el rango maximo.",
+                    "minimum": 0,
+                    "maximum": 999999.99999
+                  },
+                  "additionalMin": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Valor de comisión.",
+                    "minimum": 0,
+                    "maximum": 999999.99999
+                  },
+                  "cifin": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1195,
+                    "description": "Costo de consulta/validación en centrales de riesgo.",
+                    "minimum": 0,
+                    "maximum": 99999999.99
+                  },
+                  "emailage": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1195,
+                    "description": "Costo de consulta/validacion en motores de riesgo.",
+                    "minimum": 0,
+                    "maximum": 99999999.99
+                  },
+                  "sarlaft": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1195,
+                    "minimum": 0,
+                    "maximum": 99999999.99
+                  }
+                },
+                "required": [
+                  "planId",
+                  "maxRange",
+                  "base",
+                  "included",
+                  "additional",
+                  "cifin",
+                  "emailage",
+                  "sarlaft"
+                ]
+              },
+              "examples": {
+                "Creación de un plan": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "planId": 1,
+                    "maxRange": 123000,
+                    "base": 14760,
+                    "included": 0.12,
+                    "additional": 0.12,
+                    "cifin": 1120.5,
+                    "emailage": 1120.5,
+                    "sarlaft": 1120.5
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite crear un rango y asociarlo a un plan existente. Si la respuesta es exitosa, retorna el identificador del rango del plan.",
+        "tags": [
+          "Administración de planes"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/plans/range/update": {
+      "post": {
+        "summary": "Editar un rango de plan",
+        "operationId": "post-core-plan-range-update",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 2,
+                      "description": "Identificador del rango de plan editado."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo costo adicional de transacción es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Id del rango a actualizar"
+                  },
+                  "planId": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Id del plan al cual le pertenece el rango."
+                  },
+                  "minRange": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Rango mínimo del plan.",
+                    "minimum": 0,
+                    "maximum": 99999999.99
+                  },
+                  "maxRange": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 15409800,
+                    "description": "Cantidad de transacciones que se van a contratar.",
+                    "minimum": 0,
+                    "maximum": 999999999.99
+                  },
+                  "base": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 261966.6,
+                    "description": "Cargo base de la sumatoria de las transacciones (si se le cobra al cliente $500*100 transacciones = base) (fee mensual).",
+                    "minimum": 0,
+                    "maximum": 999999999.99
+                  },
+                  "included": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 0.017,
+                    "description": "Costo de cuanto vale la transacción",
+                    "minimum": 0,
+                    "maximum": 999999.99999
+                  },
+                  "includedMin": {
+                    "type": "number",
+                    "format": "float",
+                    "minimum": 0,
+                    "maximum": 999999.99999
+                  },
+                  "additional": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 0.017,
+                    "description": "Valor de comisión.",
+                    "minimum": 0,
+                    "maximum": 999999.99999
+                  },
+                  "additionalMin": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Costo de cuanto vale una transacción una vez superado el rango maximo.",
+                    "minimum": 0,
+                    "maximum": 999999.99999
+                  },
+                  "cifin": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1195,
+                    "description": "Costo de consulta/validación en centrales de riesgo.",
+                    "minimum": 0,
+                    "maximum": 99999999.99
+                  },
+                  "emailage": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1195,
+                    "description": "Costo de consulta/validacion en motores de riesgo.",
+                    "minimum": 0,
+                    "maximum": 99999999.99
+                  },
+                  "sarlaft": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1195,
+                    "minimum": 0,
+                    "maximum": 99999999.99
+                  }
+                },
+                "required": [
+                  "planId",
+                  "maxRange",
+                  "base",
+                  "included",
+                  "additional",
+                  "cifin",
+                  "emailage",
+                  "sarlaft"
+                ]
+              },
+              "examples": {
+                "Creación de un plan": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "planId": 1,
+                    "maxRange": 123000,
+                    "base": 14760,
+                    "included": 0.12,
+                    "additional": 0.12,
+                    "cifin": 1220.5,
+                    "emailage": 1220.5,
+                    "sarlaft": 1220.5
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite editar un rango de un plan existente. Si la respuesta es exitosa, retorna el identificador del rango del plan.",
+        "tags": [
+          "Administración de planes"
+        ],
+        "x-stoplight": {
+          "id": "67towp1h7s7vt"
+        }
+      },
+      "parameters": []
+    },
+    "/core/plans/range/list": {
+      "post": {
+        "summary": "Listar los rangos de un plan",
+        "operationId": "post-core-plan-range-list",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "planRanges": {
+                      "type": "array",
+                      "description": "Lista con la información de los rangos asociados a un plan."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "planRanges": [
+                        {
+                          "id": 1,
+                          "planId": 1,
+                          "minRange": 0,
+                          "maxRange": 123000,
+                          "base": 14760,
+                          "included": 0.12,
+                          "includedMin": 0,
+                          "additional": 0.12,
+                          "additionalMin": 0,
+                          "cifin": 1220.5,
+                          "emailage": 1220.5,
+                          "sarlaft": 1220.5
+                        },
+                        {
+                          "id": 2,
+                          "planId": 1,
+                          "minRange": 0,
+                          "maxRange": 20,
+                          "base": 400,
+                          "included": 20,
+                          "includedMin": 0,
+                          "additional": 20,
+                          "additionalMin": 0,
+                          "cifin": 20,
+                          "emailage": 20,
+                          "sarlaft": 20
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id de plan es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "planId": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Id del plan del cual desea obtener la lista de rangos"
+                  }
+                },
+                "required": [
+                  "planId"
+                ]
+              },
+              "examples": {
+                "Creación de un plan": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "planId": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Este servicio permite listar todos los rangos asociados a un plan existente. Si la respuesta es exitosa, retorna un arreglo con los rangos del plan.",
+        "tags": [
+          "Administración de planes"
+        ],
+        "x-stoplight": {
+          "id": "67towp1h7s7vt"
+        }
+      },
+      "parameters": []
+    },
+    "/core/plans/range/remove": {
+      "post": {
+        "summary": "Eliminar rangos un plan",
+        "operationId": "post-core-plan-range-remove",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo ids de los rangos del plan es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "planId": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Id del plan del cual desea eliminar los rangos"
+                  },
+                  "planRanges": {
+                    "type": "array",
+                    "example": [
+                      1,
+                      3,
+                      6,
+                      2
+                    ],
+                    "description": "arreglo con los ids de los rangos que desea eliminar"
+                  }
+                },
+                "required": [
+                  "planId",
+                  "planRanges"
+                ]
+              },
+              "examples": {
+                "Creación de un plan": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "planId": 1,
+                    "planRanges": [
+                      1,
+                      3,
+                      6,
+                      2
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Este servicio permite eliminar rangos asociados a un plan existente.",
+        "tags": [
+          "Administración de planes"
+        ],
+        "x-stoplight": {
+          "id": "67towp1h7s7vt"
+        }
+      },
+      "parameters": []
+    },
+    "/core/plans/customer/create": {
+      "post": {
+        "summary": "Asociar un comercio a un plan",
+        "operationId": "post-core-plan-customer-create",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id del plan es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "planId": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Id del plan al cual se le asociará el comercio."
+                  },
+                  "customerId": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "Id del comercio al cual se le asociará el plan."
+                  },
+                  "sites": {
+                    "type": "array",
+                    "example": [
+                      1
+                    ],
+                    "description": "Ids del sitio a los cual se le asociará el plan."
+                  },
+                  "paymentMethodId": {
+                    "type": "number",
+                    "description": "Id del medio de pago. No es permitido si se envían múltiples sitios"
+                  }
+                },
+                "required": [
+                  "planId",
+                  "customerId"
+                ]
+              },
+              "examples": {
+                "Creación de un plan": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "planId": 1,
+                    "customerId": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Este servicio permite asociar un comercio a un plan existente.",
+        "tags": [
+          "Administración de planes"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/plans/customer/list": {
+      "post": {
+        "summary": "Listar los comercios asociados a un plan",
+        "operationId": "post-core-plan-customer-list",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "customerPlans": {
+                      "type": "array",
+                      "description": "Lista con la información de los comercios asociados al plan."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "planRanges": [
+                        {
+                          "id": 1,
+                          "planId": 1,
+                          "customerId": 1,
+                          "siteId": null,
+                          "paymentMethodId": null,
+                          "validFrom": "2023-01-03",
+                          "validUntil": "2025-09-17"
+                        },
+                        {
+                          "id": 2,
+                          "planId": 1,
+                          "customerId": 1,
+                          "siteId": null,
+                          "paymentMethodId": null,
+                          "validFrom": "2023-01-03",
+                          "validUntil": "2025-09-17"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id del plan es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "planId": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Id del plan del cual desea obtener la lista de comercios"
+                  }
+                },
+                "required": [
+                  "planId"
+                ]
+              },
+              "examples": {
+                "Creación de un plan": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "planId": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Este servicio permite listar los comercios asociados a un plan existente. Si la respuesta es exitosa, retorna un arreglo con los comercios del plan.",
+        "tags": [
+          "Administración de planes"
+        ],
+        "x-stoplight": {
+          "id": "67towp1h7s7vt"
+        }
+      },
+      "parameters": []
+    },
+    "/core/plans/customer/remove": {
+      "post": {
+        "summary": "Eliminar comercios de un plan",
+        "operationId": "post-core-plan-customer-remove",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo ids de los comercios del plan es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "planId": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Id del plan del cual desea eliminar los comercios asociados"
+                  },
+                  "customerPlans": {
+                    "type": "array",
+                    "example": [
+                      1,
+                      3,
+                      6,
+                      2
+                    ],
+                    "description": "Ids de los comercios asociados al plan que desea eliminar"
+                  }
+                },
+                "required": [
+                  "planId",
+                  "customerPlans"
+                ]
+              },
+              "examples": {
+                "Creación de un plan": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "planId": 1,
+                    "customerPlans": [
+                      1,
+                      3,
+                      6,
+                      2
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Este servicio permite eliminar la asociación entre un comercio y un plan.",
+        "tags": [
+          "Administración de planes"
+        ],
+        "x-stoplight": {
+          "id": "67towp1h7s7vt"
+        }
       },
       "parameters": []
     }
