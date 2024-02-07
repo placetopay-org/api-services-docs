@@ -3678,6 +3678,11 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "auth",
+                  "id",
+                  "data"
+                ],
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
@@ -4491,8 +4496,9 @@
                             "x-stoplight": {
                               "id": "my6k3fg3m6ktk"
                             },
-                            "description": "Color para los botones del web checkout, en formato HEX",
-                            "example": "#EE00DD"
+                            "description": "Color en formato Hex para los botones de la pasarela de pagos",
+                            "example": "#EE00DD",
+                            "pattern": "^#([a-f0-9]{6}|[a-f0-9]{3})$"
                           },
                           "sidebarColor": {
                             "type": "string",
@@ -4500,18 +4506,14 @@
                               "id": "0dzt8a1b901x3"
                             },
                             "example": "#EE00DD",
-                            "description": "Color de fondo del sidebar del web checkout, en formato HEX"
+                            "description": "Color en formato Hex para el sidebar (barra lateral) de la pasarela de pagos",
+                            "pattern": "^#([a-f0-9]{6}|[a-f0-9]{3})$"
                           }
                         }
                       }
                     }
                   }
-                },
-                "required": [
-                  "auth",
-                  "id",
-                  "data"
-                ]
+                }
               },
               "examples": {
                 "Actualización de un sitio": {
@@ -4797,7 +4799,7 @@
     },
     "/core/site/logo-update": {
       "post": {
-        "summary": "Actualizar Logo de sitio",
+        "summary": "Actualizar logo del sitio",
         "operationId": "post-core-site-logo-update",
         "responses": {
           "200": {
@@ -4921,12 +4923,16 @@
         "x-stoplight": {
           "id": "1p16m9i2f82cx"
         },
-        "description": "Este servicio permite actualizar el logo de un sitio, \nya sea subiendo uno nuevo, reemplazando uno existente, \nsi el parametro \"logo\" es nulo se elimina el logo actual",
+        "description": "Este servicio permite actualizar el logo de un sitio, \nya sea subiendo uno nuevo, reemplazando uno existente, \nsi el parámetro \"file\" es nulo se elimina el logo actual",
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "auth",
+                  "id"
+                ],
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
@@ -4938,20 +4944,16 @@
                     },
                     "description": "Identificador del sitio."
                   },
-                  "logo": {
+                  "file": {
                     "type": "string",
                     "x-stoplight": {
                       "id": "97z4vmtaglim3"
                     },
-                    "description": "Logo del site, puede ser nulo",
-                    "pattern": ".jpg, .jpeg, .png, ",
+                    "description": "Archivo binario que representa el logo del sitio, puede ser nulo.",
+                    "pattern": ".jpg, .jpeg, .png, .svg",
                     "format": "binary"
                   }
-                },
-                "required": [
-                  "auth",
-                  "id"
-                ]
+                }
               }
             }
           }
