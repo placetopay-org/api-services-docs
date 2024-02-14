@@ -4949,8 +4949,6 @@
                     "x-stoplight": {
                       "id": "97z4vmtaglim3"
                     },
-                    "maxLength": 2048,
-                    "minLength": 0,
                     "description": "Archivo que representa el logo del sitio, puede ser nulo, tamaño máximo 2048Kb.",
                     "pattern": ".jpg, .jpeg, .png, .svg",
                     "format": "binary"
