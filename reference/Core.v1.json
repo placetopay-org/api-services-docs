@@ -2679,8 +2679,9 @@
                       },
                       " expiration": {
                         "type": "string",
-                        "format": "date-time",
-                        "description": "Fecha de expiración."
+                        "description": "Fecha de expiración.",
+                        "default": null,
+                        "nullable": true
                       },
                       "onTest": {
                         "type": "boolean",
@@ -2887,6 +2888,545 @@
                             "example": "ffffffffffffffffffffffffffffffffffffffffff"
                           }
                         }
+                      },
+                      "threeDS": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "k6cr3sgftw1ri"
+                        },
+                        "description": "Contiene la información de las configuraciones de threeDS",
+                        "properties": {
+                          "setting": {
+                            "x-stoplight": {
+                              "id": "wxj8698imnl4z"
+                            },
+                            "enum": [
+                              "VERY_LOW",
+                              "LOW",
+                              "MEDIUM",
+                              "HIGH"
+                            ],
+                            "description": "Nivel máximo de riesgo aceptado con threeDS.\nPor defecto, su valor es LOW."
+                          },
+                          "minAmount": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "deeicie825ckm"
+                            },
+                            "description": "Monto mínimo para aplicar threeDS a la transacción",
+                            "format": "float",
+                            "maximum": 99999999999999,
+                            "default": 0,
+                            "example": 40
+                          }
+                        }
+                      },
+                      "historic": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "dk9jhy7usuiur"
+                        },
+                        "description": "Contiene la información de Histórico transaccional ",
+                        "properties": {
+                          "behaviour": {
+                            "x-stoplight": {
+                              "id": "zkcw6a0aeeavs"
+                            },
+                            "enum": [
+                              "IGNORE",
+                              "PROCESS",
+                              "DISABLED"
+                            ],
+                            "description": "Comportamiento a seguir cuando el puntaje obtenido por la transacción sea igual o menor al establecido"
+                          },
+                          "lowerScore": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "n5c4at9g7f7ga"
+                            },
+                            "minimum": 1,
+                            "maximum": 999,
+                            "example": 100,
+                            "description": "Puntaje de apetito al riesgo, indica el puntaje máximo para categorizar las operaciones como operaciones de bajo riesgo.\nEste parámetro es requerido cuando 'behaviour' tenga un valor diferente a 'DISABLED'.",
+                            "default": null,
+                            "nullable": true
+                          },
+                          "rejectionScore": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "uyqkwlx1d3uzu"
+                            },
+                            "default": null,
+                            "example": 200,
+                            "minimum": 1,
+                            "maximum": 999,
+                            "description": "Puntaje de tolerancia al riesgo, indica el puntaje a partir del cual se declinarán transacciones debido al riesgo.\nEste parámetro es requerido cuando 'behaviour' tenga un valor diferente a 'DISABLED'.",
+                            "nullable": true
+                          }
+                        }
+                      },
+                      "creditBureau": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "v6n2y1ca4u72y"
+                        },
+                        "description": "Contiene los parámetros de configuración de información financiera.\nPara habilitar este módulo, debe enviarlo dentro de la solicitud, de lo contrario enviar como campo nulo o no enviarlo.",
+                        "properties": {
+                          "behaviours": {
+                            "type": "object",
+                            "x-stoplight": {
+                              "id": "0e5iyenzb8qw7"
+                            },
+                            "minProperties": 3,
+                            "maxProperties": 3,
+                            "description": "Contiene la información de comportamiento del módulo.\nEs requerido siempre que creditBureau esté habilitado",
+                            "properties": {
+                              "onFailed": {
+                                "x-stoplight": {
+                                  "id": "kvnotwlnupy3b"
+                                },
+                                "enum": [
+                                  "REJECTED",
+                                  "MANUAL",
+                                  "IGNORE"
+                                ],
+                                "description": "Comportamiento a seguir cuando hay fallo"
+                              },
+                              "onNoMatch": {
+                                "x-stoplight": {
+                                  "id": "fmqacnw49xulf"
+                                },
+                                "enum": [
+                                  "REJECTED",
+                                  "MANUAL",
+                                  "IGNORE"
+                                ],
+                                "description": "Comportamiento a seguir en caso de no concordar"
+                              },
+                              "onMatch": {
+                                "x-stoplight": {
+                                  "id": "fp593mb9osyeg"
+                                },
+                                "enum": [
+                                  "PROCESS",
+                                  "MANUAL",
+                                  "IGNORE"
+                                ],
+                                "description": "Comportamiento del modulo cuando hay concordancia"
+                              }
+                            }
+                          },
+                          "paymentGroups": {
+                            "type": "array",
+                            "x-stoplight": {
+                              "id": "yekmxl1832ift"
+                            },
+                            "description": "Contiene el grupo de medios de pago",
+                            "items": {
+                              "x-stoplight": {
+                                "id": "9chsfr6matbaw"
+                              },
+                              "enum": [
+                                "CASH",
+                                "PRIVATECARD",
+                                "CREDITCARD",
+                                "E-WALLET",
+                                "DEBITACCOUNT"
+                              ]
+                            }
+                          },
+                          "minAmount": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "zemxshogjqtee"
+                            },
+                            "maximum": 999999999,
+                            "example": 10,
+                            "description": "Monto mínimo para activar.\nEs requerido cuando se envie CreditBureau"
+                          }
+                        }
+                      },
+                      "riskEngine": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "boxd0mh8dcf7r"
+                        },
+                        "description": "Contiene las configuraciones de motores de riesgo",
+                        "properties": {
+                          "behaviours": {
+                            "type": "object",
+                            "x-stoplight": {
+                              "id": "kfdu2qvv7oiyu"
+                            },
+                            "description": "Contiene la información del comportamiento a seguir del módulo.\nEste parámetro es requerido si riskEngine está presente y no es un campo nulo.",
+                            "properties": {
+                              "onFailed": {
+                                "x-stoplight": {
+                                  "id": "d94gbwbiyoa0g"
+                                },
+                                "enum": [
+                                  "REJECTED",
+                                  "MANUAL",
+                                  "IGNORE"
+                                ],
+                                "description": "Comportamiento a seguir en caso de fallo.\nEste campo es requerido siempre que riskEngine no sea nulo"
+                              },
+                              "onLowRisk": {
+                                "x-stoplight": {
+                                  "id": "i0bubad2ilqb7"
+                                },
+                                "enum": [
+                                  "MANUAL",
+                                  "IGNORE",
+                                  "PROCESS"
+                                ],
+                                "description": "Comportamiento a seguir ante nivel de riesgo bajo\nEste campo es requerido siempre que riskEngine no sea nulo"
+                              },
+                              "onMediumRisk": {
+                                "x-stoplight": {
+                                  "id": "9sikurl3dv7ih"
+                                },
+                                "enum": [
+                                  "REJECTED",
+                                  "MANUAL",
+                                  "IGNORE",
+                                  "PROCESS"
+                                ],
+                                "description": "Comportamiento a seguir ante nivel de riesgo medio. \nEste campo es requerido siempre que riskEngine no sea nulo"
+                              },
+                              "onHighRisk": {
+                                "x-stoplight": {
+                                  "id": "r5ejoz705pljd"
+                                },
+                                "enum": [
+                                  "REJECTED",
+                                  "MANUAL",
+                                  "IGNORE"
+                                ],
+                                "description": "Comportamiento a seguir ante nivel de riesgo alto.\nEste campo es requerido siempre que riskEngine no sea nulo"
+                              }
+                            }
+                          },
+                          "paymentGroups": {
+                            "type": "array",
+                            "x-stoplight": {
+                              "id": "pw4y7slygsgl6"
+                            },
+                            "description": "Grupo de medios de pago.",
+                            "items": {
+                              "x-stoplight": {
+                                "id": "otxppt997vsce"
+                              },
+                              "enum": [
+                                "CASH",
+                                "CREDITCARD",
+                                "E-WALLET",
+                                "DEBITACCOUNT",
+                                "PRIVATECARD"
+                              ]
+                            }
+                          },
+                          "minAmount": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "4y27ou1t3nvlz"
+                            },
+                            "description": "Monto mínimo para activar.\nEste campo es requerido siempre que riskEngine no sea nulo",
+                            "maximum": 999999999,
+                            "minimum": 1,
+                            "example": 20,
+                            "format": "double"
+                          },
+                          "approvalScore": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "1sjgrnfs1iwjw"
+                            },
+                            "minimum": 1,
+                            "maximum": 999,
+                            "example": 100,
+                            "description": "Puntaje de apetito al riesgo.\nEste campo es requerido siempre que riskEngine no sea nulo"
+                          },
+                          "rejectionScore": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "4kyalt3g72qiq"
+                            },
+                            "minimum": 1,
+                            "maximum": 999,
+                            "example": 250,
+                            "description": "Puntaje de tolerancia al riesgo.\nEste campo es requerido siempre que riskEngine no sea nulo"
+                          },
+                          "onCalibration": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "k2qtmu7lgjrg9"
+                            },
+                            "description": "Indica el estado en calibración.\nEste campo es requerido siempre que riskEngine no sea nulo"
+                          }
+                        }
+                      },
+                      "securityFilters": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "9dby0ebisyatc"
+                        },
+                        "description": "Contiene la información de filtros de seguridad",
+                        "properties": {
+                          "allowedIssuerCountries": {
+                            "type": "array",
+                            "x-stoplight": {
+                              "id": "c0umwb5sorqh0"
+                            },
+                            "minItems": 1,
+                            "description": "Paises permitidos para bancos emisores.\n",
+                            "items": {
+                              "x-stoplight": {
+                                "id": "wb1vpepq903f8"
+                              },
+                              "type": "string",
+                              "maxLength": 2,
+                              "example": "CO"
+                            }
+                          },
+                          "forceIPMatch": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "rg1k248houfyd"
+                            },
+                            "description": "Indica si se debe verificar que el país asociado a la IP del comprador coincida con la IP del banco emisor.\nPor defecto, su valor es FALSE"
+                          },
+                          "excludeIPCountry": {
+                            "type": "array",
+                            "x-stoplight": {
+                              "id": "sf4u00cqahjjb"
+                            },
+                            "description": "Indica para qué paises se debe excluir coincidencia para emisores.",
+                            "minItems": 1,
+                            "items": {
+                              "x-stoplight": {
+                                "id": "98bf9n62h7e7a"
+                              },
+                              "type": "string",
+                              "maxLength": 2,
+                              "example": "CO"
+                            }
+                          },
+                          "onlyWhitelisted": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "8hfeikl4ooxle"
+                            },
+                            "description": "Indica si se debe procesar solo lista de preferidos.\nPor defecto su valor es FALSE"
+                          },
+                          "allowedIPCountries": {
+                            "type": "array",
+                            "x-stoplight": {
+                              "id": "mp54ry7miji9n"
+                            },
+                            "minItems": 1,
+                            "description": "Paises permitidos para compradores.",
+                            "items": {
+                              "x-stoplight": {
+                                "id": "v7x92mz1t47w1"
+                              },
+                              "type": "string",
+                              "example": "CO",
+                              "maxLength": 2
+                            }
+                          },
+                          "allowedCardsDay": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "z8ko2g57fikff"
+                            },
+                            "minimum": 1,
+                            "maximum": 999,
+                            "default": 2,
+                            "example": 5,
+                            "description": "Indica el número de tarjetas diferentes que un cliente puede utilizar al día.\n0 indica tarjetas ilimitadas"
+                          },
+                          "allowedCardsByIP": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "cdbzmz6lmv618"
+                            },
+                            "maximum": 999,
+                            "default": 30,
+                            "example": 10,
+                            "description": "Número de minutos para realizar la correlación de cliente con IP.\nSi se establece en cero, se obvia el parámetro\n"
+                          },
+                          "allowedCardsMonth": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "nxzl2n2hh25mr"
+                            },
+                            "maximum": 999,
+                            "example": 3,
+                            "description": "Indica el número de tarjetas diferentes que un cliente puede usar al mes.\n0 indica ilimitadas",
+                            "default": 2
+                          },
+                          "allowedCardsYear": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "lwave0hq4a8sk"
+                            },
+                            "description": "Indica el número de tarjetas diferentes que un cliente puede usar al año.\n0 indica ilimitadas",
+                            "maximum": 999,
+                            "default": 5,
+                            "example": 3
+                          },
+                          "dayMax": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "xvdfvylaqr3bz"
+                            },
+                            "maximum": 999,
+                            "example": 1,
+                            "default": 2,
+                            "description": "Número de transacciones permitidas por cliente al día"
+                          },
+                          "dayMaxAmount": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "o9jjerx3d5azn"
+                            },
+                            "default": 100000000,
+                            "maximum": 99999999999999,
+                            "minimum": 0,
+                            "example": 200,
+                            "description": "Monto máximo por cliente al día",
+                            "format": "double"
+                          },
+                          "monthMax": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "m8nf35jqesoe6"
+                            },
+                            "maximum": 999,
+                            "example": 2,
+                            "default": 5,
+                            "description": "Número de transacciones permitidas por cliente al mes"
+                          },
+                          "monthMaxAmount": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "75g31ymhhdrjv"
+                            },
+                            "maximum": 99999999999999,
+                            "default": 100000000,
+                            "example": 1000,
+                            "description": "Monto máximo por cliente al mes.",
+                            "format": "float"
+                          }
+                        }
+                      },
+                      "operation": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "apiovo03imsg9"
+                        },
+                        "description": "Contiene la información del funcionamiento de consola.\n",
+                        "properties": {
+                          "disableTax": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "y83t08dqcr8fg"
+                            },
+                            "description": "Indicador para deshabilitar el ingreso de IVA.\nPor defecto, su valor es FALSE "
+                          },
+                          "calculateTax": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "jgp1mpj5qg8t4"
+                            },
+                            "description": "Indicador para autocalcular IVA.\nPor defecto, su valor es FALSE"
+                          },
+                          "taxPercentage": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "n3t9khy82cqvl"
+                            },
+                            "maximum": 50,
+                            "format": "float",
+                            "example": 10,
+                            "default": 0,
+                            "description": "Porcentaje de IVA."
+                          },
+                          "patternReference": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "3i8pjh4qwrf73"
+                            },
+                            "maxLength": 30,
+                            "minLength": 0,
+                            "description": "Expresión regular para validar que la referencia es válida.\nPor defecto, su valor es NULL"
+                          },
+                          "mailCustomer": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "b485hdo2mce65"
+                            },
+                            "description": "Indica si se debe enviar automáticamente un email con el comprobante de una transacción exitosa realizada en el panel adminsitrativo.\nSu valor por defecto es True."
+                          },
+                          "mailMerchant": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "41yjjnx7s09bk"
+                            },
+                            "description": "Indica si se debe enviar una copia del email al comercio cuando una transacción realizada en el panel administrativo es exitosa.\nSu valor por defecto es False."
+                          }
+                        }
+                      },
+                      "subscriptionValidation": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "4yvrkaveqb7cd"
+                        },
+                        "description": "Contiene las configuraciones para la validación de información de suscripción",
+                        "properties": {
+                          "enable": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "tz4djth3bcv11"
+                            },
+                            "description": "Habilita la validación de suscripción.\nSu valor por defecto es False."
+                          },
+                          "amount": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "xpv3qkyj9ht5i"
+                            },
+                            "format": "double",
+                            "default": 0,
+                            "example": 100,
+                            "maximum": 999999999999,
+                            "description": "Monto de validación."
+                          }
+                        }
+                      },
+                      "branding": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "4up30pdodfxjb"
+                        },
+                        "description": "Objeto para guardar la configuración sobre la gestión de marca del sitio",
+                        "properties": {
+                          "buttonColor": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "3rwn1973we11a"
+                            },
+                            "description": "Color para los botones del web checkout, en formato HEX, Ej.: #EE00DD"
+                          },
+                          "sidebarColor": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "xzfygjmju7hdp"
+                            },
+                            "description": "Colo de fondo del sidebar del web checkout, en formato HEX. Ej.: #FFCCEE"
+                          }
+                        }
                       }
                     }
                   }
@@ -2946,6 +3486,78 @@
                           123456
                         ],
                         "delegatedAuthorization": "ffffffffffffffffffffffffffffffffffffffffff"
+                      },
+                      "threeDS": {
+                        "setting": "VERY_LOW",
+                        "minAmount": 0
+                      },
+                      "historic": {
+                        "behaviour": "IGNORE",
+                        "lowerScore": null,
+                        "rejectionScore": null
+                      },
+                      "creditBureau": {
+                        "behaviours": {
+                          "onFailed": "REJECTED",
+                          "onNoMatch": "REJECTED",
+                          "onMatch": "PROCESS"
+                        },
+                        "paymentGroups": [
+                          "CASH"
+                        ],
+                        "minAmount": 10
+                      },
+                      "riskEngine": {
+                        "behaviours": {
+                          "onFailed": "REJECTED",
+                          "onLowRisk": "MANUAL",
+                          "onMediumRisk": "REJECTED",
+                          "onHighRisk": "REJECTED"
+                        },
+                        "paymentGroups": [
+                          "CASH"
+                        ],
+                        "minAmount": 20,
+                        "approvalScore": 100,
+                        "rejectionScore": 250,
+                        "onCalibration": true
+                      },
+                      "securityFilters": {
+                        "allowedIssuerCountries": [
+                          "CO"
+                        ],
+                        "forceIPMatch": true,
+                        "excludeIPCountry": [
+                          "CO"
+                        ],
+                        "onlyWhitelisted": true,
+                        "allowedIPCountries": [
+                          "CO"
+                        ],
+                        "allowedCardsDay": 2,
+                        "allowedCardsByIP": 30,
+                        "allowedCardsMonth": 2,
+                        "allowedCardsYear": 5,
+                        "dayMax": 2,
+                        "dayMaxAmount": 100000000,
+                        "monthMax": 5,
+                        "monthMaxAmount": 100000000
+                      },
+                      "operation": {
+                        "disableTax": true,
+                        "calculateTax": true,
+                        "taxPercentage": 0,
+                        "patternReference": "string",
+                        "mailCustomer": true,
+                        "mailMerchant": true
+                      },
+                      "subscriptionValidation": {
+                        "enable": true,
+                        "amount": 0
+                      },
+                      "branding": {
+                        "buttonColor": "#cc3fdd",
+                        "sidebarColor": "#ffebeb"
                       }
                     }
                   }
@@ -3066,6 +3678,11 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "auth",
+                  "id",
+                  "data"
+                ],
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
@@ -3353,15 +3970,550 @@
                             "example": "ffffffffffffffffffffffffffffffffffffffffff"
                           }
                         }
+                      },
+                      "threeDS": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "k6cr3sgftw1ri"
+                        },
+                        "description": "Contiene la información de las configuraciones de threeDS",
+                        "nullable": true,
+                        "properties": {
+                          "setting": {
+                            "x-stoplight": {
+                              "id": "wxj8698imnl4z"
+                            },
+                            "enum": [
+                              "VERY_LOW",
+                              "LOW",
+                              "MEDIUM",
+                              "HIGH"
+                            ],
+                            "description": "Nivel máximo de riesgo aceptado con threeDS"
+                          },
+                          "minAmount": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "deeicie825ckm"
+                            },
+                            "description": "Monto mínimo para aplicar threeDS a la transacción",
+                            "example": 40,
+                            "nullable": true
+                          }
+                        }
+                      },
+                      "historic": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "dk9jhy7usuiur"
+                        },
+                        "description": "Contiene la información de Histórico transaccional ",
+                        "properties": {
+                          "behaviour": {
+                            "x-stoplight": {
+                              "id": "zkcw6a0aeeavs"
+                            },
+                            "enum": [
+                              "IGNORE",
+                              "PROCESS",
+                              "DISABLED"
+                            ],
+                            "description": "Comportamiento a seguir cuando el puntaje obtenido por la transacción sea igual o menor al establecido"
+                          },
+                          "lowerScore": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "n5c4at9g7f7ga"
+                            },
+                            "minimum": 1,
+                            "maximum": 999,
+                            "example": 100,
+                            "description": "Puntaje de apetito al riesgo, indica el puntaje máximo para categorizar las operaciones como operaciones de bajo riesgo.\nEste parámetro es requerido cuando 'behaviour' tenga un valor diferente a 'DISABLED'.",
+                            "default": null,
+                            "nullable": true
+                          },
+                          "rejectionScore": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "uyqkwlx1d3uzu"
+                            },
+                            "default": null,
+                            "example": 200,
+                            "minimum": 1,
+                            "maximum": 999,
+                            "description": "Puntaje de tolerancia al riesgo, indica el puntaje a partir del cual se declinarán transacciones debido al riesgo.\n",
+                            "nullable": true
+                          }
+                        }
+                      },
+                      "creditBureau": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "v6n2y1ca4u72y"
+                        },
+                        "description": "Contiene los parámetros de configuración de información financiera.\nPara habilitar este módulo, debe enviarlo dentro de la solicitud, de lo contrario enviar como campo nulo o no enviarlo.",
+                        "nullable": true,
+                        "properties": {
+                          "behaviours": {
+                            "type": "object",
+                            "x-stoplight": {
+                              "id": "0e5iyenzb8qw7"
+                            },
+                            "minProperties": 3,
+                            "maxProperties": 3,
+                            "description": "Contiene la información de comportamiento del módulo.\nEs requerido siempre que creditBureau esté habilitado",
+                            "nullable": true,
+                            "properties": {
+                              "onFailed": {
+                                "x-stoplight": {
+                                  "id": "kvnotwlnupy3b"
+                                },
+                                "enum": [
+                                  "REJECTED",
+                                  "MANUAL",
+                                  "IGNORE"
+                                ],
+                                "description": "Comportamiento a seguir cuando hay fallo.\nEste campo es requerido cuando 'behaviours' está presente y es diferente de NULL"
+                              },
+                              "onNoMatch": {
+                                "x-stoplight": {
+                                  "id": "fmqacnw49xulf"
+                                },
+                                "enum": [
+                                  "REJECTED",
+                                  "MANUAL",
+                                  "IGNORE"
+                                ],
+                                "description": "Comportamiento a seguir en caso de no concordar\nEste campo es requerido cuando 'behaviours' está presente y es diferente de NULL"
+                              },
+                              "onMatch": {
+                                "x-stoplight": {
+                                  "id": "fp593mb9osyeg"
+                                },
+                                "enum": [
+                                  "PROCESS",
+                                  "MANUAL",
+                                  "IGNORE"
+                                ],
+                                "description": "Comportamiento del modulo cuando hay concordancia.\nEste campo es requerido cuando 'behaviours' está presente y es diferente de NULL"
+                              }
+                            }
+                          },
+                          "paymentGroups": {
+                            "type": "array",
+                            "x-stoplight": {
+                              "id": "yekmxl1832ift"
+                            },
+                            "description": "Contiene el grupo de medios de pago",
+                            "nullable": true,
+                            "items": {
+                              "x-stoplight": {
+                                "id": "mbnob6thtead0"
+                              },
+                              "type": "string",
+                              "maxLength": 2,
+                              "example": "CO"
+                            }
+                          },
+                          "minAmount": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "zemxshogjqtee"
+                            },
+                            "example": 10,
+                            "description": "Monto mínimo para activar.\n",
+                            "nullable": true
+                          }
+                        }
+                      },
+                      "riskEngine": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "boxd0mh8dcf7r"
+                        },
+                        "description": "Contiene las configuraciones de motores de riesgo",
+                        "nullable": true,
+                        "properties": {
+                          "behaviours": {
+                            "type": "object",
+                            "x-stoplight": {
+                              "id": "kfdu2qvv7oiyu"
+                            },
+                            "description": "Contiene la información del comportamiento a seguir del módulo.\n",
+                            "nullable": true,
+                            "properties": {
+                              "onFailed": {
+                                "x-stoplight": {
+                                  "id": "d94gbwbiyoa0g"
+                                },
+                                "enum": [
+                                  "REJECTED",
+                                  "MANUAL",
+                                  "IGNORE"
+                                ],
+                                "description": "Comportamiento a seguir en caso de fallo.\nEste campo es requerido cuando 'behaviours' está presente y es diferente de NULL"
+                              },
+                              "onLowRisk": {
+                                "x-stoplight": {
+                                  "id": "i0bubad2ilqb7"
+                                },
+                                "enum": [
+                                  "MANUAL",
+                                  "IGNORE",
+                                  "PROCESS"
+                                ],
+                                "description": "Comportamiento a seguir ante nivel de riesgo bajo\nEste campo es requerido cuando 'behaviours' está presente y es diferente de NULL"
+                              },
+                              "onMediumRisk": {
+                                "x-stoplight": {
+                                  "id": "9sikurl3dv7ih"
+                                },
+                                "enum": [
+                                  "REJECTED",
+                                  "MANUAL",
+                                  "IGNORE",
+                                  "PROCESS"
+                                ],
+                                "description": "Comportamiento a seguir ante nivel de riesgo medio. \nEste campo es requerido cuando 'behaviours' está presente y es diferente de NULL"
+                              },
+                              "onHighRisk": {
+                                "x-stoplight": {
+                                  "id": "r5ejoz705pljd"
+                                },
+                                "enum": [
+                                  "REJECTED",
+                                  "MANUAL",
+                                  "IGNORE"
+                                ],
+                                "description": "Comportamiento a seguir ante nivel de riesgo alto.\nEste campo es requerido cuando 'behaviours' está presente y es diferente de NULL"
+                              }
+                            }
+                          },
+                          "paymentGroups": {
+                            "type": "array",
+                            "x-stoplight": {
+                              "id": "pw4y7slygsgl6"
+                            },
+                            "description": "Grupo de medios de pago.",
+                            "nullable": true,
+                            "items": {
+                              "x-stoplight": {
+                                "id": "6c87g6g5nm52x"
+                              },
+                              "type": "string",
+                              "example": "EC",
+                              "maxLength": 2
+                            }
+                          },
+                          "minAmount": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "4y27ou1t3nvlz"
+                            },
+                            "description": "Monto mínimo para activar.\n",
+                            "maximum": 999999999,
+                            "minimum": 1,
+                            "example": 20,
+                            "format": "double"
+                          },
+                          "approvalScore": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "1sjgrnfs1iwjw"
+                            },
+                            "minimum": 1,
+                            "maximum": 999,
+                            "example": 100,
+                            "description": "Puntaje de apetito al riesgo.\n"
+                          },
+                          "rejectionScore": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "4kyalt3g72qiq"
+                            },
+                            "minimum": 1,
+                            "maximum": 999,
+                            "example": 250,
+                            "description": "Puntaje de tolerancia al riesgo.\n"
+                          },
+                          "onCalibration": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "k2qtmu7lgjrg9"
+                            },
+                            "description": "Indica el estado en calibración.\n"
+                          }
+                        }
+                      },
+                      "securityFilters": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "9dby0ebisyatc"
+                        },
+                        "description": "Contiene la información de filtros de seguridad",
+                        "nullable": true,
+                        "properties": {
+                          "allowedIssuerCountries": {
+                            "type": "array",
+                            "x-stoplight": {
+                              "id": "c0umwb5sorqh0"
+                            },
+                            "minItems": 1,
+                            "description": "Paises permitidos para bancos emisores.\n",
+                            "items": {
+                              "x-stoplight": {
+                                "id": "wb1vpepq903f8"
+                              },
+                              "type": "string",
+                              "maxLength": 2,
+                              "example": "CO"
+                            }
+                          },
+                          "forceIPMatch": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "rg1k248houfyd"
+                            },
+                            "description": "Indica si se debe verificar que el país asociado a la IP del comprador coincida con la IP del banco emisor.\n"
+                          },
+                          "excludeIPCountry": {
+                            "type": "array",
+                            "x-stoplight": {
+                              "id": "sf4u00cqahjjb"
+                            },
+                            "description": "Indica para qué paises se debe excluir coincidencia para emisores.",
+                            "minItems": 1,
+                            "items": {
+                              "x-stoplight": {
+                                "id": "98bf9n62h7e7a"
+                              },
+                              "type": "string",
+                              "maxLength": 2,
+                              "example": "CO"
+                            }
+                          },
+                          "onlyWhitelisted": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "8hfeikl4ooxle"
+                            },
+                            "description": "Indica si se debe procesar solo lista de preferidos.\n"
+                          },
+                          "allowedIPCountries": {
+                            "type": "array",
+                            "x-stoplight": {
+                              "id": "mp54ry7miji9n"
+                            },
+                            "minItems": 1,
+                            "description": "Paises permitidos para compradores.",
+                            "items": {
+                              "x-stoplight": {
+                                "id": "v7x92mz1t47w1"
+                              },
+                              "type": "string",
+                              "example": "CO",
+                              "maxLength": 2
+                            }
+                          },
+                          "allowedCardsDay": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "z8ko2g57fikff"
+                            },
+                            "minimum": 1,
+                            "maximum": 999,
+                            "default": 2,
+                            "example": 5,
+                            "description": "Indica el número de tarjetas diferentes que un cliente puede utilizar al día.\n0 indica tarjetas ilimitadas"
+                          },
+                          "allowedCardsByIP": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "cdbzmz6lmv618"
+                            },
+                            "maximum": 999,
+                            "default": 30,
+                            "example": 10,
+                            "description": "Número de minutos para realizar la correlación de cliente con IP.\nSi se establece en cero, se obvia el parámetro\n"
+                          },
+                          "allowedCardsMonth": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "nxzl2n2hh25mr"
+                            },
+                            "maximum": 999,
+                            "example": 3,
+                            "description": "Indica el número de tarjetas diferentes que un cliente puede usar al mes.\n0 indica ilimitadas",
+                            "default": 2
+                          },
+                          "allowedCardsYear": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "lwave0hq4a8sk"
+                            },
+                            "description": "Indica el número de tarjetas diferentes que un cliente puede usar al año.\n0 indica ilimitadas",
+                            "maximum": 999,
+                            "default": 5,
+                            "example": 3
+                          },
+                          "dayMax": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "xvdfvylaqr3bz"
+                            },
+                            "maximum": 999,
+                            "example": 1,
+                            "default": 2,
+                            "description": "Número de transacciones permitidas por cliente al día"
+                          },
+                          "dayMaxAmount": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "o9jjerx3d5azn"
+                            },
+                            "default": 100000000,
+                            "maximum": 99999999999999,
+                            "minimum": 0,
+                            "example": 200,
+                            "description": "Monto máximo por cliente al día",
+                            "format": "double"
+                          },
+                          "monthMax": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "m8nf35jqesoe6"
+                            },
+                            "maximum": 999,
+                            "example": 2,
+                            "default": 5,
+                            "description": "Número de transacciones permitidas por cliente al mes"
+                          },
+                          "monthMaxAmount": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "75g31ymhhdrjv"
+                            },
+                            "maximum": 99999999999999,
+                            "default": 100000000,
+                            "example": 1000,
+                            "description": "Monto máximo por cliente al mes.",
+                            "format": "float"
+                          }
+                        }
+                      },
+                      "operation": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "apiovo03imsg9"
+                        },
+                        "description": "Contiene la información del funcionamiento de consola.\n",
+                        "properties": {
+                          "disableTax": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "y83t08dqcr8fg"
+                            },
+                            "description": "Indicador para deshabilitar el ingreso de IVA.\n"
+                          },
+                          "calculateTax": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "jgp1mpj5qg8t4"
+                            },
+                            "description": "Indicador para autocalcular IVA.\nPor defecto, su valor es FALSE"
+                          },
+                          "taxPercentage": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "n3t9khy82cqvl"
+                            },
+                            "maximum": 50,
+                            "format": "float",
+                            "example": 16,
+                            "description": "Porcentaje de IVA."
+                          },
+                          "patternReference": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "3i8pjh4qwrf73"
+                            },
+                            "maxLength": 30,
+                            "minLength": 0,
+                            "description": "Expresión regular para validar que la referencia es válida.\n"
+                          },
+                          "mailCustomer": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "b485hdo2mce65"
+                            },
+                            "description": "Indica si se debe enviar automáticamente un email con el comprobante de una transacción exitosa realizada en el panel adminsitrativo.\n"
+                          },
+                          "mailMerchant": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "41yjjnx7s09bk"
+                            },
+                            "description": "Indica si se debe enviar una copia del email al comercio cuando una transacción realizada en el panel administrativo es exitosa.\n"
+                          }
+                        }
+                      },
+                      "subscriptionValidation": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "4yvrkaveqb7cd"
+                        },
+                        "description": "Contiene las configuraciones para la validación de información de suscripción",
+                        "properties": {
+                          "enable": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "tz4djth3bcv11"
+                            },
+                            "description": "Habilita la validación de suscripción.\n"
+                          },
+                          "amount": {
+                            "type": "number",
+                            "x-stoplight": {
+                              "id": "xpv3qkyj9ht5i"
+                            },
+                            "format": "double",
+                            "default": 0,
+                            "example": 100,
+                            "maximum": 999999999999,
+                            "description": "Monto de validación."
+                          }
+                        }
+                      },
+                      "branding": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "s18wthwd2pgh2"
+                        },
+                        "description": "Objeto para guardar la configuración sobre la gestión de marca del sitio",
+                        "properties": {
+                          "buttonColor": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "my6k3fg3m6ktk"
+                            },
+                            "description": "Color en formato Hex para los botones de la pasarela de pagos",
+                            "example": "#EE00DD",
+                            "pattern": "^#([a-f0-9]{6}|[a-f0-9]{3})$"
+                          },
+                          "sidebarColor": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "0dzt8a1b901x3"
+                            },
+                            "example": "#EE00DD",
+                            "description": "Color en formato Hex para el sidebar (barra lateral) de la pasarela de pagos",
+                            "pattern": "^#([a-f0-9]{6}|[a-f0-9]{3})$"
+                          }
+                        }
                       }
                     }
                   }
-                },
-                "required": [
-                  "auth",
-                  "id",
-                  "data"
-                ]
+                }
               },
               "examples": {
                 "Actualización de un sitio": {
@@ -3412,6 +4564,10 @@
                           411111
                         ],
                         "delegatedAuthorization": "ffffffffffffffffffffffffffffffffffffffffff"
+                      },
+                      "branding": {
+                        "buttonColor": "#cc3fdd",
+                        "sidebarColor": "#ffebeb"
                       }
                     }
                   }
@@ -3427,6 +4583,385 @@
         ]
       },
       "parameters": []
+    },
+    "/core/site/update": {
+      "post": {
+        "summary": "Actualización parcial de un sitio",
+        "operationId": "post-core-site-update",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Site"
+                },
+                "examples": {
+                  "Respuesta exitosa": {
+                    "value": {
+                      "id": 4,
+                      "name": "Aval Button TEST",
+                      "displayName": "Aval Button TEST",
+                      "document": "0987654890",
+                      "documentType": "NIT",
+                      "merchant": "Customer Aval",
+                      "merchantBrand": "Testing Botón Aval",
+                      "email": "test@example.com",
+                      "supportEmail": null,
+                      "allowedIP": null,
+                      "allowPartial": true,
+                      "allowMulticredit": false,
+                      "state": "ACTIVE",
+                      "currency": "COP",
+                      "country": "CO",
+                      "locale": "ES",
+                      "locales": [],
+                      "expireOn": null,
+                      "logoUrl": null,
+                      "cssUrl": null,
+                      "analyticsCode": null,
+                      "notificationUrl": null,
+                      "inlineJs": null,
+                      "allowedCurrencies": [
+                        "COP"
+                      ],
+                      "kount": null,
+                      "md5Hash": "rY2fuzD1",
+                      "onboardingToken": null,
+                      "credentials": [
+                        {
+                          "login": "6364d3f0f495b6ab9dcf8d3b5c6e0b02",
+                          "tranKey": "tt4ad2298f6d23",
+                          "expireOn": null
+                        }
+                      ],
+                      "integrations": [],
+                      "payerFields": [
+                        "name",
+                        "surname",
+                        "email",
+                        "mobile",
+                        "document",
+                        "documentType"
+                      ],
+                      "allowWallet": true,
+                      "timezone": "America/Bogota",
+                      "services": [
+                        {
+                          "code": "BTNAV",
+                          "priority": 1,
+                          "minPayment": "1.00",
+                          "maxPayment": "100000000.00",
+                          "accountNumber": "1234567890",
+                          "accountType": "Ahorros",
+                          "bankName": "BANCO POPULAR",
+                          "bankCode": 2,
+                          "settings": [],
+                          "promotions": []
+                        }
+                      ],
+                      "transactionModifiers": [],
+                      "compensationMethod": [],
+                      "checkoutVersion": "v3",
+                      "branding": {
+                        "logoUrl": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png",
+                        "logoPath": "logo-site-5-20240111062950.png",
+                        "buttonColor": "#000000",
+                        "sidebarColor": "#ffebeb"
+                      },
+                      "openLinks": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Auntenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": 15,
+                    "description": "Identificador del sitio."
+                  },
+                  "branding": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "7gb0aa879m3gd"
+                    },
+                    "description": "Array para guardar la configuración sobre la gestión de marca del sitio",
+                    "items": {}
+                  },
+                  "checkoutVersion": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "uhgqbd6gbczxw"
+                    },
+                    "description": "Version del checkout"
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id"
+                ]
+              },
+              "examples": {
+                "Actualización de un sitio": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 15,
+                    "branding": {
+                      "buttonColor": "#000000",
+                      "sidebarColor": "#ffebeb"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Este servicio permite actualizar un sitio con la información suministrada. Si la respuesta es exitosa, retorna los datos del sitio",
+        "tags": [
+          "Acciones sobre sitios"
+        ],
+        "x-stoplight": {
+          "id": "es71e3sk1l7ia"
+        }
+      },
+      "parameters": []
+    },
+    "/core/site/logo-update": {
+      "post": {
+        "summary": "Actualizar logo del sitio",
+        "operationId": "post-core-site-logo-update",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "logoUrl": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "itultkldn1ju2"
+                      },
+                      "format": "uri",
+                      "example": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png"
+                    }
+                  }
+                },
+                "examples": {
+                  "Response Ok": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2024-01-04T15:27:28-05:00"
+                      },
+                      "logoUrl": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Bad Request": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Internal Server Error": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "IR",
+                        "message": "Ha ocurrido un error en el servicio",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "1p16m9i2f82cx"
+        },
+        "description": "Este servicio permite actualizar el logo de un sitio, \nya sea subiendo uno nuevo, reemplazando uno existente, \nsi el parámetro \"file\" es nulo se elimina el logo actual",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "auth",
+                  "id"
+                ],
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "x-stoplight": {
+                      "id": "dbdfy18o5vtu4"
+                    },
+                    "description": "Identificador del sitio."
+                  },
+                  "file": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "97z4vmtaglim3"
+                    },
+                    "description": "Archivo que representa el logo del sitio, puede ser nulo, tamaño máximo 2048Kb.",
+                    "pattern": ".jpg, .jpeg, .png, .svg",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Acciones sobre sitios"
+        ]
+      }
     },
     "/core/site/delete": {
       "post": {
@@ -3644,6 +5179,82 @@
                               411111
                             ],
                             "delegatedAuthorization": "ffffffffffffffffffffffffffffffffffffffffff"
+                          },
+                          "threeDS": {
+                            "setting": "VERY_LOW",
+                            "minAmount": 40
+                          },
+                          "historic": {
+                            "behaviour": "IGNORE",
+                            "lowerScore": 100,
+                            "rejectionScore": 200
+                          },
+                          "creditBureau": {
+                            "behaviours": {
+                              "onFailed": "REJECTED",
+                              "onNoMatch": "REJECTED",
+                              "onMatch": "PROCESS"
+                            },
+                            "paymentGroups": [
+                              "CASH"
+                            ],
+                            "minAmount": 10,
+                            "behaviour": 276
+                          },
+                          "riskEngine": {
+                            "behaviours": {
+                              "onFailed": "REJECTED",
+                              "onLowRisk": "MANUAL",
+                              "onMediumRisk": "REJECTED",
+                              "onHighRisk": "REJECTED"
+                            },
+                            "paymentGroups": [
+                              "CASH"
+                            ],
+                            "minAmount": 20,
+                            "approvalScore": 100,
+                            "rejectionScore": 250,
+                            "onCalibration": true,
+                            "behaviour": 4372
+                          },
+                          "securityFilters": {
+                            "allowedIssuerCountries": [
+                              "CO"
+                            ],
+                            "forceIPMatch": true,
+                            "excludeIPCountry": [
+                              "CO"
+                            ],
+                            "onlyWhitelisted": true,
+                            "allowedIPCountries": [
+                              "CO"
+                            ],
+                            "allowedCardsDay": 5,
+                            "allowedCardsByIP": 10,
+                            "allowedCardsMonth": 3,
+                            "allowedCardsYear": 3,
+                            "dayMax": 1,
+                            "dayMaxAmount": 200,
+                            "monthMax": 2,
+                            "monthMaxAmount": 1000
+                          },
+                          "operation": {
+                            "disableTax": true,
+                            "calculateTax": true,
+                            "taxPercentage": 10,
+                            "patternReference": "string",
+                            "mailCustomer": true,
+                            "mailMerchant": true
+                          },
+                          "subscriptionValidation": {
+                            "enable": true,
+                            "amount": 100
+                          },
+                          "branding": {
+                            "logoUrl": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png",
+                            "logoPath": "logo-site-5-20240111062950.png",
+                            "buttonColor": "#cc3fdd",
+                            "sidebarColor": "#ffebeb"
                           }
                         }
                       ],
@@ -8823,8 +10434,8 @@
           },
           " expiration": {
             "type": "string",
-            "format": "date-time",
-            "description": "Fecha de expiración."
+            "description": "Fecha de expiración.",
+            "nullable": true
           },
           "onTest": {
             "type": "boolean",
@@ -9026,6 +10637,570 @@
                 "minLength": 42,
                 "maxLength": 42,
                 "example": "ffffffffffffffffffffffffffffffffffffffffff"
+              }
+            }
+          },
+          "threeDS": {
+            "type": "object",
+            "description": "Contiene la información de las configuraciones de threeDS",
+            "properties": {
+              "setting": {
+                "enum": [
+                  "VERY_LOW",
+                  "LOW",
+                  "MEDIUM",
+                  "HIGH"
+                ],
+                "description": "Nivel máximo de riesgo aceptado con threeDS"
+              },
+              "minAmount": {
+                "type": "number",
+                "x-stoplight": {
+                  "id": "deeicie825ckm"
+                },
+                "description": "Monto mínimo para aplicar threeDS a la transacción",
+                "format": "float",
+                "maximum": 99999999999999,
+                "default": 0,
+                "example": 40
+              }
+            }
+          },
+          "historic": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "dk9jhy7usuiur"
+            },
+            "description": "Contiene la información de Histórico transaccional ",
+            "properties": {
+              "behaviour": {
+                "x-stoplight": {
+                  "id": "zkcw6a0aeeavs"
+                },
+                "enum": [
+                  "IGNORE",
+                  "PROCESS",
+                  "DISABLED"
+                ],
+                "description": "Comportamiento a seguir cuando el puntaje obtenido por la transacción sea igual o menor al establecido"
+              },
+              "lowerScore": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "n5c4at9g7f7ga"
+                },
+                "minimum": 1,
+                "maximum": 999,
+                "example": 100,
+                "description": "Puntaje de apetito al riesgo, indica el puntaje máximo para categorizar las operaciones como operaciones de bajo riesgo.\n",
+                "nullable": true
+              },
+              "rejectionScore": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "uyqkwlx1d3uzu"
+                },
+                "example": 200,
+                "minimum": 1,
+                "maximum": 999,
+                "description": "Puntaje de tolerancia al riesgo, indica el puntaje a partir del cual se declinarán transacciones debido al riesgo.\n",
+                "nullable": true
+              }
+            }
+          },
+          "creditBureau": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "v6n2y1ca4u72y"
+            },
+            "description": "Contiene los parámetros de configuración de información financiera.\n",
+            "properties": {
+              "behaviours": {
+                "type": "object",
+                "x-stoplight": {
+                  "id": "0e5iyenzb8qw7"
+                },
+                "minProperties": 3,
+                "maxProperties": 3,
+                "description": "Contiene la información de comportamiento del módulo.\n",
+                "properties": {
+                  "onFailed": {
+                    "x-stoplight": {
+                      "id": "kvnotwlnupy3b"
+                    },
+                    "enum": [
+                      "REJECTED",
+                      "MANUAL",
+                      "IGNORE"
+                    ],
+                    "description": "Comportamiento a seguir cuando hay fallo"
+                  },
+                  "onNoMatch": {
+                    "x-stoplight": {
+                      "id": "fmqacnw49xulf"
+                    },
+                    "enum": [
+                      "REJECTED",
+                      "MANUAL",
+                      "IGNORE"
+                    ],
+                    "description": "Comportamiento a seguir en caso de no concordar"
+                  },
+                  "onMatch": {
+                    "x-stoplight": {
+                      "id": "fp593mb9osyeg"
+                    },
+                    "enum": [
+                      "PROCESS",
+                      "MANUAL",
+                      "IGNORE"
+                    ],
+                    "description": "Comportamiento del modulo cuando hay concordancia"
+                  }
+                }
+              },
+              "paymentGroups": {
+                "type": "array",
+                "x-stoplight": {
+                  "id": "yekmxl1832ift"
+                },
+                "description": "Contiene el grupo de medios de pago",
+                "items": {
+                  "x-stoplight": {
+                    "id": "9chsfr6matbaw"
+                  },
+                  "enum": [
+                    "CASH",
+                    "PRIVATECARD",
+                    "CREDITCARD",
+                    "E-WALLET",
+                    "DEBITACCOUNT"
+                  ]
+                }
+              },
+              "minAmount": {
+                "type": "number",
+                "x-stoplight": {
+                  "id": "zemxshogjqtee"
+                },
+                "maximum": 999999999,
+                "example": 10,
+                "description": "Monto mínimo para activar.\nEs requerido cuando se envie CreditBureau"
+              },
+              "behaviour": {
+                "type": "number",
+                "x-stoplight": {
+                  "id": "49ibzz7rh6gc1"
+                },
+                "example": 276,
+                "description": "Puntaje calculado a partir de los parámetros de entrada de 'behaviours'."
+              }
+            }
+          },
+          "riskEngine": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "boxd0mh8dcf7r"
+            },
+            "description": "Contiene las configuraciones de motores de riesgo",
+            "properties": {
+              "behaviours": {
+                "type": "object",
+                "x-stoplight": {
+                  "id": "kfdu2qvv7oiyu"
+                },
+                "description": "Contiene la información del comportamiento a seguir del módulo.\n",
+                "properties": {
+                  "onFailed": {
+                    "x-stoplight": {
+                      "id": "d94gbwbiyoa0g"
+                    },
+                    "enum": [
+                      "REJECTED",
+                      "MANUAL",
+                      "IGNORE"
+                    ],
+                    "description": "Comportamiento a seguir en caso de fallo.\n"
+                  },
+                  "onLowRisk": {
+                    "x-stoplight": {
+                      "id": "i0bubad2ilqb7"
+                    },
+                    "enum": [
+                      "MANUAL",
+                      "IGNORE",
+                      "PROCESS"
+                    ],
+                    "description": "Comportamiento a seguir ante nivel de riesgo bajo\n"
+                  },
+                  "onMediumRisk": {
+                    "x-stoplight": {
+                      "id": "9sikurl3dv7ih"
+                    },
+                    "enum": [
+                      "REJECTED",
+                      "MANUAL",
+                      "IGNORE",
+                      "PROCESS"
+                    ],
+                    "description": "Comportamiento a seguir ante nivel de riesgo medio. \n"
+                  },
+                  "onHighRisk": {
+                    "x-stoplight": {
+                      "id": "r5ejoz705pljd"
+                    },
+                    "enum": [
+                      "REJECTED",
+                      "MANUAL",
+                      "IGNORE"
+                    ],
+                    "description": "Comportamiento a seguir ante nivel de riesgo alto.\n"
+                  }
+                }
+              },
+              "paymentGroups": {
+                "type": "array",
+                "x-stoplight": {
+                  "id": "pw4y7slygsgl6"
+                },
+                "description": "Grupo de medios de pago.",
+                "items": {
+                  "x-stoplight": {
+                    "id": "otxppt997vsce"
+                  },
+                  "enum": [
+                    "CASH",
+                    "CREDITCARD",
+                    "E-WALLET",
+                    "DEBITACCOUNT",
+                    "PRIVATECARD"
+                  ]
+                }
+              },
+              "minAmount": {
+                "type": "number",
+                "x-stoplight": {
+                  "id": "4y27ou1t3nvlz"
+                },
+                "description": "Monto mínimo para activar.\n",
+                "maximum": 999999999,
+                "minimum": 1,
+                "example": 20,
+                "format": "double"
+              },
+              "approvalScore": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "1sjgrnfs1iwjw"
+                },
+                "minimum": 1,
+                "maximum": 999,
+                "example": 100,
+                "description": "Puntaje de apetito al riesgo.\n"
+              },
+              "rejectionScore": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "4kyalt3g72qiq"
+                },
+                "minimum": 1,
+                "maximum": 999,
+                "example": 250,
+                "description": "Puntaje de tolerancia al riesgo.\n"
+              },
+              "onCalibration": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "k2qtmu7lgjrg9"
+                },
+                "description": "Indica el estado en calibración.\n"
+              },
+              "behaviour": {
+                "type": "number",
+                "x-stoplight": {
+                  "id": "unebt7asgcaxk"
+                },
+                "example": 4372,
+                "description": "Puntaje calculado a partir de los parámetros de entrada 'behaviours'."
+              }
+            }
+          },
+          "securityFilters": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "9dby0ebisyatc"
+            },
+            "description": "Contiene la información de filtros de seguridad",
+            "properties": {
+              "allowedIssuerCountries": {
+                "type": "array",
+                "x-stoplight": {
+                  "id": "c0umwb5sorqh0"
+                },
+                "minItems": 1,
+                "description": "Paises permitidos para bancos emisores.\n",
+                "items": {
+                  "x-stoplight": {
+                    "id": "wb1vpepq903f8"
+                  },
+                  "type": "string",
+                  "maxLength": 2,
+                  "example": "CO"
+                }
+              },
+              "forceIPMatch": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "rg1k248houfyd"
+                },
+                "description": "Indica si se debe verificar que el país asociado a la IP del comprador coincida con la IP del banco emisor.\n"
+              },
+              "excludeIPCountry": {
+                "type": "array",
+                "x-stoplight": {
+                  "id": "sf4u00cqahjjb"
+                },
+                "description": "Indica para qué paises se debe excluir coincidencia para emisores.",
+                "minItems": 1,
+                "items": {
+                  "x-stoplight": {
+                    "id": "98bf9n62h7e7a"
+                  },
+                  "type": "string",
+                  "maxLength": 2,
+                  "example": "CO"
+                }
+              },
+              "onlyWhitelisted": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "8hfeikl4ooxle"
+                },
+                "description": "Indica si se debe procesar solo lista de preferidos.\n"
+              },
+              "allowedIPCountries": {
+                "type": "array",
+                "x-stoplight": {
+                  "id": "mp54ry7miji9n"
+                },
+                "minItems": 1,
+                "description": "Paises permitidos para compradores.",
+                "items": {
+                  "x-stoplight": {
+                    "id": "v7x92mz1t47w1"
+                  },
+                  "type": "string",
+                  "example": "CO",
+                  "maxLength": 2
+                }
+              },
+              "allowedCardsDay": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "z8ko2g57fikff"
+                },
+                "minimum": 1,
+                "maximum": 999,
+                "default": 2,
+                "example": 5,
+                "description": "Indica el número de tarjetas diferentes que un cliente puede utilizar al día.\n0 indica tarjetas ilimitadas"
+              },
+              "allowedCardsByIP": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "cdbzmz6lmv618"
+                },
+                "maximum": 999,
+                "default": 30,
+                "example": 10,
+                "description": "Número de minutos para realizar la correlación de cliente con IP.\nSi se establece en cero, se obvia el parámetro\n"
+              },
+              "allowedCardsMonth": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "nxzl2n2hh25mr"
+                },
+                "maximum": 999,
+                "example": 3,
+                "description": "Indica el número de tarjetas diferentes que un cliente puede usar al mes.\n0 indica ilimitadas",
+                "default": 2
+              },
+              "allowedCardsYear": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "lwave0hq4a8sk"
+                },
+                "description": "Indica el número de tarjetas diferentes que un cliente puede usar al año.\n0 indica ilimitadas",
+                "maximum": 999,
+                "default": 5,
+                "example": 3
+              },
+              "dayMax": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "xvdfvylaqr3bz"
+                },
+                "maximum": 999,
+                "example": 1,
+                "default": 2,
+                "description": "Número de transacciones permitidas por cliente al día"
+              },
+              "dayMaxAmount": {
+                "type": "number",
+                "x-stoplight": {
+                  "id": "o9jjerx3d5azn"
+                },
+                "default": 100000000,
+                "maximum": 99999999999999,
+                "minimum": 0,
+                "example": 200,
+                "description": "Monto máximo por cliente al día",
+                "format": "double"
+              },
+              "monthMax": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "m8nf35jqesoe6"
+                },
+                "maximum": 999,
+                "example": 2,
+                "default": 5,
+                "description": "Número de transacciones permitidas por cliente al mes"
+              },
+              "monthMaxAmount": {
+                "type": "number",
+                "x-stoplight": {
+                  "id": "75g31ymhhdrjv"
+                },
+                "maximum": 99999999999999,
+                "example": 1000,
+                "description": "Monto máximo por cliente al mes.",
+                "format": "float"
+              }
+            }
+          },
+          "operation": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "apiovo03imsg9"
+            },
+            "description": "Contiene la información del funcionamiento de consola.\n",
+            "properties": {
+              "disableTax": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "y83t08dqcr8fg"
+                },
+                "description": "Indicador para deshabilitar el ingreso de IVA.\n"
+              },
+              "calculateTax": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "jgp1mpj5qg8t4"
+                },
+                "description": "Indicador para autocalcular IVA.\n"
+              },
+              "taxPercentage": {
+                "type": "number",
+                "x-stoplight": {
+                  "id": "n3t9khy82cqvl"
+                },
+                "maximum": 50,
+                "format": "float",
+                "example": 10,
+                "description": "Porcentaje de IVA."
+              },
+              "patternReference": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "3i8pjh4qwrf73"
+                },
+                "maxLength": 30,
+                "minLength": 0,
+                "description": "Expresión regular para validar que la referencia es válida.\n"
+              },
+              "mailCustomer": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "b485hdo2mce65"
+                },
+                "description": "Indica si se debe enviar automáticamente un email con el comprobante de una transacción exitosa realizada en el panel adminsitrativo.\n"
+              },
+              "mailMerchant": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "41yjjnx7s09bk"
+                },
+                "description": "Indica si se debe enviar una copia del email al comercio cuando una transacción realizada en el panel administrativo es exitosa.\n"
+              }
+            }
+          },
+          "subscriptionValidation": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "4yvrkaveqb7cd"
+            },
+            "description": "Contiene las configuraciones para la validación de información de suscripción",
+            "properties": {
+              "enable": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "tz4djth3bcv11"
+                },
+                "description": "Habilita la validación de suscripción.\n"
+              },
+              "amount": {
+                "type": "number",
+                "x-stoplight": {
+                  "id": "xpv3qkyj9ht5i"
+                },
+                "format": "double",
+                "example": 100,
+                "maximum": 999999999999,
+                "description": "Monto de validación."
+              }
+            }
+          },
+          "branding": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "r1h2x5p8578cp"
+            },
+            "description": "Objeto para guardar la configuración sobre la gestión de marca del sitio",
+            "properties": {
+              "buttonColor": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "nkoj2huxyiko4"
+                },
+                "example": "#FFCC00",
+                "description": "Color para los botones del web checkout, en formato HEX"
+              },
+              "sidebarColor": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "f3pq6q11ql3m8"
+                },
+                "example": "#CCFF33",
+                "description": "Colo de fondo del sidebar del web checkout, en formato HEX"
+              },
+              "logoUrl": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "v744qd7v3dcob"
+                },
+                "example": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png",
+                "description": "Url del logo del site",
+                "readOnly": true
+              },
+              "logoPath": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "sn6lfnujxhis1"
+                },
+                "example": "logo-site-5-20240111062950.png",
+                "description": "Ruta relativa del logo",
+                "readOnly": true
               }
             }
           }
