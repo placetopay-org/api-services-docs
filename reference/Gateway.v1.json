@@ -332,7 +332,7 @@
                     "$ref": "#/components/schemas/Payment"
                   },
                   "instrument": {
-                    "$ref": "#/components/schemas/ThreeDS"
+                    "$ref": "#/components/schemas/Instrument"
                   },
                   "payer": {
                     "$ref": "../Models/Person.json"
@@ -838,6 +838,43 @@
                       },
                       "kount": {
                         "session": "11032"
+                      }
+                    },
+                    "ipAddress": "190.85.90.130",
+                    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
+                  }
+                },
+                "Preauthorization": {
+                  "value": {
+                    "auth": {
+                      "login": "c4ca4238a0b923820dcc509a6f75849b",
+                      "tranKey": "cgqVhiaKSUSJmYQsXMsBqpfjz155nyKk54I66xyfuDI=",
+                      "nonce": "NjBhZTllMjZjYmQxYg==",
+                      "seed": "2021-05-26T14:14:46-05:00"
+                    },
+                    "action": "checkin",
+                    "payer": {
+                      "name": "Ms. Nelle Beahan DVM",
+                      "surname": "Spencer",
+                      "email": "gsteuber@kling.com",
+                      "documentType": "CC",
+                      "document": "3154383838",
+                      "mobile": "3006108300"
+                    },
+                    "payment": {
+                      "reference": "TEST_20210526_141005",
+                      "description": "Cum vitae et consequatur quas adipisci ut rem.",
+                      "amount": {
+                        "currency": "COP",
+                        "total": 32030
+                      }
+                    },
+                    "instrument": {
+                      "card": {
+                        "number": "36545400000008",
+                        "expiration": "12/20",
+                        "cvv": "123",
+                        "installments": 2
                       }
                     },
                     "ipAddress": "190.85.90.130",
