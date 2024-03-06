@@ -4665,7 +4665,6 @@
                       "checkoutVersion": "v3",
                       "branding": {
                         "logoUrl": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png",
-                        "logoPath": "logo-site-5-20240111062950.png",
                         "buttonColor": "#000000",
                         "sidebarColor": "#ffebeb"
                       },
@@ -5252,7 +5251,6 @@
                           },
                           "branding": {
                             "logoUrl": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png",
-                            "logoPath": "logo-site-5-20240111062950.png",
                             "buttonColor": "#cc3fdd",
                             "sidebarColor": "#ffebeb"
                           }
@@ -11191,15 +11189,6 @@
                 },
                 "example": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png",
                 "description": "Url del logo del site",
-                "readOnly": true
-              },
-              "logoPath": {
-                "type": "string",
-                "x-stoplight": {
-                  "id": "sn6lfnujxhis1"
-                },
-                "example": "logo-site-5-20240111062950.png",
-                "description": "Ruta relativa del logo",
                 "readOnly": true
               }
             }
