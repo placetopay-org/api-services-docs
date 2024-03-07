@@ -8998,134 +8998,118 @@
             "description": "OK",
             "content": {
               "application/json": {
-                        "schema": {
-                "type": "object",
-                "properties": {
-                
-                  "id": {
-                    "type": "integer",
-                    "example": 1,
-                    "description": "Identificador del usuario."
-                  },
-                  "name": {
-                    "type": "integer",
-                    "example": "Usuario",
-                    "description": "Nombre del usuario."
-                  },
-                  "username": {
-                    "type": "integer",
-                    "example": "username",
-                    "description": "Username del usuario."
-                  },
-                  "email": {
-                    "type": "integer",
-                    "example": "test@test.com",
-                    "description": "Identificador del usuario."
-                  },
-                  "phone": {
-                    "type": "integer",
-                    "example": 3203849403,
-                    "description": "Teléfono del usuario."
-                  },
-                  "country": {
-                    "type": "integer",
-                    "example": "CO",
-                    "description": "Identificador del usuario."
-                  },
-                  "active": {
-                    "type": "integer",
-                    "example": "true, false",
-                    "description": "Identificador del usuario."
-                  },
-                  "status": {
-                    "type": "ACTIVE, INACTIVE, SUSPENDED, LOCKED",
-                    "example": 1,
-                    "description": "Identificador del usuario."
-                  },
-                  "language": {
-                    "type": "integer",
-                    "Allowed values": "ES, EN, PT",
-                    "description": "Identificador del usuario."
-                  },
-                  "permissionMode": {
-                    "type": "integer",
-                    "example": 1,
-                    "description": "Identificador del usuario."
-                  },
-                  "timeZone": {
-                    "type": "integer",
-                    "example": 1,
-                    "description": "Identificador del usuario."
-                  },
-                  "creationDate": {
-                    "type": "integer",
-                    "example": 1,
-                    "description": "Identificador del usuario."
-                  },
-                  "statusDate": {
-                    "type": "integer",
-                    "example": 1,
-                    "description": "Identificador del usuario."
-                  },
-                  "loginDate": {
-                    "type": "integer",
-                    "example": 1,
-                    "description": "Identificador del usuario."
-                  },
-                  "allowedIps": {
-                    "type": "integer",
-                    "example": 1,
-                    "description": "Identificador del usuario."
-                  },
-                  "allowedDays": {
-                    "type": "integer",
-                    "example": 1,
-                    "description": "Identificador del usuario."
-                  },
-                  "groups": {
-                    "type": "integer",
-                    "example": 1,
-                    "description": "Identificador del usuario."
-                  },
-                  "filters": {
-                    "type": "integer",
-                    "example": 1,
-                    "description": "Identificador del usuario."
-                  },
-                  "pagination": {
-                    "type": "object",
-                    "x-stoplight": {
-                      "id": "oll9qz7suzl00"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "status": {
+                        "$ref": "../Models/Status.json"
                     },
-                    "description": "Objeto que contiene parámetros de paginación.",
-                    "properties": {
-                      "perPage": {
-                        "type": "integer",
-                        "x-stoplight": {
-                          "id": "n7ijlzko31pg5"
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "documentName": {
+                          "type": "string",
+                          "maxLength": 30,
+                          "description": "Nombre del documento"
                         },
-                        "description": "Cantidad de registros por página.",
-                        "default": 15,
-                        "example": 10,
-                        "minimum": 1
-                      },
-                      "currentPage": {
-                        "type": "integer",
-                        "x-stoplight": {
-                          "id": "tgg46hzclh0be"
+                        "id": {
+                          "type": "integer",
+                          "example": 1,
+                          "description": "Identificador del usuario."
                         },
-                        "description": "Página actual a consultar.",
-                        "default": 1,
-                        "example": 1,
-                        "minimum": 1
+                        "name": {
+                          "type": "string",
+                          "example": "Usuario",
+                          "description": "Nombre del usuario."
+                        },
+                        "username": {
+                          "type": "string",
+                          "example": "username",
+                          "description": "Username del usuario."
+                        },
+                        "email": {
+                          "type": "string",
+                          "format": "email",
+                          "example": "test@test.com",
+                          "description": "Email del usuario."
+                        },
+                        "phone": {
+                          "type": "integer",
+                          "example": 3203849403,
+                          "description": "Teléfono del usuario."
+                        },
+                        "country": {
+                          "type": "string",
+                          "example": "CO",
+                          "description": "País al que pertecene el usuario."
+                        },
+                        "active": {
+                          "type": "string",
+                          "example": "true, false",
+                          "description": "Indicador del estado del usuario."
+                        },
+                        "status": {
+                          "type": "string",
+                          "example": "ACTIVE, INACTIVE, SUSPENDED, LOCKED",
+                          "description": "Estado del usuario."
+                        },
+                        "language": {
+                          "type": "string",
+                          "example": "ES, EN, PT",
+                          "description": "Idioma de acuerdo a ISO 631-1."
+                        },
+                        "permissionMode": {
+                          "type": "string",
+                          "example": "INCLUDE",
+                          "enum": [
+                            "INCLUDE", "EXCLUDE"
+                          ],
+                          "description": "Permisos del usuario."
+                        },
+                        "timeZone": {
+                          "type": "string",
+                          "example": "America/Bogota",
+                          "description": "Zona horaria de la ubicación del usuario."
+                        },
+                        "creationDate": {
+                          "type": "string",
+                          "example": "2021-09-21T09:34:48-05:00",
+                          "description": "Fecha de creación del usuario."
+                        },
+                        "statusDate": {
+                          "type": "string",
+                          "example": "2021-09-21T09:34:48-05:00",
+                          "description": "Fecha de actualización del estado del usuario."
+                        },
+                        "loginDate": {
+                          "type": "string",
+                          "example": "2021-09-21T09:34:48-05:00",
+                          "description": "Fecha de último ingreso del usuario."
+                        },
+                        "allowedIps": {
+                          "type": "array",
+                          "example": ["127.0.0.1","127.0.0.2"],
+                          "description": "Ips autorizadas para el usuario."
+                        },
+                        "allowedDays": {
+                          "type": "array",
+                          "example": [ "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY","SATURDAY","SUNDAY"],
+                          "description": "Días en el que el usuario puede ingresar."
+                        },
+                        "groups": {
+                          "type": "array",
+                          "example": ["GROUP_PLANS"],
+                          "description": "Grupos del usuario."
+                        },
+                        "filters": {
+                          "type": "array",
+                          "example": ["2", "1"],
+                            "description": "Filtros del usuario."
+                        }
                       }
-                    }
+                    }   
                   }
                 },
-                "required": [
-                  "auth"
-                ]
-              },
                 "examples": {
                   "Respuesta Exitosa": {
                     "value": {
@@ -9138,10 +9122,43 @@
                       "data": [
                         {
                           "id": 1,
-                          "code": "RM_MC",
-                          "name": "MasterCard",
-                          "franchise": "MASTERCARD",
-                          "disabled": true
+                          "name": "name user",
+                          "username": "user_name13",
+                          "email": "test@test.com",
+                          "phone": "3204587964",
+                          "country": "CO",
+                          "active": true,
+                          "status": "ACTIVE",
+                          "language": "ES",
+                          "permissionMode": "INCLUDE",
+                          "timezone": "America/Bogota",
+                          "creationDate": "2024-03-01 09:10:19",
+                          "statusDate": "2024-03-01 16:03:25",
+                          "loginDate": "2024-03-25 16:03:25",
+                          "allowedIps": [
+                              "127.0.0.1",
+                              "127.0.0.2"
+                          ],
+                          "allowedDays": [
+                              "TUESDAY",
+                              "WEDNESDAY",
+                              "THURSDAY",
+                              "FRIDAY",
+                              "SATURDAY",
+                              "SUNDAY"
+                          ],
+                          "groups": [
+                              "GROUP_PLANS"
+                          ],
+                            "filters": {
+                                "Client": [
+                                    "2",
+                                    "1"
+                                ],
+                                "Site": [
+                                    "1"
+                                ]
+                            }
                         }
                       ],
                       "pagination": {
@@ -9227,10 +9244,10 @@
                   },
                   "username": {
                     "type": "string",
-                    "description": "Nombe de suario.",
+                    "description": "Nombe de usuario.",
                     "maxLength": 125,
                     "example": "username",
-                    "minLength": 25
+                    "minLength": 3
                   },
                   "email": {
                    "type": "string",
@@ -9238,12 +9255,12 @@
                    "maxLength": 128,
                    "example": "test@test.com",
                    "description": "Correo electrónico del usuario."
-                  },
+                  }
+                },
                 "required": [
                   "auth"
                 ]
-              }
-            },
+              },
               "examples": {
                 "Búsqueda distribuidores": {
                   "value": {
