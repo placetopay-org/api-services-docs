@@ -50,6 +50,10 @@
     {
       "name": "Procedimientos adicionales",
       "description": "Acciones sobre la administración de entidades adicionales."
+    },
+    {
+      "name": "Acciones sobre usuarios",
+      "description": "Acciones sobre la administración de usuarios."
     }
   ],
   "paths": {
@@ -8992,7 +8996,7 @@
       "post": {
         "summary": "Consulta de usuarios.",
         "operationId": "post-core-user-search",
-        "description": "Este servicio permite consultar usuarios existentes filtrando por medio de los parámetros: identificador del usuario, email o nombre de usuario.\nSi la respuesta es exitosa, se retorna un arreglo con información de los usuarios. ",
+        "description": "Este servicio permite consultar usuarios existentes filtrando por medio de los parámetros: identificador del usuario, email o nombre de usuario.\nSi la respuesta es exitosa, se retorna un arreglo con información de los usuarios. \n\n\n> ### Nota \n>\n> *Ingresa uno de los parámetros para el filtro.*\n",
         "responses": {
           "200": {
             "description": "OK",
@@ -9172,7 +9176,7 @@
           "description": ""
         },
         "tags": [
-          "Acciones sobre usarios"
+          "Acciones sobre usuarios"
         ]
       },
       "parameters": []
@@ -9488,7 +9492,7 @@
           "description": ""
         },
         "tags": [
-          "Acciones sobre usarios"
+          "Acciones sobre usuarios"
         ]
       },
       "parameters": []
