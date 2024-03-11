@@ -9064,7 +9064,7 @@
                   }
                 }
               }
-            } 
+            }
           },
           "400": {
             "description": "Bad Request",
@@ -9174,6 +9174,294 @@
         "tags": [
           "Acciones sobre usarios"
         ]
+      },
+      "parameters": []
+    },
+    "/core/user/create": {
+      "post": {
+        "summary": "Creación de usuarios.",
+        "operationId": "post-core-user-create",
+        "description": "Este servicio permite crear un usuario con la información suministrada. Si la respuesta es exitosa, se retorna el identificador del usuario creado.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 5,
+                      "description": "Identificador del usuario."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta Exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "name user",
+                          "username": "user_name13",
+                          "email": "test@test.com",
+                          "phone": 323232,
+                          "country": "CO",
+                          "active": "true",
+                          "status": "ACTIVE",
+                          "language": "ES",
+                          "permissionMode": "INCLUDE",
+                          "timezone": "America/Bogota",
+                          "creationDate": "2024-03-01 09:10:19",
+                          "statusDate": "2024-03-01 16:03:25",
+                          "loginDate": "2024-03-25 16:03:25",
+                          "allowedIps": [
+                            "127.0.0.1",
+                            "127.0.0.2"
+                          ],
+                          "allowedDays": [
+                            "TUESDAY",
+                            "WEDNESDAY",
+                            "THURSDAY",
+                            "FRIDAY",
+                            "SATURDAY",
+                            "SUNDAY"
+                          ],
+                          "groups": [
+                            "GROUP_PLANS"
+                          ]
+                        }
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+                "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Arreglo que contiene la información del usuario a crear.",
+                    "required": [
+                      "fullName",
+                      "username",
+                      "email",
+                      "password",
+                      "status",
+                      "language",
+                      "allowedIps",
+                      "allowedDays",
+                      "permissionMode"
+                    ],
+                    "properties": {
+                      "fullName": {
+                        "type": "string",
+                        "example": "Usuario Nuevo",
+                        "description": "Nombre del usuario."
+                      },
+                      "username": {
+                        "type": "string",
+                        "example": "username",
+                        "description": "Username del usuario."
+                      },
+                      "document": {
+                        "type": "integer",
+                        "example": 12345335,
+                        "description": "Documento del usuario."
+                      },
+                      "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "test@test.com",
+                        "description": "Email del usuario."
+                      },
+                      "phone": {
+                        "type": "integer",
+                        "example": 3203849403,
+                        "description": "Teléfono del usuario."
+                      },
+                      "password": {
+                        "type": "string",
+                        "example": "Testing1234!",
+                        "description": "Contraseña del usuario."
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "ACTIVE",
+                          "INACTIVE"
+                        ],
+                        "example": "INACTIVE",
+                        "description": "Estado del usuario."
+                      },
+                      "language": {
+                        "type": "string",
+                        "example": "ES",
+                        "description": "Idioma de acuerdo a ISO 631-1."
+                      },
+                      "timezone": {
+                        "type": "string",
+                        "example": "America/Bogota",
+                        "description": "Zona horaria de la ubicación del usuario."
+                      },
+                      "allowedIps": {
+                        "type": "array",
+                        "example": [
+                          "127.0.0.1",
+                          "127.0.0.2"
+                        ],
+                        "description": "Ips autorizadas para el usuario."
+                      },
+                      "allowedDays": {
+                        "type": "array",
+                        "example": [
+                          "TUESDAY",
+                          "WEDNESDAY"
+                        ],
+                        "description": "Días en el que el usuario puede ingresar."
+                      },
+                      "permissionMode": {
+                        "type": "string",
+                        "example": "INCLUDE",
+                        "enum": [
+                          "INCLUDE",
+                          "EXCLUDE"
+                        ],
+                        "description": "Permisos del usuario."
+                      },
+                      "groups": {
+                        "type": "array",
+                        "example": [
+                          "GROUP_PLANS"
+                        ],
+                        "description": "Grupos del usuario."
+                      },
+                      "filters": {
+                        "type": "array",
+                        "example": [
+                          "2",
+                          "1"
+                        ],
+                        "description": "Filtros del usuario."
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Búsqueda de Usuarios": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 15,
+                    "fullName" : "usuario",
+                    "username" : "username18",
+                    "email" : "dd",
+                    "password" : "Testing1234",
+                    "status" : "ACTIVE",
+                    "language" : "ES",
+                    "allowedIps" : ["127.0.0.1","127.0.0.2"], 
+                    "allowedDays" : ["TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"],
+                    "permissionMode" : "INCLUDE"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Acciones sobre usarios"
+        ],
+        "x-stoplight": {
+          "id": "83gj2mohstv1v"
+        }
       },
       "parameters": []
     }
@@ -11372,7 +11660,7 @@
         "description": "Estructura que contiene información de un usuario.",
         "properties": {
           "documentName": {
-          "type": "string",
+            "type": "string",
             "maxLength": 30,
             "description": "Nombre del documento"
           },
