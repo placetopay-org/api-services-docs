@@ -8996,7 +8996,7 @@
       "post": {
         "summary": "Consulta de usuarios.",
         "operationId": "post-core-user-search",
-        "description": "Este servicio permite consultar usuarios existentes filtrando por medio de los parámetros: identificador del usuario, email o nombre de usuario.\nSi la respuesta es exitosa, se retorna un arreglo con información de los usuarios. \n\n\n> ### Nota \n>\n> *Ingresa uno de los parámetros para el filtro.*\n",
+        "description": "Este servicio permite consultar usuarios existentes filtrando por medio de los parámetros: identificador del usuario, email o nombre de usuario.\nSi la respuesta es exitosa, se retorna un arreglo con información de los usuarios. \n\n\n> ### Nota \n>\n> No es requerido ingresar todos los parámetros para el filtro.",
         "responses": {
           "200": {
             "description": "OK",
@@ -11801,34 +11801,20 @@
             "description": "Grupos del usuario."
           },
           "filters": {
-            "type": "array",
-            "example": [
-              "2",
-              "1"
-            ],
-            "description": "Filtros del usuario."
-          },
-          "filtersd": {
             "type": "object",
-            "description": "Objeto con información de los datos de control.",
+            "description": "Objeto con información de filtros.",
             "properties": {
               "Client": {
-                "type": "number",
-                "x-stoplight": {
-                  "id": "xhvet1wc8ci89"
-                },
-                "description": "Nombre del filtro.",
+                "type": "array",
+                "description": "Filtros de Clientes.",
                 "format": "float",
-                "example": 2
+                "example": [2,1]
               },
               "Site": {
-                "type": "number",
-                "x-stoplight": {
-                  "id": "vt4jwdv08375s"
-                },
-                "description": "Máximo valor permitido por transacción.",
+                "type": "array",
+                "description": "Filtros de Sitios.",
                 "format": "integer",
-                "example": 2
+                "example": [2,1]
               }
             }
           }
