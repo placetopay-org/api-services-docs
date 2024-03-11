@@ -9312,7 +9312,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-                "schema": {
+              "schema": {
                 "type": "object",
                 "properties": {
                   "auth": {
@@ -9327,10 +9327,7 @@
                       "email",
                       "password",
                       "status",
-                      "language",
-                      "allowedIps",
-                      "allowedDays",
-                      "permissionMode"
+                      "language"
                     ],
                     "properties": {
                       "fullName": {
@@ -9383,45 +9380,62 @@
                         "example": "America/Bogota",
                         "description": "Zona horaria de la ubicación del usuario."
                       },
-                      "allowedIps": {
-                        "type": "array",
-                        "example": [
-                          "127.0.0.1",
-                          "127.0.0.2"
-                        ],
-                        "description": "Ips autorizadas para el usuario."
+                      "control": {
+                        "type": "object",
+                        "description": "Contiene la información de los controles del Usuario.",
+                          "required": [
+                            "allowedIps",
+                            "allowedDays",
+                            "permissionMode"
+                          ],
+                        "properties": {
+                          "allowedIps": {
+                            "type": "array",
+                            "example": [
+                              "127.0.0.1",
+                              "127.0.0.2"
+                            ],
+                            "description": "Ips autorizadas para el usuario."
+                          },
+                          "allowedDays": {
+                            "type": "array",
+                            "example": [
+                              "TUESDAY",
+                              "WEDNESDAY"
+                            ],
+                            "description": "Días en el que el usuario puede ingresar."
+                          },
+                          "permissionMode": {
+                            "type": "string",
+                            "example": "INCLUDE",
+                            "enum": [
+                              "INCLUDE",
+                              "EXCLUDE"
+                            ],
+                            "description": "Permisos del usuario."
+                          }
+                        }
                       },
-                      "allowedDays": {
-                        "type": "array",
-                        "example": [
-                          "TUESDAY",
-                          "WEDNESDAY"
-                        ],
-                        "description": "Días en el que el usuario puede ingresar."
-                      },
-                      "permissionMode": {
-                        "type": "string",
-                        "example": "INCLUDE",
-                        "enum": [
-                          "INCLUDE",
-                          "EXCLUDE"
-                        ],
-                        "description": "Permisos del usuario."
-                      },
-                      "groups": {
-                        "type": "array",
-                        "example": [
-                          "GROUP_PLANS"
-                        ],
-                        "description": "Grupos del usuario."
-                      },
-                      "filters": {
-                        "type": "array",
-                        "example": [
-                          "2",
-                          "1"
-                        ],
-                        "description": "Filtros del usuario."
+                      "access": {
+                        "type": "object",
+                        "description": "Contiene la información de los grupos y filtros del Usuario.",
+                        "properties": {
+                          "groups": {
+                            "type": "array",
+                            "example": [
+                              "GROUP_PLANS"
+                            ],
+                            "description": "Grupos del usuario."
+                          },
+                          "filters": {
+                            "type": "array",
+                            "example": [
+                              "2",
+                              "1"
+                            ],
+                            "description": "Filtros del usuario."
+                          }
+                        }
                       }
                     }
                   }
@@ -9431,7 +9445,7 @@
                 ]
               },
               "examples": {
-                "Búsqueda de Usuarios": {
+                "Creación de Usuario": {
                   "value": {
                     "auth": {
                       "login": "613822f45568191a8cdf4ad2299f6d23",
@@ -9439,16 +9453,33 @@
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
                     },
-                    "id": 15,
                     "fullName" : "usuario",
                     "username" : "username18",
-                    "email" : "dd",
+                    "document" : 1234567,
+                    "email" : "test@test.com",
+                    "phone" : 320394803,
                     "password" : "Testing1234",
                     "status" : "ACTIVE",
-                    "language" : "ES",
-                    "allowedIps" : ["127.0.0.1","127.0.0.2"], 
-                    "allowedDays" : ["TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"],
-                    "permissionMode" : "INCLUDE"
+                    "language" : "ES",       
+                    "timezone": "America/Bogota",
+                    "control": {
+                      "allowedIps": ["127.0.0.1","127.0.0.2"], 
+                      "allowedDays": ["TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"],
+                      "permissionMode": "INCLUDE"
+                    },
+                    "access":{
+                      "groups": ["GROUP_PLANS"],
+                      "filters": [
+                        {
+                          "filter": "client",
+                          "values": [1,2]
+                        },
+                        {
+                          "filter": "site",
+                          "values": [1]
+                        }
+                      ]
+                    }
                   }
                 }
               }
@@ -9458,10 +9489,7 @@
         },
         "tags": [
           "Acciones sobre usarios"
-        ],
-        "x-stoplight": {
-          "id": "83gj2mohstv1v"
-        }
+        ]
       },
       "parameters": []
     }
