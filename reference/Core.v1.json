@@ -8992,6 +8992,201 @@
       },
       "parameters": []
     },
+    "/core/tools/group/search": {
+      "post": {
+        "summary": "Consulta de grupos",
+        "operationId": "post-core-group-search",
+        "description": "Este servicio permite consultar los grupos existentes.\nSi la respuesta es exitosa, se retorna un arreglo  con el identificador, nombre y descripción del grupo. Se puede filtrar por medio de los parámetros: identificador y nombre del grupo.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parámetros para el filtro.*",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información de tipos de régimen consultados.",
+                      "items": {
+                        "$ref": "#/components/schemas/Group"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  }
+                },
+                "examples": {
+                  "Busqueda exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "la petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "code": "CC",
+                          "name": "cedula ciudadania"
+                        }
+                      ],
+                      "pagination": {
+                        "total": 1,
+                        "perPage": 15,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "maxLength": 60,
+                    "description": "Identificador del grupo"
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 60,
+                    "description": "Nombre del grupo"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "4vjmjyapt6x4t"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "lg1ia6dv53mg8"
+                        },
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "1iw2n17ak03a4"
+                        },
+                        "example": 1,
+                        "default": 1,
+                        "minimum": 1,
+                        "description": "Página actual"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta de tipos de documentos": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "name": "string",
+                    "code": "string",
+                    "description": "string",
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ],
+        "x-stoplight": {
+          "id": "xwg4i9fp8bur3"
+        }
+      }
+    },
     "/core/user/search": {
       "post": {
         "summary": "Consulta de usuarios.",
@@ -9012,6 +9207,12 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/User"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "phhs2nzdvtbvk"
                       }
                     }
                   }
@@ -9036,7 +9237,6 @@
                           "active": "true",
                           "status": "ACTIVE",
                           "language": "ES",
-                          "permissionMode": "INCLUDE",
                           "timezone": "America/Bogota",
                           "creationDate": "2024-03-01 09:10:19",
                           "statusDate": "2024-03-01 16:03:25",
@@ -9053,6 +9253,7 @@
                             "SATURDAY",
                             "SUNDAY"
                           ],
+                          "permissionMode": "INCLUDE",
                           "groups": [
                             "GROUP_PLANS"
                           ]
@@ -9382,11 +9583,11 @@
                       "control": {
                         "type": "object",
                         "description": "Contiene la información de los controles del Usuario.",
-                          "required": [
-                            "allowedIps",
-                            "allowedDays",
-                            "permissionMode"
-                          ],
+                        "required": [
+                          "allowedIps",
+                          "allowedDays",
+                          "permissionMode"
+                        ],
                         "properties": {
                           "allowedIps": {
                             "type": "array",
@@ -9452,30 +9653,47 @@
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
                     },
-                    "fullName" : "usuario",
-                    "username" : "username18",
-                    "document" : 1234567,
-                    "email" : "test@test.com",
-                    "phone" : 320394803,
-                    "password" : "Testing1234",
-                    "status" : "ACTIVE",
-                    "language" : "ES",       
+                    "fullName": "usuario",
+                    "username": "username18",
+                    "document": 1234567,
+                    "email": "test@test.com",
+                    "phone": 320394803,
+                    "password": "Testing1234",
+                    "status": "ACTIVE",
+                    "language": "ES",
                     "timezone": "America/Bogota",
                     "control": {
-                      "allowedIps": ["127.0.0.1","127.0.0.2"], 
-                      "allowedDays": ["TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"],
+                      "allowedIps": [
+                        "127.0.0.1",
+                        "127.0.0.2"
+                      ],
+                      "allowedDays": [
+                        "TUESDAY",
+                        "WEDNESDAY",
+                        "THURSDAY",
+                        "FRIDAY",
+                        "SATURDAY",
+                        "SUNDAY"
+                      ],
                       "permissionMode": "INCLUDE"
                     },
-                    "access":{
-                      "groups": ["GROUP_PLANS"],
+                    "access": {
+                      "groups": [
+                        "GROUP_PLANS"
+                      ],
                       "filters": [
                         {
                           "filter": "client",
-                          "values": [1,2]
+                          "values": [
+                            1,
+                            2
+                          ]
                         },
                         {
                           "filter": "site",
-                          "values": [1]
+                          "values": [
+                            1
+                          ]
                         }
                       ]
                     }
@@ -10827,6 +11045,28 @@
           }
         }
       },
+      "Group": {
+        "title": "DocumentType",
+        "x-stoplight": {
+          "id": "naq8d6ju0gg7r"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información del grupo",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identificador del grupo"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nombre del grupo"
+          },
+          "description": {
+            "type": "string",
+            "description": "Descripción del grupo"
+          }
+        }
+      },
       "Site": {
         "title": "Site",
         "x-stoplight": {
@@ -11686,11 +11926,6 @@
         "type": "object",
         "description": "Estructura que contiene información de un usuario.",
         "properties": {
-          "documentName": {
-            "type": "string",
-            "maxLength": 30,
-            "description": "Nombre del documento"
-          },
           "id": {
             "type": "integer",
             "example": 1,
@@ -11743,15 +11978,6 @@
             "example": "ES",
             "description": "Idioma de acuerdo a ISO 631-1."
           },
-          "permissionMode": {
-            "type": "string",
-            "example": "INCLUDE",
-            "enum": [
-              "INCLUDE",
-              "EXCLUDE"
-            ],
-            "description": "Permisos del usuario."
-          },
           "timeZone": {
             "type": "string",
             "example": "America/Bogota",
@@ -11772,44 +11998,80 @@
             "example": "2021-09-21T09:34:48-05:00",
             "description": "Fecha de último ingreso del usuario."
           },
-          "allowedIps": {
-            "type": "array",
-            "example": [
-              "127.0.0.1",
-              "127.0.0.2"
-            ],
-            "description": "Ips autorizadas para el usuario."
-          },
-          "allowedDays": {
-            "type": "array",
-            "example": [
-              "TUESDAY",
-              "WEDNESDAY"
-            ],
-            "description": "Días en el que el usuario puede ingresar."
-          },
-          "groups": {
-            "type": "array",
-            "example": [
-              "GROUP_PLANS"
-            ],
-            "description": "Grupos del usuario."
-          },
-          "filters": {
+          "access": {
             "type": "object",
-            "description": "Objeto con información de filtros.",
+            "description": "Objeto con información de accesos.",
             "properties": {
-              "Client": {
+              "allowedIps": {
                 "type": "array",
-                "description": "Filtros de Clientes.",
-                "format": "float",
-                "example": [2,1]
+                "example": [
+                  "127.0.0.1",
+                  "127.0.0.2"
+                ],
+                "description": "Ips autorizadas para el usuario."
+              },
+              "allowedDays": {
+                "type": "array",
+                "example": [
+                  "TUESDAY",
+                  "WEDNESDAY"
+                ],
+                "description": "Días en el que el usuario puede ingresar."
+              },
+              "permissionMode": {
+                "type": "string",
+                "example": "INCLUDE",
+                "enum": [
+                  "INCLUDE",
+                  "EXCLUDE"
+                ],
+                "description": "Permisos del usuario."
+              }
+            }
+          },
+          "control": {
+            "type": "object",
+            "description": "Objeto con información de control.",
+            "properties": {
+              "groups": {
+                "type": "array",
+                "example": [
+                  "GROUP_PLANS"
+                ],
+                "description": "Grupos del usuario."
               },
               "Site": {
                 "type": "array",
                 "description": "Filtros de Sitios.",
                 "format": "integer",
-                "example": [2,1]
+                "example": [
+                  2,
+                  1
+                ]
+              },
+              "filters": {
+                "type": "object",
+                "description": "Objeto con información de filtros.",
+                "properties": {
+                  "Client": {
+                    "type": "array",
+                    "description": "Filtros de Clientes.",
+                    "format": "float",
+                    "example": [
+                      2,
+                      1
+                    ]
+                  },
+                  "Site": {
+                    "type": "array",
+                    "description": "Filtros de Sitios.",
+                    "format": "integer",
+                    "example": [
+                      2,
+                      1
+                    ]
+                  }
+                }
               }
             }
           }
@@ -11926,6 +12188,11 @@
       "S": {
         "x-stoplight": {
           "id": "sxor4d0isy2o4"
+        }
+      },
+      "D": {
+        "x-stoplight": {
+          "id": "naq8d6ju0gg7r"
         }
       }
     },
