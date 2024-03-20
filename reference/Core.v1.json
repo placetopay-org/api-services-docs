@@ -9183,10 +9183,7 @@
         },
         "tags": [
           "Procedimientos adicionales"
-        ],
-        "x-stoplight": {
-          "id": "xwg4i9fp8bur3"
-        }
+        ]
       }
     },
     "/core/tools/airline/search": {
@@ -9376,10 +9373,7 @@
         },
         "tags": [
           "Procedimientos adicionales"
-        ],
-        "x-stoplight": {
-          "id": "xwg4i9fp8bur3"
-        }
+        ]
       }
     },
     "/core/tools/filter/search": {
@@ -9569,10 +9563,7 @@
         },
         "tags": [
           "Procedimientos adicionales"
-        ],
-        "x-stoplight": {
-          "id": "xwg4i9fp8bur3"
-        }
+        ]
       }
     },
     "/core/tools/conglomerate/search": {
@@ -9769,10 +9760,7 @@
         },
         "tags": [
           "Procedimientos adicionales"
-        ],
-        "x-stoplight": {
-          "id": "xwg4i9fp8bur3"
-        }
+        ]
       }
     },
     "/core/user/search": {
@@ -9847,7 +9835,7 @@
                             "groups": [
                                 "GROUP_PLANS"
                             ],
-                            "filters": [
+                            "filter": [
                                 {
                                     "id": "1",
                                     "code": "Client",
@@ -12700,7 +12688,7 @@
               }
             }
           },
-          "acess": {
+          "access": {
             "type": "object",
             "description": "Objeto con información de control.",
             "properties": {
@@ -12710,15 +12698,6 @@
                   "GROUP_PLANS"
                 ],
                 "description": "Grupos del usuario."
-              },
-              "Site": {
-                "type": "array",
-                "description": "Filtros de Sitios.",
-                "format": "integer",
-                "example": [
-                  2,
-                  1
-                ]
               },
               "filters": {
                 "type": "object",
@@ -12854,31 +12833,6 @@
             "example": 1,
             "description": "Ultima página disponible"
           }
-        }
-      },
-      "S": {
-        "x-stoplight": {
-          "id": "sxor4d0isy2o4"
-        }
-      },
-      "D": {
-        "x-stoplight": {
-          "id": "naq8d6ju0gg7r"
-        }
-      },
-      "G": {
-        "x-stoplight": {
-          "id": "naq8d6ju0gg7r"
-        }
-      },
-      "A": {
-        "x-stoplight": {
-          "id": "naq8d6ju0gg7r"
-        }
-      },
-      "Ai": {
-        "x-stoplight": {
-          "id": "naq8d6ju0gg7r"
         }
       }
     },
