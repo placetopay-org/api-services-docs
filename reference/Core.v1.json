@@ -9010,7 +9010,7 @@
                     },
                     "data": {
                       "type": "array",
-                      "description": "Arreglo que contiene información de tipos de régimen consultados.",
+                      "description": "Arreglo que contiene información de los grupos.",
                       "items": {
                         "$ref": "#/components/schemas/Group"
                       }
@@ -9032,8 +9032,9 @@
                       "data": [
                         {
                           "id": 1,
-                          "code": "CC",
-                          "name": "cedula ciudadania"
+                          "code": "GROUP_ROOT",
+                          "name": "Superusuario",
+                          "description": "Usuario con todos los privilegios sobre la aplicación, incluyendo seguridad."
                         }
                       ],
                       "pagination": {
@@ -9114,13 +9115,13 @@
                   },
                   "id": {
                     "type": "integer",
-                    "maxLength": 60,
-                    "description": "Identificador del grupo"
+                    "description": "Identificador del grupo",
+                    "example": 1
                   },
                   "name": {
                     "type": "string",
-                    "maxLength": 60,
-                    "description": "Nombre del grupo"
+                    "description": "Nombre del grupo",
+                    "example": "GROUP_ROOT"
                   },
                   "pagination": {
                     "type": "object",
@@ -9157,7 +9158,7 @@
                 ]
               },
               "examples": {
-                "Consulta de tipos de documentos": {
+                "Consulta de grupos": {
                   "value": {
                     "auth": {
                       "login": "613822f45568191a8cdf4ad2299f6d23",
@@ -9165,9 +9166,596 @@
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
                     },
-                    "name": "string",
-                    "code": "string",
-                    "description": "string",
+                    "id": 1,
+                    "code": "GROUP_ROOT",
+                    "name": "Superusuario",
+                    "description": "Usuario con todos los privilegios sobre la aplicación, incluyendo seguridad.",
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ],
+        "x-stoplight": {
+          "id": "xwg4i9fp8bur3"
+        }
+      }
+    },
+    "/core/tools/airline/search": {
+      "post": {
+        "summary": "Consulta de aerolíneas",
+        "operationId": "post-core-airline-search",
+        "description": "Este servicio permite consultar los aerolíneas existentes.\nSi la respuesta es exitosa, se retorna un arreglo  con el identificador y nombre de la aerolínea. Se puede filtrar por medio de los parámetros: identificador y nombre de la aerolínea.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parámetros para el filtro.*",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información de las aerolíneas.",
+                      "items": {
+                        "$ref": "#/components/schemas/Airline"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  }
+                },
+                "examples": {
+                  "Busqueda exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "la petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "AIR CANADA Nacional"
+                        }
+                      ],
+                      "pagination": {
+                        "total": 1,
+                        "perPage": 15,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador de la aerolínea",
+                    "example": 1
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Nombre de la aerolínea",
+                    "example": "AIR CANADA Nacional"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "4vjmjyapt6x4t"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "lg1ia6dv53mg8"
+                        },
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "1iw2n17ak03a4"
+                        },
+                        "example": 1,
+                        "default": 1,
+                        "minimum": 1,
+                        "description": "Página actual"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta de grupos": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "name": "AIR CANADA Nacional",
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ],
+        "x-stoplight": {
+          "id": "xwg4i9fp8bur3"
+        }
+      }
+    },
+    "/core/tools/filter/search": {
+      "post": {
+        "summary": "Consulta de filtros",
+        "operationId": "post-core-filter-search",
+        "description": "Este servicio permite consultar los filtros existentes.\nSi la respuesta es exitosa, se retorna un arreglo  con el identificador y código del filtro. Se puede filtrar por medio de los parámetros: identificador y código del filtro.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parámetros para el filtro.*",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información de los filtros.",
+                      "items": {
+                        "$ref": "#/components/schemas/Filter"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  }
+                },
+                "examples": {
+                  "Busqueda exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "la petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "code": "Client"
+                        }
+                      ],
+                      "pagination": {
+                        "total": 1,
+                        "perPage": 15,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador del filtro",
+                    "example": 1
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "Código del filtro",
+                    "example": "Client"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "4vjmjyapt6x4t"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "lg1ia6dv53mg8"
+                        },
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "1iw2n17ak03a4"
+                        },
+                        "example": 1,
+                        "default": 1,
+                        "minimum": 1,
+                        "description": "Página actual"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta de grupos": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "name": "AIR CANADA Nacional",
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ],
+        "x-stoplight": {
+          "id": "xwg4i9fp8bur3"
+        }
+      }
+    },
+    "/core/tools/conglomerate/search": {
+      "post": {
+        "summary": "Consulta de conglomerados",
+        "operationId": "post-core-conglomerate-search",
+        "description": "Este servicio permite consultar los conglomerados existentes.\nSi la respuesta es exitosa, se retorna un arreglo  con el identificador y nombre del conglomerado. Se puede filtrar por medio de los parámetros: identificador y nombre del conglomerado.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parámetros para el filtro.*",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información del conglomerado.",
+                      "items": {
+                        "$ref": "#/components/schemas/Conglomerate"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  }
+                },
+                "examples": {
+                  "Busqueda exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "la petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "EGM CO",
+                          "brand": "EGM"
+                        }
+                      ],
+                      "pagination": {
+                        "total": 1,
+                        "perPage": 15,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador del conglomerado",
+                    "example": 1
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Nombre del conglomerado",
+                    "example": "EGM CO"
+                  },
+                  "brand": {
+                    "type": "string",
+                    "description": "Marca del conglomerado",
+                    "example": "EGM"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "4vjmjyapt6x4t"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "lg1ia6dv53mg8"
+                        },
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "1iw2n17ak03a4"
+                        },
+                        "example": 1,
+                        "default": 1,
+                        "minimum": 1,
+                        "description": "Página actual"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta de grupos": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "name": "EGM CO",
+                    "brand": "EGM",
                     "pagination": {
                       "perPage": 15,
                       "currentPage": 1
@@ -9229,34 +9817,54 @@
                       "data": [
                         {
                           "id": 1,
-                          "name": "name user",
+                          "fullName": "name user",
                           "username": "user_name13",
                           "email": "test@test.com",
                           "phone": 323232,
                           "country": "CO",
-                          "active": "true",
                           "status": "ACTIVE",
                           "language": "ES",
                           "timezone": "America/Bogota",
                           "creationDate": "2024-03-01 09:10:19",
-                          "statusDate": "2024-03-01 16:03:25",
-                          "loginDate": "2024-03-25 16:03:25",
-                          "allowedIps": [
-                            "127.0.0.1",
-                            "127.0.0.2"
-                          ],
-                          "allowedDays": [
-                            "TUESDAY",
-                            "WEDNESDAY",
-                            "THURSDAY",
-                            "FRIDAY",
-                            "SATURDAY",
-                            "SUNDAY"
-                          ],
-                          "permissionMode": "INCLUDE",
-                          "groups": [
-                            "GROUP_PLANS"
-                          ]
+                          "lastLoginDate": "2024-03-25 16:03:25",
+                          "control": {
+                            "allowedIps": [
+                                "127.0.0.1",
+                                "127.0.0.2"
+                            ],
+                            "allowedDays": [
+                                "MONDAY",
+                                "TUESDAY",
+                                "WEDNESDAY",
+                                "THURSDAY",
+                                "FRIDAY",
+                                "SATURDAY",
+                                "SUNDAY"
+                            ],
+                            "permissionMode": "INCLUDE"
+                          },
+                          "access": {
+                            "groups": [
+                                "GROUP_PLANS"
+                            ],
+                            "filters": [
+                                {
+                                    "id": "1",
+                                    "code": "Client",
+                                    "values": [
+                                        "1",
+                                        "2"
+                                    ]
+                                },
+                                {
+                                    "id": "2",
+                                    "code": "Site",
+                                    "values": [
+                                        "1"
+                                    ]
+                                }
+                            ]
+                          }
                         }
                       ],
                       "pagination": {
@@ -11046,7 +11654,7 @@
         }
       },
       "Group": {
-        "title": "DocumentType",
+        "title": "Group",
         "x-stoplight": {
           "id": "naq8d6ju0gg7r"
         },
@@ -11055,15 +11663,88 @@
         "properties": {
           "id": {
             "type": "integer",
-            "description": "Identificador del grupo"
+            "description": "Identificador del grupo",
+            "example": 1
+          },
+          "code": {
+            "type": "string",
+            "description": "Código del grupo",
+            "example": "GROUP_ROOT"
           },
           "name": {
             "type": "string",
-            "description": "Nombre del grupo"
+            "description": "Nombre del grupo",
+            "example": "Superusuario"
           },
           "description": {
             "type": "string",
-            "description": "Descripción del grupo"
+            "description": "Descripción del grupo",
+            "example": "Usuario con todos los privilegios sobre la aplicación, incluyendo seguridad"
+          }
+        }
+      },
+      "Airline": {
+        "title": "Airline",
+        "x-stoplight": {
+          "id": "naq8d6ju0gg7r"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información de la aerolínea",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identificador de la aerolínea",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Nombre de la aerolínea",
+            "example": "AIR CANADA Nacional"
+          }
+        }
+      },
+      "Filter": {
+        "title": "Filter",
+        "x-stoplight": {
+          "id": "naq8d6ju0gg7r"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información de los filtros",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identificador del filtro",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Código del filtro",
+            "example": "Client"
+          }
+        }
+      },
+      "Conglomerate": {
+        "title": "Conglomerate",
+        "x-stoplight": {
+          "id": "naq8d6ju0gg7r"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información del conglomerado",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identificador del conglomerado",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Nombre del conglomerado",
+            "example": "EGM CO"
+          },
+          "brand": {
+            "type": "string",
+            "description": "Marca del conglomerado",
+            "example": "EGM"
           }
         }
       },
@@ -11931,7 +12612,7 @@
             "example": 1,
             "description": "Identificador del usuario."
           },
-          "name": {
+          "fullName": {
             "type": "string",
             "example": "Usuario",
             "description": "Nombre del usuario."
@@ -11956,11 +12637,6 @@
             "type": "string",
             "example": "CO",
             "description": "País al que pertecene el usuario."
-          },
-          "active": {
-            "type": "string",
-            "example": "true, false",
-            "description": "Indicador del estado del usuario."
           },
           "status": {
             "type": "string",
@@ -11988,17 +12664,12 @@
             "example": "2021-09-21T09:34:48-05:00",
             "description": "Fecha de creación del usuario."
           },
-          "statusDate": {
-            "type": "string",
-            "example": "2021-09-21T09:34:48-05:00",
-            "description": "Fecha de actualización del estado del usuario."
-          },
-          "loginDate": {
+          "lastLoginDate": {
             "type": "string",
             "example": "2021-09-21T09:34:48-05:00",
             "description": "Fecha de último ingreso del usuario."
           },
-          "access": {
+          "control": {
             "type": "object",
             "description": "Objeto con información de accesos.",
             "properties": {
@@ -12029,7 +12700,7 @@
               }
             }
           },
-          "control": {
+          "acess": {
             "type": "object",
             "description": "Objeto con información de control.",
             "properties": {
@@ -12191,6 +12862,21 @@
         }
       },
       "D": {
+        "x-stoplight": {
+          "id": "naq8d6ju0gg7r"
+        }
+      },
+      "G": {
+        "x-stoplight": {
+          "id": "naq8d6ju0gg7r"
+        }
+      },
+      "A": {
+        "x-stoplight": {
+          "id": "naq8d6ju0gg7r"
+        }
+      },
+      "Ai": {
         "x-stoplight": {
           "id": "naq8d6ju0gg7r"
         }
