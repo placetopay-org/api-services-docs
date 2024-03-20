@@ -9013,6 +9013,12 @@
                       "items": {
                         "$ref": "#/components/schemas/User"
                       }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "phhs2nzdvtbvk"
+                      }
                     }
                   }
                 },
@@ -9036,7 +9042,6 @@
                           "active": "true",
                           "status": "ACTIVE",
                           "language": "ES",
-                          "permissionMode": "INCLUDE",
                           "timezone": "America/Bogota",
                           "creationDate": "2024-03-01 09:10:19",
                           "statusDate": "2024-03-01 16:03:25",
@@ -9053,6 +9058,7 @@
                             "SATURDAY",
                             "SUNDAY"
                           ],
+                          "permissionMode": "INCLUDE",
                           "groups": [
                             "GROUP_PLANS"
                           ]
@@ -11691,11 +11697,6 @@
         "type": "object",
         "description": "Estructura que contiene información de un usuario.",
         "properties": {
-          "documentName": {
-            "type": "string",
-            "maxLength": 30,
-            "description": "Nombre del documento"
-          },
           "id": {
             "type": "integer",
             "example": 1,
@@ -11748,15 +11749,6 @@
             "example": "ES",
             "description": "Idioma de acuerdo a ISO 631-1."
           },
-          "permissionMode": {
-            "type": "string",
-            "example": "INCLUDE",
-            "enum": [
-              "INCLUDE",
-              "EXCLUDE"
-            ],
-            "description": "Permisos del usuario."
-          },
           "timeZone": {
             "type": "string",
             "example": "America/Bogota",
@@ -11777,44 +11769,71 @@
             "example": "2021-09-21T09:34:48-05:00",
             "description": "Fecha de último ingreso del usuario."
           },
-          "allowedIps": {
-            "type": "array",
-            "example": [
-              "127.0.0.1",
-              "127.0.0.2"
-            ],
-            "description": "Ips autorizadas para el usuario."
-          },
-          "allowedDays": {
-            "type": "array",
-            "example": [
-              "TUESDAY",
-              "WEDNESDAY"
-            ],
-            "description": "Días en el que el usuario puede ingresar."
-          },
-          "groups": {
-            "type": "array",
-            "example": [
-              "GROUP_PLANS"
-            ],
-            "description": "Grupos del usuario."
-          },
-          "filters": {
+          "access": {
             "type": "object",
-            "description": "Objeto con información de filtros.",
+            "description": "Objeto con información de accesos.",
             "properties": {
-              "Client": {
+              "allowedIps": {
                 "type": "array",
-                "description": "Filtros de Clientes.",
-                "format": "float",
-                "example": [2,1]
+                "example": [
+                  "127.0.0.1",
+                  "127.0.0.2"
+                ],
+                "description": "Ips autorizadas para el usuario."
+              },
+              "allowedDays": {
+                "type": "array",
+                "example": [
+                  "TUESDAY",
+                  "WEDNESDAY"
+                ],
+                "description": "Días en el que el usuario puede ingresar."
+              },
+              "permissionMode": {
+                "type": "string",
+                "example": "INCLUDE",
+                "enum": [
+                  "INCLUDE",
+                  "EXCLUDE"
+                ],
+                "description": "Permisos del usuario."
+              }
+            }
+          },
+          "control": {
+            "type": "object",
+            "description": "Objeto con información de control.",
+            "properties": {
+              "groups": {
+                "type": "array",
+                "example": [
+                  "GROUP_PLANS"
+                ],
+                "description": "Grupos del usuario."
               },
               "Site": {
                 "type": "array",
                 "description": "Filtros de Sitios.",
                 "format": "integer",
                 "example": [2,1]
+              },
+              "filters": {
+                "type": "object",
+                "description": "Objeto con información de filtros.",
+                "properties": {
+                  "Client": {
+                    "type": "array",
+                    "description": "Filtros de Clientes.",
+                    "format": "float",
+                    "example": [2,1]
+                  },
+                  "Site": {
+                    "type": "array",
+                    "description": "Filtros de Sitios.",
+                    "format": "integer",
+                    "example": [2,1]
+                  }
+                }
               }
             }
           }
