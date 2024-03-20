@@ -9344,11 +9344,6 @@
                         "example": "username",
                         "description": "Username del usuario."
                       },
-                      "document": {
-                        "type": "integer",
-                        "example": 12345335,
-                        "description": "Documento del usuario."
-                      },
                       "email": {
                         "type": "string",
                         "format": "email",
