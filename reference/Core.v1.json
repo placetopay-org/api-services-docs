@@ -12593,7 +12593,7 @@
           "id": "sxor4d0isy2o4"
         },
         "type": "object",
-        "description": "Estructura que contiene información de un usuario.",
+        "description": "Estructura que contiene información de los usuarios.",
         "properties": {
           "id": {
             "type": "integer",
@@ -12608,7 +12608,7 @@
           "username": {
             "type": "string",
             "example": "username",
-            "description": "Username del usuario."
+            "description": "Usuario para acceder al sistema."
           },
           "email": {
             "type": "string",
@@ -12642,7 +12642,7 @@
             "example": "ES",
             "description": "Idioma de acuerdo a ISO 631-1."
           },
-          "timeZone": {
+          "timezone": {
             "type": "string",
             "example": "America/Bogota",
             "description": "Zona horaria de la ubicación del usuario."
@@ -12659,7 +12659,7 @@
           },
           "control": {
             "type": "object",
-            "description": "Objeto con información de accesos.",
+            "description": "Objeto con información de control.",
             "properties": {
               "allowedIps": {
                 "type": "array",
@@ -12690,7 +12690,7 @@
           },
           "access": {
             "type": "object",
-            "description": "Objeto con información de control.",
+            "description": "Objeto con información de los usuarios.",
             "properties": {
               "groups": {
                 "type": "array",
