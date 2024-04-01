@@ -10291,6 +10291,7 @@
                             1
                           ]
                         }
+
                       ]
                     }
                   }
@@ -10307,6 +10308,234 @@
       "parameters": []
     }
   },
+  "/core/user/update": {
+      "post": {
+        "summary": "Actualizar usuarios",
+        "operationId": "post-core-user-update",
+        "description": "Este servicio permite actualizar un usuario con la información suministrada. Si la respuesta es exitosa, se retorna el identificador del usuario actualizado.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta Exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }, 
+                      "id": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Autenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Arreglo que contiene la información del usuario a actualizar.",
+                    "required": [
+                      "fullName",
+                      "status",
+                      "language"
+                    ],
+                    "properties": {
+                      "fullName": {
+                        "type": "string",
+                        "example": "Usuario Nuevo",
+                        "description": "Nombre del usuario."
+                      },
+                      "phone": {
+                        "type": "integer",
+                        "example": 3203849403,
+                        "description": "Teléfono del usuario."
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "ACTIVE",
+                          "INACTIVE"
+                        ],
+                        "example": "INACTIVE",
+                        "description": "Estado del usuario."
+                      },
+                      "language": {
+                        "type": "string",
+                        "example": "ES",
+                        "description": "Idioma de acuerdo a ISO 631-1."
+                      },
+                      "timezone": {
+                        "type": "string",
+                        "example": "America/Bogota",
+                        "description": "Zona horaria de la ubicación del usuario."
+                      },
+                      "control": {
+                        "type": "object",
+                        "description": "Contiene la información de los datos de control del Usuario.",
+                          "required": [
+                            "allowedIps",
+                            "allowedDays",
+                            "permissionMode"
+                          ],
+                        "properties": {
+                          "allowedIps": {
+                            "type": "array",
+                            "example": [
+                              "127.0.0.1",
+                              "127.0.0.2"
+                            ],
+                            "description": "Ips autorizadas para el usuario."
+                          },
+                          "allowedDays": {
+                            "type": "array",
+                            "example": [
+                              "TUESDAY",
+                              "WEDNESDAY"
+                            ],
+                            "description": "Días en los que el usuario puede ingresar."
+                          },
+                          "permissionMode": {
+                            "type": "string",
+                            "example": "INCLUDE",
+                            "enum": [
+                              "INCLUDE",
+                              "EXCLUDE"
+                            ],
+                            "description": "Permisos del usuario."
+                          }
+                        }
+                      },
+                      "access": {
+                        "type": "object",
+                        "description": "Contiene la información de los grupos y filtros del Usuario.",
+                        "properties": {
+                          "groups": {
+                            "type": "array",
+                            "example": [
+                              "GROUP_PLANS"
+                            ],
+                            "description": "Grupos del usuario."
+                          },
+                          "filters": {
+                            "type": "array",
+                            "example": [
+                              "2",
+                              "1"
+                            ],
+                            "description": "Filtros del usuario."
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth",
+                  "fullName",
+                  "status",
+                  "language"
+                ]
+              },
+              "examples": {
+                "actualización de un usuario": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "fullName": 1,
+                    "status": "ACTIVE",
+                    "language": "es"
+                  }
+                }
+              }
+            }
+          }
+        },
+      
+        "tags": [
+          "Acciones sobre usuarios"
+        ]
+      },
+      "parameters": []
+    },
   "components": {
     "schemas": {
       "Customer-create": {
