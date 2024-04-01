@@ -8994,6 +8994,15 @@
         "type": "object",
         "description": "Estructura que contiene la información para crear un comercio.",
         "x-examples": {},
+        "required": [
+          "name",
+          "brand",
+          "languages",
+          "currencies",
+          "document",
+          "address",
+          "legalRepresentative"
+        ],
         "properties": {
           "name": {
             "type": "string",
@@ -9140,6 +9149,9 @@
           },
           "control": {
             "type": "object",
+            "required": [
+              "reseller"
+            ],
             "properties": {
               "seller": {
                 "type": "integer",
@@ -9153,16 +9165,7 @@
               }
             }
           }
-        },
-        "required": [
-          "name",
-          "brand",
-          "languages",
-          "currencies",
-          "document",
-          "address",
-          "legalRepresentative"
-        ]
+        }
       },
       "Customer-update": {
         "title": "Customer update",
