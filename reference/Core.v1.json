@@ -12607,9 +12607,6 @@
       },
       "User": {
         "title": "User",
-        "x-stoplight": {
-          "id": "sxor4d0isy2o4"
-        },
         "type": "object",
         "description": "Estructura que contiene información de los usuarios.",
         "properties": {
