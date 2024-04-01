@@ -9765,7 +9765,7 @@
       "post": {
         "summary": "Consulta de usuarios.",
         "operationId": "post-core-user-search",
-        "description": "Este servicio permite consultar usuarios existentes filtrando por medio de los parámetros: identificador del usuario, email o nombre de usuario.\nSi la respuesta es exitosa, se retorna un arreglo con información de los usuarios. \n\n\n> ### Nota \n>\n> No es requerido ingresar todos los parámetros para el filtro.",
+        "description": "Este servicio permite consultar usuarios existentes filtrando por medio de los parámetros: identificador del usuario, email o usuario para acceder al sistema.\nSi la respuesta es exitosa, se retorna un arreglo con información de los usuarios. \n\n\n> ### Nota \n>\n> No es requerido ingresar todos los parámetros para el filtro.",
         "responses": {
           "200": {
             "description": "OK",
@@ -9804,9 +9804,9 @@
                         {
                           "id": 1,
                           "fullName": "name user",
-                          "username": "user_name13",
+                          "username": "testing_username",
                           "email": "test@test.com",
-                          "phone": 323232,
+                          "phone": "323232",
                           "country": "CO",
                           "status": "ACTIVE",
                           "language": "ES",
@@ -9815,40 +9815,40 @@
                           "lastLoginDate": "2024-03-25 16:03:25",
                           "control": {
                             "allowedIps": [
-                                "127.0.0.1",
-                                "127.0.0.2"
+                              "127.0.0.1",
+                              "127.0.0.2"
                             ],
                             "allowedDays": [
-                                "MONDAY",
-                                "TUESDAY",
-                                "WEDNESDAY",
-                                "THURSDAY",
-                                "FRIDAY",
-                                "SATURDAY",
-                                "SUNDAY"
+                              "MONDAY",
+                              "TUESDAY",
+                              "WEDNESDAY",
+                              "THURSDAY",
+                              "FRIDAY",
+                              "SATURDAY",
+                              "SUNDAY"
                             ],
                             "permissionMode": "INCLUDE"
                           },
                           "access": {
                             "groups": [
-                                "GROUP_PLANS"
+                              "GROUP_PLANS"
                             ],
                             "filter": [
-                                {
-                                    "id": "1",
-                                    "code": "Client",
-                                    "values": [
-                                        "1",
-                                        "2"
-                                    ]
-                                },
-                                {
-                                    "id": "2",
-                                    "code": "Site",
-                                    "values": [
-                                        "1"
-                                    ]
-                                }
+                              {
+                                "id": "1",
+                                "code": "Client",
+                                "values": [
+                                  "1",
+                                  "2"
+                                ]
+                              },
+                              {
+                                "id": "2",
+                                "code": "Site",
+                                "values": [
+                                  "1"
+                                ]
+                              }
                             ]
                           }
                         }
@@ -9936,9 +9936,9 @@
                   },
                   "username": {
                     "type": "string",
-                    "description": "Nombe de usuario.",
+                    "description": "Usuario para acceder al sistema.",
                     "maxLength": 125,
-                    "example": "username",
+                    "example": "testing_username",
                     "minLength": 3
                   },
                   "email": {
@@ -9962,7 +9962,9 @@
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
                     },
-                    "id": 15
+                    "id": 1,
+                    "username": "testing_username",
+                    "email": "test@test.com"
                   }
                 }
               }
@@ -9994,7 +9996,7 @@
                     },
                     "id": {
                       "type": "integer",
-                      "example": 5,
+                      "example": 1,
                       "description": "Identificador del usuario."
                     }
                   }
@@ -10118,120 +10120,7 @@
                     "$ref": "../Models/Autentication.json"
                   },
                   "data": {
-                    "type": "object",
-                    "description": "Arreglo que contiene la información del usuario a crear.",
-                    "required": [
-                      "fullName",
-                      "username",
-                      "email",
-                      "password",
-                      "status",
-                      "language"
-                    ],
-                    "properties": {
-                      "fullName": {
-                        "type": "string",
-                        "example": "Usuario Nuevo",
-                        "description": "Nombre del usuario."
-                      },
-                      "username": {
-                        "type": "string",
-                        "example": "username",
-                        "description": "Username del usuario."
-                      },
-                      "email": {
-                        "type": "string",
-                        "format": "email",
-                        "example": "test@test.com",
-                        "description": "Email del usuario."
-                      },
-                      "phone": {
-                        "type": "integer",
-                        "example": 3203849403,
-                        "description": "Teléfono del usuario."
-                      },
-                      "password": {
-                        "type": "string",
-                        "example": "Testing1234!",
-                        "description": "Contraseña del usuario."
-                      },
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "ACTIVE",
-                          "INACTIVE"
-                        ],
-                        "example": "INACTIVE",
-                        "description": "Estado del usuario."
-                      },
-                      "language": {
-                        "type": "string",
-                        "example": "ES",
-                        "description": "Idioma de acuerdo a ISO 631-1."
-                      },
-                      "timezone": {
-                        "type": "string",
-                        "example": "America/Bogota",
-                        "description": "Zona horaria de la ubicación del usuario."
-                      },
-                      "control": {
-                        "type": "object",
-                        "description": "Contiene la información de los controles del Usuario.",
-                        "required": [
-                          "allowedIps",
-                          "allowedDays",
-                          "permissionMode"
-                        ],
-                        "properties": {
-                          "allowedIps": {
-                            "type": "array",
-                            "example": [
-                              "127.0.0.1",
-                              "127.0.0.2"
-                            ],
-                            "description": "Ips autorizadas para el usuario."
-                          },
-                          "allowedDays": {
-                            "type": "array",
-                            "example": [
-                              "TUESDAY",
-                              "WEDNESDAY"
-                            ],
-                            "description": "Días en el que el usuario puede ingresar."
-                          },
-                          "permissionMode": {
-                            "type": "string",
-                            "example": "INCLUDE",
-                            "enum": [
-                              "INCLUDE",
-                              "EXCLUDE"
-                            ],
-                            "description": "Permisos del usuario."
-                          }
-                        }
-                      },
-                      "access": {
-                        "type": "object",
-                        "description": "Contiene la información de los grupos y filtros del Usuario.",
-                        "properties": {
-                          "groups": {
-                            "type": "array",
-                            "example": [
-                              "GROUP_PLANS"
-                            ],
-                            "description": "Grupos del usuario."
-                          },
-                          "filters": {
-                            "type": "array",
-                            "example": [
-                              "2",
-                              "1"
-                            ],
-                            "description": "Filtros del usuario."
-                          }
-                        }
-                      }
-                    }
+                    "$ref": "#/components/schemas/User-create"
                   }
                 },
                 "required": [
@@ -10248,10 +10137,9 @@
                       "seed": "2021-09-27T09:41:05-05:00"
                     },
                     "fullName": "usuario",
-                    "username": "username18",
-                    "document": 1234567,
+                    "username": "testing_username",
                     "email": "test@test.com",
-                    "phone": 320394803,
+                    "phone": "320394803",
                     "password": "Testing1234",
                     "status": "ACTIVE",
                     "language": "ES",
@@ -10277,35 +10165,33 @@
                       ],
                       "filters": [
                         {
-                          "filter": "client",
+                          "id": 1,
                           "values": [
                             1,
                             2
                           ]
                         },
                         {
-                          "filter": "site",
+                          "id": 2,
                           "values": [
                             1
                           ]
                         }
-
                       ]
                     }
                   }
                 }
               }
             }
-          },
-          "description": ""
+          }
         },
         "tags": [
           "Acciones sobre usuarios"
         ]
       },
       "parameters": []
-  },
-  "/core/user/update": {
+    },
+    "/core/user/update": {
       "post": {
         "summary": "Editar un usuario",
         "operationId": "post-core-user-update",
@@ -10331,7 +10217,7 @@
                         "reason": "00",
                         "message": "La petición se ha procesado correctamente.",
                         "date": "2021-09-21T09:34:48-05:00"
-                      }, 
+                      },
                       "id": 1
                     }
                   }
@@ -10404,101 +10290,7 @@
                     "$ref": "../Models/Autentication.json"
                   },
                   "data": {
-                    "type": "object",
-                    "description": "Arreglo que contiene la información del usuario a actualizar.",
-                    "required": [
-                      "fullName",
-                      "status",
-                      "language"
-                    ],
-                    "properties": {
-                      "fullName": {
-                        "type": "string",
-                        "example": "Usuario Nuevo",
-                        "description": "Nombre del usuario."
-                      },
-                      "phone": {
-                        "type": "integer",
-                        "example": 3203849403,
-                        "description": "Teléfono del usuario."
-                      },
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "ACTIVE",
-                          "INACTIVE"
-                        ],
-                        "example": "INACTIVE",
-                        "description": "Estado del usuario."
-                      },
-                      "language": {
-                        "type": "string",
-                        "example": "ES",
-                        "description": "Idioma de acuerdo a ISO 631-1."
-                      },
-                      "timezone": {
-                        "type": "string",
-                        "example": "America/Bogota",
-                        "description": "Zona horaria de la ubicación del usuario."
-                      },
-                      "control": {
-                        "type": "object",
-                        "description": "Contiene la información de los datos de control del Usuario.",
-                          "required": [
-                            "allowedIps",
-                            "allowedDays",
-                            "permissionMode"
-                          ],
-                        "properties": {
-                          "allowedIps": {
-                            "type": "array",
-                            "example": [
-                              "127.0.0.1",
-                              "127.0.0.2"
-                            ],
-                            "description": "Ips autorizadas para el usuario."
-                          },
-                          "allowedDays": {
-                            "type": "array",
-                            "example": [
-                              "TUESDAY",
-                              "WEDNESDAY"
-                            ],
-                            "description": "Días en los que el usuario puede ingresar."
-                          },
-                          "permissionMode": {
-                            "type": "string",
-                            "example": "INCLUDE",
-                            "enum": [
-                              "INCLUDE",
-                              "EXCLUDE"
-                            ],
-                            "description": "Permisos del usuario."
-                          }
-                        }
-                      },
-                      "access": {
-                        "type": "object",
-                        "description": "Contiene la información de los grupos y filtros del Usuario.",
-                        "properties": {
-                          "groups": {
-                            "type": "array",
-                            "example": [
-                              "GROUP_PLANS"
-                            ],
-                            "description": "Grupos del usuario."
-                          },
-                          "filters": {
-                            "type": "array",
-                            "example": [
-                              "2",
-                              "1"
-                            ],
-                            "description": "Filtros del usuario."
-                          }
-                        }
-                      }
-                    }
+                    "$ref": "#/components/schemas/User-create"
                   }
                 },
                 "required": [
@@ -10527,7 +10319,6 @@
           },
           "description": ""
         },
-      
         "tags": [
           "Acciones sobre usuarios"
         ]
@@ -12826,7 +12617,7 @@
           },
           "username": {
             "type": "string",
-            "example": "username",
+            "example": "testing_username",
             "description": "Usuario para acceder al sistema."
           },
           "email": {
@@ -12836,8 +12627,8 @@
             "description": "Email del usuario."
           },
           "phone": {
-            "type": "integer",
-            "example": 3203849403,
+            "type": "string",
+            "example": "3203849403",
             "description": "Teléfono del usuario."
           },
           "country": {
@@ -12886,10 +12677,162 @@
                   "127.0.0.1",
                   "127.0.0.2"
                 ],
+                "description": "Ips autorizadas para ingresar al sistema."
+              },
+              "allowedDays": {
+                "type": "array",
+                "uniqueItems": true,
+                "description": "Días permitidos para ingresar al sistema.",
+                "items": {
+                  "type": "string",
+                  "example": "TUESDAY",
+                  "enum": [
+                    "MONDAY",
+                    "TUESDAY",
+                    "WEDNESDAY",
+                    "THURSDAY",
+                    "FRIDAY",
+                    "SATURDAY",
+                    "SUNDAY"
+                  ]
+                }
+              },
+              "permissionMode": {
+                "type": "string",
+                "example": "INCLUDE",
+                "enum": [
+                  "INCLUDE",
+                  "EXCLUDE"
+                ],
+                "description": "Restricción de filtros del usuario."
+              }
+            }
+          },
+          "access": {
+            "type": "object",
+            "description": "Objeto con información de acceso.",
+            "properties": {
+              "groups": {
+                "type": "array",
+                "example": [
+                  "GROUP_PLANS"
+                ],
+                "description": "Grupos del usuario."
+              },
+              "filters": {
+                "type": "array",
+                "description": "Objeto con información de filtros.",
+                "example": [
+                  {
+                    "id": 1,
+                    "code": "Client",
+                    "values": [
+                      {
+                        "id": 1,
+                        "name": "CO customer"
+                      },
+                      {
+                        "id": 2,
+                        "name": "EC customer"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "code": "Site",
+                    "values": [
+                      {
+                        "id": 2,
+                        "name": "EC site"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "User-create": {
+        "title": "User create",
+        "type": "object",
+        "description": "Arreglo que contiene la información del usuario a crear.",
+        "required": [
+          "fullName",
+          "username",
+          "email",
+          "status",
+          "language"
+        ],
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "example": "Usuario Nuevo",
+            "description": "Nombre del usuario."
+          },
+          "username": {
+            "type": "string",
+            "example": "username",
+            "description": "Username del usuario."
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "test@test.com",
+            "description": "Email del usuario."
+          },
+          "phone": {
+            "type": "string",
+            "example": "3203849403",
+            "description": "Teléfono del usuario."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ],
+            "example": "INACTIVE",
+            "description": "Estado del usuario."
+          },
+          "language": {
+            "type": "string",
+            "example": "ES",
+            "description": "Idioma de acuerdo a ISO 631-1."
+          },
+          "timezone": {
+            "type": "string",
+            "example": "America/Bogota",
+            "description": "Zona horaria de la ubicación del usuario."
+          },
+          "control": {
+            "type": "object",
+            "description": "Contiene la información de los controles del Usuario.",
+            "required": [
+              "permissionMode"
+            ],
+            "properties": {
+              "allowedIps": {
+                "type": "array",
+                "example": [
+                  "127.0.0.1",
+                  "127.0.0.2"
+                ],
                 "description": "Ips autorizadas para el usuario."
               },
               "allowedDays": {
                 "type": "array",
+                "items":{
+                  "enum": [
+                  "MONDAY",
+                  "TUESDAY",
+                  "WEDNESDAY",
+                  "THURSDAY",
+                  "FRIDAY",
+                  "SATURDAY",
+                  "SUNDAY"
+                  ]
+                },
                 "example": [
                   "TUESDAY",
                   "WEDNESDAY"
@@ -12909,7 +12852,7 @@
           },
           "access": {
             "type": "object",
-            "description": "Objeto con información de los usuarios.",
+            "description": "Contiene la información de los grupos y filtros del Usuario.",
             "properties": {
               "groups": {
                 "type": "array",
@@ -12919,28 +12862,110 @@
                 "description": "Grupos del usuario."
               },
               "filters": {
-                "type": "object",
-                "description": "Objeto con información de filtros.",
-                "properties": {
-                  "Client": {
-                    "type": "array",
-                    "description": "Filtros de Clientes.",
-                    "format": "float",
-                    "example": [
-                      2,
-                      1
-                    ]
-                  },
-                  "Site": {
-                    "type": "array",
-                    "description": "Filtros de Sitios.",
-                    "format": "integer",
-                    "example": [
-                      2,
-                      1
-                    ]
-                  }
-                }
+                "type": "array",
+                "example": [
+                  "2",
+                  "1"
+                ],
+                "description": "Filtros del usuario."
+              }
+            }
+          }
+        }
+      },
+      "User-update": {
+        "title": "User update",
+        "type": "object",
+        "description": "Arreglo que contiene la información del usuario a actualizar.",
+        "required": [
+          "fullName",
+          "status",
+          "language"
+        ],
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "example": "Usuario Nuevo",
+            "description": "Nombre del usuario."
+          },
+          "phone": {
+            "type": "integer",
+            "example": 3203849403,
+            "description": "Teléfono del usuario."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ],
+            "example": "INACTIVE",
+            "description": "Estado del usuario."
+          },
+          "language": {
+            "type": "string",
+            "example": "ES",
+            "description": "Idioma de acuerdo a ISO 631-1."
+          },
+          "timezone": {
+            "type": "string",
+            "example": "America/Bogota",
+            "description": "Zona horaria de la ubicación del usuario."
+          },
+          "control": {
+            "type": "object",
+            "description": "Contiene la información de los datos de control del Usuario.",
+            "required": [
+              "allowedIps",
+              "allowedDays",
+              "permissionMode"
+            ],
+            "properties": {
+              "allowedIps": {
+                "type": "array",
+                "example": [
+                  "127.0.0.1",
+                  "127.0.0.2"
+                ],
+                "description": "Ips autorizadas para el usuario."
+              },
+              "allowedDays": {
+                "type": "array",
+                "example": [
+                  "TUESDAY",
+                  "WEDNESDAY"
+                ],
+                "description": "Días en los que el usuario puede ingresar."
+              },
+              "permissionMode": {
+                "type": "string",
+                "example": "INCLUDE",
+                "enum": [
+                  "INCLUDE",
+                  "EXCLUDE"
+                ],
+                "description": "Permisos del usuario."
+              }
+            }
+          },
+          "access": {
+            "type": "object",
+            "description": "Contiene la información de los grupos y filtros del Usuario.",
+            "properties": {
+              "groups": {
+                "type": "array",
+                "example": [
+                  "GROUP_PLANS"
+                ],
+                "description": "Grupos del usuario."
+              },
+              "filters": {
+                "type": "array",
+                "example": [
+                  "2",
+                  "1"
+                ],
+                "description": "Filtros del usuario."
               }
             }
           }
