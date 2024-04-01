@@ -243,6 +243,7 @@ Campo | Nombre | Long | Tipo | Req | Valor | Descripción
 9 | Tipo de incremento al vencimiento | 1 | NUM | SI | 0 / 1 | Indica si el incremento al vencimiento es un valor fijo [1] o si es un valor diario [0]. 
 10 | Base devolución | 14 | NUM | NO | | Valor sobre el cual se calcula el IVA. 12 enteros, 2 decimales.
 11 | IVA | 14 | NUM | NO | | Valor de IVA aplicado a el valor de la base devolución. 12 enteros, 2 decimales.
+12 | Hora de vencimiento | 14 | ALF | NO | H:i:s | Hora de vencimiento de la factura.
 
 ## Archivo de facturación [ Formato UBL-Invoice 1.0 ]
 
