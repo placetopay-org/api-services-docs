@@ -10304,11 +10304,10 @@
         ]
       },
       "parameters": []
-    }
   },
   "/core/user/update": {
       "post": {
-        "summary": "Actualizar usuarios",
+        "summary": "Editar un usuario",
         "operationId": "post-core-user-update",
         "description": "Este servicio permite actualizar un usuario con la información suministrada. Si la respuesta es exitosa, se retorna el identificador del usuario actualizado.",
         "responses": {
@@ -10525,7 +10524,8 @@
                 }
               }
             }
-          }
+          },
+          "description": ""
         },
       
         "tags": [
@@ -10533,7 +10533,8 @@
         ]
       },
       "parameters": []
-    },
+    }
+  },
   "components": {
     "schemas": {
       "Customer-create": {
