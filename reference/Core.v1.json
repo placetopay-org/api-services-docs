@@ -10010,45 +10010,7 @@
                         "message": "La petición se ha procesado correctamente",
                         "date": "2021-09-21T09:34:48-05:00"
                       },
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "name user",
-                          "username": "user_name13",
-                          "email": "test@test.com",
-                          "phone": 323232,
-                          "country": "CO",
-                          "active": "true",
-                          "status": "ACTIVE",
-                          "language": "ES",
-                          "permissionMode": "INCLUDE",
-                          "timezone": "America/Bogota",
-                          "creationDate": "2024-03-01 09:10:19",
-                          "statusDate": "2024-03-01 16:03:25",
-                          "loginDate": "2024-03-25 16:03:25",
-                          "allowedIps": [
-                            "127.0.0.1",
-                            "127.0.0.2"
-                          ],
-                          "allowedDays": [
-                            "TUESDAY",
-                            "WEDNESDAY",
-                            "THURSDAY",
-                            "FRIDAY",
-                            "SATURDAY",
-                            "SUNDAY"
-                          ],
-                          "groups": [
-                            "GROUP_PLANS"
-                          ]
-                        }
-                      ],
-                      "pagination": {
-                        "total": 30,
-                        "perPage": 10,
-                        "currentPage": 1,
-                        "lastPage": 1
-                      }
+                      "id": 1
                     }
                   }
                 }
