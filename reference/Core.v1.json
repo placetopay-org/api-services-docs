@@ -9964,7 +9964,11 @@
                     },
                     "id": 1,
                     "username": "testing_username",
-                    "email": "test@test.com"
+                    "email": "test@test.com",
+                    "pagination": {
+                      "perPage": 10,
+                      "currentPage": 1
+                    }
                   }
                 }
               }
@@ -10102,7 +10106,6 @@
                     "username": "testing_username",
                     "email": "test@test.com",
                     "phone": "320394803",
-                    "password": "Testing1234",
                     "status": "ACTIVE",
                     "language": "ES",
                     "timezone": "America/Bogota",
@@ -10168,6 +10171,11 @@
                   "properties": {
                     "status": {
                       "$ref": "../Models/Status.json"
+                    },
+                    "id" : {
+                      "type": "integer",
+                      "example": 1,
+                      "description": "Identificador del usuario editado."
                     }
                   }
                 },
@@ -10251,15 +10259,18 @@
                   "auth": {
                     "$ref": "../Models/Autentication.json"
                   },
+                  "id" : {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Identificador del usuario editado."
+                  },
                   "data": {
-                    "$ref": "#/components/schemas/User-create"
+                    "$ref": "#/components/schemas/User-update"
                   }
                 },
                 "required": [
                   "auth",
-                  "fullName",
-                  "status",
-                  "language"
+                  "id"
                 ]
               },
               "examples": {
@@ -10271,15 +10282,50 @@
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
                     },
-                    "fullName": 1,
+                    "id": 1,
+                    "fullName": "usuario",
+                    "phone": "3215874854",
                     "status": "ACTIVE",
-                    "language": "es"
+                    "language": "ES",
+                    "timezone": "America/Bogota",
+                    "control": {
+                      "allowedIps": [
+                        "127.0.0.1",
+                        "127.0.0.2"
+                      ],
+                      "allowedDays": [
+                        "TUESDAY",
+                        "WEDNESDAY",
+                        "THURSDAY",
+                        "FRIDAY"
+                      ],
+                      "permissionMode": "INCLUDE"
+                    },
+                    "access": {
+                      "groups": [
+                        "GROUP_PLANS"
+                      ],
+                      "filters": [
+                        {
+                          "id": 1,
+                          "values": [
+                            1,
+                            2
+                          ]
+                        },
+                        {
+                          "id": 2,
+                          "values": [
+                            1
+                          ]
+                        }
+                      ]
+                    }
                   }
                 }
               }
             }
-          },
-          "description": ""
+          }
         },
         "tags": [
           "Acciones sobre usuarios"
@@ -12855,20 +12901,18 @@
         "title": "User update",
         "type": "object",
         "description": "Arreglo que contiene la información del usuario a actualizar.",
-        "required": [
-          "fullName",
-          "status",
-          "language"
-        ],
         "properties": {
           "fullName": {
             "type": "string",
+            "minLength": 10,
+            "maxLength": 100,
             "example": "Usuario Nuevo",
             "description": "Nombre del usuario."
           },
           "phone": {
-            "type": "integer",
-            "example": 3203849403,
+            "type": "string",
+            "maxLength": 25,
+            "example": "3203849403",
             "description": "Teléfono del usuario."
           },
           "status": {
@@ -12882,22 +12926,19 @@
           },
           "language": {
             "type": "string",
+            "maxLength": 5,
             "example": "ES",
             "description": "Idioma de acuerdo a ISO 631-1."
           },
           "timezone": {
             "type": "string",
+            "maxLength": 40,
             "example": "America/Bogota",
             "description": "Zona horaria de la ubicación del usuario."
           },
           "control": {
             "type": "object",
-            "description": "Contiene la información de los datos de control del Usuario.",
-            "required": [
-              "allowedIps",
-              "allowedDays",
-              "permissionMode"
-            ],
+            "description": "Información de control.",
             "properties": {
               "allowedIps": {
                 "type": "array",
@@ -12905,15 +12946,26 @@
                   "127.0.0.1",
                   "127.0.0.2"
                 ],
-                "description": "Ips autorizadas para el usuario."
+                "description": "Ips autorizadas para ingresar al sistema."
               },
               "allowedDays": {
                 "type": "array",
+                "items":{
+                  "enum": [
+                  "MONDAY",
+                  "TUESDAY",
+                  "WEDNESDAY",
+                  "THURSDAY",
+                  "FRIDAY",
+                  "SATURDAY",
+                  "SUNDAY"
+                  ]
+                },
                 "example": [
                   "TUESDAY",
                   "WEDNESDAY"
                 ],
-                "description": "Días en los que el usuario puede ingresar."
+                "description": "Días permitidos para ingresar al sistema."
               },
               "permissionMode": {
                 "type": "string",
@@ -12928,7 +12980,7 @@
           },
           "access": {
             "type": "object",
-            "description": "Contiene la información de los grupos y filtros del Usuario.",
+            "description": "Información de acceso.",
             "properties": {
               "groups": {
                 "type": "array",
@@ -12939,11 +12991,17 @@
               },
               "filters": {
                 "type": "array",
+                "description": "Objeto con información de filtros.",
                 "example": [
-                  "2",
-                  "1"
-                ],
-                "description": "Filtros del usuario."
+                  {
+                    "id": 1,
+                    "values": [1,2]
+                  },
+                  {
+                    "id": 1,
+                    "values": [2]
+                  }
+                ]
               }
             }
           }
