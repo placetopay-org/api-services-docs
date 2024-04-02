@@ -12688,6 +12688,7 @@
                 "type": "array",
                 "uniqueItems": true,
                 "description": "Días permitidos para ingresar al sistema.",
+                "default": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"],
                 "items": {
                   "type": "string",
                   "example": "TUESDAY",
@@ -12852,7 +12853,8 @@
                   "TUESDAY",
                   "WEDNESDAY"
                 ],
-                "description": "Días permitidos para ingresar al sistema."
+                "description": "Días permitidos para ingresar al sistema.",
+                "default": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
               },
               "permissionMode": {
                 "type": "string",
@@ -12962,7 +12964,8 @@
                   "TUESDAY",
                   "WEDNESDAY"
                 ],
-                "description": "Días permitidos para ingresar al sistema."
+                "description": "Días permitidos para ingresar al sistema.",
+                "default": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
               },
               "permissionMode": {
                 "type": "string",
