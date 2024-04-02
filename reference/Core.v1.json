@@ -10130,14 +10130,14 @@
                       ],
                       "filters": [
                         {
-                          "id": 1,
+                          "code": "Client",
                           "values": [
                             1,
                             2
                           ]
                         },
                         {
-                          "id": 2,
+                          "code": "Site",
                           "values": [
                             1
                           ]
@@ -10307,14 +10307,14 @@
                       ],
                       "filters": [
                         {
-                          "id": 1,
+                          "code": "CLient",
                           "values": [
                             1,
                             2
                           ]
                         },
                         {
-                          "id": 2,
+                          "code": "Site",
                           "values": [
                             1
                           ]
@@ -12881,11 +12881,11 @@
                 "description": "Objeto con información de filtros.",
                 "example": [
                   {
-                    "id": 1,
+                    "code": "Client",
                     "values": [1,2]
                   },
                   {
-                    "id": 1,
+                    "code": "Site",
                     "values": [2]
                   }
                 ]
@@ -12991,11 +12991,11 @@
                 "description": "Objeto con información de filtros.",
                 "example": [
                   {
-                    "id": 1,
+                    "code": "Client",
                     "values": [1,2]
                   },
                   {
-                    "id": 1,
+                    "code": "Site",
                     "values": [2]
                   }
                 ]
