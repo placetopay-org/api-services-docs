@@ -12622,7 +12622,7 @@
           "country": {
             "type": "string",
             "example": "CO",
-            "minLength": 2,
+            "maxLength": 2,
             "description": "País al que pertecene el usuario."
           },
           "status": {
