@@ -9806,13 +9806,13 @@
                           "fullName": "name user",
                           "username": "testing_username",
                           "email": "test@test.com",
-                          "phone": "323232",
+                          "mobile": "+573202321247",
                           "country": "CO",
                           "status": "ACTIVE",
                           "language": "ES",
                           "timezone": "America/Bogota",
-                          "creationDate": "2024-03-01 09:10:19",
-                          "lastLoginDate": "2024-03-25 16:03:25",
+                          "createdAt": "2024-03-01 09:10:19",
+                          "lastLoginAt": "2024-03-25 16:03:25",
                           "control": {
                             "allowedIps": [
                               "127.0.0.1",
@@ -9833,23 +9833,16 @@
                             "groups": [
                               "GROUP_PLANS"
                             ],
-                            "filter": [
-                              {
-                                "id": "1",
-                                "code": "Client",
-                                "values": [
-                                  "1",
-                                  "2"
-                                ]
-                              },
-                              {
-                                "id": "2",
-                                "code": "Site",
-                                "values": [
-                                  "1"
-                                ]
-                              }
-                            ]
+                            "filters": {
+                              "client": [
+                                1,
+                                2
+                              ],
+                              "seller": [
+                                1,
+                                2
+                              ]
+                            }
                           }
                         }
                       ],
@@ -10105,7 +10098,7 @@
                     "fullName": "usuario",
                     "username": "testing_username",
                     "email": "test@test.com",
-                    "phone": "320394803",
+                    "mobile": "+573203948038",
                     "status": "ACTIVE",
                     "language": "ES",
                     "timezone": "America/Bogota",
@@ -10128,21 +10121,16 @@
                       "groups": [
                         "GROUP_PLANS"
                       ],
-                      "filters": [
-                        {
-                          "code": "Client",
-                          "values": [
-                            1,
-                            2
-                          ]
-                        },
-                        {
-                          "code": "Site",
-                          "values": [
-                            1
-                          ]
-                        }
-                      ]
+                      "filters": {
+                        "client": [
+                          1,
+                          2
+                        ],
+                        "seller": [
+                          1,
+                          2
+                        ]
+                      }
                     }
                   }
                 }
@@ -10284,7 +10272,7 @@
                     },
                     "id": 1,
                     "fullName": "usuario",
-                    "phone": "3215874854",
+                    "mobile": "+573215874854",
                     "status": "ACTIVE",
                     "language": "ES",
                     "timezone": "America/Bogota",
@@ -10305,21 +10293,16 @@
                       "groups": [
                         "GROUP_PLANS"
                       ],
-                      "filters": [
-                        {
-                          "code": "CLient",
-                          "values": [
-                            1,
-                            2
-                          ]
-                        },
-                        {
-                          "code": "Site",
-                          "values": [
-                            1
-                          ]
-                        }
-                      ]
+                      "filters": {
+                        "client": [
+                          1,
+                          2
+                        ],
+                        "seller": [
+                          1,
+                          2
+                        ]
+                      }
                     }
                   }
                 }
@@ -12631,7 +12614,7 @@
             "example": "test@test.com",
             "description": "Email del usuario."
           },
-          "phone": {
+          "mobile": {
             "type": "string",
             "example": "3203849403",
             "description": "Teléfono del usuario."
@@ -12662,12 +12645,12 @@
             "example": "America/Bogota",
             "description": "Zona horaria de la ubicación del usuario."
           },
-          "creationDate": {
+          "createdAt": {
             "type": "string",
             "example": "2021-09-21T09:34:48-05:00",
             "description": "Fecha de creación del usuario."
           },
-          "lastLoginDate": {
+          "lastLoginAt": {
             "type": "string",
             "example": "2021-09-21T09:34:48-05:00",
             "description": "Fecha de último ingreso del usuario."
@@ -12726,34 +12709,19 @@
                 "description": "Grupos del usuario."
               },
               "filters": {
-                "type": "array",
+                "type": "object",
                 "description": "Objeto con información de filtros.",
-                "example": [
-                  {
-                    "id": 1,
-                    "code": "Client",
-                    "values": [
-                      {
-                        "id": 1,
-                        "name": "CO customer"
-                      },
-                      {
-                        "id": 2,
-                        "name": "EC customer"
-                      }
-                    ]
-                  },
-                  {
-                    "id": 2,
-                    "code": "Site",
-                    "values": [
-                      {
-                        "id": 2,
-                        "name": "EC site"
-                      }
-                    ]
-                  }
-                ]
+                "example": 
+                {
+                  "client": [
+                    1,
+                    2
+                  ],
+                  "seller": [
+                    1,
+                    2
+                  ]
+                }
               }
             }
           }
@@ -12794,7 +12762,7 @@
             "example": "test@test.com",
             "description": "Email del usuario."
           },
-          "phone": {
+          "mobile": {
             "type": "string",
             "maxLength": 25,
             "example": "3203849403",
@@ -12879,18 +12847,19 @@
                 "description": "Grupos del usuario."
               },
               "filters": {
-                "type": "array",
+                "type": "object",
                 "description": "Objeto con información de filtros.",
-                "example": [
-                  {
-                    "code": "Client",
-                    "values": [1,2]
-                  },
-                  {
-                    "code": "Site",
-                    "values": [2]
-                  }
-                ]
+                "example": 
+                {
+                  "client": [
+                    1,
+                    2
+                  ],
+                  "seller": [
+                    1,
+                    2
+                  ]
+                }
               }
             }
           }
@@ -12908,7 +12877,7 @@
             "example": "Usuario Nuevo",
             "description": "Nombre del usuario."
           },
-          "phone": {
+          "mobile": {
             "type": "string",
             "maxLength": 25,
             "example": "3203849403",
@@ -12990,18 +12959,19 @@
                 "description": "Grupos del usuario."
               },
               "filters": {
-                "type": "array",
+                "type": "object",
                 "description": "Objeto con información de filtros.",
-                "example": [
-                  {
-                    "code": "Client",
-                    "values": [1,2]
-                  },
-                  {
-                    "code": "Site",
-                    "values": [2]
-                  }
-                ]
+                "example": 
+                {
+                  "client": [
+                    1,
+                    2
+                  ],
+                  "seller": [
+                    1,
+                    2
+                  ]
+                }
               }
             }
           }
