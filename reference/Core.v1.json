@@ -11705,7 +11705,7 @@
             "description": "Identificador del filtro",
             "example": 1
           },
-          "name": {
+          "code": {
             "type": "string",
             "description": "Código del filtro",
             "example": "Client"
@@ -12607,6 +12607,7 @@
           "country": {
             "type": "string",
             "example": "CO",
+            "minLength": 2,
             "description": "País al que pertecene el usuario."
           },
           "status": {
@@ -12816,7 +12817,7 @@
                   "INCLUDE",
                   "EXCLUDE"
                 ],
-                "description": "Permisos del usuario."
+                "description": "Restricción de filtros del usuario."
               }
             }
           },
@@ -12928,7 +12929,7 @@
                   "INCLUDE",
                   "EXCLUDE"
                 ],
-                "description": "Permisos del usuario."
+                "description": "Restricción de filtros del usuario."
               }
             }
           },
