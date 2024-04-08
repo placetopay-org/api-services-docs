@@ -12616,8 +12616,8 @@
           },
           "mobile": {
             "type": "string",
-            "example": "3203849403",
-            "description": "Teléfono del usuario."
+            "example": "+573203849403",
+            "description": "Teléfono movil del usuario."
           },
           "country": {
             "type": "string",
@@ -12765,8 +12765,8 @@
           "mobile": {
             "type": "string",
             "maxLength": 25,
-            "example": "3203849403",
-            "description": "Teléfono del usuario."
+            "example": "+573203849403",
+            "description": "Teléfono movil del usuario."
           },
           "status": {
             "type": "string",
@@ -12880,8 +12880,8 @@
           "mobile": {
             "type": "string",
             "maxLength": 25,
-            "example": "3203849403",
-            "description": "Teléfono del usuario."
+            "example": "+573203849403",
+            "description": "Teléfono movil del usuario."
           },
           "status": {
             "type": "string",
