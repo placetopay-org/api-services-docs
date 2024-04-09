@@ -50,6 +50,10 @@
     {
       "name": "Procedimientos adicionales",
       "description": "Acciones sobre la administración de entidades adicionales."
+    },
+    {
+      "name": "Acciones sobre usuarios",
+      "description": "Acciones sobre la administración de usuarios."
     }
   ],
   "paths": {
@@ -430,7 +434,7 @@
                     "pagination": {
                       "$ref": "#/components/schemas/Pagination",
                       "x-stoplight": {
-                        "id": "m1gx7a7aw32hg"
+                        "id": "phhs2nzdvtbvk"
                       }
                     }
                   }
@@ -596,14 +600,14 @@
                   "pagination": {
                     "type": "object",
                     "x-stoplight": {
-                      "id": "h2qof8qcrf3e4"
+                      "id": "ir0ueruqp05mr"
                     },
                     "description": "Objeto que contiene los parámetros de la paginación ",
                     "properties": {
                       "perPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "am1gkxb3o2yeh"
+                          "id": "81vffigq5jsc3"
                         },
                         "default": 15,
                         "example": 15,
@@ -613,7 +617,7 @@
                       "currentPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "2ki48q2cetvy4"
+                          "id": "8uaglau4sgnpu"
                         },
                         "default": 1,
                         "example": 1,
@@ -1306,14 +1310,14 @@
                   "pagination": {
                     "type": "object",
                     "x-stoplight": {
-                      "id": "joy1ezzdgdnsr"
+                      "id": "0nyme7pr67fc6"
                     },
                     "description": "Objeto que contiene los parámetros de la paginación.",
                     "properties": {
                       "perPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "l8i1byhvphcos"
+                          "id": "3husvolbssjg6"
                         },
                         "default": 15,
                         "example": 15,
@@ -1322,7 +1326,7 @@
                       "currentPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "vsfp451q8x942"
+                          "id": "areb4t1u2j9d9"
                         },
                         "default": 1,
                         "example": 1,
@@ -1810,7 +1814,7 @@
                       "creditRules": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "68dkcnqfvoziq"
+                          "id": "c0wffn4dmstuw"
                         },
                         "description": "Objeto que contiene las reglas de crédito del meio de pago"
                       }
@@ -2026,7 +2030,7 @@
                       "creditRules": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "55h3stavi6vf7"
+                          "id": "wrutlj02wv8p8"
                         },
                         "description": "Objeto que contiene las reglas de crédito del medio de pago"
                       }
@@ -2230,7 +2234,7 @@
                     "pagination": {
                       "$ref": "#/components/schemas/Pagination",
                       "x-stoplight": {
-                        "id": "62ecn80fbcomp"
+                        "id": "0g73qhzxlgo2v"
                       }
                     }
                   }
@@ -2397,14 +2401,14 @@
                   "pagination": {
                     "type": "object",
                     "x-stoplight": {
-                      "id": "z26fkuzv110hf"
+                      "id": "wxhz4lda0ctcl"
                     },
                     "description": "Objeto que contiene los parámetros de paginación.",
                     "properties": {
                       "perPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "o6dj0t16yy6kl"
+                          "id": "a2orsqh7asj4k"
                         },
                         "example": 10,
                         "description": "Número de registros por página"
@@ -2412,7 +2416,7 @@
                       "currentPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "1q0fhaju4lwkc"
+                          "id": "zonkjska50t7d"
                         },
                         "example": 1,
                         "description": "Página actual"
@@ -2740,7 +2744,7 @@
                       "control": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "l696doxdexkcg"
+                          "id": "e1o9zi26h5j1v"
                         },
                         "description": "Objeto con información de los datos de control.",
                         "required": [
@@ -2755,7 +2759,7 @@
                           "minAmount": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "rgny3j6n98jx8"
+                              "id": "a3lk7rs3k0ip5"
                             },
                             "description": "Mínimo valor permitido por transacción.",
                             "format": "float",
@@ -2767,7 +2771,7 @@
                           "maxAmount": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "1pph0b86r10oh"
+                              "id": "yakn5at2jkv3n"
                             },
                             "description": "Máximo valor permitido por transacción.",
                             "format": "float",
@@ -2779,7 +2783,7 @@
                           "allowedDays": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "0dowgqg7xqu97"
+                              "id": "nok1h8dyfuyrm"
                             },
                             "minimum": 0,
                             "maximum": 127,
@@ -2790,7 +2794,7 @@
                           "allowedHours": {
                             "type": "string",
                             "x-stoplight": {
-                              "id": "3n7kg5u2l2sm1"
+                              "id": "ggdovn3vkckrj"
                             },
                             "description": "Horas de operación.",
                             "default": "ffffffffffffffffffffffffffffffffffffffffff",
@@ -2802,7 +2806,7 @@
                           "filterPse": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "yk2spkkdd3fqi"
+                              "id": "5blz93ip8nvq5"
                             },
                             "default": false,
                             "description": "Indicador de uso de filtros de seguridad en PSE"
@@ -2810,7 +2814,7 @@
                           "filterTuya": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "vvme27bpaasoh"
+                              "id": "1f38sbldzaieu"
                             },
                             "default": false,
                             "description": "Indicador de uso de filtros de seguridad en Tuya"
@@ -2818,7 +2822,7 @@
                           "filterSafetypay": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "melckc2y2wmk2"
+                              "id": "4wyi6dcwt0lgz"
                             },
                             "default": false,
                             "description": "Indicador de uso de filtros de seguridad en safetypay"
@@ -2826,7 +2830,7 @@
                           "prechargeFilter": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "56s7n6ghdumbd"
+                              "id": "qdlvhkg6pld3z"
                             },
                             "minimum": 0,
                             "maximum": 2,
@@ -2841,12 +2845,12 @@
                           "allowedBankCountries": {
                             "type": "array",
                             "x-stoplight": {
-                              "id": "amo1f2z08b59v"
+                              "id": "khxwaulmvzfex"
                             },
                             "description": "Paises permitidos para bancos emisores. Es nulo cuando todos los paises sean permitidos.",
                             "items": {
                               "x-stoplight": {
-                                "id": "xmp4q46mm9di9"
+                                "id": "sab15mn2ccv8q"
                               },
                               "type": "string",
                               "example": "CO",
@@ -2857,7 +2861,7 @@
                           "filterByBin": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "e5kqkqxf1rfl1"
+                              "id": "bcf0ihfpc05va"
                             },
                             "default": false,
                             "description": "Indicador de uso del filtro por bines. "
@@ -2865,12 +2869,12 @@
                           "exceptionBinsList": {
                             "type": "array",
                             "x-stoplight": {
-                              "id": "igdkvkkdozsep"
+                              "id": "qrbjy7kigz8u3"
                             },
                             "description": "Lista de Bines a exceptuar.",
                             "items": {
                               "x-stoplight": {
-                                "id": "5jdoznw7ojcbz"
+                                "id": "2o44bi8fem32d"
                               },
                               "type": "number",
                               "example": 411111
@@ -2879,7 +2883,7 @@
                           "delegatedAuthorization": {
                             "type": "string",
                             "x-stoplight": {
-                              "id": "zdvf7hq4ucuq4"
+                              "id": "udkyxflcbwno6"
                             },
                             "description": "Autorización delegada.",
                             "pattern": "^([0-9a-f]){42}",
@@ -2892,13 +2896,13 @@
                       "threeDS": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "k6cr3sgftw1ri"
+                          "id": "k8qjaa9ld1rxw"
                         },
                         "description": "Contiene la información de las configuraciones de threeDS",
                         "properties": {
                           "setting": {
                             "x-stoplight": {
-                              "id": "wxj8698imnl4z"
+                              "id": "o6e4xe52vp4un"
                             },
                             "enum": [
                               "VERY_LOW",
@@ -2911,7 +2915,7 @@
                           "minAmount": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "deeicie825ckm"
+                              "id": "oghnn0ngh62ng"
                             },
                             "description": "Monto mínimo para aplicar threeDS a la transacción",
                             "format": "float",
@@ -2924,13 +2928,13 @@
                       "historic": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "dk9jhy7usuiur"
+                          "id": "7w5v70voo1lxw"
                         },
                         "description": "Contiene la información de Histórico transaccional ",
                         "properties": {
                           "behaviour": {
                             "x-stoplight": {
-                              "id": "zkcw6a0aeeavs"
+                              "id": "zx076xboqysa3"
                             },
                             "enum": [
                               "IGNORE",
@@ -2942,7 +2946,7 @@
                           "lowerScore": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "n5c4at9g7f7ga"
+                              "id": "8mg51qup6g0bf"
                             },
                             "minimum": 1,
                             "maximum": 999,
@@ -2954,7 +2958,7 @@
                           "rejectionScore": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "uyqkwlx1d3uzu"
+                              "id": "z6t9e9l1og0kt"
                             },
                             "default": null,
                             "example": 200,
@@ -2968,14 +2972,14 @@
                       "creditBureau": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "v6n2y1ca4u72y"
+                          "id": "6e3hudspdxoqk"
                         },
                         "description": "Contiene los parámetros de configuración de información financiera.\nPara habilitar este módulo, debe enviarlo dentro de la solicitud, de lo contrario enviar como campo nulo o no enviarlo.",
                         "properties": {
                           "behaviours": {
                             "type": "object",
                             "x-stoplight": {
-                              "id": "0e5iyenzb8qw7"
+                              "id": "ptrvqbeuqwip7"
                             },
                             "minProperties": 3,
                             "maxProperties": 3,
@@ -2983,7 +2987,7 @@
                             "properties": {
                               "onFailed": {
                                 "x-stoplight": {
-                                  "id": "kvnotwlnupy3b"
+                                  "id": "jtm49yl7qg7dv"
                                 },
                                 "enum": [
                                   "REJECTED",
@@ -2994,7 +2998,7 @@
                               },
                               "onNoMatch": {
                                 "x-stoplight": {
-                                  "id": "fmqacnw49xulf"
+                                  "id": "pe4x7i22pyn6r"
                                 },
                                 "enum": [
                                   "REJECTED",
@@ -3005,7 +3009,7 @@
                               },
                               "onMatch": {
                                 "x-stoplight": {
-                                  "id": "fp593mb9osyeg"
+                                  "id": "5guq3b0s0sp82"
                                 },
                                 "enum": [
                                   "PROCESS",
@@ -3019,12 +3023,12 @@
                           "paymentGroups": {
                             "type": "array",
                             "x-stoplight": {
-                              "id": "yekmxl1832ift"
+                              "id": "vu9fpov6jxwov"
                             },
                             "description": "Contiene el grupo de medios de pago",
                             "items": {
                               "x-stoplight": {
-                                "id": "9chsfr6matbaw"
+                                "id": "svdu6xiopm72c"
                               },
                               "enum": [
                                 "CASH",
@@ -3038,7 +3042,7 @@
                           "minAmount": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "zemxshogjqtee"
+                              "id": "eayi7vk3b9v55"
                             },
                             "maximum": 999999999,
                             "example": 10,
@@ -3049,20 +3053,20 @@
                       "riskEngine": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "boxd0mh8dcf7r"
+                          "id": "tukw8u2lqzjev"
                         },
                         "description": "Contiene las configuraciones de motores de riesgo",
                         "properties": {
                           "behaviours": {
                             "type": "object",
                             "x-stoplight": {
-                              "id": "kfdu2qvv7oiyu"
+                              "id": "b8xxsk44u0c89"
                             },
                             "description": "Contiene la información del comportamiento a seguir del módulo.\nEste parámetro es requerido si riskEngine está presente y no es un campo nulo.",
                             "properties": {
                               "onFailed": {
                                 "x-stoplight": {
-                                  "id": "d94gbwbiyoa0g"
+                                  "id": "1r18a8our71pl"
                                 },
                                 "enum": [
                                   "REJECTED",
@@ -3073,7 +3077,7 @@
                               },
                               "onLowRisk": {
                                 "x-stoplight": {
-                                  "id": "i0bubad2ilqb7"
+                                  "id": "syx21w5mtj591"
                                 },
                                 "enum": [
                                   "MANUAL",
@@ -3084,7 +3088,7 @@
                               },
                               "onMediumRisk": {
                                 "x-stoplight": {
-                                  "id": "9sikurl3dv7ih"
+                                  "id": "tlx610b6ezn6j"
                                 },
                                 "enum": [
                                   "REJECTED",
@@ -3096,7 +3100,7 @@
                               },
                               "onHighRisk": {
                                 "x-stoplight": {
-                                  "id": "r5ejoz705pljd"
+                                  "id": "wldcgwe4jt9c1"
                                 },
                                 "enum": [
                                   "REJECTED",
@@ -3110,12 +3114,12 @@
                           "paymentGroups": {
                             "type": "array",
                             "x-stoplight": {
-                              "id": "pw4y7slygsgl6"
+                              "id": "owfj4f8nys0eb"
                             },
                             "description": "Grupo de medios de pago.",
                             "items": {
                               "x-stoplight": {
-                                "id": "otxppt997vsce"
+                                "id": "ju1hy8b3zq2or"
                               },
                               "enum": [
                                 "CASH",
@@ -3129,7 +3133,7 @@
                           "minAmount": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "4y27ou1t3nvlz"
+                              "id": "n48wxf2e7zib8"
                             },
                             "description": "Monto mínimo para activar.\nEste campo es requerido siempre que riskEngine no sea nulo",
                             "maximum": 999999999,
@@ -3140,7 +3144,7 @@
                           "approvalScore": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "1sjgrnfs1iwjw"
+                              "id": "ho3psk54smccl"
                             },
                             "minimum": 1,
                             "maximum": 999,
@@ -3150,7 +3154,7 @@
                           "rejectionScore": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "4kyalt3g72qiq"
+                              "id": "usios2f3m84ox"
                             },
                             "minimum": 1,
                             "maximum": 999,
@@ -3160,7 +3164,7 @@
                           "onCalibration": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "k2qtmu7lgjrg9"
+                              "id": "waexelty9bl1i"
                             },
                             "description": "Indica el estado en calibración.\nEste campo es requerido siempre que riskEngine no sea nulo"
                           }
@@ -3169,20 +3173,20 @@
                       "securityFilters": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "9dby0ebisyatc"
+                          "id": "zjr3qxbaptr64"
                         },
                         "description": "Contiene la información de filtros de seguridad",
                         "properties": {
                           "allowedIssuerCountries": {
                             "type": "array",
                             "x-stoplight": {
-                              "id": "c0umwb5sorqh0"
+                              "id": "u2midx49a5tzu"
                             },
                             "minItems": 1,
                             "description": "Paises permitidos para bancos emisores.\n",
                             "items": {
                               "x-stoplight": {
-                                "id": "wb1vpepq903f8"
+                                "id": "yh306o61uws98"
                               },
                               "type": "string",
                               "maxLength": 2,
@@ -3192,20 +3196,20 @@
                           "forceIPMatch": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "rg1k248houfyd"
+                              "id": "pjtqzddbxc4ik"
                             },
                             "description": "Indica si se debe verificar que el país asociado a la IP del comprador coincida con la IP del banco emisor.\nPor defecto, su valor es FALSE"
                           },
                           "excludeIPCountry": {
                             "type": "array",
                             "x-stoplight": {
-                              "id": "sf4u00cqahjjb"
+                              "id": "c4s065ijdiw2k"
                             },
                             "description": "Indica para qué paises se debe excluir coincidencia para emisores.",
                             "minItems": 1,
                             "items": {
                               "x-stoplight": {
-                                "id": "98bf9n62h7e7a"
+                                "id": "0znmzgykxv1p1"
                               },
                               "type": "string",
                               "maxLength": 2,
@@ -3215,20 +3219,20 @@
                           "onlyWhitelisted": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "8hfeikl4ooxle"
+                              "id": "pda4fpyqvspvg"
                             },
                             "description": "Indica si se debe procesar solo lista de preferidos.\nPor defecto su valor es FALSE"
                           },
                           "allowedIPCountries": {
                             "type": "array",
                             "x-stoplight": {
-                              "id": "mp54ry7miji9n"
+                              "id": "hpht13qz64sxr"
                             },
                             "minItems": 1,
                             "description": "Paises permitidos para compradores.",
                             "items": {
                               "x-stoplight": {
-                                "id": "v7x92mz1t47w1"
+                                "id": "8ci3drznacpbb"
                               },
                               "type": "string",
                               "example": "CO",
@@ -3238,7 +3242,7 @@
                           "allowedCardsDay": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "z8ko2g57fikff"
+                              "id": "00ij4p6msrr22"
                             },
                             "minimum": 1,
                             "maximum": 999,
@@ -3249,7 +3253,7 @@
                           "allowedCardsByIP": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "cdbzmz6lmv618"
+                              "id": "tb6qyveuw636e"
                             },
                             "maximum": 999,
                             "default": 30,
@@ -3259,7 +3263,7 @@
                           "allowedCardsMonth": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "nxzl2n2hh25mr"
+                              "id": "81w6gcnyr885n"
                             },
                             "maximum": 999,
                             "example": 3,
@@ -3269,7 +3273,7 @@
                           "allowedCardsYear": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "lwave0hq4a8sk"
+                              "id": "cy8g67f2wxq2w"
                             },
                             "description": "Indica el número de tarjetas diferentes que un cliente puede usar al año.\n0 indica ilimitadas",
                             "maximum": 999,
@@ -3279,7 +3283,7 @@
                           "dayMax": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "xvdfvylaqr3bz"
+                              "id": "h61fekr249l4n"
                             },
                             "maximum": 999,
                             "example": 1,
@@ -3289,7 +3293,7 @@
                           "dayMaxAmount": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "o9jjerx3d5azn"
+                              "id": "96elo67y28wnw"
                             },
                             "default": 100000000,
                             "maximum": 99999999999999,
@@ -3301,7 +3305,7 @@
                           "monthMax": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "m8nf35jqesoe6"
+                              "id": "4j7niqnskro5j"
                             },
                             "maximum": 999,
                             "example": 2,
@@ -3311,7 +3315,7 @@
                           "monthMaxAmount": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "75g31ymhhdrjv"
+                              "id": "cgpe9v0n4vwjg"
                             },
                             "maximum": 99999999999999,
                             "default": 100000000,
@@ -3324,28 +3328,28 @@
                       "operation": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "apiovo03imsg9"
+                          "id": "6d9z822drghib"
                         },
                         "description": "Contiene la información del funcionamiento de consola.\n",
                         "properties": {
                           "disableTax": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "y83t08dqcr8fg"
+                              "id": "80o28dz7wb51o"
                             },
                             "description": "Indicador para deshabilitar el ingreso de IVA.\nPor defecto, su valor es FALSE "
                           },
                           "calculateTax": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "jgp1mpj5qg8t4"
+                              "id": "nmzd06enwp722"
                             },
                             "description": "Indicador para autocalcular IVA.\nPor defecto, su valor es FALSE"
                           },
                           "taxPercentage": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "n3t9khy82cqvl"
+                              "id": "orz8f147u3j47"
                             },
                             "maximum": 50,
                             "format": "float",
@@ -3356,7 +3360,7 @@
                           "patternReference": {
                             "type": "string",
                             "x-stoplight": {
-                              "id": "3i8pjh4qwrf73"
+                              "id": "8j2y16hmd3mjk"
                             },
                             "maxLength": 30,
                             "minLength": 0,
@@ -3365,14 +3369,14 @@
                           "mailCustomer": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "b485hdo2mce65"
+                              "id": "7u5b65o6dff51"
                             },
                             "description": "Indica si se debe enviar automáticamente un email con el comprobante de una transacción exitosa realizada en el panel adminsitrativo.\nSu valor por defecto es True."
                           },
                           "mailMerchant": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "41yjjnx7s09bk"
+                              "id": "b7uiya2wfqakc"
                             },
                             "description": "Indica si se debe enviar una copia del email al comercio cuando una transacción realizada en el panel administrativo es exitosa.\nSu valor por defecto es False."
                           }
@@ -3381,21 +3385,21 @@
                       "subscriptionValidation": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "4yvrkaveqb7cd"
+                          "id": "troww05w4oqxm"
                         },
                         "description": "Contiene las configuraciones para la validación de información de suscripción",
                         "properties": {
                           "enable": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "tz4djth3bcv11"
+                              "id": "hw640gdgonc7y"
                             },
                             "description": "Habilita la validación de suscripción.\nSu valor por defecto es False."
                           },
                           "amount": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "xpv3qkyj9ht5i"
+                              "id": "cmn0o5rrjj3zo"
                             },
                             "format": "double",
                             "default": 0,
@@ -3408,21 +3412,21 @@
                       "branding": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "4up30pdodfxjb"
+                          "id": "z5b5th43i8iy8"
                         },
                         "description": "Objeto para guardar la configuración sobre la gestión de marca del sitio",
                         "properties": {
                           "buttonColor": {
                             "type": "string",
                             "x-stoplight": {
-                              "id": "3rwn1973we11a"
+                              "id": "sypi4cpi1g7jj"
                             },
                             "description": "Color para los botones del web checkout, en formato HEX, Ej.: #EE00DD"
                           },
                           "sidebarColor": {
                             "type": "string",
                             "x-stoplight": {
-                              "id": "xzfygjmju7hdp"
+                              "id": "v3y9vjq36hsbp"
                             },
                             "description": "Colo de fondo del sidebar del web checkout, en formato HEX. Ej.: #FFCCEE"
                           }
@@ -3834,14 +3838,14 @@
                       "control": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "l696doxdexkcg"
+                          "id": "husz5cqe57en9"
                         },
                         "description": "Objeto con información de los datos de control.",
                         "properties": {
                           "minAmount": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "rgny3j6n98jx8"
+                              "id": "yybe4xmwqxdan"
                             },
                             "description": "Mínimo valor permitido por transacción. Este campo es requerido si el campo maxAmount está presente.",
                             "format": "float",
@@ -3852,7 +3856,7 @@
                           "maxAmount": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "1pph0b86r10oh"
+                              "id": "392bpd3pnh6qh"
                             },
                             "description": "Máximo valor permitido por transacción. Este campo es requerido si el campo minAmount está presente.",
                             "format": "float",
@@ -3863,7 +3867,7 @@
                           "allowedDays": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "0dowgqg7xqu97"
+                              "id": "nzughqgoewfzm"
                             },
                             "minimum": 0,
                             "maximum": 127,
@@ -3873,7 +3877,7 @@
                           "allowedHours": {
                             "type": "string",
                             "x-stoplight": {
-                              "id": "3n7kg5u2l2sm1"
+                              "id": "cgyezn3dz753g"
                             },
                             "description": "Horas de operación.",
                             "example": "ffffffffffffffffffffffffffffffffffffffffff",
@@ -3884,7 +3888,7 @@
                           "filterPse": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "yk2spkkdd3fqi"
+                              "id": "z9d3k06cq1yu8"
                             },
                             "default": false,
                             "description": "Indicador de uso de filtros de seguridad en PSE"
@@ -3892,7 +3896,7 @@
                           "filterTuya": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "vvme27bpaasoh"
+                              "id": "0jiea0btc70p5"
                             },
                             "default": false,
                             "description": "Indicador de uso de filtros de seguridad en Tuya"
@@ -3900,7 +3904,7 @@
                           "filterSafetypay": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "melckc2y2wmk2"
+                              "id": "g5zin7awalj5q"
                             },
                             "default": false,
                             "description": "Indicador de uso de filtros de seguridad en safetypay"
@@ -3908,7 +3912,7 @@
                           "prechargeFilter": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "56s7n6ghdumbd"
+                              "id": "c1ydbmu8y82n1"
                             },
                             "minimum": 0,
                             "maximum": 2,
@@ -3923,12 +3927,12 @@
                           "allowedBankCountries": {
                             "type": "array",
                             "x-stoplight": {
-                              "id": "amo1f2z08b59v"
+                              "id": "05jok3fg6x4p6"
                             },
                             "description": "Paises permitidos para bancos emisores. Es nulo cuando todos los paises sean permitidos.",
                             "items": {
                               "x-stoplight": {
-                                "id": "xmp4q46mm9di9"
+                                "id": "kmvv5dgzkwwt9"
                               },
                               "type": "string",
                               "example": "CO",
@@ -3939,7 +3943,7 @@
                           "filterByBin": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "e5kqkqxf1rfl1"
+                              "id": "8tc761hq4hwxi"
                             },
                             "default": false,
                             "description": "Indicador de uso del filtro por bines. "
@@ -3947,12 +3951,12 @@
                           "exceptionBinsList": {
                             "type": "array",
                             "x-stoplight": {
-                              "id": "igdkvkkdozsep"
+                              "id": "v05ot7qqtqxa2"
                             },
                             "description": "Lista de Bines a exceptuar.",
                             "items": {
                               "x-stoplight": {
-                                "id": "5jdoznw7ojcbz"
+                                "id": "0b3i03ll9m2kr"
                               },
                               "type": "number",
                               "example": 411111
@@ -3961,7 +3965,7 @@
                           "delegatedAuthorization": {
                             "type": "string",
                             "x-stoplight": {
-                              "id": "zdvf7hq4ucuq4"
+                              "id": "x0y1uj40dmcmi"
                             },
                             "description": "Autorización delegada.",
                             "pattern": "^([0-9a-f]){42}",
@@ -3974,14 +3978,14 @@
                       "threeDS": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "k6cr3sgftw1ri"
+                          "id": "qsoryky2gayh2"
                         },
                         "description": "Contiene la información de las configuraciones de threeDS",
                         "nullable": true,
                         "properties": {
                           "setting": {
                             "x-stoplight": {
-                              "id": "wxj8698imnl4z"
+                              "id": "chm767dnb2x95"
                             },
                             "enum": [
                               "VERY_LOW",
@@ -3994,7 +3998,7 @@
                           "minAmount": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "deeicie825ckm"
+                              "id": "6y5lnkk9mrive"
                             },
                             "description": "Monto mínimo para aplicar threeDS a la transacción",
                             "example": 40,
@@ -4005,13 +4009,13 @@
                       "historic": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "dk9jhy7usuiur"
+                          "id": "8amcoqkmm8rgf"
                         },
                         "description": "Contiene la información de Histórico transaccional ",
                         "properties": {
                           "behaviour": {
                             "x-stoplight": {
-                              "id": "zkcw6a0aeeavs"
+                              "id": "1y91m3zbuq2xd"
                             },
                             "enum": [
                               "IGNORE",
@@ -4023,7 +4027,7 @@
                           "lowerScore": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "n5c4at9g7f7ga"
+                              "id": "4hfi9qx7bip61"
                             },
                             "minimum": 1,
                             "maximum": 999,
@@ -4035,7 +4039,7 @@
                           "rejectionScore": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "uyqkwlx1d3uzu"
+                              "id": "sbnqyrgyqmm2a"
                             },
                             "default": null,
                             "example": 200,
@@ -4049,7 +4053,7 @@
                       "creditBureau": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "v6n2y1ca4u72y"
+                          "id": "joccj71vltc3e"
                         },
                         "description": "Contiene los parámetros de configuración de información financiera.\nPara habilitar este módulo, debe enviarlo dentro de la solicitud, de lo contrario enviar como campo nulo o no enviarlo.",
                         "nullable": true,
@@ -4057,7 +4061,7 @@
                           "behaviours": {
                             "type": "object",
                             "x-stoplight": {
-                              "id": "0e5iyenzb8qw7"
+                              "id": "qkuykfomzcif2"
                             },
                             "minProperties": 3,
                             "maxProperties": 3,
@@ -4066,7 +4070,7 @@
                             "properties": {
                               "onFailed": {
                                 "x-stoplight": {
-                                  "id": "kvnotwlnupy3b"
+                                  "id": "y1cqbos4oayp9"
                                 },
                                 "enum": [
                                   "REJECTED",
@@ -4077,7 +4081,7 @@
                               },
                               "onNoMatch": {
                                 "x-stoplight": {
-                                  "id": "fmqacnw49xulf"
+                                  "id": "mvn9r6mz11rv1"
                                 },
                                 "enum": [
                                   "REJECTED",
@@ -4088,7 +4092,7 @@
                               },
                               "onMatch": {
                                 "x-stoplight": {
-                                  "id": "fp593mb9osyeg"
+                                  "id": "if28huepuab55"
                                 },
                                 "enum": [
                                   "PROCESS",
@@ -4102,13 +4106,13 @@
                           "paymentGroups": {
                             "type": "array",
                             "x-stoplight": {
-                              "id": "yekmxl1832ift"
+                              "id": "h6cc0ah9vi6iv"
                             },
                             "description": "Contiene el grupo de medios de pago",
                             "nullable": true,
                             "items": {
                               "x-stoplight": {
-                                "id": "mbnob6thtead0"
+                                "id": "sxag6u0kf6vii"
                               },
                               "type": "string",
                               "maxLength": 2,
@@ -4118,7 +4122,7 @@
                           "minAmount": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "zemxshogjqtee"
+                              "id": "8b7ylrnejmicc"
                             },
                             "example": 10,
                             "description": "Monto mínimo para activar.\n",
@@ -4129,7 +4133,7 @@
                       "riskEngine": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "boxd0mh8dcf7r"
+                          "id": "cdeblbks45hms"
                         },
                         "description": "Contiene las configuraciones de motores de riesgo",
                         "nullable": true,
@@ -4137,14 +4141,14 @@
                           "behaviours": {
                             "type": "object",
                             "x-stoplight": {
-                              "id": "kfdu2qvv7oiyu"
+                              "id": "wl2fzwaf864de"
                             },
                             "description": "Contiene la información del comportamiento a seguir del módulo.\n",
                             "nullable": true,
                             "properties": {
                               "onFailed": {
                                 "x-stoplight": {
-                                  "id": "d94gbwbiyoa0g"
+                                  "id": "x304zcoccj6yi"
                                 },
                                 "enum": [
                                   "REJECTED",
@@ -4155,7 +4159,7 @@
                               },
                               "onLowRisk": {
                                 "x-stoplight": {
-                                  "id": "i0bubad2ilqb7"
+                                  "id": "8noc5vzdauo0c"
                                 },
                                 "enum": [
                                   "MANUAL",
@@ -4166,7 +4170,7 @@
                               },
                               "onMediumRisk": {
                                 "x-stoplight": {
-                                  "id": "9sikurl3dv7ih"
+                                  "id": "3y50s3vu4fz7s"
                                 },
                                 "enum": [
                                   "REJECTED",
@@ -4178,7 +4182,7 @@
                               },
                               "onHighRisk": {
                                 "x-stoplight": {
-                                  "id": "r5ejoz705pljd"
+                                  "id": "mgifbknc8n81f"
                                 },
                                 "enum": [
                                   "REJECTED",
@@ -4192,13 +4196,13 @@
                           "paymentGroups": {
                             "type": "array",
                             "x-stoplight": {
-                              "id": "pw4y7slygsgl6"
+                              "id": "ko597oo2qe0g5"
                             },
                             "description": "Grupo de medios de pago.",
                             "nullable": true,
                             "items": {
                               "x-stoplight": {
-                                "id": "6c87g6g5nm52x"
+                                "id": "mr2n6n59hcmnr"
                               },
                               "type": "string",
                               "example": "EC",
@@ -4208,7 +4212,7 @@
                           "minAmount": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "4y27ou1t3nvlz"
+                              "id": "6ld7klqdutt53"
                             },
                             "description": "Monto mínimo para activar.\n",
                             "maximum": 999999999,
@@ -4219,7 +4223,7 @@
                           "approvalScore": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "1sjgrnfs1iwjw"
+                              "id": "54t0bsjyfpnom"
                             },
                             "minimum": 1,
                             "maximum": 999,
@@ -4229,7 +4233,7 @@
                           "rejectionScore": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "4kyalt3g72qiq"
+                              "id": "20bb1wvvrwslw"
                             },
                             "minimum": 1,
                             "maximum": 999,
@@ -4239,7 +4243,7 @@
                           "onCalibration": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "k2qtmu7lgjrg9"
+                              "id": "lf558moh8aj4a"
                             },
                             "description": "Indica el estado en calibración.\n"
                           }
@@ -4248,7 +4252,7 @@
                       "securityFilters": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "9dby0ebisyatc"
+                          "id": "xqk22llu5v0yb"
                         },
                         "description": "Contiene la información de filtros de seguridad",
                         "nullable": true,
@@ -4256,13 +4260,13 @@
                           "allowedIssuerCountries": {
                             "type": "array",
                             "x-stoplight": {
-                              "id": "c0umwb5sorqh0"
+                              "id": "ujd8i0vbedt0n"
                             },
                             "minItems": 1,
                             "description": "Paises permitidos para bancos emisores.\n",
                             "items": {
                               "x-stoplight": {
-                                "id": "wb1vpepq903f8"
+                                "id": "0u5w0b52f77ym"
                               },
                               "type": "string",
                               "maxLength": 2,
@@ -4272,20 +4276,20 @@
                           "forceIPMatch": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "rg1k248houfyd"
+                              "id": "fcpuym7shete4"
                             },
                             "description": "Indica si se debe verificar que el país asociado a la IP del comprador coincida con la IP del banco emisor.\n"
                           },
                           "excludeIPCountry": {
                             "type": "array",
                             "x-stoplight": {
-                              "id": "sf4u00cqahjjb"
+                              "id": "6q4rsiw7p86or"
                             },
                             "description": "Indica para qué paises se debe excluir coincidencia para emisores.",
                             "minItems": 1,
                             "items": {
                               "x-stoplight": {
-                                "id": "98bf9n62h7e7a"
+                                "id": "47i1fa55t1vaw"
                               },
                               "type": "string",
                               "maxLength": 2,
@@ -4295,20 +4299,20 @@
                           "onlyWhitelisted": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "8hfeikl4ooxle"
+                              "id": "ieipltc21jqyk"
                             },
                             "description": "Indica si se debe procesar solo lista de preferidos.\n"
                           },
                           "allowedIPCountries": {
                             "type": "array",
                             "x-stoplight": {
-                              "id": "mp54ry7miji9n"
+                              "id": "tdybz6v3i7e6f"
                             },
                             "minItems": 1,
                             "description": "Paises permitidos para compradores.",
                             "items": {
                               "x-stoplight": {
-                                "id": "v7x92mz1t47w1"
+                                "id": "msyfxn708ep1l"
                               },
                               "type": "string",
                               "example": "CO",
@@ -4318,7 +4322,7 @@
                           "allowedCardsDay": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "z8ko2g57fikff"
+                              "id": "g5tn25whz94s6"
                             },
                             "minimum": 1,
                             "maximum": 999,
@@ -4329,7 +4333,7 @@
                           "allowedCardsByIP": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "cdbzmz6lmv618"
+                              "id": "yiqedmvru837q"
                             },
                             "maximum": 999,
                             "default": 30,
@@ -4339,7 +4343,7 @@
                           "allowedCardsMonth": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "nxzl2n2hh25mr"
+                              "id": "takouvlzcsqv9"
                             },
                             "maximum": 999,
                             "example": 3,
@@ -4349,7 +4353,7 @@
                           "allowedCardsYear": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "lwave0hq4a8sk"
+                              "id": "76ar85mske8xa"
                             },
                             "description": "Indica el número de tarjetas diferentes que un cliente puede usar al año.\n0 indica ilimitadas",
                             "maximum": 999,
@@ -4359,7 +4363,7 @@
                           "dayMax": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "xvdfvylaqr3bz"
+                              "id": "er3djgbaxg7ra"
                             },
                             "maximum": 999,
                             "example": 1,
@@ -4369,7 +4373,7 @@
                           "dayMaxAmount": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "o9jjerx3d5azn"
+                              "id": "r0jmhkzbckhh5"
                             },
                             "default": 100000000,
                             "maximum": 99999999999999,
@@ -4381,7 +4385,7 @@
                           "monthMax": {
                             "type": "integer",
                             "x-stoplight": {
-                              "id": "m8nf35jqesoe6"
+                              "id": "iz5hww9i1si10"
                             },
                             "maximum": 999,
                             "example": 2,
@@ -4391,7 +4395,7 @@
                           "monthMaxAmount": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "75g31ymhhdrjv"
+                              "id": "tgdrnmhfr5lvq"
                             },
                             "maximum": 99999999999999,
                             "default": 100000000,
@@ -4404,28 +4408,28 @@
                       "operation": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "apiovo03imsg9"
+                          "id": "ugtjit0kfc7fj"
                         },
                         "description": "Contiene la información del funcionamiento de consola.\n",
                         "properties": {
                           "disableTax": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "y83t08dqcr8fg"
+                              "id": "xb2vszkqeuc6r"
                             },
                             "description": "Indicador para deshabilitar el ingreso de IVA.\n"
                           },
                           "calculateTax": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "jgp1mpj5qg8t4"
+                              "id": "cfzmlap28higd"
                             },
                             "description": "Indicador para autocalcular IVA.\nPor defecto, su valor es FALSE"
                           },
                           "taxPercentage": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "n3t9khy82cqvl"
+                              "id": "594e04jx2f5ca"
                             },
                             "maximum": 50,
                             "format": "float",
@@ -4435,7 +4439,7 @@
                           "patternReference": {
                             "type": "string",
                             "x-stoplight": {
-                              "id": "3i8pjh4qwrf73"
+                              "id": "7fcqf9093axme"
                             },
                             "maxLength": 30,
                             "minLength": 0,
@@ -4444,14 +4448,14 @@
                           "mailCustomer": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "b485hdo2mce65"
+                              "id": "5to93mu9950o0"
                             },
                             "description": "Indica si se debe enviar automáticamente un email con el comprobante de una transacción exitosa realizada en el panel adminsitrativo.\n"
                           },
                           "mailMerchant": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "41yjjnx7s09bk"
+                              "id": "ppz6txjhqzjfr"
                             },
                             "description": "Indica si se debe enviar una copia del email al comercio cuando una transacción realizada en el panel administrativo es exitosa.\n"
                           }
@@ -4460,21 +4464,21 @@
                       "subscriptionValidation": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "4yvrkaveqb7cd"
+                          "id": "lxflta03lnvrc"
                         },
                         "description": "Contiene las configuraciones para la validación de información de suscripción",
                         "properties": {
                           "enable": {
                             "type": "boolean",
                             "x-stoplight": {
-                              "id": "tz4djth3bcv11"
+                              "id": "3rphcmrwbqijg"
                             },
                             "description": "Habilita la validación de suscripción.\n"
                           },
                           "amount": {
                             "type": "number",
                             "x-stoplight": {
-                              "id": "xpv3qkyj9ht5i"
+                              "id": "27jx2oy1g68wf"
                             },
                             "format": "double",
                             "default": 0,
@@ -4487,14 +4491,14 @@
                       "branding": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "s18wthwd2pgh2"
+                          "id": "91v165sb8gnko"
                         },
                         "description": "Objeto para guardar la configuración sobre la gestión de marca del sitio",
                         "properties": {
                           "buttonColor": {
                             "type": "string",
                             "x-stoplight": {
-                              "id": "my6k3fg3m6ktk"
+                              "id": "z5m4wdbr50xdb"
                             },
                             "description": "Color en formato Hex para los botones de la pasarela de pagos",
                             "example": "#EE00DD",
@@ -4503,7 +4507,7 @@
                           "sidebarColor": {
                             "type": "string",
                             "x-stoplight": {
-                              "id": "0dzt8a1b901x3"
+                              "id": "h0wgs375ijkjh"
                             },
                             "example": "#EE00DD",
                             "description": "Color en formato Hex para el sidebar (barra lateral) de la pasarela de pagos",
@@ -4747,7 +4751,7 @@
                   "branding": {
                     "type": "array",
                     "x-stoplight": {
-                      "id": "7gb0aa879m3gd"
+                      "id": "6nkm4p4ytr67r"
                     },
                     "description": "Array para guardar la configuración sobre la gestión de marca del sitio",
                     "items": {}
@@ -4755,7 +4759,7 @@
                   "checkoutVersion": {
                     "type": "string",
                     "x-stoplight": {
-                      "id": "uhgqbd6gbczxw"
+                      "id": "0h6za6e8jtml2"
                     },
                     "description": "Version del checkout"
                   }
@@ -4791,7 +4795,7 @@
           "Acciones sobre sitios"
         ],
         "x-stoplight": {
-          "id": "es71e3sk1l7ia"
+          "id": "rpzmk2gtv50ds"
         }
       },
       "parameters": []
@@ -4814,7 +4818,7 @@
                     "logoUrl": {
                       "type": "string",
                       "x-stoplight": {
-                        "id": "itultkldn1ju2"
+                        "id": "mlctifuwahjxr"
                       },
                       "format": "uri",
                       "example": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png"
@@ -4920,7 +4924,7 @@
           }
         },
         "x-stoplight": {
-          "id": "1p16m9i2f82cx"
+          "id": "nlqbnzh4j5agx"
         },
         "description": "Este servicio permite actualizar el logo de un sitio, \nya sea subiendo uno nuevo, reemplazando uno existente, \nsi el parámetro \"file\" es nulo se elimina el logo actual",
         "requestBody": {
@@ -4939,14 +4943,14 @@
                   "id": {
                     "type": "integer",
                     "x-stoplight": {
-                      "id": "dbdfy18o5vtu4"
+                      "id": "06j4rwcd94t5s"
                     },
                     "description": "Identificador del sitio."
                   },
                   "file": {
                     "type": "string",
                     "x-stoplight": {
-                      "id": "97z4vmtaglim3"
+                      "id": "l5oj6vy3lvrwk"
                     },
                     "description": "Archivo que representa el logo del sitio, puede ser nulo, tamaño máximo 2048Kb.",
                     "pattern": ".jpg, .jpeg, .png, .svg",
@@ -5123,7 +5127,7 @@
                     "pagination": {
                       "$ref": "#/components/schemas/Pagination",
                       "x-stoplight": {
-                        "id": "yoex83vem3h22"
+                        "id": "qo70t1fn96z15"
                       }
                     }
                   }
@@ -5367,14 +5371,14 @@
                   "pagination": {
                     "type": "object",
                     "x-stoplight": {
-                      "id": "kdw2a5m1r4tz1"
+                      "id": "mszwytrbno8nb"
                     },
                     "description": "Objeto que contiene los parámetros de paginación.",
                     "properties": {
                       "perPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "m5zs2lkdm74kv"
+                          "id": "7nv9oyl6794qe"
                         },
                         "description": "Cantidad de registros por página",
                         "default": 15,
@@ -5383,7 +5387,7 @@
                       "currentPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "oyjvy2gpwd3xw"
+                          "id": "6r26pw8dwn4fg"
                         },
                         "description": "Página actual",
                         "default": 1,
@@ -5547,7 +5551,7 @@
                       "customerPaymentId": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "fapfe82fyp2iy"
+                          "id": "7w3u00zxu1ei3"
                         },
                         "example": 1,
                         "description": "Identificador del medio de pago asociado al comercio (comercio al cual pertenece el sitio)."
@@ -5555,7 +5559,7 @@
                       "order": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "mj535hua2whfx"
+                          "id": "he8ijjjy5iju0"
                         },
                         "minimum": 1,
                         "maximum": 32767,
@@ -5565,7 +5569,7 @@
                       "minAmount": {
                         "type": "number",
                         "x-stoplight": {
-                          "id": "ei5ru7gxfxb7x"
+                          "id": "n34wtd5nt6ozx"
                         },
                         "description": "Mínimo valor permitido por transacción. Este campo es requerido cuando el campo maxAmount está presente.",
                         "format": "float",
@@ -5576,7 +5580,7 @@
                       "maxAmount": {
                         "type": "number",
                         "x-stoplight": {
-                          "id": "td816laq9soh9"
+                          "id": "nxny13mhf30ih"
                         },
                         "format": "float",
                         "example": 99999999.99,
@@ -5587,7 +5591,7 @@
                       "accountType": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "5kwiytahbv3v1"
+                          "id": "ddown3tkvkjtt"
                         },
                         "example": 1,
                         "description": "Identificador del tipo de cuenta de recaudo. Este campo es requerido cuando el campo accountNumber está presente."
@@ -5595,7 +5599,7 @@
                       "accountNumber": {
                         "type": "string",
                         "x-stoplight": {
-                          "id": "gzy9p6xul3toe"
+                          "id": "j3ezob9sa7679"
                         },
                         "maxLength": 20,
                         "example": "123456789900",
@@ -5604,7 +5608,7 @@
                       "financialEntity": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "63potk2wcbfl8"
+                          "id": "p1sr1h5ftqen1"
                         },
                         "example": 1,
                         "description": "Identificador de la entidad financiera o banco de recaudo del medio de pago. La entidad financiera debe ser del país del comercio asociado al sitio."
@@ -5612,7 +5616,7 @@
                       "commissionModel": {
                         "type": "string",
                         "x-stoplight": {
-                          "id": "hsx1e5e9qcgvj"
+                          "id": "3zgc3nei40tlv"
                         },
                         "enum": [
                           "P",
@@ -5625,7 +5629,7 @@
                       "commissionValue": {
                         "type": "number",
                         "x-stoplight": {
-                          "id": "sde2n9pw7cn9u"
+                          "id": "tdum5h63qwy2a"
                         },
                         "example": 1,
                         "minimum": 0,
@@ -5635,14 +5639,14 @@
                       "settings": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "9ok1s8gra52tz"
+                          "id": "l4f8uetm5wsku"
                         },
                         "description": "Objeto que contiene las configuraciones del medio de pago."
                       },
                       "creditRules": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "ige6f04mhaase"
+                          "id": "zwc795x85a042"
                         },
                         "description": "Objeto que contiene las reglas de crédito del medio de pago"
                       }
@@ -5810,7 +5814,7 @@
                   "id": {
                     "type": "integer",
                     "x-stoplight": {
-                      "id": "jzau5qd9ywowr"
+                      "id": "0mmy2xmvq24um"
                     },
                     "description": "Identificador del medio de pago."
                   },
@@ -5821,7 +5825,7 @@
                       "order": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "mj535hua2whfx"
+                          "id": "7rc4w20zescad"
                         },
                         "minimum": 1,
                         "maximum": 32767,
@@ -5831,7 +5835,7 @@
                       "minAmount": {
                         "type": "number",
                         "x-stoplight": {
-                          "id": "ei5ru7gxfxb7x"
+                          "id": "2a2rzsrwd31ri"
                         },
                         "description": "Mínimo valor permitido por transacción. Este campo es requerido cuando el campo maxAmount está presente.",
                         "format": "float",
@@ -5842,7 +5846,7 @@
                       "maxAmount": {
                         "type": "number",
                         "x-stoplight": {
-                          "id": "td816laq9soh9"
+                          "id": "wz9oqly7bu2pa"
                         },
                         "format": "float",
                         "example": 99999999.99,
@@ -5853,7 +5857,7 @@
                       "accountType": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "5kwiytahbv3v1"
+                          "id": "83u2ih1zxwdq6"
                         },
                         "example": 1,
                         "description": "Identificador del tipo de cuenta de recaudo. Este campo es requerido cuando el campo accountNumber está presente."
@@ -5861,7 +5865,7 @@
                       "accountNumber": {
                         "type": "string",
                         "x-stoplight": {
-                          "id": "gzy9p6xul3toe"
+                          "id": "s38iydkkgz8f6"
                         },
                         "maxLength": 20,
                         "example": "123456789900",
@@ -5870,7 +5874,7 @@
                       "financialEntity": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "63potk2wcbfl8"
+                          "id": "0mz0j73xs6v51"
                         },
                         "example": 1,
                         "description": "Identificador de la entidad financiera o banco de recaudo del medio de pago. La entidad financiera debe ser del país del comercio asociado al sitio."
@@ -5878,7 +5882,7 @@
                       "commissionModel": {
                         "type": "string",
                         "x-stoplight": {
-                          "id": "hsx1e5e9qcgvj"
+                          "id": "eqpryk7mtszzz"
                         },
                         "enum": [
                           "P",
@@ -5891,7 +5895,7 @@
                       "commissionValue": {
                         "type": "number",
                         "x-stoplight": {
-                          "id": "sde2n9pw7cn9u"
+                          "id": "81rbijs3gm3bi"
                         },
                         "example": 1,
                         "minimum": 0,
@@ -5901,14 +5905,14 @@
                       "settings": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "9ok1s8gra52tz"
+                          "id": "ew9nbc5ubd7lp"
                         },
                         "description": "Objeto que contiene las configuraciones del medio de pago."
                       },
                       "creditRules": {
                         "type": "object",
                         "x-stoplight": {
-                          "id": "o6gy5mumo41xj"
+                          "id": "6o9l7htk5oecl"
                         },
                         "description": "Objeto que contiene las reglas de crédito del medio de pago."
                       }
@@ -6062,7 +6066,7 @@
                   "id": {
                     "type": "integer",
                     "x-stoplight": {
-                      "id": "jzau5qd9ywowr"
+                      "id": "ks87qr65mzvqu"
                     },
                     "description": "Identificador del medio de pago."
                   }
@@ -6114,20 +6118,20 @@
                     "data": {
                       "type": "array",
                       "x-stoplight": {
-                        "id": "vno5fvdbi8scy"
+                        "id": "wropkvdpgugm3"
                       },
                       "description": "Arreglo que contiene los medios de pago consultados.",
                       "items": {
                         "$ref": "#/components/schemas/Site-Payment-Method",
                         "x-stoplight": {
-                          "id": "em3lbeh1cym6r"
+                          "id": "54glqt6somlvl"
                         }
                       }
                     },
                     "pagination": {
                       "$ref": "#/components/schemas/Pagination",
                       "x-stoplight": {
-                        "id": "0ikysd3wr7hp4"
+                        "id": "rx7tyysufnpgq"
                       }
                     }
                   }
@@ -6255,7 +6259,7 @@
                   "siteId": {
                     "type": "integer",
                     "x-stoplight": {
-                      "id": "bd0b6tkbh971y"
+                      "id": "t9qwkvn2ra2c8"
                     },
                     "example": 1,
                     "description": "Identificador de sitio"
@@ -6263,14 +6267,14 @@
                   "id": {
                     "type": "integer",
                     "x-stoplight": {
-                      "id": "jzau5qd9ywowr"
+                      "id": "dhcuef94g2z59"
                     },
                     "description": "Identificador del medio de pago."
                   },
                   "name": {
                     "type": "string",
                     "x-stoplight": {
-                      "id": "s77qkbek7f5d2"
+                      "id": "exoxs3ny10u8c"
                     },
                     "maxLength": 50,
                     "minLength": 3,
@@ -6280,7 +6284,7 @@
                   "code": {
                     "type": "string",
                     "x-stoplight": {
-                      "id": "dgapsme1boutn"
+                      "id": "yicc9rq4hikpd"
                     },
                     "maxLength": 5,
                     "description": "Código identificador del medio de pago"
@@ -6288,7 +6292,7 @@
                   "franchise": {
                     "type": "string",
                     "x-stoplight": {
-                      "id": "qzjyezsqck2lq"
+                      "id": "gesgiucv7srm9"
                     },
                     "description": "Franquicia del medio de pago",
                     "example": "VISA"
@@ -6296,14 +6300,14 @@
                   "pagination": {
                     "type": "object",
                     "x-stoplight": {
-                      "id": "td95lk4tohan2"
+                      "id": "lqqhtv1l1yta6"
                     },
                     "description": "Objeto que contiene los parámetros de paginación",
                     "properties": {
                       "perPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "tu3zw3pwftaqt"
+                          "id": "j5tru6maox4gs"
                         },
                         "default": 15,
                         "example": 1,
@@ -6313,7 +6317,7 @@
                       "currentPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "70udqppixgylo"
+                          "id": "gqnf9c4djoht8"
                         },
                         "default": 1,
                         "example": 1,
@@ -6882,7 +6886,7 @@
                     "pagination": {
                       "$ref": "#/components/schemas/Pagination",
                       "x-stoplight": {
-                        "id": "588dxvr5a730p"
+                        "id": "wmclpt4fgokad"
                       }
                     }
                   }
@@ -7026,14 +7030,14 @@
                   "pagination": {
                     "type": "object",
                     "x-stoplight": {
-                      "id": "llwmmcdt9neqf"
+                      "id": "it9go504kwqa2"
                     },
                     "description": "Objeto que contiene los parámetros de paginación",
                     "properties": {
                       "perPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "cwdjq789izwli"
+                          "id": "wflj3k36w67ru"
                         },
                         "default": 15,
                         "example": 10,
@@ -7042,7 +7046,7 @@
                       "currentPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "77rt3qaau23fe"
+                          "id": "ngrj0azazdgko"
                         },
                         "default": 1,
                         "example": 1,
@@ -7223,14 +7227,14 @@
                   "pagination": {
                     "type": "object",
                     "x-stoplight": {
-                      "id": "5nlvpisk1t33v"
+                      "id": "4vjmjyapt6x4t"
                     },
                     "description": "Objeto que contiene los parámetros de paginación",
                     "properties": {
                       "perPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "j3mvvtstmveqs"
+                          "id": "lg1ia6dv53mg8"
                         },
                         "default": 15,
                         "example": 10,
@@ -7240,7 +7244,7 @@
                       "currentPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "lp60x5o247rlu"
+                          "id": "1iw2n17ak03a4"
                         },
                         "example": 1,
                         "default": 1,
@@ -7307,7 +7311,7 @@
                     "pagination": {
                       "$ref": "#/components/schemas/Pagination",
                       "x-stoplight": {
-                        "id": "p0w4rqt9yajly"
+                        "id": "3mxxgn250mgcf"
                       }
                     }
                   }
@@ -7407,13 +7411,13 @@
                   "auth": {
                     "$ref": "../Models/Autentication.json",
                     "x-stoplight": {
-                      "id": "kynkdzgh5fngb"
+                      "id": "ycaz3eulg5c4a"
                     }
                   },
                   "country": {
                     "type": "string",
                     "x-stoplight": {
-                      "id": "j6cv1oatf25qu"
+                      "id": "bcrmdkevnmrbv"
                     },
                     "minLength": 2,
                     "maxLength": 2,
@@ -7423,14 +7427,14 @@
                   "pagination": {
                     "type": "object",
                     "x-stoplight": {
-                      "id": "t5e73vlf22315"
+                      "id": "xf3bnljhspltg"
                     },
                     "description": "Objeto que contiene los parámetros de paginación.",
                     "properties": {
                       "perPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "crgyliudnwkaa"
+                          "id": "y37x4nkzqm1fr"
                         },
                         "default": 15,
                         "example": 10,
@@ -7440,7 +7444,7 @@
                       "currentPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "xltcugbkkt9xh"
+                          "id": "5iap28i9rmt26"
                         },
                         "default": 1,
                         "example": 1,
@@ -7503,7 +7507,7 @@
                     "pagination": {
                       "$ref": "#/components/schemas/Pagination",
                       "x-stoplight": {
-                        "id": "c3ys3h19urlf1"
+                        "id": "5xyjkowcqep19"
                       }
                     }
                   }
@@ -7604,7 +7608,7 @@
                   "country": {
                     "type": "string",
                     "x-stoplight": {
-                      "id": "cgmf8rhhu1a2h"
+                      "id": "ajapvm1riyc32"
                     },
                     "minLength": 2,
                     "maxLength": 2,
@@ -7614,14 +7618,14 @@
                   "pagination": {
                     "type": "object",
                     "x-stoplight": {
-                      "id": "p3ftk3zb4e4dq"
+                      "id": "vhu2hxqei1qb7"
                     },
                     "description": "Objeto que contiene los parámetros de paginación",
                     "properties": {
                       "perPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "cz3g8q1obspme"
+                          "id": "pcwtdb60q5k0y"
                         },
                         "default": 15,
                         "example": 10,
@@ -7631,7 +7635,7 @@
                       "currentPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "snyvhj5xv2ekm"
+                          "id": "zge9in0h6tzu2"
                         },
                         "default": 1,
                         "example": 1,
@@ -7698,7 +7702,7 @@
                     "pagination": {
                       "$ref": "#/components/schemas/Pagination",
                       "x-stoplight": {
-                        "id": "fxsvrvavx2e0j"
+                        "id": "y9nh9ip15pc3s"
                       }
                     }
                   }
@@ -7799,7 +7803,7 @@
                   "country": {
                     "type": "string",
                     "x-stoplight": {
-                      "id": "dgx80xoqec0og"
+                      "id": "0dqjn0glcwuv5"
                     },
                     "minLength": 2,
                     "maxLength": 2,
@@ -7808,7 +7812,7 @@
                   },
                   "pagination": {
                     "x-stoplight": {
-                      "id": "uj09lfstr2lj5"
+                      "id": "364fu09yhfk2c"
                     },
                     "type": "object",
                     "description": "Objeto que contiene los parámetros de paginación",
@@ -7816,7 +7820,7 @@
                       "perPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "2uv9fg77nlj55"
+                          "id": "q2b0ozb868qjz"
                         },
                         "default": 15,
                         "example": 10,
@@ -7826,7 +7830,7 @@
                       "currentPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "dtdc2js3zah2f"
+                          "id": "mqnny6wb0ymmc"
                         },
                         "default": 1,
                         "example": 1,
@@ -7893,7 +7897,7 @@
                     "pagination": {
                       "$ref": "#/components/schemas/Pagination",
                       "x-stoplight": {
-                        "id": "474xgqtfqp1xi"
+                        "id": "mzkn6ri7cv49r"
                       }
                     }
                   }
@@ -7994,7 +7998,7 @@
                   "country": {
                     "type": "string",
                     "x-stoplight": {
-                      "id": "slqxony0xw5rl"
+                      "id": "5xkozedij7jyq"
                     },
                     "maxLength": 2,
                     "minLength": 2,
@@ -8004,14 +8008,14 @@
                   "pagination": {
                     "type": "object",
                     "x-stoplight": {
-                      "id": "wsgaq5ygxqeo3"
+                      "id": "so3xtxhsvwx7k"
                     },
                     "description": "Objeto que contiene los parámetros de paginación",
                     "properties": {
                       "perPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "eomehv0u3f171"
+                          "id": "n6vmbo1oqk08d"
                         },
                         "description": "Cantidad de registros por página",
                         "default": 15,
@@ -8021,7 +8025,7 @@
                       "currentPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "rjfl71yg51nf4"
+                          "id": "oh9hrzrjsq9rf"
                         },
                         "description": "Página actual",
                         "default": 1,
@@ -8088,7 +8092,7 @@
                     "pagination": {
                       "$ref": "#/components/schemas/Pagination",
                       "x-stoplight": {
-                        "id": "qfb94aeo85i2q"
+                        "id": "t29ve0ikp3d41"
                       }
                     }
                   }
@@ -8189,14 +8193,14 @@
                   "pagination": {
                     "type": "object",
                     "x-stoplight": {
-                      "id": "c3818h19e9oqa"
+                      "id": "l68q9xzv8pfw6"
                     },
                     "description": "Objeto que contiene los parámetros de paginación",
                     "properties": {
                       "perPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "agt1e9jt9k0cm"
+                          "id": "hutek5nwnt8il"
                         },
                         "default": 15,
                         "example": 10,
@@ -8206,7 +8210,7 @@
                       "currentPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "z8sy0ironv774"
+                          "id": "zpptmnkgd5b9t"
                         },
                         "default": 1,
                         "example": 1,
@@ -8272,7 +8276,7 @@
                     "pagination": {
                       "$ref": "#/components/schemas/Pagination",
                       "x-stoplight": {
-                        "id": "sjex5nzjuc3jo"
+                        "id": "qlb8trmxhrsm1"
                       }
                     }
                   }
@@ -8373,14 +8377,14 @@
                   "pagination": {
                     "type": "object",
                     "x-stoplight": {
-                      "id": "kehzq4m9b398x"
+                      "id": "3zp9m28a1oiah"
                     },
                     "description": "Objeto que contiene los parámetros de paginación",
                     "properties": {
                       "perPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "bqxy8w7zq21fr"
+                          "id": "5qoafr9smdi7g"
                         },
                         "description": "Cantidad de registro por página",
                         "default": 15,
@@ -8390,7 +8394,7 @@
                       "currentPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "rezv68wc4fc7w"
+                          "id": "x9k2gm07xah8g"
                         },
                         "description": "Página actual",
                         "default": 1,
@@ -8456,7 +8460,7 @@
                     "pagination": {
                       "$ref": "#/components/schemas/Pagination",
                       "x-stoplight": {
-                        "id": "5e9k8indfgkvm"
+                        "id": "20l79rfn8l5gc"
                       }
                     }
                   }
@@ -8555,14 +8559,14 @@
                   "pagination": {
                     "type": "object",
                     "x-stoplight": {
-                      "id": "slwumlj3ri58z"
+                      "id": "inbtpsron59v0"
                     },
                     "description": "Objeto que contiene los parámetros de paginación.",
                     "properties": {
                       "perPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "7hf9onz7bb8xf"
+                          "id": "8ewvd60fo5rcj"
                         },
                         "default": 15,
                         "example": 10,
@@ -8572,7 +8576,7 @@
                       "currentPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "s80y4yz5rbsxq"
+                          "id": "mbvuc1ark9q8u"
                         },
                         "default": 1,
                         "example": 1,
@@ -8638,7 +8642,7 @@
                     "pagination": {
                       "$ref": "#/components/schemas/Pagination",
                       "x-stoplight": {
-                        "id": "5xb8rw5kxmrty"
+                        "id": "o03gmad0v4ynv"
                       }
                     }
                   }
@@ -8738,14 +8742,14 @@
                   "pagination": {
                     "type": "object",
                     "x-stoplight": {
-                      "id": "ieut5yefc1gdv"
+                      "id": "oll9qz7suzl00"
                     },
                     "description": "Objeto que contiene parámetros de paginación.",
                     "properties": {
                       "perPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "tbj7dpdfs64u2"
+                          "id": "n7ijlzko31pg5"
                         },
                         "description": "Cantidad de registros por página.",
                         "default": 15,
@@ -8755,7 +8759,7 @@
                       "currentPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "dikrkc3yigrt8"
+                          "id": "tgg46hzclh0be"
                         },
                         "description": "Página actual a consultar.",
                         "default": 1,
@@ -8814,20 +8818,20 @@
                     "data": {
                       "type": "array",
                       "x-stoplight": {
-                        "id": "331taz9iqvyft"
+                        "id": "ibvwk9cmjeshl"
                       },
                       "description": "Arreglo que contiene los métodos de pago consultados y su información.",
                       "items": {
                         "$ref": "#/components/schemas/Payment-Method-Tools",
                         "x-stoplight": {
-                          "id": "f0tbi3l60swlo"
+                          "id": "21pvpj1dizdqm"
                         }
                       }
                     },
                     "pagination": {
                       "$ref": "#/components/schemas/Pagination",
                       "x-stoplight": {
-                        "id": "rgiaxnakojkpm"
+                        "id": "b6kw2nracty44"
                       }
                     }
                   }
@@ -8929,14 +8933,14 @@
                   "pagination": {
                     "type": "object",
                     "x-stoplight": {
-                      "id": "f62aw408hcl47"
+                      "id": "39ilpl9hvzwb9"
                     },
                     "description": "Objeto que contiene los parámetros de paginación",
                     "properties": {
                       "perPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "kce94pee2o40u"
+                          "id": "a8dayz8q6ab96"
                         },
                         "description": "Cantidad de registros por página.",
                         "default": 15,
@@ -8946,7 +8950,7 @@
                       "currentPage": {
                         "type": "integer",
                         "x-stoplight": {
-                          "id": "ruetaf5o9t85b"
+                          "id": "kk52v5kxsz1ut"
                         },
                         "description": "Página actual a consultar",
                         "default": 1,
@@ -8982,6 +8986,1332 @@
         },
         "tags": [
           "Procedimientos adicionales"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/tools/group/search": {
+      "post": {
+        "summary": "Consulta de grupos",
+        "operationId": "post-core-group-search",
+        "description": "Este servicio permite consultar los grupos existentes.\nSi la respuesta es exitosa, se retorna un arreglo  con el identificador, nombre y descripción del grupo. Se puede filtrar por medio de los parámetros: identificador y nombre del grupo.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parámetros para el filtro.*",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información de los grupos.",
+                      "items": {
+                        "$ref": "#/components/schemas/Group"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  }
+                },
+                "examples": {
+                  "Busqueda exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "la petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "code": "GROUP_ROOT",
+                          "name": "Superusuario",
+                          "description": "Usuario con todos los privilegios sobre la aplicación, incluyendo seguridad."
+                        }
+                      ],
+                      "pagination": {
+                        "total": 1,
+                        "perPage": 15,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador del grupo",
+                    "example": 1
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Nombre del grupo",
+                    "example": "GROUP_ROOT"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "4vjmjyapt6x4t"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "lg1ia6dv53mg8"
+                        },
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "1iw2n17ak03a4"
+                        },
+                        "example": 1,
+                        "default": 1,
+                        "minimum": 1,
+                        "description": "Página actual"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta de grupos": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "code": "GROUP_ROOT",
+                    "name": "Superusuario",
+                    "description": "Usuario con todos los privilegios sobre la aplicación, incluyendo seguridad.",
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ]
+      }
+    },
+    "/core/tools/airline/search": {
+      "post": {
+        "summary": "Consulta de aerolíneas",
+        "operationId": "post-core-airline-search",
+        "description": "Este servicio permite consultar los aerolíneas existentes.\nSi la respuesta es exitosa, se retorna un arreglo  con el identificador y nombre de la aerolínea. Se puede filtrar por medio de los parámetros: identificador y nombre de la aerolínea.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parámetros para el filtro.*",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información de las aerolíneas.",
+                      "items": {
+                        "$ref": "#/components/schemas/Airline"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  }
+                },
+                "examples": {
+                  "Busqueda exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "la petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "AIR CANADA Nacional"
+                        }
+                      ],
+                      "pagination": {
+                        "total": 1,
+                        "perPage": 15,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador de la aerolínea",
+                    "example": 1
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Nombre de la aerolínea",
+                    "example": "AIR CANADA Nacional"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "4vjmjyapt6x4t"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "lg1ia6dv53mg8"
+                        },
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "1iw2n17ak03a4"
+                        },
+                        "example": 1,
+                        "default": 1,
+                        "minimum": 1,
+                        "description": "Página actual"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta de grupos": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "name": "AIR CANADA Nacional",
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ]
+      }
+    },
+    "/core/tools/filter/search": {
+      "post": {
+        "summary": "Consulta de filtros",
+        "operationId": "post-core-filter-search",
+        "description": "Este servicio permite consultar los filtros existentes.\nSi la respuesta es exitosa, se retorna un arreglo  con el identificador y código del filtro. Se puede filtrar por medio de los parámetros: identificador y código del filtro.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parámetros para el filtro.*",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información de los filtros.",
+                      "items": {
+                        "$ref": "#/components/schemas/Filter"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  }
+                },
+                "examples": {
+                  "Busqueda exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "la petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "code": "Client"
+                        }
+                      ],
+                      "pagination": {
+                        "total": 1,
+                        "perPage": 15,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador del filtro",
+                    "example": 1
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "Código del filtro",
+                    "example": "Client"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "4vjmjyapt6x4t"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "lg1ia6dv53mg8"
+                        },
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "1iw2n17ak03a4"
+                        },
+                        "example": 1,
+                        "default": 1,
+                        "minimum": 1,
+                        "description": "Página actual"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta de grupos": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "name": "AIR CANADA Nacional",
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ]
+      }
+    },
+    "/core/tools/conglomerate/search": {
+      "post": {
+        "summary": "Consulta de conglomerados",
+        "operationId": "post-core-conglomerate-search",
+        "description": "Este servicio permite consultar los conglomerados existentes.\nSi la respuesta es exitosa, se retorna un arreglo  con el identificador y nombre del conglomerado. Se puede filtrar por medio de los parámetros: identificador y nombre del conglomerado.\n\n> ### Nota \n>\n> *No es requerido ingresar todos los parámetros para el filtro.*",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "description": "Arreglo que contiene información del conglomerado.",
+                      "items": {
+                        "$ref": "#/components/schemas/Conglomerate"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  }
+                },
+                "examples": {
+                  "Busqueda exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "la petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "EGM CO",
+                          "brand": "EGM"
+                        }
+                      ],
+                      "pagination": {
+                        "total": 1,
+                        "perPage": 15,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "description": "Identificador del conglomerado",
+                    "example": 1
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Nombre del conglomerado",
+                    "example": "EGM CO"
+                  },
+                  "brand": {
+                    "type": "string",
+                    "description": "Marca del conglomerado",
+                    "example": "EGM"
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "4vjmjyapt6x4t"
+                    },
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "lg1ia6dv53mg8"
+                        },
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "1iw2n17ak03a4"
+                        },
+                        "example": 1,
+                        "default": 1,
+                        "minimum": 1,
+                        "description": "Página actual"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Consulta de grupos": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "name": "EGM CO",
+                    "brand": "EGM",
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ]
+      }
+    },
+    "/core/user/search": {
+      "post": {
+        "summary": "Consulta de usuarios.",
+        "operationId": "post-core-user-search",
+        "description": "Este servicio permite consultar usuarios existentes filtrando por medio de los parámetros: identificador del usuario, email o usuario para acceder al sistema.\nSi la respuesta es exitosa, se retorna un arreglo con información de los usuarios. \n\n\n> ### Nota \n>\n> No es requerido ingresar todos los parámetros para el filtro.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination",
+                      "x-stoplight": {
+                        "id": "phhs2nzdvtbvk"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta Exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "fullName": "name user",
+                          "username": "testing_username",
+                          "email": "test@test.com",
+                          "mobile": "+573202321247",
+                          "country": "CO",
+                          "status": "ACTIVE",
+                          "language": "ES",
+                          "timezone": "America/Bogota",
+                          "createdAt": "2024-03-01 09:10:19",
+                          "lastLoginAt": "2024-03-25 16:03:25",
+                          "control": {
+                            "allowedIps": [
+                              "127.0.0.1",
+                              "191.103.33.21"
+                            ],
+                            "allowedDays": [
+                              "MONDAY",
+                              "TUESDAY",
+                              "WEDNESDAY",
+                              "THURSDAY",
+                              "FRIDAY",
+                              "SATURDAY",
+                              "SUNDAY"
+                            ],
+                            "permissionMode": "INCLUDE"
+                          },
+                          "access": {
+                            "groups": [
+                              "GROUP_PLANS"
+                            ],
+                            "filters": {
+                              "client": [
+                                1,
+                                2
+                              ],
+                              "seller": [
+                                1,
+                                2
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Identificador del usuario."
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Usuario para acceder al sistema.",
+                    "maxLength": 125,
+                    "example": "testing_username",
+                    "minLength": 3
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "maxLength": 128,
+                    "example": "test@test.com",
+                    "description": "Correo electrónico del usuario."
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Búsqueda de Usuarios": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "username": "testing_username",
+                    "email": "test@test.com",
+                    "pagination": {
+                      "perPage": 10,
+                      "currentPage": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Acciones sobre usuarios"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/user/create": {
+      "post": {
+        "summary": "Creación de usuarios.",
+        "operationId": "post-core-user-create",
+        "description": "Este servicio permite crear un usuario con la información suministrada. Si la respuesta es exitosa, se retorna el identificador del usuario creado.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 1,
+                      "description": "Identificador del usuario."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta Exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "data": {
+                    "$ref": "#/components/schemas/User-create"
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              },
+              "examples": {
+                "Creación de Usuario": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "fullName": "usuario",
+                    "username": "testing_username",
+                    "email": "test@test.com",
+                    "mobile": "+573203948038",
+                    "status": "ACTIVE",
+                    "language": "ES",
+                    "timezone": "America/Bogota",
+                    "control": {
+                      "allowedIps": [
+                        "127.0.0.1",
+                        "191.103.33.21"
+                      ],
+                      "allowedDays": [
+                        "TUESDAY",
+                        "WEDNESDAY",
+                        "THURSDAY",
+                        "FRIDAY",
+                        "SATURDAY",
+                        "SUNDAY"
+                      ],
+                      "permissionMode": "INCLUDE"
+                    },
+                    "access": {
+                      "groups": [
+                        "GROUP_PLANS"
+                      ],
+                      "filters": {
+                        "client": [
+                          1,
+                          2
+                        ],
+                        "seller": [
+                          1,
+                          2
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Acciones sobre usuarios"
+        ]
+      },
+      "parameters": []
+    },
+    "/core/user/update": {
+      "post": {
+        "summary": "Editar un usuario",
+        "operationId": "post-core-user-update",
+        "description": "Este servicio permite actualizar un usuario con la información suministrada. Si la respuesta es exitosa, se retorna el identificador del usuario actualizado.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    },
+                    "id" : {
+                      "type": "integer",
+                      "example": 1,
+                      "description": "Identificador del usuario editado."
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta Exitosa": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "id": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo id es obligatorio.",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Autenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id" : {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "Identificador del usuario editado."
+                  },
+                  "data": {
+                    "$ref": "#/components/schemas/User-update"
+                  }
+                },
+                "required": [
+                  "auth",
+                  "id"
+                ]
+              },
+              "examples": {
+                "actualización de un usuario": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "fullName": "usuario",
+                    "mobile": "+573215874854",
+                    "status": "ACTIVE",
+                    "language": "ES",
+                    "timezone": "America/Bogota",
+                    "control": {
+                      "allowedIps": [
+                        "127.0.0.1",
+                        "191.103.33.21"
+                      ],
+                      "allowedDays": [
+                        "TUESDAY",
+                        "WEDNESDAY",
+                        "THURSDAY",
+                        "FRIDAY"
+                      ],
+                      "permissionMode": "INCLUDE"
+                    },
+                    "access": {
+                      "groups": [
+                        "GROUP_PLANS"
+                      ],
+                      "filters": {
+                        "client": [
+                          1,
+                          2
+                        ],
+                        "seller": [
+                          1,
+                          2
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Acciones sobre usuarios"
         ]
       },
       "parameters": []
@@ -9619,7 +10949,7 @@
       "Customer-Payment-Method": {
         "title": "Payment Method",
         "x-stoplight": {
-          "id": "5c0d76b170493"
+          "id": "8utf1i76igle6"
         },
         "type": "object",
         "description": "Estructura que contiene la información de un medio de pago asociado a un comercio.",
@@ -9715,7 +11045,7 @@
           "creditRules": {
             "type": "object",
             "x-stoplight": {
-              "id": "e56n6d4p36e8i"
+              "id": "b1z0ysx8syirn"
             },
             "description": "Objeto que contiene las reglas de crédito del medio de pago"
           }
@@ -9724,7 +11054,7 @@
       "Payment-Method-Tools": {
         "title": "Payment Method",
         "x-stoplight": {
-          "id": "kttjlys0pucmd"
+          "id": "t5phxw67i54i5"
         },
         "type": "object",
         "description": "Estructura que contiene la información de un medio de pago.",
@@ -9774,7 +11104,7 @@
       "Site-Payment-Method": {
         "title": "Payment Method",
         "x-stoplight": {
-          "id": "rppze0ulc1o4p"
+          "id": "p0pctijg9lt7n"
         },
         "type": "object",
         "description": "Estructura que contiene la información de un medio de pago asociado a un sitio.",
@@ -9788,7 +11118,7 @@
           "customerPaymentId": {
             "type": "integer",
             "x-stoplight": {
-              "id": "hcs1ii5n10ffg"
+              "id": "zy375gdzbwhjb"
             },
             "example": 1,
             "description": "Identificador del medio de pago asociado al comercio"
@@ -9798,7 +11128,7 @@
             "description": "Identificador del sitio al que pertence el método de pago.",
             "example": 1,
             "x-stoplight": {
-              "id": "t9g2ufe6r7jtt"
+              "id": "4os1bmqq4hfiq"
             }
           },
           "code": {
@@ -9816,15 +11146,7 @@
           "minAmount": {
             "type": "number",
             "x-stoplight": {
-              "id": "dbuc88rcdvpws",
-              "explicitProperties": [
-                "type",
-                "maximum",
-                "minimum",
-                "format",
-                "description",
-                "examples"
-              ]
+              "id": "6bfsxyid6s64i"
             },
             "maximum": 9999999999.99,
             "minimum": 0,
@@ -9835,15 +11157,7 @@
           "maxAmount": {
             "type": "number",
             "x-stoplight": {
-              "id": "i10vzcefs0qfb",
-              "explicitProperties": [
-                "type",
-                "description",
-                "format",
-                "maximum",
-                "minimum",
-                "examples"
-              ]
+              "id": "o696g7q97z1m0"
             },
             "description": "Máximo valor permitido por transacción.",
             "format": "float",
@@ -9919,7 +11233,7 @@
           "creditRules": {
             "type": "object",
             "x-stoplight": {
-              "id": "94mr6ybcq7mkt"
+              "id": "9b4ogc0xm2c1z"
             },
             "description": "Objeto que contiene las reglas de crédito del medio de pago"
           }
@@ -9928,7 +11242,7 @@
       "Province": {
         "title": "Province",
         "x-stoplight": {
-          "id": "hgdvwi1upl9re"
+          "id": "11izqzubudztj"
         },
         "type": "object",
         "description": "Estructura que contiene información de una provincia/estado/departamento.",
@@ -9984,7 +11298,7 @@
         "x-examples": {},
         "x-internal": false,
         "x-stoplight": {
-          "id": "c77c40df67ddb"
+          "id": "dpzwnaa6ovo6q"
         }
       },
       "Financial-entity": {
@@ -9992,7 +11306,7 @@
         "type": "object",
         "description": "Estructura que contiene información de una entidad financiera o banco recaudador.",
         "x-stoplight": {
-          "id": "c77c40df67ddb"
+          "id": "lwfh9s6dlhrxt"
         },
         "properties": {
           "id": {
@@ -10017,7 +11331,7 @@
       "Seller": {
         "title": "Seller",
         "x-stoplight": {
-          "id": "hgdvwi1upl9re"
+          "id": "d7iits5h309ma"
         },
         "type": "object",
         "description": "Estructura que contiene informaicón de un consultor comercial asignado en Placetopay.",
@@ -10048,7 +11362,7 @@
       "Reseller": {
         "title": "Reseller",
         "x-stoplight": {
-          "id": "hgdvwi1upl9re"
+          "id": "chu8whmz7p7v6"
         },
         "type": "object",
         "description": "Estructura que contiene informaicón de un distribuidor o banco adquiriente.",
@@ -10078,7 +11392,7 @@
       "Tax-regime": {
         "title": "Tax regime",
         "x-stoplight": {
-          "id": "hgdvwi1upl9re"
+          "id": "gwh2kxrqnnten"
         },
         "type": "object",
         "description": "Estructura que contiene información de un régimen fiscal.",
@@ -10110,7 +11424,7 @@
       "Corporation-type": {
         "title": "Corporation type",
         "x-stoplight": {
-          "id": "hgdvwi1upl9re"
+          "id": "j0a837lr8yu1g"
         },
         "type": "object",
         "description": "Estructura que contiene información de tipo de corporación.",
@@ -10143,7 +11457,7 @@
       "Taxpayer": {
         "title": "Tax payer",
         "x-stoplight": {
-          "id": "hgdvwi1upl9re"
+          "id": "qtqymj7t61wks"
         },
         "type": "object",
         "description": "Estructura que contiene información de tipo de régimen fiscal",
@@ -10263,7 +11577,7 @@
       "Document": {
         "title": "Document",
         "x-stoplight": {
-          "id": "csxf6p90l3yuk"
+          "id": "uid7jyrfp85sk"
         },
         "type": "object",
         "description": "Estructura que contiene la información de un documento",
@@ -10319,7 +11633,7 @@
       "DocumentType": {
         "title": "DocumentType",
         "x-stoplight": {
-          "id": "kaoogagxi73el"
+          "id": "naq8d6ju0gg7r"
         },
         "type": "object",
         "description": "Estructura que contiene la información de un documento",
@@ -10340,11 +11654,91 @@
           }
         }
       },
+      "Group": {
+        "title": "Group",
+        "type": "object",
+        "description": "Estructura que contiene la información del grupo",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identificador del grupo",
+            "example": 1
+          },
+          "code": {
+            "type": "string",
+            "description": "Código del grupo",
+            "example": "GROUP_ROOT"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nombre del grupo",
+            "example": "Superusuario"
+          },
+          "description": {
+            "type": "string",
+            "description": "Descripción del grupo",
+            "example": "Usuario con todos los privilegios sobre la aplicación, incluyendo seguridad"
+          }
+        }
+      },
+      "Airline": {
+        "title": "Airline",
+        "type": "object",
+        "description": "Estructura que contiene la información de la aerolínea",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identificador de la aerolínea",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Nombre de la aerolínea",
+            "example": "AIR CANADA Nacional"
+          }
+        }
+      },
+      "Filter": {
+        "title": "Filter",
+        "type": "object",
+        "description": "Estructura que contiene la información de los filtros",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identificador del filtro",
+            "example": 1
+          },
+          "code": {
+            "type": "string",
+            "description": "Código del filtro",
+            "example": "Client"
+          }
+        }
+      },
+      "Conglomerate": {
+        "title": "Conglomerate",
+        "type": "object",
+        "description": "Estructura que contiene la información del conglomerado",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identificador del conglomerado",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Nombre del conglomerado",
+            "example": "EGM CO"
+          },
+          "brand": {
+            "type": "string",
+            "description": "Marca del conglomerado",
+            "example": "EGM"
+          }
+        }
+      },
       "Site": {
         "title": "Site",
-        "x-stoplight": {
-          "id": "nrawne06ymvkd"
-        },
         "type": "object",
         "description": "Estructura que contiene información de un sitio.",
         "properties": {
@@ -10495,15 +11889,7 @@
               "minAmount": {
                 "type": "number",
                 "x-stoplight": {
-                  "id": "rgny3j6n98jx8",
-                  "explicitProperties": [
-                    "type",
-                    "description",
-                    "format",
-                    "maximum",
-                    "minimum",
-                    "examples"
-                  ]
+                  "id": "xhvet1wc8ci89"
                 },
                 "description": "Mínimo valor permitido por transacción.",
                 "format": "float",
@@ -10514,15 +11900,7 @@
               "maxAmount": {
                 "type": "number",
                 "x-stoplight": {
-                  "id": "1pph0b86r10oh",
-                  "explicitProperties": [
-                    "type",
-                    "description",
-                    "format",
-                    "maximum",
-                    "minimum",
-                    "examples"
-                  ]
+                  "id": "vt4jwdv08375s"
                 },
                 "description": "Máximo valor permitido por transacción.",
                 "format": "float",
@@ -10533,7 +11911,7 @@
               "allowedDays": {
                 "type": "integer",
                 "x-stoplight": {
-                  "id": "0dowgqg7xqu97"
+                  "id": "na6idkhbzxz3y"
                 },
                 "minimum": 0,
                 "maximum": 127,
@@ -10543,7 +11921,7 @@
               "allowedHours": {
                 "type": "string",
                 "x-stoplight": {
-                  "id": "3n7kg5u2l2sm1"
+                  "id": "s3d1rr5vpprbk"
                 },
                 "description": "Horas de operación.",
                 "example": "ffffffffffffffffffffffffffffffffffffffffff",
@@ -10554,7 +11932,7 @@
               "filterPse": {
                 "type": "boolean",
                 "x-stoplight": {
-                  "id": "yk2spkkdd3fqi"
+                  "id": "u7usyprslf0rn"
                 },
                 "default": false,
                 "description": "Indicador de uso de filtros de seguridad en PSE"
@@ -10562,7 +11940,7 @@
               "filterTuya": {
                 "type": "boolean",
                 "x-stoplight": {
-                  "id": "vvme27bpaasoh"
+                  "id": "mlmxhgno4r4dl"
                 },
                 "default": false,
                 "description": "Indicador de uso de filtros de seguridad en Tuya"
@@ -10570,7 +11948,7 @@
               "filterSafetypay": {
                 "type": "boolean",
                 "x-stoplight": {
-                  "id": "melckc2y2wmk2"
+                  "id": "mjwwaj3txrv6a"
                 },
                 "default": false,
                 "description": "Indicador de uso de filtros de seguridad en safetypay"
@@ -10578,7 +11956,7 @@
               "prechargeFilter": {
                 "type": "integer",
                 "x-stoplight": {
-                  "id": "56s7n6ghdumbd"
+                  "id": "uicktvn5zv4yi"
                 },
                 "minimum": 0,
                 "maximum": 2,
@@ -10593,12 +11971,12 @@
               "allowedBankCountries": {
                 "type": "array",
                 "x-stoplight": {
-                  "id": "amo1f2z08b59v"
+                  "id": "df4sokoyl1kb0"
                 },
                 "description": "Paises permitidos para bancos emisores. Es nulo cuando todos los paises sean permitidos.",
                 "items": {
                   "x-stoplight": {
-                    "id": "xmp4q46mm9di9"
+                    "id": "khnha12bp7yzk"
                   },
                   "type": "string",
                   "example": "CO",
@@ -10609,7 +11987,7 @@
               "filterByBin": {
                 "type": "boolean",
                 "x-stoplight": {
-                  "id": "e5kqkqxf1rfl1"
+                  "id": "oaw6z75mbyh5t"
                 },
                 "default": false,
                 "description": "Indicador de uso del filtro por bines. "
@@ -10617,12 +11995,12 @@
               "exceptionBinsList": {
                 "type": "array",
                 "x-stoplight": {
-                  "id": "igdkvkkdozsep"
+                  "id": "u9jts79lx7lvh"
                 },
                 "description": "Lista de Bines a exceptuar.",
                 "items": {
                   "x-stoplight": {
-                    "id": "5jdoznw7ojcbz"
+                    "id": "p9uw31krta9c3"
                   },
                   "type": "number",
                   "example": 411111
@@ -10631,7 +12009,7 @@
               "delegatedAuthorization": {
                 "type": "string",
                 "x-stoplight": {
-                  "id": "zdvf7hq4ucuq4"
+                  "id": "8xo58c9ryvipn"
                 },
                 "description": "Autorización delegada.",
                 "pattern": "^([0-9a-f]){42}",
@@ -10657,7 +12035,7 @@
               "minAmount": {
                 "type": "number",
                 "x-stoplight": {
-                  "id": "deeicie825ckm"
+                  "id": "odvn5xsptjuu8"
                 },
                 "description": "Monto mínimo para aplicar threeDS a la transacción",
                 "format": "float",
@@ -10670,13 +12048,13 @@
           "historic": {
             "type": "object",
             "x-stoplight": {
-              "id": "dk9jhy7usuiur"
+              "id": "kqi96p1akk54b"
             },
             "description": "Contiene la información de Histórico transaccional ",
             "properties": {
               "behaviour": {
                 "x-stoplight": {
-                  "id": "zkcw6a0aeeavs"
+                  "id": "1fgdfzv1qmakq"
                 },
                 "enum": [
                   "IGNORE",
@@ -10688,7 +12066,7 @@
               "lowerScore": {
                 "type": "integer",
                 "x-stoplight": {
-                  "id": "n5c4at9g7f7ga"
+                  "id": "1yg9z1muauqzm"
                 },
                 "minimum": 1,
                 "maximum": 999,
@@ -10699,7 +12077,7 @@
               "rejectionScore": {
                 "type": "integer",
                 "x-stoplight": {
-                  "id": "uyqkwlx1d3uzu"
+                  "id": "v01h3mv6bfwfr"
                 },
                 "example": 200,
                 "minimum": 1,
@@ -10712,14 +12090,14 @@
           "creditBureau": {
             "type": "object",
             "x-stoplight": {
-              "id": "v6n2y1ca4u72y"
+              "id": "qnh5gicpwvfk7"
             },
             "description": "Contiene los parámetros de configuración de información financiera.\n",
             "properties": {
               "behaviours": {
                 "type": "object",
                 "x-stoplight": {
-                  "id": "0e5iyenzb8qw7"
+                  "id": "ffzexuo16dpbd"
                 },
                 "minProperties": 3,
                 "maxProperties": 3,
@@ -10727,7 +12105,7 @@
                 "properties": {
                   "onFailed": {
                     "x-stoplight": {
-                      "id": "kvnotwlnupy3b"
+                      "id": "nqhc6afpx5xoq"
                     },
                     "enum": [
                       "REJECTED",
@@ -10738,7 +12116,7 @@
                   },
                   "onNoMatch": {
                     "x-stoplight": {
-                      "id": "fmqacnw49xulf"
+                      "id": "mix72s955h082"
                     },
                     "enum": [
                       "REJECTED",
@@ -10749,7 +12127,7 @@
                   },
                   "onMatch": {
                     "x-stoplight": {
-                      "id": "fp593mb9osyeg"
+                      "id": "zct7cww198cjq"
                     },
                     "enum": [
                       "PROCESS",
@@ -10763,12 +12141,12 @@
               "paymentGroups": {
                 "type": "array",
                 "x-stoplight": {
-                  "id": "yekmxl1832ift"
+                  "id": "28w3dk156wz3x"
                 },
                 "description": "Contiene el grupo de medios de pago",
                 "items": {
                   "x-stoplight": {
-                    "id": "9chsfr6matbaw"
+                    "id": "vearnvc5a480w"
                   },
                   "enum": [
                     "CASH",
@@ -10782,7 +12160,7 @@
               "minAmount": {
                 "type": "number",
                 "x-stoplight": {
-                  "id": "zemxshogjqtee"
+                  "id": "gyq2471y2715a"
                 },
                 "maximum": 999999999,
                 "example": 10,
@@ -10791,7 +12169,7 @@
               "behaviour": {
                 "type": "number",
                 "x-stoplight": {
-                  "id": "49ibzz7rh6gc1"
+                  "id": "6ofd95ick71z5"
                 },
                 "example": 276,
                 "description": "Puntaje calculado a partir de los parámetros de entrada de 'behaviours'."
@@ -10801,20 +12179,20 @@
           "riskEngine": {
             "type": "object",
             "x-stoplight": {
-              "id": "boxd0mh8dcf7r"
+              "id": "hgdnkzsndomdv"
             },
             "description": "Contiene las configuraciones de motores de riesgo",
             "properties": {
               "behaviours": {
                 "type": "object",
                 "x-stoplight": {
-                  "id": "kfdu2qvv7oiyu"
+                  "id": "xl4erm1w10yst"
                 },
                 "description": "Contiene la información del comportamiento a seguir del módulo.\n",
                 "properties": {
                   "onFailed": {
                     "x-stoplight": {
-                      "id": "d94gbwbiyoa0g"
+                      "id": "5x6m9p3fx8hwl"
                     },
                     "enum": [
                       "REJECTED",
@@ -10825,7 +12203,7 @@
                   },
                   "onLowRisk": {
                     "x-stoplight": {
-                      "id": "i0bubad2ilqb7"
+                      "id": "b6yiatg0d5jp2"
                     },
                     "enum": [
                       "MANUAL",
@@ -10836,7 +12214,7 @@
                   },
                   "onMediumRisk": {
                     "x-stoplight": {
-                      "id": "9sikurl3dv7ih"
+                      "id": "r4cd3y24s8cyr"
                     },
                     "enum": [
                       "REJECTED",
@@ -10848,7 +12226,7 @@
                   },
                   "onHighRisk": {
                     "x-stoplight": {
-                      "id": "r5ejoz705pljd"
+                      "id": "q0j9o4432qgh0"
                     },
                     "enum": [
                       "REJECTED",
@@ -10862,12 +12240,12 @@
               "paymentGroups": {
                 "type": "array",
                 "x-stoplight": {
-                  "id": "pw4y7slygsgl6"
+                  "id": "5g3zt62403yp6"
                 },
                 "description": "Grupo de medios de pago.",
                 "items": {
                   "x-stoplight": {
-                    "id": "otxppt997vsce"
+                    "id": "khtyoqywgl99g"
                   },
                   "enum": [
                     "CASH",
@@ -10881,7 +12259,7 @@
               "minAmount": {
                 "type": "number",
                 "x-stoplight": {
-                  "id": "4y27ou1t3nvlz"
+                  "id": "43cvkbtvupdud"
                 },
                 "description": "Monto mínimo para activar.\n",
                 "maximum": 999999999,
@@ -10892,7 +12270,7 @@
               "approvalScore": {
                 "type": "integer",
                 "x-stoplight": {
-                  "id": "1sjgrnfs1iwjw"
+                  "id": "o7kc8cvi75q86"
                 },
                 "minimum": 1,
                 "maximum": 999,
@@ -10902,7 +12280,7 @@
               "rejectionScore": {
                 "type": "integer",
                 "x-stoplight": {
-                  "id": "4kyalt3g72qiq"
+                  "id": "g0zvdlejwb3v0"
                 },
                 "minimum": 1,
                 "maximum": 999,
@@ -10912,14 +12290,14 @@
               "onCalibration": {
                 "type": "boolean",
                 "x-stoplight": {
-                  "id": "k2qtmu7lgjrg9"
+                  "id": "l6m2c2wbfp80d"
                 },
                 "description": "Indica el estado en calibración.\n"
               },
               "behaviour": {
                 "type": "number",
                 "x-stoplight": {
-                  "id": "unebt7asgcaxk"
+                  "id": "g2hjt15ld9ms8"
                 },
                 "example": 4372,
                 "description": "Puntaje calculado a partir de los parámetros de entrada 'behaviours'."
@@ -10929,20 +12307,20 @@
           "securityFilters": {
             "type": "object",
             "x-stoplight": {
-              "id": "9dby0ebisyatc"
+              "id": "n81erx29s3dt1"
             },
             "description": "Contiene la información de filtros de seguridad",
             "properties": {
               "allowedIssuerCountries": {
                 "type": "array",
                 "x-stoplight": {
-                  "id": "c0umwb5sorqh0"
+                  "id": "8hawm0gf1gvbs"
                 },
                 "minItems": 1,
                 "description": "Paises permitidos para bancos emisores.\n",
                 "items": {
                   "x-stoplight": {
-                    "id": "wb1vpepq903f8"
+                    "id": "vww5y0i4f9eca"
                   },
                   "type": "string",
                   "maxLength": 2,
@@ -10952,20 +12330,20 @@
               "forceIPMatch": {
                 "type": "boolean",
                 "x-stoplight": {
-                  "id": "rg1k248houfyd"
+                  "id": "i9nnn7hoceefj"
                 },
                 "description": "Indica si se debe verificar que el país asociado a la IP del comprador coincida con la IP del banco emisor.\n"
               },
               "excludeIPCountry": {
                 "type": "array",
                 "x-stoplight": {
-                  "id": "sf4u00cqahjjb"
+                  "id": "zt434b2iftcrf"
                 },
                 "description": "Indica para qué paises se debe excluir coincidencia para emisores.",
                 "minItems": 1,
                 "items": {
                   "x-stoplight": {
-                    "id": "98bf9n62h7e7a"
+                    "id": "h0gqcvotdtr1l"
                   },
                   "type": "string",
                   "maxLength": 2,
@@ -10975,20 +12353,20 @@
               "onlyWhitelisted": {
                 "type": "boolean",
                 "x-stoplight": {
-                  "id": "8hfeikl4ooxle"
+                  "id": "m3s0wnaen73ax"
                 },
                 "description": "Indica si se debe procesar solo lista de preferidos.\n"
               },
               "allowedIPCountries": {
                 "type": "array",
                 "x-stoplight": {
-                  "id": "mp54ry7miji9n"
+                  "id": "b9o4o7hfqh0fz"
                 },
                 "minItems": 1,
                 "description": "Paises permitidos para compradores.",
                 "items": {
                   "x-stoplight": {
-                    "id": "v7x92mz1t47w1"
+                    "id": "qeijsx1nfms0i"
                   },
                   "type": "string",
                   "example": "CO",
@@ -10998,7 +12376,7 @@
               "allowedCardsDay": {
                 "type": "integer",
                 "x-stoplight": {
-                  "id": "z8ko2g57fikff"
+                  "id": "fo56fwf2g1l1w"
                 },
                 "minimum": 1,
                 "maximum": 999,
@@ -11009,7 +12387,7 @@
               "allowedCardsByIP": {
                 "type": "integer",
                 "x-stoplight": {
-                  "id": "cdbzmz6lmv618"
+                  "id": "tlqs2ntnno8rz"
                 },
                 "maximum": 999,
                 "default": 30,
@@ -11019,7 +12397,7 @@
               "allowedCardsMonth": {
                 "type": "integer",
                 "x-stoplight": {
-                  "id": "nxzl2n2hh25mr"
+                  "id": "82hu5moofnq5h"
                 },
                 "maximum": 999,
                 "example": 3,
@@ -11029,7 +12407,7 @@
               "allowedCardsYear": {
                 "type": "integer",
                 "x-stoplight": {
-                  "id": "lwave0hq4a8sk"
+                  "id": "v9oazfi7qvasj"
                 },
                 "description": "Indica el número de tarjetas diferentes que un cliente puede usar al año.\n0 indica ilimitadas",
                 "maximum": 999,
@@ -11039,7 +12417,7 @@
               "dayMax": {
                 "type": "integer",
                 "x-stoplight": {
-                  "id": "xvdfvylaqr3bz"
+                  "id": "y0osf98esqrbu"
                 },
                 "maximum": 999,
                 "example": 1,
@@ -11049,7 +12427,7 @@
               "dayMaxAmount": {
                 "type": "number",
                 "x-stoplight": {
-                  "id": "o9jjerx3d5azn"
+                  "id": "t9upcqdextfoy"
                 },
                 "default": 100000000,
                 "maximum": 99999999999999,
@@ -11061,7 +12439,7 @@
               "monthMax": {
                 "type": "integer",
                 "x-stoplight": {
-                  "id": "m8nf35jqesoe6"
+                  "id": "ojfwdcwwjtq7x"
                 },
                 "maximum": 999,
                 "example": 2,
@@ -11071,7 +12449,7 @@
               "monthMaxAmount": {
                 "type": "number",
                 "x-stoplight": {
-                  "id": "75g31ymhhdrjv"
+                  "id": "pozlt8u1pm1yh"
                 },
                 "maximum": 99999999999999,
                 "example": 1000,
@@ -11083,28 +12461,28 @@
           "operation": {
             "type": "object",
             "x-stoplight": {
-              "id": "apiovo03imsg9"
+              "id": "iz9e3nzm3bu5j"
             },
             "description": "Contiene la información del funcionamiento de consola.\n",
             "properties": {
               "disableTax": {
                 "type": "boolean",
                 "x-stoplight": {
-                  "id": "y83t08dqcr8fg"
+                  "id": "931pqa3f9ii49"
                 },
                 "description": "Indicador para deshabilitar el ingreso de IVA.\n"
               },
               "calculateTax": {
                 "type": "boolean",
                 "x-stoplight": {
-                  "id": "jgp1mpj5qg8t4"
+                  "id": "12xgcrw43to6y"
                 },
                 "description": "Indicador para autocalcular IVA.\n"
               },
               "taxPercentage": {
                 "type": "number",
                 "x-stoplight": {
-                  "id": "n3t9khy82cqvl"
+                  "id": "iahr0te3xavjg"
                 },
                 "maximum": 50,
                 "format": "float",
@@ -11114,7 +12492,7 @@
               "patternReference": {
                 "type": "string",
                 "x-stoplight": {
-                  "id": "3i8pjh4qwrf73"
+                  "id": "ijtj0e4e5iwob"
                 },
                 "maxLength": 30,
                 "minLength": 0,
@@ -11123,14 +12501,14 @@
               "mailCustomer": {
                 "type": "boolean",
                 "x-stoplight": {
-                  "id": "b485hdo2mce65"
+                  "id": "mjjetaoec5ogu"
                 },
                 "description": "Indica si se debe enviar automáticamente un email con el comprobante de una transacción exitosa realizada en el panel adminsitrativo.\n"
               },
               "mailMerchant": {
                 "type": "boolean",
                 "x-stoplight": {
-                  "id": "41yjjnx7s09bk"
+                  "id": "3tnn6out8iqnu"
                 },
                 "description": "Indica si se debe enviar una copia del email al comercio cuando una transacción realizada en el panel administrativo es exitosa.\n"
               }
@@ -11139,21 +12517,21 @@
           "subscriptionValidation": {
             "type": "object",
             "x-stoplight": {
-              "id": "4yvrkaveqb7cd"
+              "id": "bs6nqkoo5fooy"
             },
             "description": "Contiene las configuraciones para la validación de información de suscripción",
             "properties": {
               "enable": {
                 "type": "boolean",
                 "x-stoplight": {
-                  "id": "tz4djth3bcv11"
+                  "id": "zsl2ggkqobf0t"
                 },
                 "description": "Habilita la validación de suscripción.\n"
               },
               "amount": {
                 "type": "number",
                 "x-stoplight": {
-                  "id": "xpv3qkyj9ht5i"
+                  "id": "ef1q4daxfkaqu"
                 },
                 "format": "double",
                 "example": 100,
@@ -11165,14 +12543,14 @@
           "branding": {
             "type": "object",
             "x-stoplight": {
-              "id": "r1h2x5p8578cp"
+              "id": "z9yznmr6j6osc"
             },
             "description": "Objeto para guardar la configuración sobre la gestión de marca del sitio",
             "properties": {
               "buttonColor": {
                 "type": "string",
                 "x-stoplight": {
-                  "id": "nkoj2huxyiko4"
+                  "id": "gu60wq23149ls"
                 },
                 "example": "#FFCC00",
                 "description": "Color para los botones del web checkout, en formato HEX"
@@ -11180,7 +12558,7 @@
               "sidebarColor": {
                 "type": "string",
                 "x-stoplight": {
-                  "id": "f3pq6q11ql3m8"
+                  "id": "2tdvxja7i5c7f"
                 },
                 "example": "#CCFF33",
                 "description": "Colo de fondo del sidebar del web checkout, en formato HEX"
@@ -11188,7 +12566,7 @@
               "logoUrl": {
                 "type": "string",
                 "x-stoplight": {
-                  "id": "v744qd7v3dcob"
+                  "id": "6h7586jxkotvt"
                 },
                 "example": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png",
                 "description": "Url del logo del site",
@@ -11198,10 +12576,460 @@
           }
         }
       },
+      "User": {
+        "title": "User",
+        "type": "object",
+        "description": "Estructura que contiene información de los usuarios.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1,
+            "description": "Identificador del usuario."
+          },
+          "fullName": {
+            "type": "string",
+            "example": "Usuario",
+            "description": "Nombre del usuario."
+          },
+          "username": {
+            "type": "string",
+            "example": "testing_username",
+            "description": "Usuario para acceder al sistema."
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "test@test.com",
+            "description": "Email del usuario."
+          },
+          "mobile": {
+            "type": "string",
+            "example": "+573203849403",
+            "description": "Teléfono movil del usuario."
+          },
+          "country": {
+            "type": "string",
+            "example": "CO",
+            "maxLength": 2,
+            "description": "País al que pertecene el usuario."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE",
+              "SUSPEDED",
+              "LOCKED"
+            ],
+            "example": "INACTIVE",
+            "description": "Estado del usuario."
+          },
+          "language": {
+            "type": "string",
+            "example": "ES",
+            "description": "Idioma de acuerdo a ISO 631-1."
+          },
+          "timezone": {
+            "type": "string",
+            "example": "America/Bogota",
+            "description": "Zona horaria de la ubicación del usuario."
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2021-09-21T09:34:48-05:00",
+            "description": "Fecha de creación del usuario."
+          },
+          "lastLoginAt": {
+            "type": "string",
+            "example": "2021-09-21T09:34:48-05:00",
+            "description": "Fecha de último ingreso del usuario."
+          },
+          "control": {
+            "type": "object",
+            "description": "Objeto con información de control.",
+            "properties": {
+              "allowedIps": {
+                "type": "array",
+                "example": [
+                  "127.0.0.1",
+                  "191.103.33.21"
+                ],
+                "description": "Ips autorizadas para ingresar al sistema."
+              },
+              "allowedDays": {
+                "type": "array",
+                "uniqueItems": true,
+                "description": "Días permitidos para ingresar al sistema.",
+                "default": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"],
+                "items": {
+                  "type": "string",
+                  "example": "TUESDAY",
+                  "enum": [
+                    "MONDAY",
+                    "TUESDAY",
+                    "WEDNESDAY",
+                    "THURSDAY",
+                    "FRIDAY",
+                    "SATURDAY",
+                    "SUNDAY"
+                  ]
+                }
+              },
+              "permissionMode": {
+                "type": "string",
+                "example": "INCLUDE",
+                "enum": [
+                  "INCLUDE",
+                  "EXCLUDE"
+                ],
+                "description": "Restricción de filtros del usuario."
+              }
+            }
+          },
+          "access": {
+            "type": "object",
+            "description": "Objeto con información de acceso.",
+            "properties": {
+              "groups": {
+                "type": "array",
+                "example": [
+                  "GROUP_PLANS"
+                ],
+                "description": "Grupos del usuario."
+              },
+              "filters": {
+                "type": "object",
+                "description": "Objeto con información de filtros.",
+                "example": 
+                {
+                  "client": [
+                    1,
+                    2
+                  ],
+                  "site": [
+                    1,
+                    2
+                  ],
+                   "franchise": [
+                    1,
+                    2
+                  ],
+                   "airline": [
+                    1,
+                    2
+                  ],
+                   "reseller": [
+                    1,
+                    2
+                  ],
+                   "seller": [
+                    1,
+                    2
+                  ],
+                  "conglomerate": [
+                    1,
+                    2
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "User-create": {
+        "title": "User create",
+        "type": "object",
+        "description": "Arreglo que contiene la información del usuario a crear.",
+        "required": [
+          "fullName",
+          "username",
+          "email",
+          "status",
+          "language",
+          "timezone",
+          "control"
+        ],
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 100,
+            "example": "Usuario Nuevo",
+            "description": "Nombre del usuario."
+          },
+          "username": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 25,
+            "example": "username",
+            "description": "Usuario para acceder al sistema."
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 128,
+            "example": "test@test.com",
+            "description": "Email del usuario."
+          },
+          "mobile": {
+            "type": "string",
+            "maxLength": 25,
+            "example": "+573203849403",
+            "description": "Teléfono movil del usuario."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ],
+            "example": "INACTIVE",
+            "description": "Estado del usuario."
+          },
+          "language": {
+            "type": "string",
+            "maxLength": 5,
+            "example": "ES",
+            "description": "Idioma de acuerdo a ISO 631-1."
+          },
+          "timezone": {
+            "type": "string",
+            "maxLength": 40,
+            "example": "America/Bogota",
+            "description": "Zona horaria de la ubicación del usuario."
+          },
+          "control": {
+            "type": "object",
+            "description": "Información de control.",
+            "required": [
+              "permissionMode"
+            ],
+            "properties": {
+              "allowedIps": {
+                "type": "array",
+                "example": [
+                  "127.0.0.1",
+                  "191.103.33.21"
+                ],
+                "description": "Ips autorizadas para ingresar al sistema."
+              },
+              "allowedDays": {
+                "type": "array",
+                "items":{
+                  "enum": [
+                  "MONDAY",
+                  "TUESDAY",
+                  "WEDNESDAY",
+                  "THURSDAY",
+                  "FRIDAY",
+                  "SATURDAY",
+                  "SUNDAY"
+                  ]
+                },
+                "example": [
+                  "TUESDAY",
+                  "WEDNESDAY"
+                ],
+                "description": "Días permitidos para ingresar al sistema.",
+                "default": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
+              },
+              "permissionMode": {
+                "type": "string",
+                "example": "INCLUDE",
+                "enum": [
+                  "INCLUDE",
+                  "EXCLUDE"
+                ],
+                "description": "Restricción de filtros del usuario."
+              }
+            }
+          },
+          "access": {
+            "type": "object",
+            "description": "Información de acceso.",
+            "properties": {
+              "groups": {
+                "type": "array",
+                "example": [
+                  "GROUP_PLANS"
+                ],
+                "description": "Grupos del usuario."
+              },
+              "filters": {
+                "type": "object",
+                "description": "Objeto con información de filtros.",
+                "example": 
+                {
+                 "client": [
+                    1,
+                    2
+                  ],
+                  "site": [
+                    1,
+                    2
+                  ],
+                   "franchise": [
+                    1,
+                    2
+                  ],
+                   "airline": [
+                    1,
+                    2
+                  ],
+                   "reseller": [
+                    1,
+                    2
+                  ],
+                   "seller": [
+                    1,
+                    2
+                  ],
+                  "conglomerate": [
+                    1,
+                    2
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "User-update": {
+        "title": "User update",
+        "type": "object",
+        "description": "Arreglo que contiene la información del usuario a actualizar.",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 100,
+            "example": "Usuario Nuevo",
+            "description": "Nombre del usuario."
+          },
+          "mobile": {
+            "type": "string",
+            "maxLength": 25,
+            "example": "+573203849403",
+            "description": "Teléfono movil del usuario."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ],
+            "example": "INACTIVE",
+            "description": "Estado del usuario."
+          },
+          "language": {
+            "type": "string",
+            "maxLength": 5,
+            "example": "ES",
+            "description": "Idioma de acuerdo a ISO 631-1."
+          },
+          "timezone": {
+            "type": "string",
+            "maxLength": 40,
+            "example": "America/Bogota",
+            "description": "Zona horaria de la ubicación del usuario."
+          },
+          "control": {
+            "type": "object",
+            "description": "Información de control.",
+            "properties": {
+              "allowedIps": {
+                "type": "array",
+                "example": [
+                  "127.0.0.1",
+                  "191.103.33.21"
+                ],
+                "description": "Ips autorizadas para ingresar al sistema."
+              },
+              "allowedDays": {
+                "type": "array",
+                "items":{
+                  "enum": [
+                  "MONDAY",
+                  "TUESDAY",
+                  "WEDNESDAY",
+                  "THURSDAY",
+                  "FRIDAY",
+                  "SATURDAY",
+                  "SUNDAY"
+                  ]
+                },
+                "example": [
+                  "TUESDAY",
+                  "WEDNESDAY"
+                ],
+                "description": "Días permitidos para ingresar al sistema.",
+                "default": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
+              },
+              "permissionMode": {
+                "type": "string",
+                "example": "INCLUDE",
+                "enum": [
+                  "INCLUDE",
+                  "EXCLUDE"
+                ],
+                "description": "Restricción de filtros del usuario."
+              }
+            }
+          },
+          "access": {
+            "type": "object",
+            "description": "Información de acceso.",
+            "properties": {
+              "groups": {
+                "type": "array",
+                "example": [
+                  "GROUP_PLANS"
+                ],
+                "description": "Grupos del usuario."
+              },
+              "filters": {
+                "type": "object",
+                "description": "Objeto con información de filtros.",
+                "example": 
+                {
+                  "client": [
+                    1,
+                    2
+                  ],
+                  "site": [
+                    1,
+                    2
+                  ],
+                   "franchise": [
+                    1,
+                    2
+                  ],
+                   "airline": [
+                    1,
+                    2
+                  ],
+                   "reseller": [
+                    1,
+                    2
+                  ],
+                   "seller": [
+                    1,
+                    2
+                  ],
+                  "conglomerate": [
+                    1,
+                    2
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
       "PreferList": {
         "title": "PreferList",
         "x-stoplight": {
-          "id": "178h39sods79x"
+          "id": "nf72w75oi4g25"
         },
         "type": "object",
         "description": "Estructura que contiene la información de lista de preferidos.",
@@ -11261,7 +13089,7 @@
       "Pagination": {
         "title": "Pagination",
         "x-stoplight": {
-          "id": "yos06vqcppjz0"
+          "id": "iy9bb5me8p1p7"
         },
         "type": "object",
         "description": "Estructura que contiene la información de la paginación.",
@@ -11269,7 +13097,7 @@
           "total": {
             "type": "integer",
             "x-stoplight": {
-              "id": "9n5euuyxgc16m"
+              "id": "anjz9lkyyp6nc"
             },
             "example": 30,
             "minimum": 1,
@@ -11278,7 +13106,7 @@
           "perPage": {
             "type": "integer",
             "x-stoplight": {
-              "id": "du04yuxnwg8ke"
+              "id": "62w21f2kwh6ii"
             },
             "default": 15,
             "example": 10,
@@ -11288,7 +13116,7 @@
           "currentPage": {
             "type": "integer",
             "x-stoplight": {
-              "id": "jdpf31i1635px"
+              "id": "360b5cpayff1i"
             },
             "default": 1,
             "minimum": 1,
@@ -11298,7 +13126,7 @@
           "lastPage": {
             "type": "integer",
             "x-stoplight": {
-              "id": "gxopj3kk0gngh"
+              "id": "hrjs9av3n8gl3"
             },
             "minimum": 1,
             "example": 1,
