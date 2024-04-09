@@ -12718,7 +12718,27 @@
                     1,
                     2
                   ],
-                  "seller": [
+                  "site": [
+                    1,
+                    2
+                  ],
+                   "franchise": [
+                    1,
+                    2
+                  ],
+                   "airline": [
+                    1,
+                    2
+                  ],
+                   "reseller": [
+                    1,
+                    2
+                  ],
+                   "seller": [
+                    1,
+                    2
+                  ],
+                  "conglomerate": [
                     1,
                     2
                   ]
@@ -12852,11 +12872,31 @@
                 "description": "Objeto con información de filtros.",
                 "example": 
                 {
-                  "client": [
+                 "client": [
                     1,
                     2
                   ],
-                  "seller": [
+                  "site": [
+                    1,
+                    2
+                  ],
+                   "franchise": [
+                    1,
+                    2
+                  ],
+                   "airline": [
+                    1,
+                    2
+                  ],
+                   "reseller": [
+                    1,
+                    2
+                  ],
+                   "seller": [
+                    1,
+                    2
+                  ],
+                  "conglomerate": [
                     1,
                     2
                   ]
@@ -12968,7 +13008,27 @@
                     1,
                     2
                   ],
-                  "seller": [
+                  "site": [
+                    1,
+                    2
+                  ],
+                   "franchise": [
+                    1,
+                    2
+                  ],
+                   "airline": [
+                    1,
+                    2
+                  ],
+                   "reseller": [
+                    1,
+                    2
+                  ],
+                   "seller": [
+                    1,
+                    2
+                  ],
+                  "conglomerate": [
                     1,
                     2
                   ]
