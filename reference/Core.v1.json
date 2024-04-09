@@ -11653,9 +11653,6 @@
       },
       "Group": {
         "title": "Group",
-        "x-stoplight": {
-          "id": "naq8d6ju0gg7r"
-        },
         "type": "object",
         "description": "Estructura que contiene la información del grupo",
         "properties": {
@@ -11683,9 +11680,6 @@
       },
       "Airline": {
         "title": "Airline",
-        "x-stoplight": {
-          "id": "naq8d6ju0gg7r"
-        },
         "type": "object",
         "description": "Estructura que contiene la información de la aerolínea",
         "properties": {
@@ -11703,9 +11697,6 @@
       },
       "Filter": {
         "title": "Filter",
-        "x-stoplight": {
-          "id": "naq8d6ju0gg7r"
-        },
         "type": "object",
         "description": "Estructura que contiene la información de los filtros",
         "properties": {
@@ -11723,9 +11714,6 @@
       },
       "Conglomerate": {
         "title": "Conglomerate",
-        "x-stoplight": {
-          "id": "naq8d6ju0gg7r"
-        },
         "type": "object",
         "description": "Estructura que contiene la información del conglomerado",
         "properties": {
@@ -11748,9 +11736,6 @@
       },
       "Site": {
         "title": "Site",
-        "x-stoplight": {
-          "id": "sxor4d0isy2o4"
-        },
         "type": "object",
         "description": "Estructura que contiene información de un sitio.",
         "properties": {
