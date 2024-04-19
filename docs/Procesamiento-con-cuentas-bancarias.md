@@ -1,7 +1,3 @@
----
-stoplight-id: m2wogfjfrvbrh
----
-
 # Procesamiento con cuentas bancarias
 
  Para procesar transacciones utilizando como instumento de pago una cuenta bancaria se requiere implementar el instrumento de pago account que permite definir los datos de la cuenta a utilizar, asi como los mecanismos para hacer validacion de la cuanta utilizando servicios de validacion de cuentas como: Account Validator.
@@ -10,18 +6,12 @@ stoplight-id: m2wogfjfrvbrh
 ## Recursos
 
 #### [API de procesamiento](../reference/Gateway.v1.json)
-#### [API de validador de cuentas]()
+#### [API de validador de cuentas](../reference/AccountValidator.v1.json)
 
 <pre>
 </pre>
 
 ## Instrumento cuenta bancaria
-
-```json jsonSchema
-"$ref": "../Models/Account.json",
-```
-
-### Ejemplo:
 
 ```json
  "account": {
