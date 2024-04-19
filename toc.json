@@ -66,6 +66,11 @@
       "uri": "/reference/Core.v1.json"
     },
     {
+      "type": "item",
+      "title": "Account Validator",
+      "uri": "/reference/AccountValidator.v1.json"
+    },
+    {
       "type": "divider",
       "title": "Schemas"
     },
