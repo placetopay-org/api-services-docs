@@ -1,5 +1,9 @@
 # Autenticación
 
+```json jsonSchema
+"$ref": "../Models/Status.json",
+```
+
 La API de Webcheckout Placetopay utiliza *Web Services Security UsernameToken Profile 1.1* para autenticar todas las solicitudes.
 
 La autenticación al servicio debe ser enviada sobre el objeto `auth`, el cual debe contener los atributos descritos en el modelo Authentication
