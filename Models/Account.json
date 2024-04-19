@@ -1,0 +1,36 @@
+{
+  "title": "Account",
+  "type": "object",
+  "description": "Estructura que contiene la información de la cuenta bancaria.\n",
+  "properties": {
+    "bankName": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Nombre del banco de la cuenta a procesar"
+    },
+    "bankCode": {
+      "type": "string",
+      "maxLength": 17,
+      "description": "Código que identifica al banco en la red"
+    },
+    "accountType": {
+      "type": "string",
+      "description": "tipo de cuenta",
+      "enum": [
+        "SAV",
+        "DDA",
+        "CCD"
+      ]
+    },
+    "accountNumber": {
+      "type": "string",
+      "maxLength": 17,
+      "description": "Número de cuenta"
+    }
+  },
+  "required": [
+    "bankCode",
+    "accountType",
+    "accountNumber"
+ ]
+}
