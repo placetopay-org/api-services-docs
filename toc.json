@@ -47,6 +47,11 @@
       "uri": "/docs/formats/Importacion-ordenes-de-pago.md"
     },
     {
+      "type": "item",
+      "title": "Procesamiento con cuentas bancarias",
+      "uri": "/docs/formats/Procesamiento-con-cuentas-bancarias.md"
+    },
+    {
       "type": "divider",
       "title": "APIS"
     },
@@ -63,6 +68,11 @@
     {
       "type": "divider",
       "title": "Schemas"
+    },
+    {
+      "type": "item",
+      "title": "Account",
+      "uri": "/Models/Account.json"
     },
     {
       "type": "item",
