@@ -68,7 +68,7 @@
     {
       "type": "item",
       "title": "Account Validator",
-      "uri": "/reference/Account-Validator.v1.json"
+      "uri": "/reference/AccountValidator.v1.json"
     },
     {
       "type": "divider",

@@ -321,7 +321,7 @@
                           "example": "2022-08-30 15:19:33"
                         },
                         "account": {
-                          "type": "object",
+                          "$ref": "../Models/Account.json",
                           "x-stoplight": {
                             "id": "owx1v7rdyuwcc"
                           },
@@ -644,28 +644,8 @@
                     "description": "Estructura que contiene la información de autenticación del sitio generada de acuerdo al WSSE UsernameToken Profile 1.1"
                   },
                   "account": {
-                    "type": "object",
-                    "description": "Cuenta a la que se le realizará la validación",
-                    "properties": {
-                      "bankCode": {
-                        "type": "string"
-                      },
-                      "bankName": {
-                        "type": "string"
-                      },
-                      "accountType": {
-                        "type": "string"
-                      },
-                      "accountNumber": {
-                        "type": "string"
-                      },
-                      "franchise": {
-                        "type": "string"
-                      },
-                      "verificationCode": {
-                        "type": "string"
-                      }
-                    }
+                    "$ref": "../Models/Account.json",
+                    "description": "Cuenta a la que se le realizará la validación. El código de verificación es requerido."
                   },
                   "payment": {
                     "type": "object",
