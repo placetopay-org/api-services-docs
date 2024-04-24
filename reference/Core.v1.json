@@ -10831,7 +10831,7 @@
                   "minRange": {
                     "type": "number",
                     "format": "float",
-                    "description": "Rango mínimo del plan.",
+                    "description": "Cantidad mínima de transacciones que se van a contratar.",
                     "minimum": 0,
                     "maximum": 99999999.99
                   },
@@ -10868,7 +10868,7 @@
                   "additionalMin": {
                     "type": "number",
                     "format": "float",
-                    "description": "Valor de comisión.",
+                    "description": "Valor mínimo de la comisión.",
                     "minimum": 0,
                     "maximum": 999999.99999
                   },
@@ -11496,7 +11496,7 @@
       "post": {
         "summary": "Asociar un comercio a un plan",
         "operationId": "post-core-plan-customer-create",
-        "description": "Este servicio permite asociar un comercio a un plan existente.",
+        "description": "Este servicio permite asociar un comercio a un plan existente. Si la respuesta es exitosa, retorna el identificador del rango del plan.",
         "responses": {
           "200": {
             "description": "OK",
@@ -11686,7 +11686,7 @@
                         "message": "La petición se ha procesado correctamente.",
                         "date": "2021-09-21T09:34:48-05:00"
                       },
-                      "planRanges": [
+                      "customerPlans": [
                         {
                           "id": 1,
                           "planId": 1,
