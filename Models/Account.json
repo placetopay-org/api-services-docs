@@ -1,0 +1,51 @@
+{
+  "title": "Account",
+  "type": "object",
+  "description": "Estructura que contiene la información de la cuenta bancaria.\n",
+  "required": [
+    "bankCode",
+    "accountType",
+    "accountNumber"
+  ],
+  "properties": {
+    "bankName": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Nombre del banco de la cuenta a procesar"
+    },
+    "bankCode": {
+      "type": "string",
+      "maxLength": 17,
+      "description": "Código que identifica al banco en la red"
+    },
+    "accountType": {
+      "type": "string",
+      "description": "tipo de cuenta",
+      "enum": [
+        "SAV",
+        "DDA",
+        "CCD"
+      ]
+    },
+    "accountNumber": {
+      "type": "string",
+      "maxLength": 17,
+      "description": "Número de cuenta"
+    },
+    "franchise": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "bhbb4cpy3me8p"
+      },
+      "maxLength": 20
+    },
+    "verificationCode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "jpxori5mf80z2"
+      },
+      "example": "eyJhbGciOiJSUzI1NiJ9.eyJhY2NvdW50SGFzaCI6ImM5YWM2ZjFhZDhjNDA3Y2ZjNzMyNDljNTE2MTJjNTdmMWQxZGNiNTA4YjE4ZGJlYWE1MWQ0NDI5NjBjMjUwNDUyMzY4ZTg2YmUzMWQ3MDMxMDY4ZDM2MjM2NzVjYzhkYTUzNzhhODNmMTUwZjg5OTczOTBiZTEyMGU1ZmExN2RhIiwib25UZXN0Ijp0cnVlLCJzZXJ2aWNlIjoibW9jayIsImlkIjo0MDB9.dFMY4EwCrWq9EBmERFkKCoLHExPH4vgaCgnZaqB_mf8n3Sv6Qnu6Pb79onluX1OZecmYmBuHqZ_ykKXWSD4RMZSpckYFCiO3mlcJKI4qb91COhl_c2qXxYJuLEdbLfGlzf0k8-oJgFcO9gAS1Xm0hpTP4iiXF6st1hFwlfR3fpX4rr-bTsKgMvRSReMuxa0Vs92DykfqUR_3udlc0DFCPB9ZTaSqeRNHFAPAWNniUPWURQlW5c9J9xcyKTgKGzfI1_7h2I4ALQeRifptE2nC-HZtEMwtcToNh7hn0oL9lNFXnXGK9sWKORcyWKVfpEChS8z30UfX6kOhU6fp_qUwmA",
+      "description": "El verificationCode es un JSON Web Signature (JWS). Tiene el fin de ser el instrumento verificador del estado de la cuenta."
+    }
+  }
+}
