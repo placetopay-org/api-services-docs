@@ -10475,13 +10475,11 @@
                   },
                   "validFrom": {
                     "type": "string",
-                    "format": "date-time",
                     "example": "2011-01-01",
                     "description": "Fecha de inicio del plan."
                   },
                   "validUntil": {
                     "type": "string",
-                    "format": "date-time",
                     "description": "Fecha de finalización del plan.",
                     "example": "2021-01-01"
                   }
@@ -10679,13 +10677,11 @@
                   },
                   "validFrom": {
                     "type": "string",
-                    "format": "date-time",
                     "example": "2011-01-01",
                     "description": "Fecha de inicio del plan."
                   },
                   "validUntil": {
                     "type": "string",
-                    "format": "date-time",
                     "description": "Fecha de finalización del plan.",
                     "example": "2021-01-01"
                   }
