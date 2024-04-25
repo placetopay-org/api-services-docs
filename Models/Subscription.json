@@ -1,0 +1,25 @@
+{
+  "title": "Subscription",
+  "x-stoplight": {
+    "id": "vip3u3guypqyd"
+  },
+  "type": "object",
+  "description": "Estructura que contiene la información sobre una suscripción o transacción que no requiera un monto en especifico\n",
+  "properties": {
+    "reference": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "hpkr64f4l7gwo"
+      },
+      "maxLength": 32
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "x-stoplight": {
+        "id": "cc6z3gqusoy1k"
+      },
+      "maxLength": 254
+    }
+  }
+}
