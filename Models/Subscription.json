@@ -16,10 +16,10 @@
     "description": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 4,
       "x-stoplight": {
         "id": "cc6z3gqusoy1k"
-      }
+      },
+      "maxLength": 254
     }
   }
 }
