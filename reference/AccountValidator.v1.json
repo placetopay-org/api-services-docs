@@ -1,0 +1,805 @@
+{
+  "openapi": "3.1.0",
+  "x-stoplight": {
+    "id": "jdb8phzpjfk7d"
+  },
+  "info": {
+    "title": "Account Validator",
+    "version": "1.0",
+    "summary": "validador de cuentas ACH",
+    "description": "# ¿Que es?\n\nAccount Validator es un proyecto encargado de la verificación de cuentas a través de servicios externos. La verificación de cuentas es un proceso adicional para verificar la veracidad y disponibilidad de las cuentas, validando información como:\n  * El estado de la cuenta, es decir si la cuenta se encuentra activa o no.\n  * El monto disponible en la cuenta para identificar si es posible realizar la transacción por el monto indicado.\nEste proceso se realiza antes de procesar la transacción.\n\n---\n\n# ¿Cómo funciona?\n\nAccount Validator es un proyecto de tipo redirección.\n  1. Asegurate de tener un sitio creado en el panel administrativo de Placetopay, y de tener habilitado el servicio de validación de cuentas ACH. \n  2. Con las credenciales de este sitio (Login - TranKey) podrás empezar a [crear sesiones para la verificación de cuentas](../reference/AccountValidator.v1.json/paths/~1api~1verification~1session/post).\n  3. Una vez creada una sesión, esta devolverá una url (redirectUrl) y un Id para consultar la sesión (requestId). Al ingresar a la url se visualizará el validador de cuentas donde el usuario podrá ingresar la información de su cuenta.\n  \n  <!-- theme: info -->\n  > #### Nota:\n  > Tener en cuenta el tiempo de expiración de la sesión que dependerá de la configuración del sitio. Por defecto son 15 minutos.\n\n  4. Una vez finalice el proceso, será redirigido a la url ingresada en la creación de la sesión (returnUrl)\n  5. Con el Id de la sesión (requestId) podrá [consultar el estado de la verificación](../reference/AccountValidator.v1.json/paths/~1api~1verification~1query/post).\n  6. Una vez aprobada la verificación, esta indicará si la cuenta existe dentro de los servicios vault popular y plaid para ACH. Sin embargo, para realizar validación de estado y monto deberá consumir con la información regresada en la consulta y la información del pago, el [servicio para validar la cuenta](../reference/AccountValidator.v1.json/paths/~1api~1verification~1validate/post).\n  ![Flujo Principal de validación de cuentas](../assets/images/accountValidatorSimpleFlow.png)\n\n---\n\n# Flujo del usuario\n\n  Una vez el usuario sea redireccionado a la verificación de cuentas seguirá el siguiente proceso:\n\n<!--\nfocus: center\nbg: black\n -->\n  ![Home](../assets/images/accountValidatorhome.png)\n\n  Al pulsar confirmar el usuario verá la siguiente pantalla donde podrá seleccionar el tipo de cuenta. Si es una **cuenta personal** o una **cuenta comercial**:\n<!--\nfocus: center\nbg: black\n -->\n  ![Home](../assets/images/accountValidatorSelectType.png)\n\n---\n\n<!--\ntype: tab\ntitle: Cuenta personal\n-->\n\n\nSi se selecciona la cuenta personal, el usuario tendrá que seleccionar el banco de la cuenta que desea validar. Si el banco no está en la lista tendrá la posibilidad de escoger el campo “otro”. \n\n<!--\nfocus: center\nbg: black\n -->\n  ![Home](../assets/images/accountValidatorPersonal.png)\n\n* **Para banco popular:**\n\nSi la cuenta pertenece al banco popular, el usuario deberá ingresar el tipo y número de cuenta, además el número de ruta y últimos 4 dígitos del número de seguridad social.\n\n<!--\nfocus: center\nbg: black\n -->\n  ![Home](../assets/images/accountValidatorPopular.png)\n\n  * **Para otros bancos:**\n\n  Si la cuenta NO pertenece al banco popular, la verificación se realizará a travez de un servicio externo (PLAID):\n<!--\nfocus: center\nbg: black\n -->\n  ![Home](../assets/images/accountValidatorOther.png)\n\n  Al seleccionar el banco, visualizara una ventana emergente y continuar con el proceso PLAID: \n<!--\nfocus: center\nbg: black\n -->\n  ![Home](../assets/images/accountValidatorPlaidHome.png)\n\n<!--\ntype: tab\ntitle: Cuenta comercial\n-->\n\n\nSi se selecciona la cuenta comercial, el usuario tendrá que seleccionar el banco de la cuenta que desea validar además del número de cuenta y una confirmación del mismo.\n\n<!--\nfocus: center\nbg: black\n -->\n  ![Home](../assets/images/accountValidatorBusiness.png)\n\n\n<!-- type: tab-end -->\n\n---\n\nUna vez recopilada la información, el validador de cuentas verificará si la cuenta existe y su estado de verificación, dependiendo del banco y tipo de cuenta seleccionada, para finalmente informar el resultado:\n\n<!--\nfocus: center\nbg: black\n -->\n  ![Home](../assets/images/accountValidatorSuccess.png)\n\n <!-- theme: info -->\n  > #### Reintentos:\n  > Si la cuenta ingresada no logró ser verificada, el verificador permitirá reintentar el proceso, hasta 3 veces (configurables).\n  > Si luego de agotar los intentos la verificación se realiza la verificación será rechazada automáticamente.  \n\n---\n\n# Micro - depósitos\n  Para realizar un microdepósito, deberá crear una sesión como en los casos anteriores y una vez el usuario sea redireccionado a la verificación de cuentas seguirá el siguiente proceso:\n  Seleccionar cuenta personal y seleccionar el banco diferente a banco popular.\n\n<!--\nfocus: center\nbg: black\n -->\n  ![Home](../assets/images/accountValidatorOther.png)\n\n  Al seleccionar el banco, visualizara una ventana emergente y continuar con el proceso PLAID: \n<!--\nfocus: center\nbg: black\n -->\n  ![Home](../assets/images/accountValidatorPlaidHome.png)\n\n  Para iniciar los micro depósitos deberá seleccionar vincular su cuenta bancaria Manualmente y ingresar los datos solicitados por la plataforma PLAID.\n  \n  <!--\nfocus: center\nbg: black\n -->\n  ![Home](../assets/images/accountValidatorPlaidSelect.png)\n\n\n  Una vez completado el flujo, al usuario le llegará una notificación indicando que ha iniciado un proceso de micro-depósitos, podrá realizar otro intento con una cuenta ya validada o salir del proceso.\n\n<!--\nfocus: center\nbg: black\n -->\n  ![Home](../assets/images/accountValidatorMicrodeposit.png)\n\n  <!--\nfocus: center\nbg: black\n -->\n  ![Home](../assets/images/accountValidatorMDMail.png)\n\n  El proceso de micro depositos es un proceso a cargo de la plataforma PLAID donde se le realizan depositos a la cuenta para validar si esta existe. Una vez realizados plaid notificará al validador de cuentas y este actualizará el estado:\n\n  - Si es rechazado, se le notificará al usuario que no se pudo realizar el micro deposito.\n\n  - Si es aprobado, se esperará hasta las 8:35 am del siguiente día para notificarle al usuario que el microdeposito fue realizado y deberá ingresar a completar el proceso. Esto, con el fin de recibir alguna novedad de reverso lo que implicará cancelar el microdeposito.\n\n  Los procesos pendientes y validados de microdepositos se podrán visualizar y continuar desde una nueva sesión en el flujo de validación de cuentas, para ello será necesario realizar una validación del usuario:\n\n  <!--\nfocus: center\nbg: black\n -->\n  ![Home](../assets/images/accountValidatorOTP.png)\n<!--\nfocus: center\nbg: black\n -->\n  ![Home](../assets/images/accountValidatorOTPMail.png)\n\n  Una vez ingresado el OTP el usuario podrá revisar el estado de las cuentas validadas con micro-depósitos:\n  \n  <!--\nfocus: center\nbg: black\n -->\n  ![Home](../assets/images/accountValidatorMDList.png)\n\n--- \n\n# Soporte para Lightbox:\n<!-- theme: info -->\n  > Si se detecta que la url de procesamiento se abre desde un iframe el verificador de cuentas en lugar de realizar redirección.\n\n  Al finalizar o cancelar el proceso de verificación lanzará un postMessage  a la pagina padre (la que renderizó el iframe) con la siguiente información de pendiendo del caso: \n  \n  ##### La verificación fue aprobada:\n```json \n    {\n    \"type\": \"close\",\n    \"payload\": {\n    \"status\": {\n      \"status\": \"OK\",\n       \"reason\": \"00\",\n    },\n    \"account\": {\n      \"status\": {\n          \"status\": \"OK\",\n          \"reason\": \"00\",\n          \"message\": \"La solicitud ha sido aprobada exitosamente\",\n          \"date\": \"2022-10-06T21:13:52+00:00\"\n      },\n        \"bankCode\": \"POPULAR\",\n        \"bankName\": \"Banco Popular\",\n        \"accountType\": \"SAV\",\n        \"accountNumber\": \"4111111111111111\",\n        \"verificationCode\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SGFzaCI6IjVkZTg5YzczMGRhYWM1YjE2ZGE2MmI5YzllM2MzMjk5NGViMzk1MTAiLCJvblRlc3QiOnRydWUsInNlcnZpY2UiOiJtb2NrIiwic2tpcFZlcmlmaWNhdGlvbkV4cGlyZWQiOmZhbHNlLCJleHAiOjE2NjUwOTQ0MjR9.bjco2ZBMhNDr8MToHetIdlRiLKbivl81YS6hdz-PifUjbZfc5bpUrxKesIX1bgiUIe4GN8SsEun9RshyLy5Y2ckNbRBBhPig_2O6VGimpgJOUZ36WiH0OS6lFCXUoxFfi_TE6rABPNH5Y6QUzy4JYyx7JnFUWztrOG2ZmI_d5fNMrqWBPduSjPzel1ne74GfW_vXVsqbDPmm4TJDz71Yj5-CYy8uUEdXXHF_UvOEFo5Uc5LyOLMZYcgKhGesHa4Y5G9oXFSetJxB9d63DUuG8OWf36xpCjmiPbDlR-TSbucmTQ1Cd2UVgNLWwJqsSFxaV3kev8neQ-HZLh-M6lucSA\"\n    },\n  }\n }\n```\n\n  ##### El usuario a cancelado el proceso:\n  ```json \n    { \n      \"type\": \"close\",\n      \"payload\": {\n        \"status\": {\n          \"status\": \"REJECTED\",\n          \"reason\": \"?C\"\n          },\n        \"account\": null\n      }\n    }\n```\n\n  ##### La verificación fue rechazada:\n```json \n    {\n  \"type\": \"close\",\n  \"payload\": {\n    \"status\": {\n       \"status\": \"REJECTED\",\n       \"reason\": \"38\",\n    },\n    \"account\": null\n  }\n }\n```\n\n"
+  },
+  "servers": [
+    {
+      "url": "https://account-validator.placetopay.com",
+      "description": "Producción"
+    },
+    {
+      "url": "http://dev-account-validator.placetopay.ws",
+      "description": "Desarrollo"
+    },
+    {
+      "url": "http://qa-account-validator.placetopay.ws",
+      "description": "Pruebas"
+    }
+  ],
+  "paths": {
+    "/api/verification/session": {
+      "parameters": [],
+      "post": {
+        "summary": "Crear Sesión",
+        "responses": {
+          "200": {
+            "description": "Sesión creada exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La solicitud ha sido aprobada exitosamente",
+                        "date": "2024-04-19T17:06:57+00:00"
+                      },
+                      "data": {
+                        "requestId": "9bd89c8d-6097-4d69-8ce9-d9b5ec35d8ea",
+                        "redirectUrl": "https://dev-account-validator.placetopay.ws/verification/redirect/9bd89c8d-6097-4d69-8ce9-d9b5ec35d8ea",
+                        "expiresAt": "2024-04-19 17:36:57"
+                      }
+                    }
+                  },
+                  "required": [
+                    "status"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "description": "Estructura que contiene la respuesta a la solicitud en el caso de que el estado sea exitoso",
+                      "properties": {
+                        "requestId": {
+                          "type": "string",
+                          "maxLength": 36,
+                          "pattern": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
+                          "example": "9bd89c8d-6097-4d69-8ce9-d9b5ec35d8ea",
+                          "description": "Identificador unico de la sesión que desea consultar."
+                        },
+                        "redirectUrl": {
+                          "type": "string",
+                          "format": "uri",
+                          "example": "https://dev-account-validator.placetopay.ws/verification/redirect/9bd89c8d-6097-4d69-8ce9-d9b5ec35d8ea",
+                          "description": "URL de redirección para continuar con la verificación de cuenta."
+                        },
+                        "expiresAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2024-04-19 17:36:57",
+                          "description": "Fecha de expiración de la sesión "
+                        }
+                      }
+                    },
+                    "status": {
+                      "$ref": "../Models/Status.json",
+                      "x-stoplight": {
+                        "id": "vtjndluaeez81"
+                      },
+                      "description": "Estructura que contiene la información sobre el estado de la solicitud."
+                    }
+                  }
+                },
+                "examples": {
+                  "sesión creada": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "string",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": {
+                        "requestId": "9bd89c8d-6097-4d69-8ce9-d9b5ec35d8ea",
+                        "redirectUrl": "https://account-validator.placetopay.com/verification/redirect/9bd89c8d-6097-4d69-8ce9-d9b5ec35d8ea",
+                        "expiresAt": "2024-04-19 17:36:57"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Petición inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status"
+                  ],
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json",
+                      "x-stoplight": {
+                        "id": "ape4wj4qfs8e6"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "El correo es obligatorio": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo user.email es obligatorio.",
+                        "date": "2024-04-19T20:15:04+00:00"
+                      }
+                    }
+                  },
+                  "El nombre es obligatorio": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El campo user.name es obligatorio.",
+                        "date": "2024-04-19T20:16:47+00:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "create-session",
+        "description": "Este endpoint permite crear una sesión de verificación de cuenta",
+        "x-stoplight": {
+          "id": "nwebv8x0d7v7m"
+        },
+        "requestBody": {
+          "description": "Campos para crear una sesión",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "auth",
+                  "user",
+                  "returnUrl",
+                  "locale"
+                ],
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json",
+                    "x-stoplight": {
+                      "id": "eowovtuse04uo"
+                    },
+                    "description": "Estructura que contiene la información de autenticación del sitio generada de acuerdo al WSSE UsernameToken Profile 1.1"
+                  },
+                  "user": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "if8n8pdigjk4r"
+                    },
+                    "required": [
+                      "name",
+                      "email"
+                    ],
+                    "description": "Usuario dueño de la cuenta a validar",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "s2jb0u4pyoogy"
+                        },
+                        "description": "Primer nombre o nombres del usuario propietario de la cuenta",
+                        "example": "John",
+                        "minLength": 1,
+                        "maxLength": 50
+                      },
+                      "surname": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "lfr1e000wax2t"
+                        },
+                        "example": "Doe",
+                        "description": "Apellidos del usuario propietario de la cuenta",
+                        "maxLength": 50
+                      },
+                      "email": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "b1q38w2hjgslc"
+                        },
+                        "format": "email",
+                        "example": "John.doe@test.com",
+                        "maxLength": 80,
+                        "description": "Correo Electrónico del usuario propietario de la cuenta"
+                      }
+                    }
+                  },
+                  "returnUrl": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "ayfizfh2lx3vy"
+                    },
+                    "format": "uri",
+                    "maxLength": 255,
+                    "example": "https://www.placetopay.com/return",
+                    "description": "Url de retorno una vez culmine el proceso de validación de cuentas"
+                  },
+                  "locale": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "90ermttqwijoe"
+                    },
+                    "maxLength": 5,
+                    "description": "Determina el idioma de la respuesta",
+                    "example": "es_CO"
+                  },
+                  "isAuthenticated": {
+                    "type": "boolean",
+                    "x-stoplight": {
+                      "id": "lekx5bp4ufy34"
+                    },
+                    "default": false,
+                    "description": "Determina si ya se ha realizado un proceso de autenticación externa.  La intención de no validar el correo electrónico del usuario dos veces. por defecto es false, quiere decir que se realizara envio de OTP para validar el usuario si este ya ha validado cuentas con microdepositos en el sistema"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "auth": {
+                      "login": "5991de4fa93bcd7b28cf5100c25099e1",
+                      "tranKey": "OoamCdSidq121234430nH5x94yxd4=",
+                      "nonce": "NG5vejc2b41xdm8=",
+                      "seed": "2024-04-19T12:06:56-05:00"
+                    },
+                    "user": {
+                      "name": "John",
+                      "surname": "Doe",
+                      "email": "john_doe@mail.com"
+                    },
+                    "returnUrl": "https://www.placetopay.com",
+                    "locale": "es_PR"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/verification/query": {
+      "post": {
+        "summary": "Consultar estado de sesión",
+        "operationId": "query-session",
+        "responses": {
+          "200": {
+            "description": "Consulta exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "status": {
+                        "status": "PENDING",
+                        "reason": "?-",
+                        "message": "No se pudo realizar la verificación",
+                        "date": "2024-04-19T20:42:04+00:00"
+                      },
+                      "data": {
+                        "requestId": "9bd8e975-c793-4888-afa7-15faee550fa5",
+                        "expiresAt": "2024-04-19 21:12:00"
+                      }
+                    }
+                  },
+                  "required": [
+                    "status"
+                  ],
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json",
+                      "description": "Estructura que contiene la información sobre el estado de la verificación."
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Estructura que contiene la respuesta a la solicitud en el caso de que el estado sea exitoso",
+                      "properties": {
+                        "requestId": {
+                          "type": "string",
+                          "description": "Identificador unico de la sesión.",
+                          "example": "1f630ff7-9c02-4da4-82d4-d676709acb21"
+                        },
+                        "expiresAt": {
+                          "type": "string",
+                          "description": "Fecha de expiración de la sesión ",
+                          "format": "date-time",
+                          "example": "2022-08-30 15:19:33"
+                        },
+                        "account": {
+                          "$ref": "../Models/Account.json",
+                          "x-stoplight": {
+                            "id": "owx1v7rdyuwcc"
+                          },
+                          "description": "Información de la cuenta verificada (este campo está disponible solo si la verificación fue Aprobada y solo podrá ser visualizada los 10 primero minutos)"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Pendiente de interacción del usuario": {
+                    "value": {
+                      "status": {
+                        "status": "PENDING",
+                        "reason": "?-",
+                        "message": "La solicitud está pendiente",
+                        "date": "2022-08-30T18:33:25+00:00"
+                      },
+                      "data": {
+                        "requestId": "9bd8e975-c793-4888-afa7-15faee550fa5",
+                        "expiresAt": "2024-04-19 21:12:00"
+                      }
+                    }
+                  },
+                  "Aprobada con cuenta": {
+                    "value": {
+                      "status": {
+                        "status": "APPROVED",
+                        "reason": "00",
+                        "message": "La verificación ha sido exítosa",
+                        "date": "2024-04-19T20:49:04+00:00"
+                      },
+                      "data": {
+                        "requestId": "9bd8e975-c793-4888-afa7-15faee550fa5",
+                        "account": {
+                          "bankCode": "221571473",
+                          "bankName": "FIRSTBANK PUERTO RICO",
+                          "accountType": "CCD",
+                          "accountNumber": "41111111111111111",
+                          "franchise": "_221571473_",
+                          "verificationCode": "eyJhbGciOiJSUzI1NiJ9.eyJhY2NvdW50SGFzaCI6IjhkMzJkN2VjYjEyZDZmYjRmN2VlZmMzN2U4MmY2ZjI3YzNiYmY5Nzc3NjJkODAxZjQxYWZhN2Q0NWQ2YzI4YzU5YTU2NTM3YmZhM2E0NTM0MzhiMmU5M2Q4ODVkZDRiNDA1MjM5MjUwY2QzZGFkMDhhMzM2ZTJjYjM0Mjg0Y2RiIiwib25UZXN0IjpmYWxzZSwic2VydmljZSI6InBybWxjIiwiaWQiOjM4OX0.bXBuhT_xhA5vKJv3yVFJXYSYFJ4d49gmWuK2AC33GUfviAs2gSxrwZ8EHtFH4w37Pjzmq3y96uQZrllroGSlF7PySRqwxfNnem92ZKOs4EsFkzOdfBh73Z-RmCpKY6n5BQDjvVIg8hkwb2umnotjig1Zz_yHCBcvqQj5qkjj1N8HyT3KQtTOzItfDb4qf7uEAzONbcSN8YRYuRKvBMxKgJMSdeIu8Ah3zMOAhLxa1X0XnRr0a1gYudqQLowpnwQ7SP31Y_I3IlrXdBZqIYI12cciY_N1c11MsDuM1mtWhA0aJeVVzgdyq_DS0WOAiZy6Lsd26vY1ZR5Q5OsHYVIF5g"
+                        },
+                        "expiresAt": "2024-04-19 21:12:00"
+                      }
+                    }
+                  },
+                  "Aprobada despues de 10 minutos": {
+                    "value": {
+                      "status": {
+                        "status": "REJECTED",
+                        "reason": "XD",
+                        "message": "La solicitud ha vencido",
+                        "date": "2024-04-19T21:00:34+00:00"
+                      },
+                      "data": {
+                        "requestId": "9bd8e975-c793-4888-afa7-15faee550fa5",
+                        "expiresAt": "2024-04-19 21:12:00"
+                      }
+                    }
+                  },
+                  "Cancelada por el usuario": {
+                    "value": {
+                      "status": {
+                        "status": "REJECTED",
+                        "reason": "?C",
+                        "message": "La verificación ha sido cancelada",
+                        "date": "2024-04-19T20:57:46+00:00"
+                      },
+                      "data": {
+                        "requestId": "9bd8ee68-eda5-48db-a5cf-96c2c2dca139",
+                        "expiresAt": "2024-04-19 21:25:50"
+                      }
+                    }
+                  },
+                  "Límite de intentos fallidos": {
+                    "value": {
+                      "status": {
+                        "status": "REJECTED",
+                        "reason": "38",
+                        "message": "Ha alcanzado el número máximo de intentos fallidos",
+                        "date": "2024-04-19T21:09:54+00:00"
+                      },
+                      "data": {
+                        "requestId": "9bd8f2b1-8415-4796-abeb-a9e557997905",
+                        "expiresAt": "2024-04-19 21:27:49"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Solicitud inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "status": {
+                        "status": "REJECTED",
+                        "reason": "BR",
+                        "message": "There are no results for the query",
+                        "date": "2024-04-19T21:11:09+00:00"
+                      }
+                    }
+                  },
+                  "required": [
+                    "status"
+                  ],
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Identificador inválido": {
+                    "value": {
+                      "status": {
+                        "status": "REJECTED",
+                        "reason": "BR",
+                        "message": "There are no results for the query",
+                        "date": "2024-04-19T21:11:09+00:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "auth",
+                  "requestId"
+                ],
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json",
+                    "x-stoplight": {
+                      "id": "xx5x1kfrtymqk"
+                    },
+                    "description": "Estructura que contiene la información de autenticación del sitio generada de acuerdo al WSSE UsernameToken Profile 1.1"
+                  },
+                  "requestId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "q2gzw5y85ruou"
+                    },
+                    "pattern": "1f630ff7-9c02-4da4-82d4-d676709acb21",
+                    "maxLength": 36,
+                    "description": "Identificador unico de la sesión que desea consultar."
+                  }
+                }
+              },
+              "examples": {
+                "Consulta de sesión": {
+                  "value": {
+                    "auth": {
+                      "login": "5991de4fa93bcd7b28cf5100c25099e1",
+                      "tranKey": "OoamCdSidq121234430nH5x94yxd4=",
+                      "nonce": "NG5vejc2b41xdm8=",
+                      "seed": "2024-04-19T12:06:56-05:00"
+                    },
+                    "requestId": "1f630ff7-9c02-4da4-82d4-d676709acb21"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Campos para consultar una sesión"
+        },
+        "description": "Este endpoint te permitirá consultar el estado de la sesión creada.\n\n  <!-- theme: warning -->\n  > #### Nota:\n  > La información de la cuenta solo se mostrará los primeros 10 minutos, sí solo si, la verificación de cuenta fue exitosa.\n\n### Posibles estados:\n\nNombre| Descripción \n---------|----------\nAPPROVED | La cuenta fue verificada exitosamente\nREJECTED | La verificación de cuenta fue rechazada\nFAILED   | Ha ocurrido un error en el sistema\nPENDING  | La verificación de cuenta está en proceso\n\n---\n\n### Razones de estado\n\nCódigo | Descripción \n---------|----------\n?C | La verificación ha sido cancelada por el usuario\n05 | La verificación ha sido rechazada por razones generales\nBR | Los datos de la solicitud han sido incorrectos\n00 | La verificación ha sido realizada con éxito\n?- | La verificación está en proceso de validación\n38 | Número de intentos agotado\nHX | Ha ocurrido un error en el servicio\nX3 | La información suministrada es inválida\nX5 | Número de seguridad social inválido\nXN | Número de cuenta inválido\n?* | Pendiente de validación por microdepositos",
+        "x-stoplight": {
+          "id": "3cdl0m0942fm9"
+        }
+      },
+      "parameters": []
+    },
+    "/api/verification/validate": {
+      "post": {
+        "summary": "Validar Cuenta existente",
+        "operationId": "validate",
+        "responses": {
+          "200": {
+            "description": "Respuesta estado de validación",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "status": {
+                        "status": "APPROVED",
+                        "reason": "00",
+                        "message": "La verificación ha sido exítosa",
+                        "date": "2024-04-19T20:51:52+00:00"
+                      }
+                    }
+                  },
+                  "required": [
+                    "status"
+                  ],
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Validada exitosamente": {
+                    "value": {
+                      "status": {
+                        "status": "APPROVED",
+                        "reason": "00",
+                        "message": "La verificación ha sido exítosa",
+                        "date": "2024-04-19T20:51:52+00:00"
+                      }
+                    }
+                  },
+                  "Monto insuficiente": {
+                    "value": {
+                      "status": {
+                        "status": "REJECTED",
+                        "reason": "XA",
+                        "message": "No tienes monto disponible para esta cuenta",
+                        "date": "2024-04-19T21:36:20+00:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Solicitud invalida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json",
+                      "x-stoplight": {
+                        "id": "rzncsg6mofssg"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Moneda invalida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": "El payment.amount.currency seleccionado no es válido.",
+                        "date": "2024-04-19T21:33:00+00:00"
+                      }
+                    }
+                  },
+                  "Código de verificación invalido": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "X3",
+                        "message": "El código de verificación no coincide con la cuenta a validar",
+                        "date": "2024-04-19T21:34:41+00:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "auth": {
+                      "login": "5991de4fa93bcd7b28cf5100c25099e1",
+                      "tranKey": "OoamCdSidq121234430nH5x94yxd4=",
+                      "nonce": "NG5vejc2b41xdm8=",
+                      "seed": "2024-04-19T12:06:56-05:00"
+                    },
+                    "account": {
+                      "bankCode": "221571473",
+                      "bankName": "FIRSTBANK PUERTO RICO",
+                      "accountType": "CCD",
+                      "accountNumber": "41111111111111111",
+                      "franchise": "_221571473_",
+                      "verificationCode": "eyJhbGciOiJSUzI1NiJ9.eyJhY2NvdW50SGFzaCI6IjhkMzJkN2VjYjEyZDZmYjRmN2VlZmMzN2U4MmY2ZjI3YzNiYmY5Nzc3NjJkODAxZjQxYWZhN2Q0NWQ2YzI4YzU5YTU2NTM3YmZhM2E0NTM0MzhiMmU5M2Q4ODVkZDRiNDA1MjM5MjUwY2QzZGFkMDhhMzM2ZTJjYjM0Mjg0Y2RiIiwib25UZXN0IjpmYWxzZSwic2VydmljZSI6InBybWxjIiwiaWQiOjM4OX0.bXBuhT_xhA5vKJv3yVFJXYSYFJ4d49gmWuK2AC33GUfviAs2gSxrwZ8EHtFH4w37Pjzmq3y96uQZrllroGSlF7PySRqwxfNnem92ZKOs4EsFkzOdfBh73Z-RmCpKY6n5BQDjvVIg8hkwb2umnotjig1Zz_yHCBcvqQj5qkjj1N8HyT3KQtTOzItfDb4qf7uEAzONbcSN8YRYuRKvBMxKgJMSdeIu8Ah3zMOAhLxa1X0XnRr0a1gYudqQLowpnwQ7SP31Y_I3IlrXdBZqIYI12cciY_N1c11MsDuM1mtWhA0aJeVVzgdyq_DS0WOAiZy6Lsd26vY1ZR5Q5OsHYVIF5g"
+                    },
+                    "payment": {
+                      "amount": {
+                        "currency": "USD",
+                        "total": 100
+                      }
+                    },
+                    "locale": "es_ES"
+                  }
+                },
+                "required": [
+                  "auth",
+                  "account",
+                  "payment"
+                ],
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json",
+                    "description": "Estructura que contiene la información de autenticación del sitio generada de acuerdo al WSSE UsernameToken Profile 1.1"
+                  },
+                  "account": {
+                    "$ref": "../Models/Account.json",
+                    "description": "Cuenta a la que se le realizará la validación. El código de verificación es requerido."
+                  },
+                  "payment": {
+                    "type": "object",
+                    "description": "Estructura que contiene la información acerca del pago de la transacción",
+                    "required": [
+                      "amount"
+                    ],
+                    "properties": {
+                      "amount": {
+                        "type": "object",
+                        "required": [
+                          "currency",
+                          "total"
+                        ],
+                        "properties": {
+                          "currency": {
+                            "type": "string",
+                            "maxLength": 3,
+                            "minLength": 3,
+                            "example": "USD"
+                          },
+                          "total": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "locale": {
+                    "type": "string",
+                    "example": "es_CO",
+                    "default": "en"
+                  }
+                }
+              },
+              "examples": {
+                "Validar cuenta existente": {
+                  "value": {
+                    "auth": {
+                      "login": "5991de4fa93bcd7b28cf5100c25099e1",
+                      "tranKey": "OoamCdSidq121234430nH5x94yxd4=",
+                      "nonce": "NG5vejc2b41xdm8=",
+                      "seed": "2024-04-19T12:06:56-05:00"
+                    },
+                    "account": {
+                      "bankCode": "221571473",
+                      "bankName": "FIRSTBANK PUERTO RICO",
+                      "accountType": "CCD",
+                      "accountNumber": "41111111111111111",
+                      "franchise": "_221571473_",
+                      "verificationCode": "eyJhbYuiOiJSUzI1NmS1.eyJhY2NvdW50SGFzaCI6IjhkMzJkN2VjYjEyZDZmYjRmN2VlZmMzN2U4MmY2ZjI3YzNiYmY5Nzc3NjJkODAxZjQxYWZhN2Q0NWQ2YzI4YzU5YTU2NTM3YmZhM2E0NTM0MzhiMmU5M2Q4ODVkZDRiNDA1MjM5MjUwY2QzZGFkMDhhMzM2ZTJjYjM0Mjg0Y2RiIiwib25UZXN0IjpmYWxzZSwic2VydmljZSI6InBybWxjIiwiaWQiOjM4OX0.bXBuhT_xhA5vKJv3yVFJXYSYFJ4d49gmWuK2AC33GUfviAs2gSxrwZ8EHtFH4w37Pjzmq3y96uQZrllroGSlF7PySRqwxfNnem92ZKOs4EsFkzOdfBh73Z-RmCpKY6n5BQDjvVIg8hkwb2umnotjig1Zz_yHCBcvqQj5qkjj1N8HyT3KQtTOzItfDb4qf7uEAzONbcSN8YRYuRKvBMxKgJMSdeIu8Ah3zMOAhLxa1X0XnRr0a1gYudqQLowpnwQ7SP31Y_I3IlrXdBZqIYI12cciY_N1c11MsDuM1mtWhA0aJeVVzgdyq_DS0WOAiZy6Lsd26vY1ZR5Q5OsHYVIF5g"
+                    },
+                    "payment": {
+                      "amount": {
+                        "currency": "USD",
+                        "total": 100
+                      }
+                    },
+                    "locale": "es_ES"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Datos para validar una cuenta existente"
+        },
+        "description": "Una vez realizada de manera exitosa la creación inicial de la sesión podrá realizar validaciones a la cuenta las veces que considere necesarias, solo debe tener la información de la cuenta y el código de verificación entregado en el proceso anterior. \n\n### Validaciones realizadas:\n  Actualmente el resultado de las validaciones se basa en las siguientes reglas:\n  1. **Validación de cuenta existente:** Se verifica que la cuenta exista y haya pasado por un proceso de creación de la sesión desde la interfaz gráfica del verificador de cuentas y además el token generado pertenezca al comercio con el cual se está autenticando.\n  2. **Validación de cuenta activa:** Se verifica que la cuenta exista y este activa en el proveedor de validación de cuentas, (PLAID, VaulPopular, Cuentas Comerciales, o el MOCK según corresponda).\n  3. **Validación de monto disponible:** Se verifica que la cuenta a validar tenga un monto mayor o igual al monto enviado en la solicitud.\n\n### Razones de estado:\n\nCódigo | Descripción\n---------|----------\t\n05 | La verificación ha sido rechazada por razones generales\nBR | Los datos de la solicitud han sido incorrectos\n00 | La verificación ha sido realizada con éxito\nXA | Monto no disponible para esta cuenta\nHX | Ha ocurrido un error en el servicio\nX3 | La información suministrada es inválida\nX5 | Número de seguridad social Inválido\nXN | Número de cuenta inválido\n\n### Posibles estados:\n\nNombre | Descripción\n---------|----------\nAPPROVED | La cuenta fue verificada exitosamente\nREJECTED | La verificación de cuenta fue rechazada\nFAILED | Ha ocurrido un error en el sistema\n\n",
+        "x-stoplight": {
+          "id": "ivej6wfsejdm5"
+        }
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "title": "User",
+        "type": "object",
+        "description": "",
+        "examples": [
+          {
+            "id": 142,
+            "firstName": "Alice",
+            "lastName": "Smith",
+            "email": "alice.smith@gmail.com",
+            "dateOfBirth": "1997-10-31",
+            "emailVerified": true,
+            "signUpDate": "2019-08-24"
+          }
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the given user.",
+            "x-stoplight": {
+              "id": "0vhutv91koh9r"
+            }
+          },
+          "firstName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "afjgw0zt5qgkc"
+            }
+          },
+          "lastName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "gdb01jblocu94"
+            }
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "x-stoplight": {
+              "id": "j6m0qfdzugtit"
+            }
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date",
+            "example": "1997-10-31",
+            "x-stoplight": {
+              "id": "j71cuajts4y81"
+            }
+          },
+          "emailVerified": {
+            "type": "boolean",
+            "description": "Set to true if the user's email has been verified.",
+            "x-stoplight": {
+              "id": "mo1iy3y042k4g"
+            }
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date",
+            "description": "The date that the user was created.",
+            "x-stoplight": {
+              "id": "r3fug3vb822fn"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "firstName",
+          "lastName",
+          "email",
+          "emailVerified"
+        ],
+        "x-stoplight": {
+          "id": "4ypyvup644j1h"
+        }
+      }
+    }
+  },
+  "x-internal": false
+}
