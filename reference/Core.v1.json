@@ -10435,7 +10435,7 @@
                       "ALL",
                       "APPROVED"
                     ],
-                    "description": "Se define si se cobran solo las transacciones aprobadas o toda operación."
+                    "description": "Se define si se cobran sólo las transacciones aprobadas o toda operación."
                   },
                   "mode": {
                     "type": "string",
@@ -10637,7 +10637,7 @@
                       "ALL",
                       "APPROVED"
                     ],
-                    "description": "Se define si se cobran solo las transacciones aprobadas o toda operación."
+                    "description": "Se define si se cobran sólo las transacciones aprobadas o toda operación."
                   },
                   "mode": {
                     "type": "string",
@@ -10719,9 +10719,9 @@
     },
     "/core/plans/search": {
       "post": {
-        "summary": "Listar los planes existentes",
+        "summary": "Consultar los planes existentes",
         "operationId": "post-core-plan-list",
-        "description": "Este servicio permite listar todos los planes existentes. Si la respuesta es exitosa, retorna un arreglo con los planes.",
+        "description": "Este servicio permite consultar todos los planes existentes. Se puede filtrar por medio de los parámetros: identificador del plan. Si la respuesta es exitosa, retorna un arreglo con los planes.",
         "responses": {
           "200": {
             "description": "OK",
@@ -10735,19 +10735,9 @@
                     },
                     "data": {
                       "type": "array",
-                      "example": [
-                        {
-                          "id": 5,
-                          "type": "APPROVED",
-                          "mode": "PERCENT",
-                          "frequence": "WEEKLY",
-                          "unbillThird": 0,
-                          "aggregator": 0,
-                          "description": null,
-                          "validFrom": "2024-05-03",
-                          "validUntil": null
-                        }
-                      ]
+                      "items": {
+                        "$ref": "#/components/schemas/Plan-search"
+                      }
                     },
                     "pagination": {
                       "$ref": "#/components/schemas/Pagination"
@@ -10879,7 +10869,7 @@
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
                     },
-                    "planId": 1,
+                    "id": 1,
                     "pagination": {
                       "perPage": 10,
                       "currentPage": 1
@@ -10912,8 +10902,11 @@
                     "status": {
                       "$ref": "../Models/Status.json"
                     },
-                    "id":  1
-                  }
+                    "id": {
+                      "type": "integer",
+                      "example": 1,
+                      "description": "Identificador del plan eliminado."
+                    }                  }
                 },
                 "examples": {
                   "Respuesta exitosa": {
@@ -11044,7 +11037,11 @@
                     "status": {
                       "$ref": "../Models/Status.json"
                     },
-                    "id":  1
+                    "id": {
+                      "type": "integer",
+                      "example": 1,
+                      "description": "Identificador del plan cancelado."
+                    }
                   }
                 },
                 "examples": {
@@ -11617,9 +11614,9 @@
     },
     "/core/plans/range/search": {
       "post": {
-        "summary": "Listar los rangos de un plan",
+        "summary": "Consultar los rangos de un plan",
         "operationId": "post-core-plan-range-list",
-        "description": "Este servicio permite listar todos los rangos asociados a un plan existente. Si la respuesta es exitosa, retorna un arreglo con los rangos del plan.",
+        "description": "Este servicio permite listar todos los rangos asociados a un plan existente. Se puede filtrar por medio de los parámetros: identificador del plan. Si la respuesta es exitosa, retorna un arreglo con los rangos del plan.",
         "responses": {
           "200": {
             "description": "OK",
@@ -11631,25 +11628,11 @@
                     "status": {
                       "$ref": "../Models/Status.json"
                     },
-                    "planRanges": {
+                    "data": {
                       "type": "array",
-                      "example": [
-                        {
-                          "id": 1,
-                          "planId": 1,
-                          "minRange": 0,
-                          "maxRange": 123000,
-                          "base": 14760,
-                          "included": 0.12,
-                          "includedMin": 0,
-                          "additional": 0.12,
-                          "additionalMin": 0,
-                          "cifin": 1220.5,
-                          "emailage": 1220.5,
-                          "sarlaft": 1220.5
-                        }
-                      ],
-                      "description": "Lista con la información de los rangos asociados a un plan."
+                      "items": {
+                        "$ref": "#/components/schemas/Plan-range-search"
+                      }
                     }
                   }
                 },
@@ -11662,7 +11645,7 @@
                         "message": "La petición se ha procesado correctamente.",
                         "date": "2021-09-21T09:34:48-05:00"
                       },
-                      "planRanges": [
+                      "data": [
                         {
                           "id": 1,
                           "planId": 1,
@@ -12091,9 +12074,9 @@
     },
     "/core/plans/customer/search": {
       "post": {
-        "summary": "Listar los comercios asociados a un plan",
+        "summary": "Consultar los comercios asociados a un plan",
         "operationId": "post-core-plan-customer-list",
-        "description": "Este servicio permite listar los comercios asociados a un plan existente. Si la respuesta es exitosa, retorna un arreglo con los comercios del plan.",
+        "description": "Este servicio permite consultar los comercios asociados a un plan existente. Se puede filtrar por medio de los parámetros: identificador del plan. Si la respuesta es exitosa, retorna un arreglo con los comercios del plan.",
         "responses": {
           "200": {
             "description": "OK",
@@ -12105,20 +12088,11 @@
                     "status": {
                       "$ref": "../Models/Status.json"
                     },
-                    "customerPlans": {
+                    "data": {
                       "type": "array",
-                      "example": [
-                        {
-                          "id": 1,
-                          "planId": 1,
-                          "customerId": 1,
-                          "siteId": null,
-                          "paymentMethodId": null,
-                          "validFrom": "2023-01-03",
-                          "validUntil": "2025-09-17"
-                        }
-                      ],
-                      "description": "Lista con la información de los comercios asociados al plan."
+                      "items": {
+                        "$ref": "#/components/schemas/Plan-customer-search"
+                      }
                     }
                   }
                 },
@@ -12131,7 +12105,7 @@
                         "message": "La petición se ha procesado correctamente.",
                         "date": "2021-09-21T09:34:48-05:00"
                       },
-                      "customerPlans": [
+                      "data": [
                         {
                           "id": 1,
                           "planId": 1,
@@ -15102,6 +15076,207 @@
                 }
               }
             }
+          }
+        }
+      },
+      "Plan-search": {
+        "title": "Plan",
+        "type": "object",
+        "description": "Estructura que contiene información de los planes.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1,
+            "description": "Id del plan"
+          },
+          "type": {
+            "type": "string",
+            "example": "APPROVED",
+            "enum": [
+              "ALL",
+              "APPROVED"
+            ],
+            "description": "Se define si se cobran sólo las transacciones aprobadas o toda operación."
+          },
+          "mode": {
+            "type": "string",
+            "example": "PERCENT",
+            "enum": [
+              "PERCENT",
+              "FIXED_VALUE"
+            ],
+            "description": "Define si los valores de incluida o adicional corresponden a pesos o porcentajes."
+          },
+          "frequence": {
+            "type": "string",
+            "example": "WEEKLY",
+            "enum": [
+              "WEEKLY",
+              "BIWEEKLE",
+              "MONTHLY",
+              "QUARTERLY",
+              "SEMIANUALLY",
+              "ANNUALLY"
+            ],
+            "description": "Frecuencia de facturación del plan."
+          },
+          "unbillThird": {
+            "type": "boolean",
+            "default": false
+          },
+          "aggregator": {
+            "type": "boolean",
+            "default": false,
+            "description": "Indicada si el plan es por modelo agregador."
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 255,
+            "description": "Descripción del plan."
+          },
+          "validFrom": {
+            "type": "string",
+            "example": "2011-01-01",
+            "description": "Fecha de inicio del plan."
+          },
+          "validUntil": {
+            "type": "string",
+            "description": "Fecha de finalización del plan.",
+            "example": "2021-01-01"
+          }
+        }
+      },
+      "Plan-range-search": {
+        "title": "Plan Range",
+        "type": "object",
+        "description": "Estructura que contiene información de los rangos de los planes.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1,
+            "description": "Id del rango del plan"
+          },
+          "planId": {
+            "type": "integer",
+            "example": 1,
+            "description": "Id del plan."
+          },
+          "minRange": {
+            "type": "number",
+            "format": "float",
+            "description": "Cantidad mínima de transacciones que se van a contratar.",
+            "minimum": 0,
+            "maximum": 99999999.99
+          },
+          "maxRange": {
+            "type": "number",
+            "format": "float",
+            "example": 15409800,
+            "description": "Cantidad de transacciones que se van a contratar.",
+            "minimum": 0,
+            "maximum": 9999999999.99
+          },
+          "base": {
+            "type": "number",
+            "format": "float",
+            "example": 261966.6,
+            "description": "Cargo base de la sumatoria de las transacciones (si se le cobra al cliente $500*100 transacciones = base) (fee mensual).",
+            "minimum": 0,
+            "maximum": 9999999999.99
+          },
+          "includedMin": {
+            "type": "number",
+            "format": "float",
+            "minimum": 0,
+            "maximum": 999999.99999
+          },
+          "included": {
+            "type": "number",
+            "format": "float",
+            "example": 0.017,
+            "description": "Costo de cuanto vale la transacción",
+            "minimum": 0,
+            "maximum": 999999.99999
+          },
+          "additionalMin": {
+            "type": "number",
+            "format": "float",
+            "description": "Valor mínimo de la comisión.",
+            "minimum": 0,
+            "maximum": 999999.99999
+          },
+          "additional": {
+            "type": "number",
+            "format": "float",
+            "example": 0.017,
+            "description": "Valor de cada transacción una vez superado el rango maximo.",
+            "minimum": 0,
+            "maximum": 999999.99999
+          },
+          "cifin": {
+            "type": "number",
+            "format": "float",
+            "example": 1195,
+            "description": "Costo de consulta/validación en centrales de riesgo.",
+            "minimum": 0,
+            "maximum": 99999999.99
+          },
+          "emailage": {
+            "type": "number",
+            "format": "float",
+            "example": 1195,
+            "description": "Costo de consulta/validacion en motores de riesgo.",
+            "minimum": 0,
+            "maximum": 99999999.99
+          },
+          "sarlaft": {
+            "type": "number",
+            "format": "float",
+            "example": 1195,
+            "minimum": 0,
+            "maximum": 99999999.99
+          }
+        }
+      },
+      "Plan-customer-search": {
+        "title": "Plan Range",
+        "type": "object",
+        "description": "Estructura que contiene información de los comercios de los planes.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1,
+            "description": "Id del comercio del plan"
+          },
+          "planId": {
+            "type": "integer",
+            "example": 1,
+            "description": "Id del plan al cual se le asociará el comercio."
+          },
+          "customerId": {
+            "type": "integer",
+            "example": 1,
+            "description": "Id del comercio asociado al plan."
+          },
+          "siteId": {
+            "type": "integer",
+            "example": 1,
+            "description": "Id del sitio asociado al plan."
+          },
+          "paymentMethodId": {
+            "type": "integer",
+            "example": 11,
+            "description": "Id del medio de pago."
+          },
+          "validFrom": {
+            "type": "string",
+            "example": "2011-01-01",
+            "description": "Fecha de inicio del plan."
+          },
+          "validUntil": {
+            "type": "string",
+            "description": "Fecha de finalización del plan.",
+            "example": "2021-01-01"
           }
         }
       },
