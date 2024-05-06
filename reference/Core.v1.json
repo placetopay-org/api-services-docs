@@ -10905,6 +10905,7 @@
                   }
                 },
                 "required": [
+                  "auth",
                   "planId",
                   "maxRange",
                   "base",
@@ -11134,6 +11135,7 @@
                   }
                 },
                 "required": [
+                  "auth",
                   "planId",
                   "maxRange",
                   "base",
@@ -11327,6 +11329,7 @@
                   }
                 },
                 "required": [
+                  "auth",
                   "planId"
                 ]
               },
@@ -11465,6 +11468,7 @@
                   }
                 },
                 "required": [
+                  "auth",
                   "planId",
                   "planRanges"
                 ]
@@ -11617,6 +11621,7 @@
                   }
                 },
                 "required": [
+                  "auth",
                   "planId",
                   "customerId"
                 ]
@@ -11783,6 +11788,7 @@
                   }
                 },
                 "required": [
+                  "auth",
                   "planId"
                 ]
               },
@@ -11921,6 +11927,7 @@
                   }
                 },
                 "required": [
+                  "auth",
                   "planId",
                   "customerPlans"
                 ]
