@@ -10719,9 +10719,9 @@
     },
     "/core/plans/search": {
       "post": {
-        "summary": "Consultar los planes existentes",
+        "summary": "Consulta de planes",
         "operationId": "post-core-plan-list",
-        "description": "Este servicio permite consultar todos los planes existentes. Se puede filtrar por medio de los parámetros: identificador del plan. Si la respuesta es exitosa, retorna un arreglo con los planes.",
+        "description": "Este servicio permite consultar todos los planes existentes. Se puede filtrar por medio del identificador del plan. Si la respuesta es exitosa, retorna un arreglo con los planes.",
         "responses": {
           "200": {
             "description": "OK",
@@ -11614,9 +11614,9 @@
     },
     "/core/plans/range/search": {
       "post": {
-        "summary": "Consultar los rangos de un plan",
+        "summary": "Consulta de rangos de un plan",
         "operationId": "post-core-plan-range-list",
-        "description": "Este servicio permite listar todos los rangos asociados a un plan existente. Se puede filtrar por medio de los parámetros: identificador del plan. Si la respuesta es exitosa, retorna un arreglo con los rangos del plan.",
+        "description": "Este servicio permite consultar todos los rangos asociados a un plan existente. Se puede filtrar por medio del identificador del plan. Si la respuesta es exitosa, retorna un arreglo con los rangos del plan.",
         "responses": {
           "200": {
             "description": "OK",
@@ -12074,9 +12074,9 @@
     },
     "/core/plans/customer/search": {
       "post": {
-        "summary": "Consultar los comercios asociados a un plan",
+        "summary": "Consulta de comercios de un plan",
         "operationId": "post-core-plan-customer-list",
-        "description": "Este servicio permite consultar los comercios asociados a un plan existente. Se puede filtrar por medio de los parámetros: identificador del plan. Si la respuesta es exitosa, retorna un arreglo con los comercios del plan.",
+        "description": "Este servicio permite consultar los comercios asociados a un plan existente. Se puede filtrar por medio del identificador del plan. Si la respuesta es exitosa, retorna un arreglo con los comercios del plan.",
         "responses": {
           "200": {
             "description": "OK",
