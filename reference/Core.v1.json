@@ -10759,8 +10759,8 @@
                           "type": "APPROVED",
                           "mode": "PERCENT",
                           "frequence": "WEEKLY",
-                          "unbillThird": 0,
-                          "aggregator": 0,
+                          "unbillThird": false,
+                          "aggregator": false,
                           "description": null,
                           "validFrom": "2024-05-03",
                           "validUntil": null
@@ -10770,15 +10770,18 @@
                           "type": "ALL",
                           "mode": "PERCENT",
                           "frequence": "BIWEEKLE",
-                          "unbillThird": 0,
-                          "aggregator": 0,
+                          "unbillThird": true,
+                          "aggregator": true,
                           "description": "Plan Description",
                           "validFrom": "2024-05-03",
                           "validUntil": "2024-05-05"
                         }
                       ],
                       "pagination": {
-                        "$ref": "#/components/schemas/Pagination"
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
                       }
                     }
                   }
@@ -11573,6 +11576,7 @@
                 },
                 "required": [
                   "auth",
+                  "id",
                   "planId",
                   "maxRange",
                   "base",
@@ -11592,6 +11596,7 @@
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
                     },
+                    "id": 1,
                     "planId": 1,
                     "maxRange": 123000,
                     "base": 14760,
@@ -11633,6 +11638,9 @@
                       "items": {
                         "$ref": "#/components/schemas/Plan-range-search"
                       }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
                     }
                   }
                 },
@@ -11674,7 +11682,13 @@
                           "emailage": 20,
                           "sarlaft": 20
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -11752,8 +11766,7 @@
                   }
                 },
                 "required": [
-                  "auth",
-                  "planId"
+                  "auth"
                 ]
               },
               "examples": {
@@ -12076,7 +12089,7 @@
       "post": {
         "summary": "Consulta de comercios de un plan",
         "operationId": "post-core-plan-customer-list",
-        "description": "Este servicio permite consultar los comercios asociados a un plan existente. Se puede filtrar por medio del identificador del plan. Si la respuesta es exitosa, retorna un arreglo con los comercios del plan.",
+        "description": "Este servicio permite consultar los comercios asociados a un plan existente. Se puede filtrar por medio del identificador del plan. Si la respuesta es exitosa, retorna un arreglo con las asociaciones entre planes y comercios.",
         "responses": {
           "200": {
             "description": "OK",
@@ -12093,6 +12106,9 @@
                       "items": {
                         "$ref": "#/components/schemas/Plan-customer-search"
                       }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
                     }
                   }
                 },
@@ -12110,8 +12126,8 @@
                           "id": 1,
                           "planId": 1,
                           "customerId": 1,
-                          "siteId": null,
-                          "paymentMethodId": null,
+                          "siteId": 1,
+                          "paymentMethodId": 1,
                           "validFrom": "2023-01-03",
                           "validUntil": "2025-09-17"
                         },
@@ -12119,12 +12135,18 @@
                           "id": 2,
                           "planId": 1,
                           "customerId": 1,
-                          "siteId": null,
-                          "paymentMethodId": null,
+                          "siteId": 1,
+                          "paymentMethodId": 1,
                           "validFrom": "2023-01-03",
                           "validUntil": "2025-09-17"
                         }
-                      ]
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 10,
+                        "currentPage": 1,
+                        "lastPage": 1
+                      }
                     }
                   }
                 }
@@ -12202,8 +12224,7 @@
                   }
                 },
                 "required": [
-                  "auth",
-                  "planId"
+                  "auth"
                 ]
               },
               "examples": {
@@ -15251,7 +15272,7 @@
           "planId": {
             "type": "integer",
             "example": 1,
-            "description": "Id del plan al cual se le asociará el comercio."
+            "description": "Id del plan al cual están asociados los comercio."
           },
           "customerId": {
             "type": "integer",
