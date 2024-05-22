@@ -11291,7 +11291,7 @@
                     "type": "number",
                     "format": "float",
                     "example": 261966.6,
-                    "description": "Cargo base de la sumatoria de las transacciones (si se le cobra al cliente $500*100 transacciones = base) (fee mensual).",
+                    "description": "Cargo base que se cobra según la cantidad definida de transacciones.",
                     "minimum": 0,
                     "maximum": 9999999999.99
                   },
@@ -11305,7 +11305,7 @@
                     "type": "number",
                     "format": "float",
                     "example": 0.017,
-                    "description": "Costo de cuanto vale la transacción",
+                    "description": "Costo por transacción.",
                     "minimum": 0,
                     "maximum": 999999.99999
                   },
@@ -11320,7 +11320,7 @@
                     "type": "number",
                     "format": "float",
                     "example": 0.017,
-                    "description": "Valor de cada transacción una vez superado el rango maximo.",
+                    "description": "Costo por transacción una vez superado el rango máximo.",
                     "minimum": 0,
                     "maximum": 999999.99999
                   },
@@ -11505,7 +11505,7 @@
                   "minRange": {
                     "type": "number",
                     "format": "float",
-                    "description": "Rango mínimo del plan.",
+                    "description": "Cantidad mínima de transacciones que se van a contratar.",
                     "minimum": 0,
                     "maximum": 99999999.99
                   },
@@ -11521,7 +11521,7 @@
                     "type": "number",
                     "format": "float",
                     "example": 261966.6,
-                    "description": "Cargo base de la sumatoria de las transacciones (si se le cobra al cliente $500*100 transacciones = base) (fee mensual).",
+                    "description": "Cargo base que se cobra según la cantidad definida de transacciones.",
                     "minimum": 0,
                     "maximum": 9999999999.99
                   },
@@ -11535,7 +11535,7 @@
                     "type": "number",
                     "format": "float",
                     "example": 0.017,
-                    "description": "Costo de cuanto vale la transacción",
+                    "description": "Costo por transacción.",
                     "minimum": 0,
                     "maximum": 999999.99999
                   },
@@ -11550,7 +11550,7 @@
                     "type": "number",
                     "format": "float",
                     "example": 0.017,
-                    "description": "Valor de cada transacción una vez superado el rango maximo.",
+                    "description": "Costo por transacción una vez superado el rango máximo.",
                     "minimum": 0,
                     "maximum": 999999.99999
                   },
@@ -15215,7 +15215,7 @@
             "type": "number",
             "format": "float",
             "example": 261966.6,
-            "description": "Cargo base de la sumatoria de las transacciones (si se le cobra al cliente $500*100 transacciones = base) (fee mensual).",
+            "description": "Cargo base que se cobra según la cantidad definida de transacciones.",
             "minimum": 0,
             "maximum": 9999999999.99
           },
@@ -15229,7 +15229,7 @@
             "type": "number",
             "format": "float",
             "example": 0.017,
-            "description": "Costo de cuanto vale la transacción",
+            "description": "Costo por transacción.",
             "minimum": 0,
             "maximum": 999999.99999
           },
@@ -15244,7 +15244,7 @@
             "type": "number",
             "format": "float",
             "example": 0.017,
-            "description": "Valor de cada transacción una vez superado el rango maximo.",
+            "description": "Costo por transacción una vez superado el rango máximo.",
             "minimum": 0,
             "maximum": 999999.99999
           },
