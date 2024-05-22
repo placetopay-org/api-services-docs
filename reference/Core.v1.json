@@ -10756,17 +10756,20 @@
                       "data": [
                         {
                           "id": 1,
+                          "invoiceTo": 1,
                           "type": "APPROVED",
                           "mode": "PERCENT",
                           "frequence": "WEEKLY",
                           "unbillThird": false,
                           "aggregator": false,
-                          "description": null,
+                          "description": "Plan Description",
                           "validFrom": "2024-05-03",
-                          "validUntil": null
+                          "validUntil": "2024-05-15",
+                          "updatedAt": "2024-01-20 15:02:14"
                         },
                         {
                           "id": 2,
+                          "invoiceTo": 1,
                           "type": "ALL",
                           "mode": "PERCENT",
                           "frequence": "BIWEEKLE",
@@ -10774,7 +10777,8 @@
                           "aggregator": true,
                           "description": "Plan Description",
                           "validFrom": "2024-05-03",
-                          "validUntil": "2024-05-05"
+                          "validUntil": "2024-05-05",
+                          "updatedAt": "2024-01-20 15:01:54"
                         }
                       ],
                       "pagination": {
@@ -15110,6 +15114,11 @@
             "example": 1,
             "description": "Id del plan"
           },
+          "invoiceTo": {
+            "type": "integer",
+            "example": 1,
+            "description": "Id del comercio"
+          },
           "type": {
             "type": "string",
             "example": "APPROVED",
@@ -15164,6 +15173,11 @@
             "type": "string",
             "description": "Fecha de finalización del plan.",
             "example": "2021-01-01"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Fecha de última actualización del plan.",
+            "example": "2024-05-20 15:01:54"
           }
         }
       },
