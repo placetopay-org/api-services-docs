@@ -4590,7 +4590,7 @@
     },
     "/core/site/update": {
       "post": {
-        "summary": "Actualización de branding un sitio",
+        "summary": "Actualizar branding de un sitio",
         "operationId": "post-core-site-update",
         "responses": {
           "200": {
