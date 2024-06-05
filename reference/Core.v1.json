@@ -4590,7 +4590,7 @@
     },
     "/core/site/update": {
       "post": {
-        "summary": "Actualización parcial de un sitio",
+        "summary": "Actualizar branding de un sitio",
         "operationId": "post-core-site-update",
         "responses": {
           "200": {
@@ -4790,7 +4790,7 @@
           },
           "description": ""
         },
-        "description": "Este servicio permite actualizar un sitio con la información suministrada. Si la respuesta es exitosa, retorna los datos del sitio",
+        "description": "Este servicio permite actualizar el branding y la versión de checkout de un sitio con la información suministrada. Si la respuesta es exitosa, retorna los datos del sitio",
         "tags": [
           "Acciones sobre sitios"
         ],
@@ -10160,7 +10160,7 @@
                     "status": {
                       "$ref": "../Models/Status.json"
                     },
-                    "id" : {
+                    "id": {
                       "type": "integer",
                       "example": 1,
                       "description": "Identificador del usuario editado."
@@ -10247,7 +10247,7 @@
                   "auth": {
                     "$ref": "../Models/Autentication.json"
                   },
-                  "id" : {
+                  "id": {
                     "type": "integer",
                     "example": 1,
                     "description": "Identificador del usuario editado."
@@ -12660,7 +12660,15 @@
                 "type": "array",
                 "uniqueItems": true,
                 "description": "Días permitidos para ingresar al sistema.",
-                "default": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"],
+                "default": [
+                  "MONDAY",
+                  "TUESDAY",
+                  "WEDNESDAY",
+                  "THURSDAY",
+                  "FRIDAY",
+                  "SATURDAY",
+                  "SUNDAY"
+                ],
                 "items": {
                   "type": "string",
                   "example": "TUESDAY",
@@ -12700,8 +12708,7 @@
               "filters": {
                 "type": "object",
                 "description": "Objeto con información de filtros.",
-                "example": 
-                {
+                "example": {
                   "client": [
                     1,
                     2
@@ -12710,19 +12717,19 @@
                     1,
                     2
                   ],
-                   "franchise": [
+                  "franchise": [
                     1,
                     2
                   ],
-                   "airline": [
+                  "airline": [
                     1,
                     2
                   ],
-                   "reseller": [
+                  "reseller": [
                     1,
                     2
                   ],
-                   "seller": [
+                  "seller": [
                     1,
                     2
                   ],
@@ -12815,15 +12822,15 @@
               },
               "allowedDays": {
                 "type": "array",
-                "items":{
+                "items": {
                   "enum": [
-                  "MONDAY",
-                  "TUESDAY",
-                  "WEDNESDAY",
-                  "THURSDAY",
-                  "FRIDAY",
-                  "SATURDAY",
-                  "SUNDAY"
+                    "MONDAY",
+                    "TUESDAY",
+                    "WEDNESDAY",
+                    "THURSDAY",
+                    "FRIDAY",
+                    "SATURDAY",
+                    "SUNDAY"
                   ]
                 },
                 "example": [
@@ -12831,7 +12838,15 @@
                   "WEDNESDAY"
                 ],
                 "description": "Días permitidos para ingresar al sistema.",
-                "default": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
+                "default": [
+                  "MONDAY",
+                  "TUESDAY",
+                  "WEDNESDAY",
+                  "THURSDAY",
+                  "FRIDAY",
+                  "SATURDAY",
+                  "SUNDAY"
+                ]
               },
               "permissionMode": {
                 "type": "string",
@@ -12858,9 +12873,8 @@
               "filters": {
                 "type": "object",
                 "description": "Objeto con información de filtros.",
-                "example": 
-                {
-                 "client": [
+                "example": {
+                  "client": [
                     1,
                     2
                   ],
@@ -12868,19 +12882,19 @@
                     1,
                     2
                   ],
-                   "franchise": [
+                  "franchise": [
                     1,
                     2
                   ],
-                   "airline": [
+                  "airline": [
                     1,
                     2
                   ],
-                   "reseller": [
+                  "reseller": [
                     1,
                     2
                   ],
-                   "seller": [
+                  "seller": [
                     1,
                     2
                   ],
@@ -12947,15 +12961,15 @@
               },
               "allowedDays": {
                 "type": "array",
-                "items":{
+                "items": {
                   "enum": [
-                  "MONDAY",
-                  "TUESDAY",
-                  "WEDNESDAY",
-                  "THURSDAY",
-                  "FRIDAY",
-                  "SATURDAY",
-                  "SUNDAY"
+                    "MONDAY",
+                    "TUESDAY",
+                    "WEDNESDAY",
+                    "THURSDAY",
+                    "FRIDAY",
+                    "SATURDAY",
+                    "SUNDAY"
                   ]
                 },
                 "example": [
@@ -12963,7 +12977,15 @@
                   "WEDNESDAY"
                 ],
                 "description": "Días permitidos para ingresar al sistema.",
-                "default": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
+                "default": [
+                  "MONDAY",
+                  "TUESDAY",
+                  "WEDNESDAY",
+                  "THURSDAY",
+                  "FRIDAY",
+                  "SATURDAY",
+                  "SUNDAY"
+                ]
               },
               "permissionMode": {
                 "type": "string",
@@ -12990,8 +13012,7 @@
               "filters": {
                 "type": "object",
                 "description": "Objeto con información de filtros.",
-                "example": 
-                {
+                "example": {
                   "client": [
                     1,
                     2
@@ -13000,19 +13021,19 @@
                     1,
                     2
                   ],
-                   "franchise": [
+                  "franchise": [
                     1,
                     2
                   ],
-                   "airline": [
+                  "airline": [
                     1,
                     2
                   ],
-                   "reseller": [
+                  "reseller": [
                     1,
                     2
                   ],
-                   "seller": [
+                  "seller": [
                     1,
                     2
                   ],
