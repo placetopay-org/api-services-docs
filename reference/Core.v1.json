@@ -11940,7 +11940,7 @@
       "post": {
         "summary": "Asociar un comercio a un plan",
         "operationId": "post-core-plan-customer-create",
-        "description": "Este servicio permite asociar un comercio a un plan existente. Si la respuesta es exitosa, retorna el identificador del rango del plan.",
+        "description": "Este servicio permite asociar un comercio a un plan existente.",
         "responses": {
           "200": {
             "description": "OK",
@@ -11951,11 +11951,6 @@
                   "properties": {
                     "status": {
                       "$ref": "../Models/Status.json"
-                    },
-                    "id": {
-                      "type": "integer",
-                      "example": 2,
-                      "description": "Identificador del comercio del plan creado."
                     }
                   }
                 },
@@ -11967,8 +11962,7 @@
                         "reason": "00",
                         "message": "La petición se ha procesado correctamente.",
                         "date": "2021-09-21T09:34:48-05:00"
-                      },
-                      "id": 2
+                      }
                     }
                   }
                 }
@@ -12049,15 +12043,15 @@
                     "example": 1,
                     "description": "Id del comercio que se le asociará al plan."
                   },
-                  "siteId": {
-                    "type": "integer",
-                    "example": 1,
-                    "description": "Id del sitio que se le asociará al plan."
+                  "sites": {
+                    "type": "array",
+                    "example": [1,2,3],
+                    "description": "Ids de los sitios que se le asociarán al plan."
                   },
                   "paymentMethodId": {
                     "type": "integer",
                     "example": 11,
-                    "description": "Id del medio de pago."
+                    "description": "Id del medio de pago. Válido sólo si se selecciona como máximo un sitio"
                   }
                 },
                 "required": [
