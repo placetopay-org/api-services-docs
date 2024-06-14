@@ -5740,7 +5740,13 @@
                       "financialEntity": 1,
                       "commissionModel": "P",
                       "commissionValue": 1,
-                      "settings": {},
+                      "settings": {
+                        "merchantCode": "123456",
+                        "MID": "000468232",
+                        "RUC": "1234567890147",
+                        "terminalNumber": "01234567",
+                        "aggregatorModel": false
+                      },
                       "creditRules": {
                         "RM_MC": {
                           "C": {
@@ -5756,6 +5762,35 @@
                           }
                         }
                       }
+                    }
+                  }
+                },
+                "Agregar un medio de pago a un sitio (CREDIBANCO)": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "data": {
+                      "siteId": 1,
+                      "customerPaymentId": 1,
+                      "order": 1,
+                      "minAmount": 1,
+                      "maxAmount": 99999999.99,
+                      "accountType": 1,
+                      "accountNumber": "123456789900",
+                      "financialEntity": 1,
+                      "commissionModel": "P",
+                      "commissionValue": 1,
+                      "settings": {
+                        "username": "username",
+                        "password": "password",
+                        "retailCode": "123456789",
+                        "terminalNumber": "71234567"
+                      },
+                      "creditRules": {}
                     }
                   }
                 }
@@ -5869,6 +5904,11 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "auth",
+                  "id",
+                  "data"
+                ],
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
@@ -5969,7 +6009,69 @@
                         "x-stoplight": {
                           "id": "ew9nbc5ubd7lp"
                         },
-                        "description": "Objeto que contiene las configuraciones del medio de pago."
+                        "description": "Objeto que contiene las configuraciones del medio de pago.",
+                        "properties": {
+                          "merchantCode": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "oeeieslv0qpnp"
+                            },
+                            "description": "Código de entidad"
+                          },
+                          "terminalNumber": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "7j6kut8a049bx"
+                            },
+                            "description": "Número de terminal del medio de pago"
+                          },
+                          "MID": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "pfa7qdfj89bcs"
+                            },
+                            "description": "ID de comerciante"
+                          },
+                          "RUC": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "d13xkymdsjlba"
+                            },
+                            "description": "Registro único de contribuyente"
+                          },
+                          "username": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "fymurspaq0kgx"
+                            },
+                            "description": "Nombre de usuario (CREDIBANCO)",
+                            "maxLength": 30
+                          },
+                          "password": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "hwswnzcmt1gjq"
+                            },
+                            "description": "Contraseña (CREDIBANCO)",
+                            "maxLength": 30
+                          },
+                          "retailCode": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "rqxaxnph08cjg"
+                            },
+                            "description": "Código único de venta (CREDIBANCO)",
+                            "maxLength": 10
+                          },
+                          "aggregatorModel": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "22hul2772vf7y"
+                            },
+                            "description": "Indicador de modelo agregador (_PSE_)",
+                            "default": false
+                          }
+                        }
                       },
                       "creditRules": {
                         "type": "object",
@@ -5980,15 +6082,10 @@
                       }
                     }
                   }
-                },
-                "required": [
-                  "auth",
-                  "id",
-                  "data"
-                ]
+                }
               },
               "examples": {
-                "Actualización de un medio de pago": {
+                "Actualización de un medio de pago a un sitio": {
                   "value": {
                     "auth": {
                       "login": "613822f45568191a8cdf4ad2299f6d23",
@@ -6006,7 +6103,41 @@
                       "financialEntity": 1,
                       "commissionModel": "P",
                       "commissionValue": 1,
-                      "settings": {},
+                      "settings": {
+                        "merchantCode": "123456",
+                        "MID": "000468232",
+                        "RUC": "1234567890147",
+                        "terminalNumber": "01234567",
+                        "aggregatorModel": false
+                      },
+                      "creditRules": {}
+                    }
+                  }
+                },
+                "Actualización de un medio de pago a un sitio (CREDIBANCO)": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "data": {
+                      "order": 1,
+                      "minAmount": 1,
+                      "maxAmount": 99999999.99,
+                      "accountType": 1,
+                      "accountNumber": "123456789900",
+                      "financialEntity": 1,
+                      "commissionModel": "P",
+                      "commissionValue": 1,
+                      "settings": {
+                        "username": "username",
+                        "password": "password",
+                        "retailCode": "123456789",
+                        "terminalNumber": "71234567"
+                      },
                       "creditRules": {}
                     }
                   }
