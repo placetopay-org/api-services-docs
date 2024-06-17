@@ -2576,6 +2576,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "auth",
+                  "data"
+                ],
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
@@ -3428,17 +3432,29 @@
                             "x-stoplight": {
                               "id": "v3y9vjq36hsbp"
                             },
-                            "description": "Colo de fondo del sidebar del web checkout, en formato HEX. Ej.: #FFCCEE"
+                            "description": "Color de fondo del sidebar del web checkout, en formato HEX. Ej.: #FFCCEE"
+                          }
+                        }
+                      },
+                      "settings": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "1643fvicfv19s"
+                        },
+                        "description": "Objeto con información de configuración",
+                        "properties": {
+                          "filterLockedByTries": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "eispqjw4ybodk"
+                            },
+                            "description": "Habilita o deshabilita los filtros de seguridad por intentos"
                           }
                         }
                       }
                     }
                   }
-                },
-                "required": [
-                  "auth",
-                  "data"
-                ]
+                }
               },
               "examples": {
                 "Creación de un sitio": {
@@ -3562,6 +3578,9 @@
                       "branding": {
                         "buttonColor": "#cc3fdd",
                         "sidebarColor": "#ffebeb"
+                      },
+                      "settings": {
+                        "filterLockedByTries": true
                       }
                     }
                   }
@@ -4514,6 +4533,22 @@
                             "pattern": "^#([a-f0-9]{6}|[a-f0-9]{3})$"
                           }
                         }
+                      },
+                      "settings": {
+                        "type": "object",
+                        "x-stoplight": {
+                          "id": "ewtcw2g1bm01o"
+                        },
+                        "description": "Objeto con información de configuración",
+                        "properties": {
+                          "filterLockedByTries": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "cdf6zgvvot4kj"
+                            },
+                            "description": "Habilita o deshabilita los filtros de seguridad por intentos"
+                          }
+                        }
                       }
                     }
                   }
@@ -4572,6 +4607,9 @@
                       "branding": {
                         "buttonColor": "#cc3fdd",
                         "sidebarColor": "#ffebeb"
+                      },
+                      "settings": {
+                        "filterLockedByTries": true
                       }
                     }
                   }
