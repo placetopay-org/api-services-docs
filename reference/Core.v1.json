@@ -1738,6 +1738,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "auth",
+                  "data"
+                ],
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
@@ -1808,8 +1812,7 @@
                         "maximum": 32767
                       },
                       "settings": {
-                        "type": "object",
-                        "description": "Objeto que contiene las configuraciones del medio de pago."
+                        "$ref": "#/components/schemas/Settings-Payment-Method"
                       },
                       "creditRules": {
                         "type": "object",
@@ -1820,11 +1823,7 @@
                       }
                     }
                   }
-                },
-                "required": [
-                  "auth",
-                  "data"
-                ]
+                }
               },
               "examples": {
                 "Agregar un método de pago.": {
@@ -1844,7 +1843,14 @@
                       "accountNumber": "1234567890",
                       "financialEntity": 2,
                       "order": 1,
-                      "settings": {},
+                      "settings": {
+                        "username": "username",
+                        "terminalLocation": "Medellin",
+                        "serviceCode": "123456",
+                        "isEcommerce": true,
+                        "3DSVersion": "v2",
+                        "3DSApiKey": "468232"
+                      },
                       "creditRules": {
                         "RM_MC": {
                           "C": {
@@ -1971,6 +1977,11 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "auth",
+                  "id",
+                  "data"
+                ],
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
@@ -2024,8 +2035,7 @@
                         "example": 1
                       },
                       "settings": {
-                        "type": "object",
-                        "description": "Objeto que contiene las configuraciones del medio de pago."
+                        "$ref": "#/components/schemas/Settings-Payment-Method"
                       },
                       "creditRules": {
                         "type": "object",
@@ -2036,12 +2046,7 @@
                       }
                     }
                   }
-                },
-                "required": [
-                  "auth",
-                  "id",
-                  "data"
-                ]
+                }
               },
               "examples": {
                 "Actualizar un método de pago agregado.": {
@@ -2060,7 +2065,14 @@
                       "accountNumber": "1234567890",
                       "financialEntity": 2,
                       "order": 1,
-                      "settings": {},
+                      "settings": {
+                        "username": "username",
+                        "terminalLocation": "Medellin",
+                        "serviceCode": "123456",
+                        "isEcommerce": true,
+                        "3DSVersion": "v2",
+                        "3DSApiKey": "468232"
+                      },
                       "creditRules": {}
                     }
                   }
@@ -5641,73 +5653,7 @@
                         "description": "Valor de comisión."
                       },
                       "settings": {
-                        "type": "object",
-                        "x-stoplight": {
-                          "id": "l4f8uetm5wsku"
-                        },
-                        "description": "Objeto que contiene las configuraciones del medio de pago.",
-                        "properties": {
-                          "merchantCode": {
-                            "type": "string",
-                            "x-stoplight": {
-                              "id": "ix1sqn3fmj7oy"
-                            },
-                            "description": "Código de entidad"
-                          },
-                          "terminalNumber": {
-                            "type": "string",
-                            "x-stoplight": {
-                              "id": "14ytbk804fn4e"
-                            },
-                            "description": "Número de terminal del medio de pago"
-                          },
-                          "MID": {
-                            "type": "string",
-                            "x-stoplight": {
-                              "id": "hawqhe978zdce"
-                            },
-                            "description": "ID de comerciante"
-                          },
-                          "RUC": {
-                            "type": "string",
-                            "x-stoplight": {
-                              "id": "cwriq9s1qx7ek"
-                            },
-                            "description": "Registro único de contribuyente"
-                          },
-                          "username": {
-                            "type": "string",
-                            "x-stoplight": {
-                              "id": "b2kvis4w1yo43"
-                            },
-                            "maxLength": 30,
-                            "description": "Nombre de usuario (CREDIBANCO)"
-                          },
-                          "password": {
-                            "type": "string",
-                            "x-stoplight": {
-                              "id": "q34l3hhqtgih2"
-                            },
-                            "maxLength": 30,
-                            "description": "Contraseña (CREDIBANCO)"
-                          },
-                          "retailCode": {
-                            "type": "string",
-                            "x-stoplight": {
-                              "id": "ro5s55z836ztc"
-                            },
-                            "maxLength": 10,
-                            "description": "Código único de venta (CREDIBANCO)"
-                          },
-                          "aggregatorModel": {
-                            "type": "boolean",
-                            "x-stoplight": {
-                              "id": "7jqgin5hkms5j"
-                            },
-                            "default": false,
-                            "description": "Indicador de modelo agregador (_PSE_)"
-                          }
-                        }
+                        "$ref": "#/components/schemas/Settings-Payment-Method"
                       },
                       "creditRules": {
                         "type": "object",
@@ -6005,73 +5951,7 @@
                         "description": "Valor de comisión."
                       },
                       "settings": {
-                        "type": "object",
-                        "x-stoplight": {
-                          "id": "ew9nbc5ubd7lp"
-                        },
-                        "description": "Objeto que contiene las configuraciones del medio de pago.",
-                        "properties": {
-                          "merchantCode": {
-                            "type": "string",
-                            "x-stoplight": {
-                              "id": "oeeieslv0qpnp"
-                            },
-                            "description": "Código de entidad"
-                          },
-                          "terminalNumber": {
-                            "type": "string",
-                            "x-stoplight": {
-                              "id": "7j6kut8a049bx"
-                            },
-                            "description": "Número de terminal del medio de pago"
-                          },
-                          "MID": {
-                            "type": "string",
-                            "x-stoplight": {
-                              "id": "pfa7qdfj89bcs"
-                            },
-                            "description": "ID de comerciante"
-                          },
-                          "RUC": {
-                            "type": "string",
-                            "x-stoplight": {
-                              "id": "d13xkymdsjlba"
-                            },
-                            "description": "Registro único de contribuyente"
-                          },
-                          "username": {
-                            "type": "string",
-                            "x-stoplight": {
-                              "id": "fymurspaq0kgx"
-                            },
-                            "description": "Nombre de usuario (CREDIBANCO)",
-                            "maxLength": 30
-                          },
-                          "password": {
-                            "type": "string",
-                            "x-stoplight": {
-                              "id": "hwswnzcmt1gjq"
-                            },
-                            "description": "Contraseña (CREDIBANCO)",
-                            "maxLength": 30
-                          },
-                          "retailCode": {
-                            "type": "string",
-                            "x-stoplight": {
-                              "id": "rqxaxnph08cjg"
-                            },
-                            "description": "Código único de venta (CREDIBANCO)",
-                            "maxLength": 10
-                          },
-                          "aggregatorModel": {
-                            "type": "boolean",
-                            "x-stoplight": {
-                              "id": "22hul2772vf7y"
-                            },
-                            "description": "Indicador de modelo agregador (_PSE_)",
-                            "default": false
-                          }
-                        }
+                        "$ref": "#/components/schemas/Settings-Payment-Method"
                       },
                       "creditRules": {
                         "type": "object",
@@ -13345,6 +13225,107 @@
             "minimum": 1,
             "example": 1,
             "description": "Ultima página disponible"
+          }
+        }
+      },
+      "Settings-Payment-Method": {
+        "title": "Settings-Payment-Method",
+        "x-stoplight": {
+          "id": "mr1sx1he1ju8c"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información de las configuraciones de un sitio/comercio asociadas a un medio de pago",
+        "properties": {
+          "merchantCode": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "i4quohqwulass"
+            },
+            "description": "Código de entidad"
+          },
+          "terminalNumber": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "4ty55xi9mtjau"
+            },
+            "description": "Número de terminal del medio de pago"
+          },
+          "MID": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "rs85sdjuohkqk"
+            },
+            "description": "ID de comerciante"
+          },
+          "RUC": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "1k0aw9es5ecy6"
+            },
+            "description": "Registro único de contribuyente"
+          },
+          "username": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "cyt6zc5q0eu9l"
+            },
+            "maxLength": 30,
+            "description": "Usuario de la terminal"
+          },
+          "password": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "t2eyzse2zbsqq"
+            },
+            "maxLength": 30,
+            "description": "Contraseña de la terminal"
+          },
+          "retailCode": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "40fwg4s7dkkd5"
+            },
+            "description": "Código único de venta",
+            "maxLength": 10
+          },
+          "terminalLocation": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "l7e9l5fds569r"
+            },
+            "description": "Determina la ubicación de la terminal"
+          },
+          "serviceCode": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "bsdgunndribek"
+            },
+            "description": "Código que representa el servicio del comercio"
+          },
+          "isEcommerce": {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "u3eawfq9u65df"
+            },
+            "description": "Determina si es un comercio electrónico"
+          },
+          "3DSVersion": {
+            "x-stoplight": {
+              "id": "tg6u5y0egr2td"
+            },
+            "description": "Determina la versión de 3DS",
+            "enum": [
+              "v1",
+              "v2"
+            ]
+          },
+          "3DSApiKey": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "hqsr9dmkl12q2"
+            },
+            "description": "3DS API key",
+            "maxLength": 380
           }
         }
       }
