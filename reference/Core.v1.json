@@ -13326,6 +13326,14 @@
             },
             "description": "3DS API key",
             "maxLength": 380
+          },
+          "aggregatorModel": {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "3185185y0s0xt"
+            },
+            "default": false,
+            "description": "Determina si es modelo agregador (_PSE_)"
           }
         }
       }
