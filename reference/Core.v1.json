@@ -8250,11 +8250,11 @@
       },
       "parameters": []
     },
-    "/core/tools/seller/search - copy": {
+    "/core/tools/payment-facilitator/search": {
       "post": {
-        "summary": "Busqueda de consultores comerciales de PlacetoPay.",
-        "operationId": "post-core-tools-seller-search",
-        "description": "Este servicio permite buscar consultores comerciales habilitados.\nSi la respuesta es exitosa, se retorna un arreglo con información de cada consultor.\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination'.",
+        "summary": "Consulta de facilitadores de pago",
+        "operationId": "post-core-tools-payment-facilitator-search",
+        "description": "Este servicio permite buscar los facilitadores de pago registrados en el sistema.\n\nSi la respuesta es exitosa, se retorna un arreglo con la información de cada facilitador de pago.\n\nPuede filtrar los resultados de la consulta empleando el parámetro 'id' y 'name' como filtro, segun lo requiera.\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -8264,42 +8264,119 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "$ref": "../Models/Status.json"
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string"
+                        },
+                        "reason": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "date": {
+                          "type": "string"
+                        }
+                      }
                     },
                     "data": {
                       "type": "array",
-                      "description": "Arreglo que contiene información acerca de los consultores comerciales habilitados de PlacetoPay.",
                       "items": {
-                        "$ref": "#/components/schemas/Seller"
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "enabled": {
+                            "type": "integer"
+                          },
+                          "country": {
+                            "type": "string"
+                          },
+                          "visa": {
+                            "type": "integer"
+                          },
+                          "mastercard": {
+                            "type": "integer"
+                          }
+                        }
                       }
                     },
                     "pagination": {
-                      "$ref": "#/components/schemas/Pagination"
+                      "type": "object",
+                      "properties": {
+                        "total": {
+                          "type": "integer"
+                        },
+                        "perPage": {
+                          "type": "integer"
+                        },
+                        "currentPage": {
+                          "type": "integer"
+                        },
+                        "lastPage": {
+                          "type": "integer"
+                        }
+                      }
                     }
-                  }
-                },
-                "examples": {
-                  "Respuesta existosa": {
-                    "value": {
+                  },
+                  "x-examples": {
+                    "Example 1": {
                       "status": {
                         "status": "OK",
                         "reason": "00",
                         "message": "La petición se ha procesado correctamente",
-                        "date": "2021-09-21T09:34:48-05:00"
+                        "date": "2024-06-20T16:11:35-05:00"
                       },
                       "data": [
                         {
                           "id": 1,
-                          "name": "Diego Calle",
-                          "alias": "EGM",
-                          "disabled": false
+                          "name": "Keeling-Bernier",
+                          "enabled": 1,
+                          "country": "CL",
+                          "visa": 1973076210,
+                          "mastercard": 963389732
                         }
                       ],
                       "pagination": {
                         "total": 30,
-                        "perPage": 10,
+                        "perPage": 15,
                         "currentPage": 1,
-                        "lastPage": 1
+                        "lastPage": 2
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "value": {
+                        "status": {
+                          "status": "OK",
+                          "reason": "00",
+                          "message": "La petición se ha procesado correctamente",
+                          "date": "2021-09-21T09:34:48-05:00"
+                        },
+                        "data": [
+                          {
+                            "id": 1,
+                            "name": "Keeling-Bernier",
+                            "enabled": 1,
+                            "country": "CL",
+                            "visa": 1973076210,
+                            "mastercard": 963389732
+                          }
+                        ],
+                        "pagination": {
+                          "total": 30,
+                          "perPage": 10,
+                          "currentPage": 1,
+                          "lastPage": 1
+                        }
                       }
                     }
                   }
@@ -8367,9 +8444,26 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "auth"
+                ],
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "lii76bphsqkdx"
+                    },
+                    "description": "id primario del facilitador de pago"
+                  },
+                  "name": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "0k6kgmdvnjri0"
+                    },
+                    "description": "nombre del facilitador de pago"
                   },
                   "pagination": {
                     "type": "object",
@@ -8391,10 +8485,7 @@
                       }
                     }
                   }
-                },
-                "required": [
-                  "auth"
-                ]
+                }
               },
               "examples": {
                 "Búsqueda consultores comerciales": {
@@ -8405,6 +8496,8 @@
                       "nonce": "NjE1MWQ4MDE5YWViMw==",
                       "seed": "2021-09-27T09:41:05-05:00"
                     },
+                    "id": 1,
+                    "name": "Kyle Walker",
                     "pagination": {
                       "perPage": 15,
                       "currentPage": 1
@@ -8421,7 +8514,8 @@
         ],
         "x-stoplight": {
           "id": "b27h3mzv1svba"
-        }
+        },
+        "parameters": []
       },
       "parameters": []
     },
@@ -13329,6 +13423,41 @@
             "description": "Ultima página disponible"
           }
         }
+      },
+      "PaymentFacilitator": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "integer"
+          },
+          "country": {
+            "type": "string"
+          },
+          "visa": {
+            "type": "integer"
+          },
+          "mastercard": {
+            "type": "integer"
+          }
+        },
+        "x-examples": {
+          "Example 1": {
+            "id": 2,
+            "name": "Lindgren Group",
+            "enabled": 1,
+            "country": "BR",
+            "visa": 1121730847,
+            "mastercard": 1480861300
+          }
+        },
+        "title": "PaymentFacilitator",
+        "description": "Estructura que contiene información de un facilitador de pago."
       }
     },
     "securitySchemes": {},
