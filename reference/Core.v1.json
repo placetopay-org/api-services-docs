@@ -10761,6 +10761,14 @@
                 "type": "integer",
                 "example": 1,
                 "description": "Banco adquirente."
+              },
+              "paymentFacilitatorId": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "s5l2aqo8wj0dw"
+                },
+                "description": "Id del facilitador de pago.",
+                "example": 1
               }
             }
           }
@@ -10983,6 +10991,14 @@
                 "type": "integer",
                 "example": 1,
                 "description": "Banco adquirente."
+              },
+              "paymentFacilitatorId": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "hmycstqc6zxi2"
+                },
+                "description": "Id del facilitador de pago.",
+                "example": 1
               }
             }
           }
