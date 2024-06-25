@@ -5295,6 +5295,9 @@
                             "logoUrl": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png",
                             "buttonColor": "#cc3fdd",
                             "sidebarColor": "#ffebeb"
+                          },
+                          "settings": {
+                            "filterLockedByTries": true
                           }
                         }
                       ],
@@ -12609,6 +12612,22 @@
                 "example": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png",
                 "description": "Url del logo del site",
                 "readOnly": true
+              }
+            }
+          },
+          "settings": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "rci9638likdwi"
+            },
+            "description": "Objeto con información de configuración",
+            "properties": {
+              "filterLockedByTries": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "e8wfq52xtwcbq"
+                },
+                "description": "Habilita o deshabilita los filtros de seguridad por intentos"
               }
             }
           }
