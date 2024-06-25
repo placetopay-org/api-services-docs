@@ -11233,7 +11233,8 @@
                 "type": "integer",
                 "x-stoplight": {
                   "id": "8halp11bfw55r"
-                }
+                },
+                "example": 1
               }
             }
           }
