@@ -10767,7 +10767,8 @@
                 "x-stoplight": {
                   "id": "c8hdgzy5pb0le"
                 },
-                "description": "Id del facilitador de pago."
+                "description": "Id del facilitador de pago.",
+                "example": 1
               }
             }
           }
