@@ -10762,13 +10762,12 @@
                 "example": 1,
                 "description": "Banco adquirente."
               },
-              "paymentFacilitatorId": {
+              "paymentFacilitator": {
                 "type": "integer",
                 "x-stoplight": {
-                  "id": "s5l2aqo8wj0dw"
+                  "id": "c8hdgzy5pb0le"
                 },
-                "description": "Id del facilitador de pago.",
-                "example": 1
+                "description": "Id del facilitador de pago."
               }
             }
           }
