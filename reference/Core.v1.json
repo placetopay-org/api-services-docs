@@ -11058,7 +11058,8 @@
             },
             "control": {
               "seller": 1,
-              "reseller": 1
+              "reseller": 1,
+              "paymentFacilitator": 1
             }
           }
         },
@@ -11227,6 +11228,12 @@
                 "type": "integer",
                 "example": 1,
                 "description": "Banco adquirente."
+              },
+              "paymentFacilitator": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "8halp11bfw55r"
+                }
               }
             }
           }
