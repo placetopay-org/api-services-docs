@@ -10827,7 +10827,8 @@
             },
             "control": {
               "seller": 1,
-              "reseller": 1
+              "reseller": 1,
+              "paymentFacilitator": 1
             }
           }
         },
@@ -10992,13 +10993,13 @@
                 "example": 1,
                 "description": "Banco adquirente."
               },
-              "paymentFacilitatorId": {
+              "paymentFacilitator": {
                 "type": "integer",
                 "x-stoplight": {
-                  "id": "hmycstqc6zxi2"
+                  "id": "qb0d498oz21k5"
                 },
-                "description": "Id del facilitador de pago.",
-                "example": 1
+                "example": 1,
+                "description": "Id del facilitador de pago."
               }
             }
           }
