@@ -5259,6 +5259,7 @@
                             "behaviour": 4372
                           },
                           "securityFilters": {
+                            "filterLockedByTries": true,
                             "allowedIssuerCountries": [
                               "CO"
                             ],
@@ -5295,9 +5296,6 @@
                             "logoUrl": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png",
                             "buttonColor": "#cc3fdd",
                             "sidebarColor": "#ffebeb"
-                          },
-                          "settings": {
-                            "filterLockedByTries": true
                           }
                         }
                       ],
@@ -12352,6 +12350,13 @@
             },
             "description": "Contiene la información de filtros de seguridad",
             "properties": {
+              "filterLockedByTries": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "cualjtn82gwrq"
+                },
+                "description": "Habilita o deshabilita los filtros de seguridad por intentos"
+              },
               "allowedIssuerCountries": {
                 "type": "array",
                 "x-stoplight": {
@@ -12612,22 +12617,6 @@
                 "example": "https://static-dev-bucket.s3.amazonaws.com/co/sites/branding/logo-site-5-20240111062950.png",
                 "description": "Url del logo del site",
                 "readOnly": true
-              }
-            }
-          },
-          "settings": {
-            "type": "object",
-            "x-stoplight": {
-              "id": "rci9638likdwi"
-            },
-            "description": "Objeto con información de configuración",
-            "properties": {
-              "filterLockedByTries": {
-                "type": "boolean",
-                "x-stoplight": {
-                  "id": "e8wfq52xtwcbq"
-                },
-                "description": "Habilita o deshabilita los filtros de seguridad por intentos"
               }
             }
           }
