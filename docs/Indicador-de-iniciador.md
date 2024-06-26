@@ -1,7 +1,3 @@
----
-stoplight-id: 38p80j3dnjek7
----
-
 # Indicador de iniciador de transacción
 
 Para transacciones Mastercard, para seguir el Programa de Control de Integridad de los Datos para los
