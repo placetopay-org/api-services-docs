@@ -3186,7 +3186,8 @@
                             "x-stoplight": {
                               "id": "dpghjge8l6svl"
                             },
-                            "description": "Habilita o deshabilita los filtros de seguridad por intentos"
+                            "description": "Habilita o deshabilita los filtros de seguridad por intentos",
+                            "default": true
                           },
                           "allowedIssuerCountries": {
                             "type": "array",
