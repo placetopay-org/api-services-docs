@@ -3181,6 +3181,13 @@
                         },
                         "description": "Contiene la información de filtros de seguridad",
                         "properties": {
+                          "filterLockedByTries": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "dpghjge8l6svl"
+                            },
+                            "description": "Habilita o deshabilita los filtros de seguridad por intentos"
+                          },
                           "allowedIssuerCountries": {
                             "type": "array",
                             "x-stoplight": {
@@ -3435,22 +3442,6 @@
                             "description": "Color de fondo del sidebar del web checkout, en formato HEX. Ej.: #FFCCEE"
                           }
                         }
-                      },
-                      "settings": {
-                        "type": "object",
-                        "x-stoplight": {
-                          "id": "1643fvicfv19s"
-                        },
-                        "description": "Objeto con información de configuración",
-                        "properties": {
-                          "filterLockedByTries": {
-                            "type": "boolean",
-                            "x-stoplight": {
-                              "id": "eispqjw4ybodk"
-                            },
-                            "description": "Habilita o deshabilita los filtros de seguridad por intentos"
-                          }
-                        }
                       }
                     }
                   }
@@ -3543,6 +3534,7 @@
                         "onCalibration": true
                       },
                       "securityFilters": {
+                        "filterLockedByTries": true,
                         "allowedIssuerCountries": [
                           "CO"
                         ],
@@ -3578,9 +3570,6 @@
                       "branding": {
                         "buttonColor": "#cc3fdd",
                         "sidebarColor": "#ffebeb"
-                      },
-                      "settings": {
-                        "filterLockedByTries": true
                       }
                     }
                   }
@@ -4276,6 +4265,13 @@
                         "description": "Contiene la información de filtros de seguridad",
                         "nullable": true,
                         "properties": {
+                          "filterLockedByTries": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "mn3c3sxta4sk6"
+                            },
+                            "description": "Habilita o deshabilita los filtros de seguridad por intentos"
+                          },
                           "allowedIssuerCountries": {
                             "type": "array",
                             "x-stoplight": {
@@ -4533,22 +4529,6 @@
                             "pattern": "^#([a-f0-9]{6}|[a-f0-9]{3})$"
                           }
                         }
-                      },
-                      "settings": {
-                        "type": "object",
-                        "x-stoplight": {
-                          "id": "ewtcw2g1bm01o"
-                        },
-                        "description": "Objeto con información de configuración",
-                        "properties": {
-                          "filterLockedByTries": {
-                            "type": "boolean",
-                            "x-stoplight": {
-                              "id": "cdf6zgvvot4kj"
-                            },
-                            "description": "Habilita o deshabilita los filtros de seguridad por intentos"
-                          }
-                        }
                       }
                     }
                   }
@@ -4604,12 +4584,12 @@
                         ],
                         "delegatedAuthorization": "ffffffffffffffffffffffffffffffffffffffffff"
                       },
+                      "securityFilters": {
+                        "filterLockedByTries": true
+                      },
                       "branding": {
                         "buttonColor": "#cc3fdd",
                         "sidebarColor": "#ffebeb"
-                      },
-                      "settings": {
-                        "filterLockedByTries": true
                       }
                     }
                   }
