@@ -8262,6 +8262,32 @@
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2024-06-20T16:11:35-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "Keeling-Bernier",
+                          "enabled": 1,
+                          "country": "CL",
+                          "visa": 1973076210,
+                          "mastercard": 963389732
+                        }
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 15,
+                        "currentPage": 1,
+                        "lastPage": 2
+                      }
+                    }
+                  },
                   "properties": {
                     "status": {
                       "type": "object",
@@ -8286,22 +8312,36 @@
                         "type": "object",
                         "properties": {
                           "id": {
-                            "type": "integer"
+                            "type": "integer",
+                            "description": "Id del facilitador de pago",
+                            "example": 1
                           },
                           "name": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "Nombre del facilitador de pago",
+                            "example": "Payment Facilitator"
                           },
-                          "enabled": {
-                            "type": "integer"
+                          "active": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "aisein52ycbkw"
+                            },
+                            "description": " Indicador de estado activo."
                           },
                           "country": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "Código ISO del país",
+                            "example": "CO"
                           },
                           "visa": {
-                            "type": "integer"
+                            "type": "integer",
+                            "description": "Identificador de franquicia Visa",
+                            "example": 123456
                           },
                           "mastercard": {
-                            "type": "integer"
+                            "type": "integer",
+                            "description": "Identificador franquicia MasterCard",
+                            "example": 123456
                           }
                         }
                       }
@@ -8321,32 +8361,6 @@
                         "lastPage": {
                           "type": "integer"
                         }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": {
-                        "status": "OK",
-                        "reason": "00",
-                        "message": "La petición se ha procesado correctamente",
-                        "date": "2024-06-20T16:11:35-05:00"
-                      },
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "Keeling-Bernier",
-                          "enabled": 1,
-                          "country": "CL",
-                          "visa": 1973076210,
-                          "mastercard": 963389732
-                        }
-                      ],
-                      "pagination": {
-                        "total": 30,
-                        "perPage": 15,
-                        "currentPage": 1,
-                        "lastPage": 2
                       }
                     }
                   }
@@ -8464,6 +8478,12 @@
                       "id": "0k6kgmdvnjri0"
                     },
                     "description": "nombre del facilitador de pago"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "x-stoplight": {
+                      "id": "la7xzs9f404s3"
+                    }
                   },
                   "pagination": {
                     "type": "object",
