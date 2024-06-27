@@ -8347,7 +8347,7 @@
                         {
                           "id": 1,
                           "name": "Keeling-Bernier",
-                          "enabled": 1,
+                          "active": true,
                           "country": "CL",
                           "visa": 1973076210,
                           "mastercard": 963389732
@@ -8452,7 +8452,7 @@
                           {
                             "id": 1,
                             "name": "Keeling-Bernier",
-                            "enabled": 1,
+                            "active": true,
                             "country": "CL",
                             "visa": 1973076210,
                             "mastercard": 963389732
@@ -11773,6 +11773,41 @@
           "enabled": {
             "type": "boolean",
             "description": "Indicador de estado habilitado del distribuidor"
+          }
+        }
+      },
+      "PaymentFacilitator": {
+        "title": "PaymentFacilitator",
+        "type": "object",
+        "description": "Estructura que contiene información de un facilitador de pago.",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "country": {
+            "type": "string"
+          },
+          "visa": {
+            "type": "integer"
+          },
+          "mastercard": {
+            "type": "integer"
+          }
+        },
+        "x-examples": {
+          "Example 1": {
+            "id": 2,
+            "name": "Lindgren Group",
+            "active": true,
+            "country": "CO",
+            "visa": 1121730847,
+            "mastercard": 1480861300
           }
         }
       },
