@@ -351,7 +351,25 @@
                   },
                   "additional": {
                     "type": "object",
-                    "description": "Objeto dinámico clave valor de información que se desee guardar con la transacción. Las siguientes claves NO son permitidas: _accountNumber, userAgent, fingerprint, sourcePlatform, tokenizationID, trazabilyCode, transactionCycle, RequestId, PartnerAuthCode, onTest, threeDSEnrolled, threeDSAuthenticated."
+                    "description": "Objeto dinámico clave valor de información que se desee guardar con la transacción. Las siguientes claves NO son permitidas: _accountNumber, userAgent, fingerprint, sourcePlatform, tokenizationID, trazabilyCode, transactionCycle, RequestId, PartnerAuthCode, onTest, threeDSEnrolled, threeDSAuthenticated.",
+                    "properties": {
+                      "initiatorIndicator": {
+                        "x-stoplight": {
+                          "id": "u3j2wlj4s93u9"
+                        },
+                        "enum": [
+                          "1C",
+                          "2C",
+                          "3C",
+                          "4C",
+                          "1M",
+                          "2M",
+                          "3M",
+                          "4M"
+                        ],
+                        "description": "Indicador del iniciador de la transacción.\nSe puede enviar según la [especificación](../docs/Indicador-de-iniciador.md)"
+                      }
+                    }
                   }
                 }
               },
