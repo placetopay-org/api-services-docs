@@ -228,7 +228,8 @@
                       },
                       "control": {
                         "seller": 1,
-                        "reseller": 1
+                        "reseller": 1,
+                        "paymentFacilitator": 1
                       }
                     }
                   }
@@ -493,7 +494,8 @@
                           },
                           "control": {
                             "seller": 1,
-                            "reseller": 1
+                            "reseller": 1,
+                            "paymentFacilitator": 1
                           }
                         }
                       ],
@@ -8347,7 +8349,7 @@
       "post": {
         "summary": "Consulta de facilitadores de pago",
         "operationId": "post-core-tools-payment-facilitator-search",
-        "description": "Este servicio permite buscar los facilitadores de pago registrados en el sistema.\n\nSi la respuesta es exitosa, se retorna un arreglo con la información de cada facilitador de pago.\n\nPuede filtrar los resultados de la consulta empleando el parámetro 'id' y 'name' como filtro, segun lo requiera.\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination'.",
+        "description": "Este servicio permite buscar los facilitadores de pago registrados en el sistema.\n\nSi la respuesta es exitosa, se retorna un arreglo con la información de cada facilitador de pago.\n\nPuede filtrar los resultados de la consulta empleando el parámetro 'id', 'name' y 'active' como filtro, segun lo requiera.\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination'.",
         "responses": {
           "200": {
             "description": "OK",
@@ -11347,7 +11349,8 @@
                 "x-stoplight": {
                   "id": "8halp11bfw55r"
                 },
-                "example": 1
+                "example": 1,
+                "description": "Id del facilitador de pago"
               }
             }
           }
@@ -12758,7 +12761,7 @@
                 "x-stoplight": {
                   "id": "cualjtn82gwrq"
                 },
-                "description": "Habilita o deshabilita los filtros de seguridad por intentos"
+                "description": "Indica si tiene los filtros de seguridad por intentos habilitados"
               },
               "allowedIssuerCountries": {
                 "type": "array",
