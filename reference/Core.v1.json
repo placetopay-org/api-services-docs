@@ -228,7 +228,8 @@
                       },
                       "control": {
                         "seller": 1,
-                        "reseller": 1
+                        "reseller": 1,
+                        "paymentFacilitator": 1
                       }
                     }
                   }
@@ -493,7 +494,8 @@
                           },
                           "control": {
                             "seller": 1,
-                            "reseller": 1
+                            "reseller": 1,
+                            "paymentFacilitator": 1
                           }
                         }
                       ],
@@ -2588,6 +2590,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "auth",
+                  "data"
+                ],
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
@@ -3189,6 +3195,14 @@
                         },
                         "description": "Contiene la información de filtros de seguridad",
                         "properties": {
+                          "filterLockedByTries": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "dpghjge8l6svl"
+                            },
+                            "description": "Habilita o deshabilita los filtros de seguridad por intentos",
+                            "default": true
+                          },
                           "allowedIssuerCountries": {
                             "type": "array",
                             "x-stoplight": {
@@ -3440,17 +3454,13 @@
                             "x-stoplight": {
                               "id": "v3y9vjq36hsbp"
                             },
-                            "description": "Colo de fondo del sidebar del web checkout, en formato HEX. Ej.: #FFCCEE"
+                            "description": "Color de fondo del sidebar del web checkout, en formato HEX. Ej.: #FFCCEE"
                           }
                         }
                       }
                     }
                   }
-                },
-                "required": [
-                  "auth",
-                  "data"
-                ]
+                }
               },
               "examples": {
                 "Creación de un sitio": {
@@ -3539,6 +3549,7 @@
                         "onCalibration": true
                       },
                       "securityFilters": {
+                        "filterLockedByTries": true,
                         "allowedIssuerCountries": [
                           "CO"
                         ],
@@ -4269,6 +4280,13 @@
                         "description": "Contiene la información de filtros de seguridad",
                         "nullable": true,
                         "properties": {
+                          "filterLockedByTries": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "mn3c3sxta4sk6"
+                            },
+                            "description": "Habilita o deshabilita los filtros de seguridad por intentos"
+                          },
                           "allowedIssuerCountries": {
                             "type": "array",
                             "x-stoplight": {
@@ -4580,6 +4598,9 @@
                           411111
                         ],
                         "delegatedAuthorization": "ffffffffffffffffffffffffffffffffffffffffff"
+                      },
+                      "securityFilters": {
+                        "filterLockedByTries": true
                       },
                       "branding": {
                         "buttonColor": "#cc3fdd",
@@ -5233,6 +5254,7 @@
                             "behaviour": 4372
                           },
                           "securityFilters": {
+                            "filterLockedByTries": true,
                             "allowedIssuerCountries": [
                               "CO"
                             ],
@@ -8323,6 +8345,295 @@
       },
       "parameters": []
     },
+    "/core/tools/payment-facilitator/search": {
+      "post": {
+        "summary": "Consulta de facilitadores de pago",
+        "operationId": "post-core-tools-payment-facilitator-search",
+        "description": "Este servicio permite buscar los facilitadores de pago registrados en el sistema.\n\nSi la respuesta es exitosa, se retorna un arreglo con la información de cada facilitador de pago.\n\nPuede filtrar los resultados de la consulta empleando el parámetro 'id', 'name' y 'active' como filtro, segun lo requiera.\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination'.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2024-06-20T16:11:35-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "Keeling-Bernier",
+                          "active": true,
+                          "country": "CL",
+                          "visa": 1973076210,
+                          "mastercard": 963389732
+                        }
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 15,
+                        "currentPage": 1,
+                        "lastPage": 2
+                      }
+                    }
+                  },
+                  "properties": {
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string"
+                        },
+                        "reason": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "date": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "description": "Id del facilitador de pago",
+                            "example": 1
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Nombre del facilitador de pago",
+                            "example": "Payment Facilitator"
+                          },
+                          "active": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "aisein52ycbkw"
+                            },
+                            "description": " Indicador de estado activo."
+                          },
+                          "country": {
+                            "type": "string",
+                            "description": "Código ISO del país",
+                            "example": "CO"
+                          },
+                          "visa": {
+                            "type": "integer",
+                            "description": "Identificador de franquicia Visa",
+                            "example": 123456
+                          },
+                          "mastercard": {
+                            "type": "integer",
+                            "description": "Identificador franquicia MasterCard",
+                            "example": 123456
+                          }
+                        }
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "total": {
+                          "type": "integer"
+                        },
+                        "perPage": {
+                          "type": "integer"
+                        },
+                        "currentPage": {
+                          "type": "integer"
+                        },
+                        "lastPage": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "value": {
+                        "status": {
+                          "status": "OK",
+                          "reason": "00",
+                          "message": "La petición se ha procesado correctamente",
+                          "date": "2021-09-21T09:34:48-05:00"
+                        },
+                        "data": [
+                          {
+                            "id": 1,
+                            "name": "Keeling-Bernier",
+                            "active": true,
+                            "country": "CL",
+                            "visa": 1973076210,
+                            "mastercard": 963389732
+                          }
+                        ],
+                        "pagination": {
+                          "total": 30,
+                          "perPage": 10,
+                          "currentPage": 1,
+                          "lastPage": 1
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "auth"
+                ],
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "lii76bphsqkdx"
+                    },
+                    "description": "id primario del facilitador de pago"
+                  },
+                  "name": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "0k6kgmdvnjri0"
+                    },
+                    "description": "nombre del facilitador de pago"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "x-stoplight": {
+                      "id": "la7xzs9f404s3"
+                    }
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "default": 1,
+                        "example": 1,
+                        "minimum": 1,
+                        "description": "Página actual"
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Búsqueda consultores comerciales": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "name": "Kyle Walker",
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ],
+        "x-stoplight": {
+          "id": "b27h3mzv1svba"
+        },
+        "parameters": []
+      },
+      "parameters": []
+    },
     "/core/tools/reseller/search": {
       "post": {
         "summary": "Consulta de banco adquiriente",
@@ -10565,6 +10876,14 @@
                 "type": "integer",
                 "example": 1,
                 "description": "Banco adquirente."
+              },
+              "paymentFacilitator": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "c8hdgzy5pb0le"
+                },
+                "description": "Id del facilitador de pago.",
+                "example": 1
               }
             }
           }
@@ -10623,7 +10942,8 @@
             },
             "control": {
               "seller": 1,
-              "reseller": 1
+              "reseller": 1,
+              "paymentFacilitator": 1
             }
           }
         },
@@ -10787,6 +11107,14 @@
                 "type": "integer",
                 "example": 1,
                 "description": "Banco adquirente."
+              },
+              "paymentFacilitator": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "qb0d498oz21k5"
+                },
+                "example": 1,
+                "description": "Id del facilitador de pago."
               }
             }
           }
@@ -10845,7 +11173,8 @@
             },
             "control": {
               "seller": 1,
-              "reseller": 1
+              "reseller": 1,
+              "paymentFacilitator": 1
             }
           }
         },
@@ -11014,6 +11343,14 @@
                 "type": "integer",
                 "example": 1,
                 "description": "Banco adquirente."
+              },
+              "paymentFacilitator": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "8halp11bfw55r"
+                },
+                "example": 1,
+                "description": "Id del facilitador de pago"
               }
             }
           }
@@ -11459,6 +11796,41 @@
           "enabled": {
             "type": "boolean",
             "description": "Indicador de estado habilitado del distribuidor"
+          }
+        }
+      },
+      "PaymentFacilitator": {
+        "title": "PaymentFacilitator",
+        "type": "object",
+        "description": "Estructura que contiene información de un facilitador de pago.",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "country": {
+            "type": "string"
+          },
+          "visa": {
+            "type": "integer"
+          },
+          "mastercard": {
+            "type": "integer"
+          }
+        },
+        "x-examples": {
+          "Example 1": {
+            "id": 2,
+            "name": "Lindgren Group",
+            "active": true,
+            "country": "CO",
+            "visa": 1121730847,
+            "mastercard": 1480861300
           }
         }
       },
@@ -12384,6 +12756,13 @@
             },
             "description": "Contiene la información de filtros de seguridad",
             "properties": {
+              "filterLockedByTries": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "cualjtn82gwrq"
+                },
+                "description": "Indica si tiene los filtros de seguridad por intentos habilitados"
+              },
               "allowedIssuerCountries": {
                 "type": "array",
                 "x-stoplight": {
