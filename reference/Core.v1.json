@@ -12431,6 +12431,9 @@
                     "type": "array",
                     "example": [1,2,3],
                     "description": "Ids de los sitios que se le asociarán al plan."
+                    "items": {
+                      "type": "integer"
+                    }
                   },
                   "paymentMethodId": {
                     "type": "integer",
@@ -15644,6 +15647,11 @@
           "updatedAt": {
             "type": "string",
             "description": "Fecha de última actualización del plan.",
+            "example": "2024-05-20 15:01:54"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Fecha de creación del plan.",
             "example": "2024-05-20 15:01:54"
           }
         }
