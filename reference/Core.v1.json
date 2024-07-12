@@ -12430,7 +12430,7 @@
                   "sites": {
                     "type": "array",
                     "example": [1,2,3],
-                    "description": "Ids de los sitios que se le asociarán al plan.",
+                    "description": "Ids de los sitios que se le asociarán al plan."
                     "items": {
                       "type": "integer"
                     }
