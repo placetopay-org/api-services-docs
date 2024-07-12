@@ -232,7 +232,8 @@
                       },
                       "control": {
                         "seller": 1,
-                        "reseller": 1
+                        "reseller": 1,
+                        "paymentFacilitator": 1
                       }
                     }
                   }
@@ -497,7 +498,8 @@
                           },
                           "control": {
                             "seller": 1,
-                            "reseller": 1
+                            "reseller": 1,
+                            "paymentFacilitator": 1
                           }
                         }
                       ],
@@ -1742,6 +1744,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "auth",
+                  "data"
+                ],
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
@@ -1812,8 +1818,7 @@
                         "maximum": 32767
                       },
                       "settings": {
-                        "type": "object",
-                        "description": "Objeto que contiene las configuraciones del medio de pago."
+                        "$ref": "#/components/schemas/Settings-Payment-Method"
                       },
                       "creditRules": {
                         "type": "object",
@@ -1824,11 +1829,7 @@
                       }
                     }
                   }
-                },
-                "required": [
-                  "auth",
-                  "data"
-                ]
+                }
               },
               "examples": {
                 "Agregar un método de pago.": {
@@ -1848,7 +1849,14 @@
                       "accountNumber": "1234567890",
                       "financialEntity": 2,
                       "order": 1,
-                      "settings": {},
+                      "settings": {
+                        "username": "username",
+                        "terminalLocation": "Medellin",
+                        "serviceCode": "123456",
+                        "isEcommerce": true,
+                        "3DSVersion": "v2",
+                        "3DSApiKey": "468232"
+                      },
                       "creditRules": {
                         "RM_MC": {
                           "C": {
@@ -1975,6 +1983,11 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "auth",
+                  "id",
+                  "data"
+                ],
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
@@ -2028,8 +2041,7 @@
                         "example": 1
                       },
                       "settings": {
-                        "type": "object",
-                        "description": "Objeto que contiene las configuraciones del medio de pago."
+                        "$ref": "#/components/schemas/Settings-Payment-Method"
                       },
                       "creditRules": {
                         "type": "object",
@@ -2040,12 +2052,7 @@
                       }
                     }
                   }
-                },
-                "required": [
-                  "auth",
-                  "id",
-                  "data"
-                ]
+                }
               },
               "examples": {
                 "Actualizar un método de pago agregado.": {
@@ -2064,7 +2071,14 @@
                       "accountNumber": "1234567890",
                       "financialEntity": 2,
                       "order": 1,
-                      "settings": {},
+                      "settings": {
+                        "username": "username",
+                        "terminalLocation": "Medellin",
+                        "serviceCode": "123456",
+                        "isEcommerce": true,
+                        "3DSVersion": "v2",
+                        "3DSApiKey": "468232"
+                      },
                       "creditRules": {}
                     }
                   }
@@ -2580,6 +2594,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "auth",
+                  "data"
+                ],
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
@@ -3181,6 +3199,14 @@
                         },
                         "description": "Contiene la información de filtros de seguridad",
                         "properties": {
+                          "filterLockedByTries": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "dpghjge8l6svl"
+                            },
+                            "description": "Habilita o deshabilita los filtros de seguridad por intentos",
+                            "default": true
+                          },
                           "allowedIssuerCountries": {
                             "type": "array",
                             "x-stoplight": {
@@ -3432,17 +3458,13 @@
                             "x-stoplight": {
                               "id": "v3y9vjq36hsbp"
                             },
-                            "description": "Colo de fondo del sidebar del web checkout, en formato HEX. Ej.: #FFCCEE"
+                            "description": "Color de fondo del sidebar del web checkout, en formato HEX. Ej.: #FFCCEE"
                           }
                         }
                       }
                     }
                   }
-                },
-                "required": [
-                  "auth",
-                  "data"
-                ]
+                }
               },
               "examples": {
                 "Creación de un sitio": {
@@ -3531,6 +3553,7 @@
                         "onCalibration": true
                       },
                       "securityFilters": {
+                        "filterLockedByTries": true,
                         "allowedIssuerCountries": [
                           "CO"
                         ],
@@ -4261,6 +4284,13 @@
                         "description": "Contiene la información de filtros de seguridad",
                         "nullable": true,
                         "properties": {
+                          "filterLockedByTries": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "mn3c3sxta4sk6"
+                            },
+                            "description": "Habilita o deshabilita los filtros de seguridad por intentos"
+                          },
                           "allowedIssuerCountries": {
                             "type": "array",
                             "x-stoplight": {
@@ -4573,6 +4603,9 @@
                         ],
                         "delegatedAuthorization": "ffffffffffffffffffffffffffffffffffffffffff"
                       },
+                      "securityFilters": {
+                        "filterLockedByTries": true
+                      },
                       "branding": {
                         "buttonColor": "#cc3fdd",
                         "sidebarColor": "#ffebeb"
@@ -4594,7 +4627,7 @@
     },
     "/core/site/update": {
       "post": {
-        "summary": "Actualización parcial de un sitio",
+        "summary": "Actualizar branding de un sitio",
         "operationId": "post-core-site-update",
         "responses": {
           "200": {
@@ -4794,7 +4827,7 @@
           },
           "description": ""
         },
-        "description": "Este servicio permite actualizar un sitio con la información suministrada. Si la respuesta es exitosa, retorna los datos del sitio",
+        "description": "Este servicio permite actualizar el branding y la versión de checkout de un sitio con la información suministrada. Si la respuesta es exitosa, retorna los datos del sitio",
         "tags": [
           "Acciones sobre sitios"
         ],
@@ -5225,6 +5258,7 @@
                             "behaviour": 4372
                           },
                           "securityFilters": {
+                            "filterLockedByTries": true,
                             "allowedIssuerCountries": [
                               "CO"
                             ],
@@ -5535,6 +5569,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "auth",
+                  "data"
+                ],
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
@@ -5641,11 +5679,7 @@
                         "description": "Valor de comisión."
                       },
                       "settings": {
-                        "type": "object",
-                        "x-stoplight": {
-                          "id": "l4f8uetm5wsku"
-                        },
-                        "description": "Objeto que contiene las configuraciones del medio de pago."
+                        "$ref": "#/components/schemas/Settings-Payment-Method"
                       },
                       "creditRules": {
                         "type": "object",
@@ -5656,11 +5690,7 @@
                       }
                     }
                   }
-                },
-                "required": [
-                  "auth",
-                  "data"
-                ]
+                }
               },
               "examples": {
                 "Agregar un medio de pago a un sitio": {
@@ -5682,7 +5712,13 @@
                       "financialEntity": 1,
                       "commissionModel": "P",
                       "commissionValue": 1,
-                      "settings": {},
+                      "settings": {
+                        "merchantCode": "123456",
+                        "MID": "000468232",
+                        "RUC": "1234567890147",
+                        "terminalNumber": "01234567",
+                        "aggregatorModel": false
+                      },
                       "creditRules": {
                         "RM_MC": {
                           "C": {
@@ -5698,6 +5734,35 @@
                           }
                         }
                       }
+                    }
+                  }
+                },
+                "Agregar un medio de pago a un sitio (CREDIBANCO)": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "data": {
+                      "siteId": 1,
+                      "customerPaymentId": 1,
+                      "order": 1,
+                      "minAmount": 1,
+                      "maxAmount": 99999999.99,
+                      "accountType": 1,
+                      "accountNumber": "123456789900",
+                      "financialEntity": 1,
+                      "commissionModel": "P",
+                      "commissionValue": 1,
+                      "settings": {
+                        "username": "username",
+                        "password": "password",
+                        "retailCode": "123456789",
+                        "terminalNumber": "71234567"
+                      },
+                      "creditRules": {}
                     }
                   }
                 }
@@ -5811,6 +5876,11 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "auth",
+                  "id",
+                  "data"
+                ],
                 "properties": {
                   "auth": {
                     "$ref": "../Models/Autentication.json"
@@ -5907,11 +5977,7 @@
                         "description": "Valor de comisión."
                       },
                       "settings": {
-                        "type": "object",
-                        "x-stoplight": {
-                          "id": "ew9nbc5ubd7lp"
-                        },
-                        "description": "Objeto que contiene las configuraciones del medio de pago."
+                        "$ref": "#/components/schemas/Settings-Payment-Method"
                       },
                       "creditRules": {
                         "type": "object",
@@ -5922,15 +5988,10 @@
                       }
                     }
                   }
-                },
-                "required": [
-                  "auth",
-                  "id",
-                  "data"
-                ]
+                }
               },
               "examples": {
-                "Actualización de un medio de pago": {
+                "Actualización de un medio de pago a un sitio": {
                   "value": {
                     "auth": {
                       "login": "613822f45568191a8cdf4ad2299f6d23",
@@ -5948,7 +6009,41 @@
                       "financialEntity": 1,
                       "commissionModel": "P",
                       "commissionValue": 1,
-                      "settings": {},
+                      "settings": {
+                        "merchantCode": "123456",
+                        "MID": "000468232",
+                        "RUC": "1234567890147",
+                        "terminalNumber": "01234567",
+                        "aggregatorModel": false
+                      },
+                      "creditRules": {}
+                    }
+                  }
+                },
+                "Actualización de un medio de pago a un sitio (CREDIBANCO)": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "data": {
+                      "order": 1,
+                      "minAmount": 1,
+                      "maxAmount": 99999999.99,
+                      "accountType": 1,
+                      "accountNumber": "123456789900",
+                      "financialEntity": 1,
+                      "commissionModel": "P",
+                      "commissionValue": 1,
+                      "settings": {
+                        "username": "username",
+                        "password": "password",
+                        "retailCode": "123456789",
+                        "terminalNumber": "71234567"
+                      },
                       "creditRules": {}
                     }
                   }
@@ -8254,6 +8349,295 @@
       },
       "parameters": []
     },
+    "/core/tools/payment-facilitator/search": {
+      "post": {
+        "summary": "Consulta de facilitadores de pago",
+        "operationId": "post-core-tools-payment-facilitator-search",
+        "description": "Este servicio permite buscar los facilitadores de pago registrados en el sistema.\n\nSi la respuesta es exitosa, se retorna un arreglo con la información de cada facilitador de pago.\n\nPuede filtrar los resultados de la consulta empleando el parámetro 'id', 'name' y 'active' como filtro, segun lo requiera.\n\nSi requiere el uso de paginación personalizada, debe enviar el parámetro 'pagination'.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2024-06-20T16:11:35-05:00"
+                      },
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "Keeling-Bernier",
+                          "active": true,
+                          "country": "CL",
+                          "visa": 1973076210,
+                          "mastercard": 963389732
+                        }
+                      ],
+                      "pagination": {
+                        "total": 30,
+                        "perPage": 15,
+                        "currentPage": 1,
+                        "lastPage": 2
+                      }
+                    }
+                  },
+                  "properties": {
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string"
+                        },
+                        "reason": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "date": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "description": "Id del facilitador de pago",
+                            "example": 1
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Nombre del facilitador de pago",
+                            "example": "Payment Facilitator"
+                          },
+                          "active": {
+                            "type": "boolean",
+                            "x-stoplight": {
+                              "id": "aisein52ycbkw"
+                            },
+                            "description": " Indicador de estado activo."
+                          },
+                          "country": {
+                            "type": "string",
+                            "description": "Código ISO del país",
+                            "example": "CO"
+                          },
+                          "visa": {
+                            "type": "integer",
+                            "description": "Identificador de franquicia Visa",
+                            "example": 123456
+                          },
+                          "mastercard": {
+                            "type": "integer",
+                            "description": "Identificador franquicia MasterCard",
+                            "example": 123456
+                          }
+                        }
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "total": {
+                          "type": "integer"
+                        },
+                        "perPage": {
+                          "type": "integer"
+                        },
+                        "currentPage": {
+                          "type": "integer"
+                        },
+                        "lastPage": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "value": {
+                        "status": {
+                          "status": "OK",
+                          "reason": "00",
+                          "message": "La petición se ha procesado correctamente",
+                          "date": "2021-09-21T09:34:48-05:00"
+                        },
+                        "data": [
+                          {
+                            "id": 1,
+                            "name": "Keeling-Bernier",
+                            "active": true,
+                            "country": "CL",
+                            "visa": 1973076210,
+                            "mastercard": 963389732
+                          }
+                        ],
+                        "pagination": {
+                          "total": 30,
+                          "perPage": 10,
+                          "currentPage": 1,
+                          "lastPage": 1
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Respuesta fallida": {
+                    "value": {
+                      "Status": {
+                        "status": "FAILED",
+                        "reason": "BR",
+                        "message": " ",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "$ref": "../Models/Status.json"
+                    }
+                  }
+                },
+                "examples": {
+                  "Authenticación fallida": {
+                    "value": {
+                      "status": {
+                        "status": "FAILED",
+                        "reason": "401",
+                        "message": "la autenticación no contiene todos los parámetros requeridos (login, tranKey, seed, nonce)",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "auth"
+                ],
+                "properties": {
+                  "auth": {
+                    "$ref": "../Models/Autentication.json"
+                  },
+                  "id": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "lii76bphsqkdx"
+                    },
+                    "description": "id primario del facilitador de pago"
+                  },
+                  "name": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "0k6kgmdvnjri0"
+                    },
+                    "description": "nombre del facilitador de pago"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "x-stoplight": {
+                      "id": "la7xzs9f404s3"
+                    }
+                  },
+                  "pagination": {
+                    "type": "object",
+                    "description": "Objeto que contiene los parámetros de paginación",
+                    "properties": {
+                      "perPage": {
+                        "type": "integer",
+                        "default": 15,
+                        "example": 10,
+                        "minimum": 1,
+                        "description": "Cantidad de registros por página"
+                      },
+                      "currentPage": {
+                        "type": "integer",
+                        "default": 1,
+                        "example": 1,
+                        "minimum": 1,
+                        "description": "Página actual"
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Búsqueda consultores comerciales": {
+                  "value": {
+                    "auth": {
+                      "login": "613822f45568191a8cdf4ad2299f6d23",
+                      "tranKey": "bHehjzNcMQVQ1zto0GhmZxjeMhwA+3OlFPbOup16HGc=",
+                      "nonce": "NjE1MWQ4MDE5YWViMw==",
+                      "seed": "2021-09-27T09:41:05-05:00"
+                    },
+                    "id": 1,
+                    "name": "Kyle Walker",
+                    "pagination": {
+                      "perPage": 15,
+                      "currentPage": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Procedimientos adicionales"
+        ],
+        "x-stoplight": {
+          "id": "b27h3mzv1svba"
+        },
+        "parameters": []
+      },
+      "parameters": []
+    },
     "/core/tools/reseller/search": {
       "post": {
         "summary": "Consulta de banco adquiriente",
@@ -10164,7 +10548,7 @@
                     "status": {
                       "$ref": "../Models/Status.json"
                     },
-                    "id" : {
+                    "id": {
                       "type": "integer",
                       "example": 1,
                       "description": "Identificador del usuario editado."
@@ -10251,7 +10635,7 @@
                   "auth": {
                     "$ref": "../Models/Autentication.json"
                   },
-                  "id" : {
+                  "id": {
                     "type": "integer",
                     "example": 1,
                     "description": "Identificador del usuario editado."
@@ -12567,6 +12951,14 @@
                 "type": "integer",
                 "example": 1,
                 "description": "Banco adquirente."
+              },
+              "paymentFacilitator": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "c8hdgzy5pb0le"
+                },
+                "description": "Id del facilitador de pago.",
+                "example": 1
               }
             }
           }
@@ -12625,7 +13017,8 @@
             },
             "control": {
               "seller": 1,
-              "reseller": 1
+              "reseller": 1,
+              "paymentFacilitator": 1
             }
           }
         },
@@ -12789,6 +13182,14 @@
                 "type": "integer",
                 "example": 1,
                 "description": "Banco adquirente."
+              },
+              "paymentFacilitator": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "qb0d498oz21k5"
+                },
+                "example": 1,
+                "description": "Id del facilitador de pago."
               }
             }
           }
@@ -12847,7 +13248,8 @@
             },
             "control": {
               "seller": 1,
-              "reseller": 1
+              "reseller": 1,
+              "paymentFacilitator": 1
             }
           }
         },
@@ -13016,6 +13418,14 @@
                 "type": "integer",
                 "example": 1,
                 "description": "Banco adquirente."
+              },
+              "paymentFacilitator": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "8halp11bfw55r"
+                },
+                "example": 1,
+                "description": "Id del facilitador de pago"
               }
             }
           }
@@ -13461,6 +13871,41 @@
           "enabled": {
             "type": "boolean",
             "description": "Indicador de estado habilitado del distribuidor"
+          }
+        }
+      },
+      "PaymentFacilitator": {
+        "title": "PaymentFacilitator",
+        "type": "object",
+        "description": "Estructura que contiene información de un facilitador de pago.",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "country": {
+            "type": "string"
+          },
+          "visa": {
+            "type": "integer"
+          },
+          "mastercard": {
+            "type": "integer"
+          }
+        },
+        "x-examples": {
+          "Example 1": {
+            "id": 2,
+            "name": "Lindgren Group",
+            "active": true,
+            "country": "CO",
+            "visa": 1121730847,
+            "mastercard": 1480861300
           }
         }
       },
@@ -14386,6 +14831,13 @@
             },
             "description": "Contiene la información de filtros de seguridad",
             "properties": {
+              "filterLockedByTries": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "cualjtn82gwrq"
+                },
+                "description": "Indica si tiene los filtros de seguridad por intentos habilitados"
+              },
               "allowedIssuerCountries": {
                 "type": "array",
                 "x-stoplight": {
@@ -14735,7 +15187,15 @@
                 "type": "array",
                 "uniqueItems": true,
                 "description": "Días permitidos para ingresar al sistema.",
-                "default": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"],
+                "default": [
+                  "MONDAY",
+                  "TUESDAY",
+                  "WEDNESDAY",
+                  "THURSDAY",
+                  "FRIDAY",
+                  "SATURDAY",
+                  "SUNDAY"
+                ],
                 "items": {
                   "type": "string",
                   "example": "TUESDAY",
@@ -14775,8 +15235,7 @@
               "filters": {
                 "type": "object",
                 "description": "Objeto con información de filtros.",
-                "example": 
-                {
+                "example": {
                   "client": [
                     1,
                     2
@@ -14785,19 +15244,19 @@
                     1,
                     2
                   ],
-                   "franchise": [
+                  "franchise": [
                     1,
                     2
                   ],
-                   "airline": [
+                  "airline": [
                     1,
                     2
                   ],
-                   "reseller": [
+                  "reseller": [
                     1,
                     2
                   ],
-                   "seller": [
+                  "seller": [
                     1,
                     2
                   ],
@@ -14890,15 +15349,15 @@
               },
               "allowedDays": {
                 "type": "array",
-                "items":{
+                "items": {
                   "enum": [
-                  "MONDAY",
-                  "TUESDAY",
-                  "WEDNESDAY",
-                  "THURSDAY",
-                  "FRIDAY",
-                  "SATURDAY",
-                  "SUNDAY"
+                    "MONDAY",
+                    "TUESDAY",
+                    "WEDNESDAY",
+                    "THURSDAY",
+                    "FRIDAY",
+                    "SATURDAY",
+                    "SUNDAY"
                   ]
                 },
                 "example": [
@@ -14906,7 +15365,15 @@
                   "WEDNESDAY"
                 ],
                 "description": "Días permitidos para ingresar al sistema.",
-                "default": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
+                "default": [
+                  "MONDAY",
+                  "TUESDAY",
+                  "WEDNESDAY",
+                  "THURSDAY",
+                  "FRIDAY",
+                  "SATURDAY",
+                  "SUNDAY"
+                ]
               },
               "permissionMode": {
                 "type": "string",
@@ -14933,9 +15400,8 @@
               "filters": {
                 "type": "object",
                 "description": "Objeto con información de filtros.",
-                "example": 
-                {
-                 "client": [
+                "example": {
+                  "client": [
                     1,
                     2
                   ],
@@ -14943,19 +15409,19 @@
                     1,
                     2
                   ],
-                   "franchise": [
+                  "franchise": [
                     1,
                     2
                   ],
-                   "airline": [
+                  "airline": [
                     1,
                     2
                   ],
-                   "reseller": [
+                  "reseller": [
                     1,
                     2
                   ],
-                   "seller": [
+                  "seller": [
                     1,
                     2
                   ],
@@ -15022,15 +15488,15 @@
               },
               "allowedDays": {
                 "type": "array",
-                "items":{
+                "items": {
                   "enum": [
-                  "MONDAY",
-                  "TUESDAY",
-                  "WEDNESDAY",
-                  "THURSDAY",
-                  "FRIDAY",
-                  "SATURDAY",
-                  "SUNDAY"
+                    "MONDAY",
+                    "TUESDAY",
+                    "WEDNESDAY",
+                    "THURSDAY",
+                    "FRIDAY",
+                    "SATURDAY",
+                    "SUNDAY"
                   ]
                 },
                 "example": [
@@ -15038,7 +15504,15 @@
                   "WEDNESDAY"
                 ],
                 "description": "Días permitidos para ingresar al sistema.",
-                "default": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
+                "default": [
+                  "MONDAY",
+                  "TUESDAY",
+                  "WEDNESDAY",
+                  "THURSDAY",
+                  "FRIDAY",
+                  "SATURDAY",
+                  "SUNDAY"
+                ]
               },
               "permissionMode": {
                 "type": "string",
@@ -15065,8 +15539,7 @@
               "filters": {
                 "type": "object",
                 "description": "Objeto con información de filtros.",
-                "example": 
-                {
+                "example": {
                   "client": [
                     1,
                     2
@@ -15075,19 +15548,19 @@
                     1,
                     2
                   ],
-                   "franchise": [
+                  "franchise": [
                     1,
                     2
                   ],
-                   "airline": [
+                  "airline": [
                     1,
                     2
                   ],
-                   "reseller": [
+                  "reseller": [
                     1,
                     2
                   ],
-                   "seller": [
+                  "seller": [
                     1,
                     2
                   ],
@@ -15422,6 +15895,115 @@
             "minimum": 1,
             "example": 1,
             "description": "Ultima página disponible"
+          }
+        }
+      },
+      "Settings-Payment-Method": {
+        "title": "Settings-Payment-Method",
+        "x-stoplight": {
+          "id": "mr1sx1he1ju8c"
+        },
+        "type": "object",
+        "description": "Estructura que contiene la información de las configuraciones de un sitio/comercio asociadas a un medio de pago",
+        "properties": {
+          "merchantCode": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "i4quohqwulass"
+            },
+            "description": "Código de entidad"
+          },
+          "terminalNumber": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "4ty55xi9mtjau"
+            },
+            "description": "Número de terminal del medio de pago"
+          },
+          "MID": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "rs85sdjuohkqk"
+            },
+            "description": "ID de comerciante"
+          },
+          "RUC": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "1k0aw9es5ecy6"
+            },
+            "description": "Registro único de contribuyente"
+          },
+          "username": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "cyt6zc5q0eu9l"
+            },
+            "maxLength": 30,
+            "description": "Usuario de la terminal"
+          },
+          "password": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "t2eyzse2zbsqq"
+            },
+            "maxLength": 30,
+            "description": "Contraseña de la terminal"
+          },
+          "retailCode": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "40fwg4s7dkkd5"
+            },
+            "description": "Código único de venta",
+            "maxLength": 10
+          },
+          "terminalLocation": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "l7e9l5fds569r"
+            },
+            "description": "Determina la ubicación de la terminal"
+          },
+          "serviceCode": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "bsdgunndribek"
+            },
+            "description": "Código que representa el servicio del comercio"
+          },
+          "isEcommerce": {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "u3eawfq9u65df"
+            },
+            "description": "Determina si es un comercio electrónico"
+          },
+          "3DSVersion": {
+            "x-stoplight": {
+              "id": "tg6u5y0egr2td"
+            },
+            "description": "Determina la versión de 3DS",
+            "enum": [
+              "v1",
+              "v2"
+            ]
+          },
+          "3DSApiKey": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "hqsr9dmkl12q2"
+            },
+            "description": "3DS API key",
+            "maxLength": 380
+          },
+          "aggregatorModel": {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "3185185y0s0xt"
+            },
+            "default": false,
+            "description": "Determina si es modelo agregador (_PSE_)"
           }
         }
       }
