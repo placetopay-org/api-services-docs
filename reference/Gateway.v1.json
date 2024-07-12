@@ -85,6 +85,9 @@
                   },
                   "payment": {
                     "$ref": "#/components/schemas/Payment"
+                  },
+                  "subscription": {
+                    "$ref": "../Models/Subscription.json"
                   }
                 }
               },
@@ -1327,6 +1330,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "instrument"
+                ],
                 "properties": {
                   "locale": {
                     "type": "string"
@@ -1343,16 +1349,16 @@
                   "payment": {
                     "$ref": "#/components/schemas/Payment"
                   },
+                  "subscription": {
+                    "$ref": "../Models/Subscription.json"
+                  },
                   "ipAddress": {
                     "type": "string"
                   },
                   "userAgent": {
                     "type": "string"
                   }
-                },
-                "required": [
-                  "instrument"
-                ]
+                }
               },
               "examples": {
                 "Tarjeta de crédito ": {
@@ -2520,6 +2526,9 @@
                   },
                   "payment": {
                     "$ref": "#/components/schemas/Payment"
+                  },
+                  "subscription": {
+                    "$ref": "../Models/Subscription.json"
                   }
                 }
               },
@@ -3019,6 +3028,9 @@
                     "format": "uri",
                     "maxLength": 250,
                     "description": "Url de retorno para retormar el control del usuario"
+                  },
+                  "subscription": {
+                    "$ref": "../Models/Subscription.json"
                   }
                 }
               },
