@@ -22,7 +22,7 @@ Para recibir notificaciones se debe enviar el campo `notificationURL` con una UR
 
 Para aprovechar esta notificación, en tu aplicación debes:
 
-**Identificar la sesión:** Con el `internalReference` y `reference` debes buscar el pago en tu sistema, este debe coincidir con una transacción que hayas creado anteriormente.
+**Identificar la transacción:** Con el `internalReference` y `reference` debes buscar el pago en tu sistema, este debe coincidir con una transacción que hayas creado anteriormente.
 
 **Validar firma del mensaje:** Se puede validar que la notificación se trate de un mensaje confiable de Placetopay generando y comparando el `signature`.
 
@@ -30,6 +30,6 @@ El signature se genera con la siguiente fórmula: `SHA-1(internalReference + sta
 
 Si el `signature` generado es igual al `signature` que llegó en el mensaje, entonces la notificación es auténtica.
 
-**Actualizar Información** Si todo lo que necesitas es el estado final de la transacción, entonces puedes actualizar el estado en tu sistema y eso sería todo.
+**Actualizar Información:** Si todo lo que necesitas es el estado final de la transacción, entonces puedes actualizar el estado en tu sistema y eso sería todo.
 
 Si necesitas conocer información adicional, debes consultar la transacción usando el `internalReference`
