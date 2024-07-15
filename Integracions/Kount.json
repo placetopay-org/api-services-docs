@@ -1,0 +1,68 @@
+{
+  "title": "Kount",
+  "type": "object",
+  "description": "Después de registrarte para los servicios de Kount y recibir un ID de cliente, agrega el SDK del Cliente Web a tu sitio web para integrar el Colector de Datos del Dispositivo.\n Para mas información ver documentación: https://developer.kount.com/hc/en-us/articles/6731598562836-How-to-Integrate-the-Web-Client-SDK-for-Device-Data-Collection-into-Your-Website",
+  "required": [
+    "instrument",
+    "kount",
+    "ip_address"
+  ],
+  "properties": {
+    "instrument": {
+      "type": "object",
+      "description": "Estructura que contiene la información acerca del medio de pago a usar en una transacción, esta estructura\nes variable de acuerdo a la solicitud que se genere, cada servicio requiere que se usen unos u otros datos.",
+      "properties": {
+        "card": {
+          "title": "Card",
+          "type": "object",
+          "description": "Estructura que contiene la información de la tarjeta.",
+          "properties": {
+            "number": {
+              "type": "string",
+              "maxLength": 20
+            },
+            "expiration": {
+              "type": "string",
+              "example": "12/22",
+              "pattern": "^[01]\\d\\/\\d{2}$"
+            },
+            "cvv": {
+              "type": "string"
+            },
+            "installments": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "number"
+          ]
+        },
+        "kount": {
+          "title": "Kount",
+          "x-stoplight": {
+            "id": "qevzv57mju2tp"
+          },
+          "type": "object",
+          "description": "Maneja información especifica para usar con el filtro de riesgo Kount",
+          "properties": {
+            "session": {
+              "type": "string",
+              "description": "Identificador de esta operación en Kount, debe ser único por transacción"
+            },
+            "type": {
+              "type": "string",
+              "description": "Describe el tipo de operación que se está manejando en la sesión para definir los campos adicionales a enviar",
+              "enum": [
+                "airline",
+                "soat"
+              ]
+            }
+          },
+          "required": [
+            "session"
+          ]
+        }
+      }
+    }
+  }
+}
