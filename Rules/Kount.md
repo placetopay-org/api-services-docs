@@ -19,3 +19,9 @@ Para crear la sesión kount debe generase con los datos clientId= 201000, Enviro
 }
 ```
 Para descargar el repositorio del SDK de kount, en el siguiente enlace: [GitHub - luisfelipegh/kount-ddc](https://github.com/luisfelipegh/kount-ddc?tab=readme-ov-file)
+
+
+## Documentación relacionada
+
+* [Device Data Collector](https://developer.kount.com/hc/en-us/articles/6731598562836-How-to-Integrate-the-Kount-Web-Client-for-Device-Data-Collection-into-Your-Website)
+* [Como generar id de sesión para el device data collector](https://developer.kount.com/hc/en-us/articles/4411121644820-How-to-Create-a-Session-ID-for-the-Device-Data-Collector-DDC-)
