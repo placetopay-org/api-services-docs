@@ -11149,7 +11149,8 @@
                           "description": "Plan Description",
                           "validFrom": "2024-05-03",
                           "validUntil": "2024-05-15",
-                          "updatedAt": "2024-01-20 15:02:14"
+                          "updatedAt": "2024-01-20 15:02:14",
+                          "createdAt": "2024-01-20 15:02:14"
                         },
                         {
                           "id": 2,
@@ -11162,7 +11163,8 @@
                           "description": "Plan Description",
                           "validFrom": "2024-05-03",
                           "validUntil": "2024-05-05",
-                          "updatedAt": "2024-01-20 15:01:54"
+                          "updatedAt": "2024-01-20 15:01:54",
+                          "createdAt": "2024-01-20 15:01:54"
                         }
                       ],
                       "pagination": {
