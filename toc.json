@@ -43,6 +43,11 @@
     },
     {
       "type": "item",
+      "title": "Iniciador de Transacción",
+      "uri": "/docs/Indicador-de-iniciador.md"
+    },
+    {
+      "type": "item",
       "title": "Importación ordenes de pago",
       "uri": "/docs/formats/Importacion-ordenes-de-pago.md"
     },
