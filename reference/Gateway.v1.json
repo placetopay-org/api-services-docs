@@ -358,14 +358,14 @@
                           "id": "u3j2wlj4s93u9"
                         },
                         "enum": [
-                          "1C",
-                          "2C",
-                          "3C",
-                          "4C",
-                          "1M",
-                          "2M",
-                          "3M",
-                          "4M"
+                          "CARDHOLDER_COF",
+                          "CARDHOLDER_RECURRING_VARIABLE_AMOUNT",
+                          "CARDHOLDER_RECURRING_FIXED_AMOUNT",
+                          "CARDHOLDER_WITH_INSTALLMENTS",
+                          "MERCHANT_COF",
+                          "MERCHANT_RECURRING_VARIABLE_AMOUNT",
+                          "MERCHANT_RECURRING_FIXED_AMOUNT",
+                          "MERCHANT_WITH_INSTALLMENTS"
                         ],
                         "description": "Indicador del iniciador de la transacción.\nSe puede enviar según la [especificación](../docs/Indicador-de-iniciador.md)"
                       }
