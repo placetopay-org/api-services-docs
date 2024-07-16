@@ -12009,7 +12009,7 @@
       "post": {
         "summary": "Consulta de rangos de un plan",
         "operationId": "post-core-plan-range-list",
-        "description": "Este servicio permite consultar todos los rangos asociados a un plan existente. Se puede filtrar por medio del identificador del plan. Si la respuesta es exitosa, retorna un arreglo con los rangos del plan.",
+        "description": "Este servicio permite consultar todos los rangos asociados a un plan existente. Si la respuesta es exitosa, retorna un arreglo con los rangos del plan.",
         "responses": {
           "200": {
             "description": "OK",
@@ -12474,7 +12474,7 @@
       "post": {
         "summary": "Consulta de comercios de un plan",
         "operationId": "post-core-plan-customer-list",
-        "description": "Este servicio permite consultar los comercios asociados a un plan existente. Se puede filtrar por medio del identificador del plan. Si la respuesta es exitosa, retorna un arreglo con las asociaciones entre planes y comercios.",
+        "description": "Este servicio permite consultar los comercios asociados a un plan existente. Si la respuesta es exitosa, retorna un arreglo con las asociaciones entre planes y comercios.",
         "responses": {
           "200": {
             "description": "OK",
