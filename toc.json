@@ -72,15 +72,6 @@
     },
     {
       "type": "divider",
-      "title": "Rules"
-    },
-    {
-      "type": "item",
-      "title": "Kount",
-      "uri": "/Rules/Kount.md"
-    },
-    {
-      "type": "divider",
       "title": "Schemas"
     },
     {
