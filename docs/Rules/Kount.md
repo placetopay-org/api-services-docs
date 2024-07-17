@@ -1,3 +1,7 @@
+---
+stoplight-id: gwygp6jg6qxqi
+---
+
 # Kount
 
 Después de registrarte para los servicios de Kount y recibir un ID de cliente, agrega el SDK del Cliente Web a tu sitio web para integrar el Colector de Datos del Dispositivo.
