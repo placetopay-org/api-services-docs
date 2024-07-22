@@ -358,7 +358,7 @@
                     "x-stoplight": {
                       "id": "uedt9xmfgncjt"
                     },
-                    "description": "URL para notificación",
+                    "description": "URL a la que se enviará una notificación HTTP con la información de la transacción una vez que esta haya sido procesada",
                     "example": "www.urlexample.com"
                   }
                 }

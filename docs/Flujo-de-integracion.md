@@ -49,4 +49,4 @@ Se trata de un proceso para realizar la transacción que involucra el consumo de
 
 ### Diagrama de flujo de una transacción
 
-![transactionFlow.png](../assets/images/transactionFlow.png)
+![transactionFlow.png](../assets/images/transactionFlow.webp)
