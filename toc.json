@@ -52,6 +52,11 @@
       "uri": "/docs/Procesamiento-con-cuentas-bancarias.md"
     },
     {
+      "type": "item",
+      "title": "Notificación",
+      "uri": "/docs/Notificacion.md"
+    },
+    {
       "type": "divider",
       "title": "APIS"
     },

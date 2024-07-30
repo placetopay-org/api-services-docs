@@ -352,6 +352,14 @@
                   "additional": {
                     "type": "object",
                     "description": "Objeto dinámico clave valor de información que se desee guardar con la transacción. Las siguientes claves NO son permitidas: _accountNumber, userAgent, fingerprint, sourcePlatform, tokenizationID, trazabilyCode, transactionCycle, RequestId, PartnerAuthCode, onTest, threeDSEnrolled, threeDSAuthenticated."
+                  },
+                  "notificationURL": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "uedt9xmfgncjt"
+                    },
+                    "description": "URL a la que se enviará una notificación HTTP con la información de la transacción una vez que esta haya sido procesada",
+                    "example": "www.urlexample.com"
                   }
                 }
               },
@@ -389,7 +397,8 @@
                       }
                     },
                     "ipAddress": "190.85.90.130",
-                    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
+                    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36",
+                    "notificationURL": "www.urlexample.com"
                   }
                 },
                 "Complex": {
