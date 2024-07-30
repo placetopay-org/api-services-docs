@@ -12,14 +12,12 @@ Kount es una plataforma avanzada de prevención de fraude y gestión de riesgos 
 
 Después de registrarte para los servicios de Kount y recibir un ID de cliente, agrega el SDK del Cliente Web a tu sitio web para integrar el Colector de Datos del Dispositivo.
 
+Para crear la sesión kount debe generase con los datos clientId= 201000, Environment=TEST (sandbox) o Environment=PROD (production).
+
 Para mas información ver documentación: [How to Integrate the Web Client SDK for Device Data Collection into Your Website – Kount Developer](https://developer.kount.com/hc/en-us/articles/6731598562836-How-to-Integrate-the-Web-Client-SDK-for-Device-Data-Collection-into-Your-Website)
 
-
-## Crear sesión kount
-
-[Device Data Collector](https://developer.kount.com/hc/en-us/articles/6731598562836-How-to-Integrate-the-Kount-Web-Client-for-Device-Data-Collection-into-Your-Website)
-
-Para crear la sesión kount debe generase con los datos clientId= 201000, Environment=TEST (sandbox) o Environment=PROD (production) una vez obtenida la conexión Data device collector (DDC) enviar el kount sesión en el objeto kount.
+## Crear sesión con Kount
+Una vez obtenida la conexión Data device collector (DDC) enviar el kount sesión en el objeto kount.
 
 ```json
 {
