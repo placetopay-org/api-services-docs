@@ -52,6 +52,11 @@
       "uri": "/docs/Procesamiento-con-cuentas-bancarias.md"
     },
     {
+      "type": "item",
+      "title": "Kount",
+      "uri": "/docs/Kount.md"
+    },
+    {
       "type": "divider",
       "title": "APIS"
     },
