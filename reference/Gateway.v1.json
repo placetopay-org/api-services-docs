@@ -2879,7 +2879,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "",
                   "type": "object",
                   "x-examples": {
                     "example-1": {
@@ -2899,6 +2898,10 @@
                       }
                     }
                   },
+                  "required": [
+                    "status",
+                    "data"
+                  ],
                   "properties": {
                     "status": {
                       "$ref": "../Models/Status.json"
@@ -2909,14 +2912,32 @@
                         "version"
                       ],
                       "properties": {
+                        "action": {
+                          "x-stoplight": {
+                            "id": "y7dnrn2bk9beg"
+                          },
+                          "enum": [
+                            "continue",
+                            "redirect"
+                          ]
+                        },
                         "version": {
                           "type": "string",
                           "minLength": 1,
                           "enum": [
                             "v1",
-                            "v2"
+                            "v2",
+                            "v2x"
                           ],
                           "maxLength": 2
+                        },
+                        "id": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "ymazx2ukao8yk"
+                          },
+                          "description": "Identificador del proceso en 3DS",
+                          "nullable": true
                         },
                         "enrolled": {
                           "type": "string",
@@ -2928,6 +2949,31 @@
                           ],
                           "maxLength": 1
                         },
+                        "authenticated": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "ickivdawi874a"
+                          },
+                          "nullable": true
+                        },
+                        "validSignature": {
+                          "type": "boolean",
+                          "x-stoplight": {
+                            "id": "i0or7088qv5uj"
+                          }
+                        },
+                        "eci": {
+                          "type": "string",
+                          "minLength": 1,
+                          "nullable": true
+                        },
+                        "cavv": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "k7y0va1fv7pwm"
+                          },
+                          "nullable": true
+                        },
                         "redirectUrl": {
                           "type": "string",
                           "description": "URL a enviar al usuario para continuar con el proceso",
@@ -2938,22 +2984,88 @@
                           "description": "Identificador del proceso en 3DS",
                           "nullable": true
                         },
-                        "eci": {
+                        "xid": {
                           "type": "string",
-                          "minLength": 1,
+                          "x-stoplight": {
+                            "id": "tyl2p8e6dndba"
+                          },
+                          "format": "uuid",
                           "nullable": true
                         },
-                        "formData": {
+                        "extra": {
                           "type": "object",
-                          "nullable": true
+                          "x-stoplight": {
+                            "id": "xexibydm6qrxu"
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "transStatusReason": {
+                              "type": "string",
+                              "x-stoplight": {
+                                "id": "r8gwnhckwy5vs"
+                              }
+                            },
+                            "acsTransId": {
+                              "type": "string",
+                              "x-stoplight": {
+                                "id": "xd5n2m3xrhhj1"
+                              },
+                              "format": "uuid"
+                            },
+                            "threeDSServerTransID": {
+                              "type": "string",
+                              "x-stoplight": {
+                                "id": "etoyuumxf8t3n"
+                              },
+                              "format": "uuid"
+                            },
+                            "messageType": {
+                              "type": "string",
+                              "x-stoplight": {
+                                "id": "mduy3ozawhpy0"
+                              }
+                            },
+                            "acsReferenceNumber": {
+                              "type": "string",
+                              "x-stoplight": {
+                                "id": "w1yao4hanbm1g"
+                              }
+                            },
+                            "dsReferenceNumber": {
+                              "type": "string",
+                              "x-stoplight": {
+                                "id": "ilkd9uu2f70oc"
+                              }
+                            },
+                            "deviceChannel": {
+                              "type": "string",
+                              "x-stoplight": {
+                                "id": "8zaao5yrew0d7"
+                              }
+                            },
+                            "messageCategory": {
+                              "type": "string",
+                              "x-stoplight": {
+                                "id": "7umvke47fcgzr"
+                              }
+                            },
+                            "authMethod": {
+                              "type": "string",
+                              "x-stoplight": {
+                                "id": "yzolkgbko4j6a"
+                              }
+                            },
+                            "authTimestamp": {
+                              "type": "string",
+                              "x-stoplight": {
+                                "id": "otpzibo0thbh3"
+                              }
+                            }
+                          }
                         }
                       }
                     }
-                  },
-                  "required": [
-                    "status",
-                    "data"
-                  ]
+                  }
                 },
                 "examples": {
                   "Ejemplo v1": {
@@ -3007,6 +3119,58 @@
                         "formData": null
                       }
                     }
+                  },
+                  "Ejemplo v2x action continue": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "stri",
+                        "message": "string",
+                        "date": "2021-09-21T09:34:48-05:00"
+                      },
+                      "data": {
+                        "action": "continue",
+                        "version": "v1",
+                        "id": "string",
+                        "enrolled": "N",
+                        "authenticated": "string",
+                        "validSignature": true,
+                        "eci": "string",
+                        "cavv": "string",
+                        "redirectUrl": "string",
+                        "identifier": "string",
+                        "xid": "09705204-94cc-4b94-acd0-08e7c286034b",
+                        "extra": {
+                          "transStatusReason": "string",
+                          "acsTransId": "6a4c48c6-9a4d-4d52-a3d5-0f13d1d52afa",
+                          "threeDSServerTransID": "fe25088a-b8ff-44af-9987-a4cb04914942",
+                          "messageType": "string",
+                          "acsReferenceNumber": "string",
+                          "dsReferenceNumber": "string",
+                          "deviceChannel": "string",
+                          "messageCategory": "string",
+                          "authMethod": "string",
+                          "authTimestamp": "string"
+                        }
+                      }
+                    }
+                  },
+                  "Example v2x action redirect": {
+                    "value": {
+                      "status": {
+                        "status": "OK",
+                        "reason": "00",
+                        "message": "La petición se ha procesado correctamente",
+                        "date": "2024-08-15T13:03:45-05:00"
+                      },
+                      "data": {
+                        "action": "redirect",
+                        "version": "v2x",
+                        "sessionToken": "791363f5757f9b3e1f25d21dfcc7e6c9602cd34aa34ab31020bbef2c7585b817",
+                        "redirectUrl": "https://3dss-dev.placetopay.ws/threeds/v2x/sessions/1821/791363f5757f9b3e1f25d21dfcc7e6c9602cd34aa34ab31020bbef2c7585b817",
+                        "identifier": "1865"
+                      }
+                    }
                   }
                 }
               }
@@ -3040,6 +3204,43 @@
                   },
                   "subscription": {
                     "$ref": "../Models/Subscription.json"
+                  },
+                  "action": {
+                    "x-stoplight": {
+                      "id": "ot9vyxdn2s3lf"
+                    },
+                    "enum": [
+                      "checkin",
+                      "pre_authorization"
+                    ]
+                  },
+                  "version": {
+                    "x-stoplight": {
+                      "id": "aylidek3pfgnl"
+                    },
+                    "enum": [
+                      "v2",
+                      "v2x"
+                    ],
+                    "description": "Versión de 3DS por la que se genera la consulta"
+                  },
+                  "additional": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "r7ezyii3wsp6y"
+                    },
+                    "properties": {
+                      "initiatorIndicator": {
+                        "x-stoplight": {
+                          "id": "st3s8o38pvvd4"
+                        },
+                        "enum": [
+                          "AGENT_CONF",
+                          "AGENT"
+                        ],
+                        "description": "* AGENT: Transacción iniciada por un agente en nombre del tarjeta habiente\n* AGENT_COF: Transacción iniciada con una tarjeta registrada en la wallet"
+                      }
+                    }
                   }
                 }
               },
