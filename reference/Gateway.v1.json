@@ -3245,7 +3245,7 @@
                 }
               },
               "examples": {
-                "Ejemplo": {
+                "Example": {
                   "value": {
                     "auth": {
                       "login": "c4ca4238a0b923820dcc509a6f75849b",
@@ -3268,7 +3268,12 @@
                         "cvv": "123"
                       }
                     },
-                    "returnUrl": "https://www.your-site.com/return?reference=1234567890"
+                    "returnUrl": "https://www.your-site.com/return?reference=1234567890",
+                    "action": "checkin",
+                    "version": "v2x",
+                    "additional": {
+                      "initiatorIndicator": "AGENT"
+                    }
                   }
                 }
               }
