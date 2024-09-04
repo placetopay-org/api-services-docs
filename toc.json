@@ -57,6 +57,11 @@
       "uri": "/docs/Notificacion.md"
     },
     {
+      "type": "item",
+      "title": "Kount",
+      "uri": "/docs/Kount.md"
+    },
+    {
       "type": "divider",
       "title": "APIS"
     },
