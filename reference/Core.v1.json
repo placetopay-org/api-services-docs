@@ -12887,7 +12887,7 @@
           },
           "url": {
             "type": "string",
-            "maxLength": 128,
+            "maxLength": 255,
             "example": "http://www.example.com",
             "description": "URL del sitio web del comercio."
           },
@@ -13133,7 +13133,7 @@
           },
           "url": {
             "type": "string",
-            "maxLength": 128,
+            "maxLength": 255,
             "example": "http://www.example.com",
             "description": "URL del sitio web del comercio."
           },
@@ -13376,7 +13376,7 @@
           },
           "url": {
             "type": "string",
-            "maxLength": 128,
+            "maxLength": 255,
             "example": "http://www.example.com",
             "description": "URL del sitio web del comercio."
           },
