@@ -50,7 +50,7 @@ Mastercard | 5180300000000039 | Rechaza **3DS-N**
 Mastercard | 5180300000000047 | Deja la transacción en estado pendiente y se resuelve a aprobado **3DS-C**
 Mastercard | 5180300000000054 | Deja la transacción en estado pendiente y se resuelve a rechazado **3DS-A**
 Mastercard | 5292594382060745 | Aprueba **3DS-C**
-American Express | 376651001281274 | Aprueba si se proporciona la expiración 06/22 y el cvv 4637 de lo contrario rechaza
+American Express | 376651001281274 | Aprueba si se proporciona la expiración 06/36 y el cvv 4637 de lo contrario rechaza
 Discover | 6550590000000001 | Aprueba
 Discover | 6550590000000019 | Rechaza
 Discover | 6550590000000027 | Deja la transacción en estado pendiente y se resuelve a aprobado
